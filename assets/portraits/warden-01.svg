@@ -32,7 +32,7 @@
     .sigil       { stroke: #c9a227; stroke-width: 0.9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     .nameplate   { fill: #f6efd5; stroke: #6b3018; stroke-width: 1.0; }
     .name-blank  { stroke: #6b0f0f; stroke-width: 1.4; fill: none; stroke-linecap: round; }
-    .title       { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.10em; text-transform: uppercase; }
+    .title       { font-family: Georgia, serif; font-size: 9px;  fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; text-transform: uppercase; }
     .stud        { fill: #c89860; stroke: #5e3c00; stroke-width: 0.6; }
   </style>
 
