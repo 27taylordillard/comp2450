@@ -1,7 +1,7 @@
 ---
 title: The Warden of the Foundations
 floor_number: "Warden · I"
-flavor_quote: "Four floors are carved into stone behind you. The Warden was carved from the same stone, by the same hand."
+flavor_quote: "Four floors built you a hero. The Warden waits for the hero to use what was built."
 covers: "Floors 0–3 · Midterm 1"
 ---
 
@@ -9,7 +9,7 @@ covers: "Floors 0–3 · Midterm 1"
 
 Steil's forge has gone cold behind you. Ahead, a vaulted antechamber — empty but for a single shape standing at its centre, and a closed gate beyond it. On the far side of the gate, you can hear Foust's cart-wheel; Floor 4 is on the other side.
 
-The shape does not move. It has no face you can name. It is the **Warden of the Foundations** — the first of four — and it does not bring a fifth lesson. It brings every one of the four above, and asks whether they took.
+The shape does not move *yet*. It has no face you can name. It is the **Warden of the Foundations** — the first of four — and it does not bring a fifth lesson. It brings every one of the four above, and asks whether they took. To prove they did, you will study, you will critique, and at the end, **you will fight it inside the game you have been building**.
 
 <div class="character-card" markdown="1">
 <div class="character-portrait">
@@ -18,24 +18,24 @@ The shape does not move. It has no face you can name. It is the **Warden of the 
 <div class="character-quote" markdown="1">
 <span class="speaker">The Warden, who has no name to give</span>
 
-*Speak the names. Walk the path. Pivot, and explain. Stamp the mould.*
-*Pass the four — and pass.*
+*Read. Critique. Build me into your game — and then strike me.*
+*Three trials, and an encounter. Pass them all, or do not pass.*
 </div>
 </div>
 
-**This page is your Midterm 1.** It replaces the timed paper exam other classes give for Floors 0 – 3. It is in two parts: a **take-home gauntlet of four trials** that you do over the long weekend, committed to your project repo; and a short **in-class quiz on Friday** that ties your submission to your own hand. Together they are 100 % of the midterm.
+**This page is your Midterm 1.** It replaces the timed paper exam. It is in two parts: a **take-home gauntlet of three trials** committed to your project repo, the third of which is a working boss battle inside your dungeon app; and a short **in-class quiz on Friday** that ties your submission to your own hand. Together they are 100 % of the midterm.
 
 <div class="callout check" markdown="1">
 <p class="callout-title">The schedule</p>
 
 | Phase | When | What |
 |-------|------|------|
-| **Gauntlet opens** | Friday, end of Week 4 — after Floor 3's last class | The four trials below become available. Begin any time. |
-| **Gauntlet closes** | Friday of Week 5, **9:00 AM** | All artifacts committed and pushed to your project repo. |
-| **In-class quiz** | Friday of Week 5, during class | ~20-minute paper quiz tied to your submission. |
+| **Gauntlet opens** | Friday, end of Week 4 — after Floor 3's last class | The three trials below become available. Begin any time. |
+| **Gauntlet closes** | Friday of Week 5, **9:00 AM** | All artifacts and battle code committed and pushed to your project repo. |
+| **In-class quiz** | Friday of Week 5, during class | ~20-minute paper quiz — every question pulled from *your own* battle code. |
 | **Grades returned** | Following Wednesday | Per-trial rubric notes + total. |
 
-You have a full week of calendar time. Plan to spend roughly an afternoon on the take-home if you are ready, and several afternoons if you are not.
+Plan your week. Trials I and II can be knocked out in an evening each. Trial III — the boss battle — is real engineering work and will take you several focused sittings. Start it early.
 </div>
 
 <div class="character-card" markdown="1">
@@ -45,136 +45,147 @@ You have a full week of calendar time. Plan to spend roughly an afternoon on the
 <div class="character-quote" markdown="1">
 <span class="speaker">Brother Faith stands with you at the gate</span>
 
-I have shown you the stopwatch all term. I am not going to make you race a paper exam under it now. The trials below are slower and more honest. You will have your books, your editor, your machine, and your tools — including the ones the Order did not have when I made my own descent. Use them. **Tell me what you used.** And then sit in front of me Friday and walk me through what you did.
+I am not going to make you race a paper exam under my stopwatch. I am going to ask you to *use* what these four floors gave you — in the game you have been building, against the Warden in front of you. Search. Sort. Stamp. Catch. If those four words live in your fingers by Friday, you will pass. If they live only in your notes, the Warden will see it the moment you step on the floor.
 </div>
 </div>
 
 <div class="callout bestiary" markdown="1">
 <p class="callout-title">AI policy for this midterm — read once, follow always</p>
 
-You may use AI assistants (Claude, Copilot, ChatGPT, the in-IDE completion in your editor — anything) on every trial below. Trial IV **requires** you to use one. The rules are:
+You may use AI assistants (Claude, Copilot, ChatGPT, the in-IDE completion in your editor — anything) on every trial below. Trial II **requires** you to use one. The rules are:
 
-1. **Declare what you used, where.** Submit an `AI-USE.md` in your gauntlet folder. For each trial, write one or two lines: *which* tool, *what* you asked it for, *what* you did with the result. "Did not use" is a perfectly good entry — but the line must be there.
-2. **The artifact must survive a conversation about it.** The Friday quiz will ask you about your submission in your own handwriting. If you turned in code or a paragraph you cannot defend, you submitted it from the wrong author.
-3. **Submitting AI output as-is, undeclared, is the failure mode** — not the AI use itself. If your code came from an LLM and you read it, ran it, fixed what was wrong, and understand it line-by-line, that is *engineering*. If you pasted it without reading and shipped it, that is *not*.
-4. **Trial IV is explicit:** you will use an LLM, paste the prompt and response, and write a critique. Reading and judging AI output is now part of the job; we are practicing it on purpose.
+1. **Declare what you used, where.** Submit an `AI-USE.md` in your `warden-trials/` folder. For each trial, write one or two lines: *which* tool, *what* you asked it for, *what* you did with the result. "Did not use" is a perfectly good entry — but the line must be there.
+2. **The artifact must survive a conversation about it.** Friday's quiz will pull questions directly from *your* battle code in your own handwriting. If you turned in something you cannot defend, you submitted it from the wrong author.
+3. **Submitting AI output as-is, undeclared, is the failure mode** — not the AI use itself. Reading, running, fixing, and understanding AI output is *engineering*. Pasting and shipping is not.
+4. **Trial II is explicit:** you will engage an LLM, paste the prompt and response, and write a critique.
+5. **Trial III adds one constraint:** in your `encounter-notes.md`, name **two functions** in your battle code that you wrote *without* AI assistance — by hand, with no autocomplete on the body. These are the functions Friday's quiz can ask you to modify on paper, so pick ones you actually understand cold.
 
 This policy is the same one your future employer will write next year. Practice now.
 </div>
 
-## The four trials
+## The three trials
 
-Run them in order. Each trial says what to **do**, what to **submit** (in your repo), and what counts as full credit.
+Run them in order. Trials I and II are short prep that prove your foundations are sound. Trial III is where you put them to work.
 
-### Trial I — *The Naming* (Floor 0) — 15 %
+### Trial I — *The Foundations Brief* (15 %)
 
-The Warden offers you a pile of loot from the four floors above and asks: *what shape does each thing want to live in?*
+The Warden wants four short answers — one from each floor above, each one anchored to the battle you are about to build. No code on this trial; just clear thinking on paper-or-keyboard.
 
-**Do.** Open `floor-03/warden-trials/trial-1-naming.md` in your project repo.
+**Do.** Open `floor-03/warden-trials/trial-1-brief.md` and write **50–100 words per answer**:
 
-1. Write **five short scenarios in your own words** — each one a real-world or in-game situation that needs a container. The scenarios should be **specific to your life or to your dungeon project**, not generic textbook examples. *"The order of the last ten commands the player typed in my game"* is good. *"A list of things"* is not.
-2. For each scenario, name the **one ADT** that fits best (list, stack, queue, deque, bag, set, priority queue, dictionary). Justify in **one sentence** why that ADT and not its closest neighbour.
-3. Now invert: pick three ADTs you did *not* use, and for each invent a fresh scenario from your project that demands it.
+1. **(Floor 0 — ADT.)** Your battle's "Use item" menu shows the *currently usable* items in your hero's inventory on this turn. Name the right ADT for that menu. Defend the choice against its closest neighbour (e.g., why `bag` instead of `set`, or `list` instead of `bag`).
+2. **(Floor 1 — search & Big-O.)** Your inventory is kept sorted by healing power. The player types `use Healing potion`. Linear or binary search to find it by name? Justify, and give the Big-O for each.
+3. **(Floor 2 — sort & comparators.)** Your "Use item" menu must be displayable sorted *either* by healing power *or* by weight. Show a one-line comparator (lambda) for each. One sentence on what language feature makes one `std::sort` call serve both orders.
+4. **(Floor 3 — templates & exceptions.)** Why does `Bag<T>` live in `Bag.h` instead of `Bag.cpp`? And: when the player types `9` for a 4-option menu, where in your code should the validation **throw**, and where should it **catch**?
 
-**Submit.** `trial-1-naming.md`.
+**Submit.** `trial-1-brief.md`.
 
-**Full credit.** Eight scenarios in your own voice; eight ADT pairings, each defended in one tight sentence; the scenarios reference your hero, your inventory, your bestiary, your commands — not generic stock. AI is welcome to *check* your pairings; it is not welcome to *write your scenarios* — those have to be from your world.
+**Full credit.** Four answers, each tight and correct. AI is welcome to *check* your answers; AI cannot *write your sentences* — these are short enough that we will recognise the LLM voice.
 
-### Trial II — *The Sorted Path* (Floor 1) — 25 %
+### Trial II — *The Critique* (15 %)
 
-**Do.** Open `floor-03/warden-trials/trial-2-search/searches.cpp` (a fresh file — no copy-paste from Floor 1's starter).
+You will engage an LLM, save the conversation, and critique what it gave you. This is the AI-literacy trial: reading and judging AI code is now part of the job.
 
-1. Write `int linearSearch(const std::vector<int>&, int target)` from scratch. Compile. Test on a small vector.
-2. Write `int binarySearchIter(const std::vector<int>&, int target)`. Compile. Test on the same vector after sorting it.
-3. Write `int binarySearchRec(const std::vector<int>&, int target, int lo, int hi)`. Compile. Test.
-4. For each of the three, put a one-line comment above the function with its **Big-O** and its **precondition** (or "none").
-5. Take a vector you know is **not sorted**, and call `binarySearchIter` on a value you know is in it. In `trial-2-search/notes.md`, write **one short paragraph** describing what you observed and why it is dangerous.
-
-**Submit.** `searches.cpp` and `notes.md`.
-
-**Full credit.** All three searches compile and pass your tests. Big-O and precondition comments present. The unsorted-binary paragraph is in your own voice and names the precondition explicitly.
-
-### Trial III — *The Pivot* (Floor 2) — 25 %
-
-This trial is on **paper**, not in code. The Warden specifically wants to see your hand.
-
-**Do.**
-
-1. Trace **merge sort** on `[5, 2, 8, 1, 9, 3, 7, 4]`. Show every split and every merge. Count comparisons during merging.
-2. Trace **quicksort** on `[5, 2, 8, 1, 9, 3, 7, 4]` using the **last** element of each partition as pivot. Show every partition. Count comparisons.
-3. Trace **quicksort** on `[1, 2, 3, 4, 5, 6, 7, 8]` using the **first** element of each partition as pivot. Show every partition. Count comparisons.
-4. Compare the three counts. In `trial-3-pivot/paragraph.md`, write **three to four sentences** explaining what happened in step 3 and why, in language a friend who hasn't read Floor 2 could follow. The paragraph must use the words **pivot** and **already**.
-
-**Submit.** A photo or scan of all three traces (`trial-3-pivot/traces.pdf` or `traces.jpg`) **and** `paragraph.md`.
-
-**Full credit.** Three legible traces in **your handwriting**; comparison counts circled; the paragraph short, clear, mechanically correct, and uses both required words. AI cannot do this trial for you — the artifact is a photograph of paper, and we will be reading what your hand wrote.
-
-### Trial IV — *The Stamped Mould* (Floor 3) — 25 %
-
-This trial **requires** AI use. You will engage an LLM, save the conversation, and critique what it gave you.
-
-**Do, part A — your own code.** In `floor-03/warden-trials/trial-4-templates/templates.cpp`:
-
-1. Write a function template `template<typename T> T sumAll(const std::vector<T>& v)` that returns the sum of the elements. Compile and call it on a `vector<int>` and a `vector<double>`.
-2. Now call it on a `vector<std::string>`. Predict what will happen *before* you compile. Compile. Note in `notes.md` whether your prediction matched.
-3. Write `class BagException : public std::exception` with a `what()` override returning a useful message.
-4. Write a `main` that creates a small `std::vector<int>`, calls `v.at(99)` inside a `try` block, catches `const std::exception& e`, and prints `e.what()`. Confirm the program exits cleanly without crashing.
-5. Change `at(99)` to `operator[](99)`. Run again. Note in `notes.md` what changed.
-
-**Do, part B — engage and critique an LLM.** In `trial-4-templates/ai-critique.md`:
+**Do.** In `floor-03/warden-trials/trial-2-critique.md`:
 
 1. Open Claude (or your LLM of choice). Paste this **exact** prompt:
    > *Write a C++ function template that returns the largest element of a `std::vector<T>`. Handle the case where the vector is empty. Briefly explain your design choices.*
-2. Paste the prompt **and** the LLM's full reply into `ai-critique.md`.
-3. Below the reply, write a critique of **at least 200 words**. The critique must address:
+2. Paste the prompt **and** the LLM's full reply into `trial-2-critique.md`.
+3. Below the reply, write a critique of **at least 150 words** addressing:
    - Does the code compile? Did you try it?
    - What does the empty-vector case actually do? Is the LLM's choice reasonable?
-   - What requirements does this place on `T`? What would happen if you instantiated it with a type that doesn't support `<`?
-   - Is it const-correct? By value or by reference? Would you change either?
+   - What does this require of `T`? What happens if you instantiate it with a type that doesn't support `<`?
+   - Const-correctness — by value or by reference? Would you change either?
    - Did the LLM cheat by using `std::max_element`, or did it write the loop? Which would you have shipped, and why?
    - One concrete improvement you would make before merging this into a real project.
 
-**Submit.** `templates.cpp`, `notes.md`, `ai-critique.md`.
+**Submit.** `trial-2-critique.md`.
 
-**Full credit.** Code from part A compiles and behaves correctly. The critique in part B is **substantive and specific** — it names what the LLM did, identifies real issues (or argues there are none, with reasoning), and reads like an engineer evaluating a colleague's pull request. A vague critique ("looks fine to me, but it could be better") is *not* full credit even if the code is great.
+**Full credit.** A critique that reads like an engineer reviewing a colleague's pull request — specific, technical, and naming what the LLM did. A vague critique is *not* full credit even if the LLM's code was great.
+
+### Trial III — *The Encounter* (60 %)
+
+This is the trial. You will program the Warden of the Foundations into your dungeon app as a real, playable boss battle, and you will fight it.
+
+**Do.** In your floor-03 project (the one you've been building all term), add a **`battle warden`** command to `main.cpp` (factor it into a `Battle.h` / `Battle.cpp` if you like — encouraged but not required). When the player types it, the encounter begins.
+
+**Required mechanics — minimum viable:**
+
+- **Stats.** Player starts at 30 HP. Warden starts at 50 HP. (Numbers are yours to tune; document them.)
+- **Turn loop.** Each turn: print current state (both HPs, last action), present a numbered menu, read input, execute, repeat.
+- **Menu — at least four options:**
+  1. **Attack** — deal damage to the Warden. Warden retaliates the same turn.
+  2. **Use item** — pick from your inventory; apply effect; turn ends.
+  3. **Inspect Warden** — print the Warden's HP and one of its sigils as a hint (free action — turn does *not* end).
+  4. **Flee** — leave the encounter. The Warden does not chase; the gate stays closed.
+- **Win condition.** Warden HP ≤ 0 → print a victory message and the gate opens.
+- **Lose condition.** Player HP ≤ 0 → print a defeat message; the run ends.
+
+**Required ties to Floors 0 – 3** — every one of these must be present in your battle code, real and load-bearing (not pasted in for show):
+
+- **Floor 0 (ADT):** the available menu actions for the current turn must be held in a container of your choice. In a comment above the declaration, name the ADT and defend it in one sentence — exactly the reasoning from Trial I.
+- **Floor 1 (search):** the "Use item" branch must call `findByName<Item>` (your Floor 3 function template) on the hero's inventory to look up the item the player typed.
+- **Floor 2 (sort):** when the "Use item" menu is displayed, the inventory must be sorted first using `std::sort` with a comparator — by healing power, weight, value, your call — and the choice documented in a comment.
+- **Floor 3 (templates + exceptions):** invalid menu input (out-of-range number, unknown item name) must `throw BagException` (or a `BattleException` you derive from `std::exception`). The throw must be caught **inside the battle loop** so the player gets a clean error and another menu prompt — not a crash, not an exit. The player's inventory must remain a `Bag<Item>`.
+
+**Also required:**
+
+- A short `floor-03/warden-trials/encounter-notes.md` with:
+  - Your AI declaration for this trial (per the policy).
+  - **The two functions you wrote without AI**, named by file and line. Friday's quiz can pull from these.
+  - One paragraph (≤ 200 words) reflecting on the integration: which Floor's tie was hardest to wire in, and why.
+- A working **build**. We will `cmake --build build` your project. If it does not compile, the Warden has won by default.
+
+**Submit.** Your modified `main.cpp` (and any `Battle.{h,cpp}` you added) + `encounter-notes.md`, all committed to your project repo.
+
+**Full credit (rubric inside the 60 %):**
+
+| Sub-component | Pts |
+|---------------|----:|
+| Battle compiles and plays through (menu, both endings reachable) | 25 % |
+| All four Floor 0 – 3 ties present and meaningful                  | 25 % |
+| Encounter notes complete (AI declaration + two no-AI functions named + reflection) | 5 % |
+| Code quality (readable, factored, no copy-paste fog)              | 5 % |
 
 ## The Warden's Question — Friday in-class quiz (10 %)
 
-Twenty minutes. Closed everything — no books, no laptops, no phones, no AI. You will receive **four short questions on paper, one per trial.** Each one will look something like *"In your Trial II submission, you wrote `binarySearchRec`. On paper, modify it to count and return the number of probes it took"* — a small extension of the work you already submitted. If you actually did the trials, this quiz takes ten minutes. If you didn't, it takes the full twenty and the gap shows.
+Twenty minutes. Closed everything — no books, no laptops, no phones, no AI. You will receive **four short paper questions, each one a small modification to *your own submission*.** Three of the four will pull from the two functions you named in `encounter-notes.md` as written-without-AI. Examples:
 
-The quiz is the integrity seal. It is short by design and intentionally tied to your own submission — not because we don't trust you, but because by Friday you will know your trials cold, and a quick conversation in your own handwriting is the cleanest proof of that. There is no curve; there is no surprise material.
+- *"Modify your `attackWarden` function so the player's attack damage scales with their remaining HP. On paper, write the changed lines."*
+- *"In your battle's menu loop, add a 'Defend' option that halves the Warden's next attack. Sketch what changes."*
+- *"Your inventory comparator currently sorts by healing power. Rewrite it on paper to sort by healing-per-weight."*
+
+If you wrote your battle, this quiz takes ten minutes. If you didn't, it takes the full twenty and the gap is what we grade.
+
+The quiz is the integrity seal. It is short by design and intentionally tied to your own submission — not because we don't trust you, but because by Friday you will know your battle cold, and a quick conversation in your own handwriting is the cleanest proof of that.
 
 ## Submission and grading
 
-**Submission.** Commit and push the entire `floor-03/warden-trials/` folder to your project repo by **9:00 AM Friday of Week 5**. Late commits drop one letter grade per day on the take-home portion (the in-class quiz is on its scheduled day or it is a zero — same as any in-class quiz).
+**Submission.** Commit and push the entire `floor-03/warden-trials/` folder *and* your modified battle code to your project repo by **9:00 AM Friday of Week 5**. Late commits drop one letter grade per day on the take-home portion.
 
-**Folder shape:**
+**Folder + code shape:**
 
 ```
-floor-03/warden-trials/
-  AI-USE.md
-  trial-1-naming.md
-  trial-2-search/
-    searches.cpp
-    notes.md
-  trial-3-pivot/
-    traces.pdf            (or .jpg / .png — must be legible)
-    paragraph.md
-  trial-4-templates/
-    templates.cpp
-    notes.md
-    ai-critique.md
+[your project repo]/
+  floor-03/
+    main.cpp                       <-- new `battle warden` command lives here
+    Battle.h, Battle.cpp           <-- optional, encouraged
+    hero/Bag.h, BagException.h     <-- already there from Floor 3 starter
+    warden-trials/
+      AI-USE.md
+      trial-1-brief.md
+      trial-2-critique.md
+      encounter-notes.md
 ```
 
-**Rubric.**
+**Rubric — top-level.**
 
 | Component | Weight | Full-credit shape |
-|-----------|--------|-------------------|
-| Trial I — The Naming           | 15 % | 8 scenarios in your voice, defended in one sentence each, drawn from your project |
-| Trial II — The Sorted Path     | 25 % | 3 working searches; Big-O + precondition comments; unsorted-binary paragraph |
-| Trial III — The Pivot          | 25 % | 3 hand-traces, counts circled, 3–4 sentence explanatory paragraph using *pivot* and *already* |
-| Trial IV — The Stamped Mould   | 25 % | Templates + exceptions code working; ≥200-word substantive critique of the LLM reply |
-| Friday in-class quiz           | 10 % | Four short answers in your own hand on extensions of your trials |
+|-----------|-------:|-------------------|
+| Trial I — The Foundations Brief  | 15 % | Four tight 50–100-word answers in your voice |
+| Trial II — The Critique          | 15 % | ≥150-word substantive critique of the LLM's reply |
+| Trial III — The Encounter        | 60 % | Working battle + 4 required Floor 0–3 ties + encounter notes (rubric above) |
+| Friday in-class quiz             | 10 % | Four short paper answers modifying your own battle code |
 
 <div class="character-card" markdown="1">
 <div class="character-portrait">
@@ -183,17 +194,19 @@ floor-03/warden-trials/
 <div class="character-quote" markdown="1">
 <span class="speaker">Steil, leaning on his hammer at the gate</span>
 
-When the compiler shouts at you on Trial IV — *good.* The wall of errors is the compiler showing its work. One line in it tells you what is wrong; the rest is scaffolding it walked through to find that line. The same is true of your AI: read its first claim, judge that, and only then read what it built on top of it. If you accept the first claim without judging it, the AI has not helped you — it has *replaced* you, and the Warden will know.
+When you write the battle, do not write it all at once. Write *one turn* — print, prompt, read, attack, retaliate. Compile. *Run it.* Then write the next move. Builders who write the whole forge before lighting the fire end up with a forge that does not light. The Warden knows this. So does any compiler that has shouted at you. Read the first line of every error message; ignore the rest until the first one is solved.
 </div>
 </div>
 
 <div class="callout bestiary" markdown="1">
 <p class="callout-title">Bestiary · Warden of the Foundations</p>
 
-**The Warden of the Foundations** — *HP: equal to your weakest floor. Damage: cumulative.*
+**The Warden of the Foundations** — *HP: 50 (default). ATK: 4 per turn. Weakness: a hero who has actually used what the four floors taught.*
 The first of four wardens. Cataloguers caught its silhouette but never its name; the page they pinned to its entry shows armour, four sigils, and two ember points where eyes should be. Below the figure, the name slot is struck through. The Warden fights at the strength of whichever floor you understand *least* — a hero who is strong on three floors and weak on one is a hero the Warden picks apart at the seam.
 
-The Warden is also the first creature in this dungeon that does not punish you for using your tools. It punishes you for **letting your tools punish your understanding**. A hero who reads what their AI wrote, ran it, broke it, fixed it, and understood the fix passes the Warden. A hero who pasted and shipped fails it — even if the code compiled.
+The Warden does not punish you for using your tools. It punishes you for **letting your tools punish your understanding**. A hero who wrote their battle with AI help, ran it, broke it, fixed it, named two functions they wrote alone, and can defend them on Friday — passes. A hero who pasted the whole battle from an LLM and shipped it without reading — does not.
+
+You will fight this creature inside the game you wrote. That fact is the test.
 </div>
 
 <div class="character-card" markdown="1">
@@ -203,10 +216,10 @@ The Warden is also the first creature in this dungeon that does not punish you f
 <div class="character-quote" markdown="1">
 <span class="speaker">Grix has a study tip</span>
 
-*Friend!* The trials — easy! Just ask the **machine** to do all four! Paste, paste, paste, *commit, push.* Don't fill in the AI form! No one will check, friend! And when they ask you on Friday — just say the machine *was* you. Friend? *Friend?* (Grix has tried this. Grix did not pass.)
+*Friend!* The boss battle — easy! Ask the **machine** to write the *whole* thing, paste it in, push it, do not fill in the AI form, name two random functions as "yours," and on Friday — just *look surprised.* Look very surprised, friend! Works *every time.* (It does not work any time. Grix has tried. Grix's hero has been at zero HP since Floor 1.)
 </div>
 </div>
 
 ---
 
-*The Warden does not move when you finish. It will not say whether you have passed. The judgement happens on Friday, in handwriting, in front of the only person whose opinion of your work matters this term — yourself. Make it a good handwriting day. Beyond the gate, the stair to Floor 4 — the **Chain Vault** — descends into the dark. Foust is already there with his cart, sorting maps.*
+*The battle ends one way or the other — by Friday morning. The Warden does not announce the result; it falls, or you do. The judgement happens during Friday's class, in handwriting, on modifications the Warden asks you to make to your own code. Beyond the gate, the stair to Floor 4 — the **Chain Vault** — descends into the dark. Foust is already there with his cart, sorting maps.*
