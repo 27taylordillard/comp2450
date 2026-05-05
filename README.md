@@ -19,14 +19,7 @@ comp2450/
     └── floor-00-starter/     starter code handed out at each floor
 ```
 
-Instructor-only prep (session plans, answer keys, video scripts, grading notes) is kept **locally** — outside version control — and never committed to this public repo.
-
 ## Viewing the site
 
 - **Live site:** https://hogred.github.io/comp2450/
 - **On GitHub:** markdown files render fine on github.com without any Jekyll build.
-- **Locally:** full Jekyll preview on Windows requires Ruby — usually not worth the setup; just push and check the deployed site.
-
-## Editing
-
-Edit any student-facing page freely. Students see the latest version after each push; GitHub Pages rebuilds in 30–90 seconds.
