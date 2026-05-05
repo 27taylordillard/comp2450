@@ -1,6 +1,55 @@
 ---
 layout: default
 ---
+{% assign floors = site.floors %}
+{% assign current_index = -1 %}
+{% for f in floors %}
+  {% if f.url == page.url %}{% assign current_index = forloop.index0 %}{% endif %}
+{% endfor %}
+{% assign prev_floor = nil %}
+{% assign next_floor = nil %}
+{% if current_index > 0 %}
+  {% assign prev_index = current_index | minus: 1 %}
+  {% assign prev_floor = floors[prev_index] %}
+{% endif %}
+{% if current_index >= 0 %}
+  {% assign next_index = current_index | plus: 1 %}
+  {% if next_index < floors.size %}
+    {% assign next_floor = floors[next_index] %}
+  {% endif %}
+{% endif %}
+
+<nav class="floor-nav floor-nav-top" aria-label="Floor navigation">
+  {% if prev_floor %}
+    <a class="floor-nav-link prev" href="{{ prev_floor.url | relative_url }}">
+      <span class="floor-nav-arrow">&larr;</span>
+      <span class="floor-nav-text">
+        <span class="floor-nav-label">Ascend</span>
+        <span class="floor-nav-title">{{ prev_floor.floor_number }} · {{ prev_floor.title }}</span>
+      </span>
+    </a>
+  {% else %}
+    <span class="floor-nav-link disabled"><span class="floor-nav-arrow">&larr;</span><span class="floor-nav-text"><span class="floor-nav-label">No floor above</span></span></span>
+  {% endif %}
+  <a class="floor-nav-link toc" href="{{ '/' | relative_url }}">
+    <span class="floor-nav-text">
+      <span class="floor-nav-label">The Hold</span>
+      <span class="floor-nav-title">Dungeon Map</span>
+    </span>
+  </a>
+  {% if next_floor %}
+    <a class="floor-nav-link next" href="{{ next_floor.url | relative_url }}">
+      <span class="floor-nav-text">
+        <span class="floor-nav-label">Descend</span>
+        <span class="floor-nav-title">{{ next_floor.floor_number }} · {{ next_floor.title }}</span>
+      </span>
+      <span class="floor-nav-arrow">&rarr;</span>
+    </a>
+  {% else %}
+    <span class="floor-nav-link disabled"><span class="floor-nav-text"><span class="floor-nav-label">The descent ends here</span></span><span class="floor-nav-arrow">&rarr;</span></span>
+  {% endif %}
+</nav>
+
 <article class="floor">
   <div class="floor-banner">
     <div class="floor-number">{{ page.floor_number }}</div>
@@ -14,3 +63,34 @@ layout: default
   </div>
   {{ content }}
 </article>
+
+<nav class="floor-nav floor-nav-bottom" aria-label="Floor navigation">
+  {% if prev_floor %}
+    <a class="floor-nav-link prev" href="{{ prev_floor.url | relative_url }}">
+      <span class="floor-nav-arrow">&larr;</span>
+      <span class="floor-nav-text">
+        <span class="floor-nav-label">Ascend</span>
+        <span class="floor-nav-title">{{ prev_floor.floor_number }} · {{ prev_floor.title }}</span>
+      </span>
+    </a>
+  {% else %}
+    <span class="floor-nav-link disabled"><span class="floor-nav-arrow">&larr;</span><span class="floor-nav-text"><span class="floor-nav-label">No floor above</span></span></span>
+  {% endif %}
+  <a class="floor-nav-link toc" href="{{ '/' | relative_url }}">
+    <span class="floor-nav-text">
+      <span class="floor-nav-label">The Hold</span>
+      <span class="floor-nav-title">Dungeon Map</span>
+    </span>
+  </a>
+  {% if next_floor %}
+    <a class="floor-nav-link next" href="{{ next_floor.url | relative_url }}">
+      <span class="floor-nav-text">
+        <span class="floor-nav-label">Descend</span>
+        <span class="floor-nav-title">{{ next_floor.floor_number }} · {{ next_floor.title }}</span>
+      </span>
+      <span class="floor-nav-arrow">&rarr;</span>
+    </a>
+  {% else %}
+    <span class="floor-nav-link disabled"><span class="floor-nav-text"><span class="floor-nav-label">The descent ends here</span></span><span class="floor-nav-arrow">&rarr;</span></span>
+  {% endif %}
+</nav>
