@@ -14,6 +14,18 @@
 
   <main>
     {{ content }}
+    {% if page.layout != 'floor' and page.url != '/' %}
+    <div class="floor-nav-wrap floor-nav-bottom">
+      <nav class="floor-nav floor-nav-single" aria-label="Page navigation">
+        <a class="floor-nav-link toc" href="{{ '/' | relative_url }}">
+          <span class="floor-nav-text">
+            <span class="floor-nav-label">The Hold</span>
+            <span class="floor-nav-title">Back to the Dungeon Map</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+    {% endif %}
   </main>
 
   <footer class="site-footer">

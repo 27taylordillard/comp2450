@@ -55,8 +55,6 @@ layout: default
 </nav>
 {% endcapture %}
 
-<div class="floor-nav-wrap floor-nav-top">{{ floor_nav }}</div>
-
 <article class="floor">
   <div class="floor-banner">
     <div class="floor-number">{{ page.floor_number }}</div>
@@ -68,7 +66,7 @@ layout: default
     </div>
     {% endif %}
   </div>
+  <div class="floor-nav-wrap floor-nav-top">{{ floor_nav }}</div>
   {{ content }}
+  <div class="floor-nav-wrap floor-nav-bottom">{{ floor_nav }}</div>
 </article>
-
-<div class="floor-nav-wrap floor-nav-bottom">{{ floor_nav }}</div>
