@@ -376,24 +376,20 @@ figure.diagram figcaption {
 
 /* Floor navigation — prev / TOC / next, shown above and below each floor.
    Sits inside the parchment column so it lines up with the floor banner. */
+.floor-nav-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 3.5rem;
+}
+
+.floor-nav-top { margin-top: 1.5rem; margin-bottom: -1rem; }
+.floor-nav-bottom { margin-top: 1.5rem; margin-bottom: 2rem; }
+
 .floor-nav {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 0.6rem;
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 3.5rem;
   align-items: stretch;
-}
-
-.floor-nav-top {
-  margin-top: 1.5rem;
-  margin-bottom: -1rem;
-}
-
-.floor-nav-bottom {
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
 }
 
 .floor-nav-link {
@@ -505,10 +501,8 @@ figure.diagram figcaption {
   .floor-banner .bard-quote { flex-direction: column; gap: 0.5rem; }
   .floor-banner .bard-icon { flex: 0 0 130px; width: 130px; }
   .floor-banner .bard-quote .flavor-quote { text-align: center; }
-  .floor-nav {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-  }
+  .floor-nav-wrap { padding: 0 1rem; }
+  .floor-nav { grid-template-columns: 1fr; }
   .floor-nav-link.prev,
   .floor-nav-link.next,
   .floor-nav-link.toc { justify-content: center; text-align: center; }
