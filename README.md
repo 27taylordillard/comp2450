@@ -22,4 +22,3 @@ comp2450/
 ## Viewing the site
 
 - **Live site:** https://hogred.github.io/comp2450/
-- **On GitHub:** markdown files render fine on github.com without any Jekyll build.
