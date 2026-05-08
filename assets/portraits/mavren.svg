@@ -129,7 +129,7 @@
 
   <!-- Nameplate -->
   <rect class="nameplate" x="22" y="234" width="176" height="32" rx="2"/>
-  <text class="name"  x="110" y="251">Quartermistress Mavren</text>
+  <text class="name"  x="110" y="251" textLength="158" lengthAdjust="spacingAndGlyphs">Quartermistress Mavren</text>
   <text class="title" x="110" y="262">Keeper of the Chain Vault</text>
 
   <!-- Corner studs -->
