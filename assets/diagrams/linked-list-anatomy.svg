@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img" aria-labelledby="ll-title ll-desc">
+  <title id="ll-title">Anatomy of a chain — head, nodes, ground</title>
+  <desc id="ll-desc">A row of three Node objects. Each node has a data cell on the left and a next cell on the right. A head arrow points into the leftmost node. The next cells of the first two nodes point right into the following node. The rightmost node's next points down into a ground symbol labelled nullptr.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .node-outer  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-data   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 0.9; }
+    .node-next   { fill: #eacf85; stroke: #8b5a00; stroke-width: 0.9; }
+    .head-pill   { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.4; }
+    .pointer-dot { fill: #6b0f0f; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .ground-line { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .cell-label  { font-family: Georgia, serif; font-size: 10px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
+    .end-label   { font-family: Georgia, serif; font-size: 10.5px; fill: #6b0f0f; text-transform: uppercase; letter-spacing: 0.10em; font-weight: 700; text-anchor: middle; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .code-pill   { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .code-null   { font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <!-- panel background -->
+  <rect class="panel" x="10" y="10" width="620" height="220" rx="6"/>
+  <text class="panel-title" x="320" y="28">anatomy of a chain</text>
+
+  <!-- end-of-chain labels above first and last node -->
+  <text class="end-label" x="185" y="64">newest  ·  head</text>
+  <text class="end-label" x="525" y="64">oldest  ·  tail</text>
+
+  <!-- ====================== head pointer pill ====================== -->
+  <rect class="head-pill" x="22" y="104" width="74" height="36" rx="4"/>
+  <text class="code-pill" x="59" y="127">head_</text>
+
+  <!-- arrow: head_ → node 1 -->
+  <line class="arrow-line" x1="96" y1="122" x2="128" y2="122"/>
+  <polygon class="arrow-fill" points="128,117 138,122 128,127"/>
+
+  <!-- ====================== NODE 1 (head / newest) ====================== -->
+  <rect class="node-outer" x="130" y="82" width="110" height="64" rx="3"/>
+  <rect class="node-data"  x="130" y="82" width="70"  height="64"/>
+  <rect class="node-next"  x="200" y="82" width="40"  height="64"/>
+  <text class="cell-label" x="165" y="96">data</text>
+  <text class="cell-label" x="220" y="96">next</text>
+  <text class="code"       x="165" y="126">"inspect"</text>
+  <circle class="pointer-dot" cx="220" cy="124" r="3.4"/>
+
+  <!-- arrow: node 1 next → node 2 -->
+  <line class="arrow-line" x1="220" y1="124" x2="298" y2="124"/>
+  <polygon class="arrow-fill" points="298,119 308,124 298,129"/>
+
+  <!-- ====================== NODE 2 ====================== -->
+  <rect class="node-outer" x="310" y="82" width="110" height="64" rx="3"/>
+  <rect class="node-data"  x="310" y="82" width="70"  height="64"/>
+  <rect class="node-next"  x="380" y="82" width="40"  height="64"/>
+  <text class="cell-label" x="345" y="96">data</text>
+  <text class="cell-label" x="400" y="96">next</text>
+  <text class="code"       x="345" y="126">"search"</text>
+  <circle class="pointer-dot" cx="400" cy="124" r="3.4"/>
+
+  <!-- arrow: node 2 next → node 3 -->
+  <line class="arrow-line" x1="400" y1="124" x2="478" y2="124"/>
+  <polygon class="arrow-fill" points="478,119 488,124 478,129"/>
+
+  <!-- ====================== NODE 3 (tail / oldest) ====================== -->
+  <rect class="node-outer" x="490" y="82" width="110" height="64" rx="3"/>
+  <rect class="node-data"  x="490" y="82" width="70"  height="64"/>
+  <rect class="node-next"  x="560" y="82" width="40"  height="64"/>
+  <text class="cell-label" x="525" y="96">data</text>
+  <text class="cell-label" x="580" y="96">next</text>
+  <text class="code"       x="525" y="126">"began"</text>
+  <circle class="pointer-dot" cx="580" cy="124" r="3.4"/>
+
+  <!-- arrow: node 3 next → ground (down) -->
+  <line class="arrow-line" x1="580" y1="124" x2="580" y2="166"/>
+  <polygon class="arrow-fill" points="575,166 580,176 585,166"/>
+
+  <!-- ground symbol: three horizontal bars decreasing in width -->
+  <line class="ground-line" x1="562" y1="180" x2="598" y2="180"/>
+  <line class="ground-line" x1="568" y1="187" x2="592" y2="187"/>
+  <line class="ground-line" x1="574" y1="194" x2="586" y2="194"/>
+
+  <!-- nullptr label -->
+  <text class="code-null" x="580" y="216">nullptr</text>
+
+  <!-- bottom note -->
+  <text class="note" x="285" y="216">head_ is the only handle — to find anything else, you walk the chain</text>
+</svg>
