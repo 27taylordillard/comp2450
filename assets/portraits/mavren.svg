@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" role="img" aria-labelledby="mavren-title mavren-desc">
+  <title id="mavren-title">Quartermistress Mavren, Keeper of the Chain Vault</title>
+  <desc id="mavren-desc">A bust portrait. A senior quartermistress with silver-streaked dark hair braided through three iron rings, wearing a slate-grey tunic under a chainmail half-apron, with a coiled iron chain crossing from her right shoulder down to her belt and a small brass tally-tag on a thin cord at her collar, against a slate-and-iron field. A nameplate at the foot reads QUARTERMISTRESS MAVREN — Keeper of the Chain Vault.</desc>
+  <defs>
+    <pattern id="mavren-stipple" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#3a4048"/>
+      <circle cx="3"  cy="3"  r="0.6" fill="#98a0a8" opacity="0.45"/>
+      <circle cx="11" cy="9"  r="0.5" fill="#98a0a8" opacity="0.40"/>
+      <circle cx="7"  cy="13" r="0.4" fill="#6e7480" opacity="0.55"/>
+      <circle cx="13" cy="3"  r="0.3" fill="#6e7480" opacity="0.60"/>
+    </pattern>
+    <pattern id="mavren-mail" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#98a0a8"/>
+      <circle cx="1.5" cy="1.5" r="1.0" fill="none" stroke="#4a505a" stroke-width="0.5"/>
+      <circle cx="4.5" cy="4.5" r="1.0" fill="none" stroke="#4a505a" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <style>
+    .frame-outer    { fill: #8b5a00; stroke: #3a2406; stroke-width: 1.6; }
+    .frame-mid      { fill: #c89860; stroke: #6b3018; stroke-width: 0.8; }
+    .frame-mat      { fill: #f2e4bc; stroke: #6b3018; stroke-width: 1.0; }
+    .bg-field       { fill: url(#mavren-stipple); stroke: #1a1c20; stroke-width: 1.0; }
+    .tunic          { fill: #3e4650; stroke: #14181e; stroke-width: 1.2; }
+    .mail           { fill: url(#mavren-mail); stroke: #14181e; stroke-width: 1.0; }
+    .mail-rim       { fill: #4a505a; stroke: #14181e; stroke-width: 0.9; }
+    .chain-link     { fill: #3a3834; stroke: #14181e; stroke-width: 0.6; }
+    .chain-shine    { fill: #8a8480; opacity: 0.55; }
+    .tally          { fill: #c89860; stroke: #5e3c00; stroke-width: 0.7; }
+    .tally-cord     { stroke: #2a2418; stroke-width: 0.7; fill: none; }
+    .skin           { fill: #d8b88a; stroke: #7a4828; stroke-width: 0.9; }
+    .skin-shadow    { fill: #a87858; opacity: 0.30; }
+    .hair           { fill: #2a2018; stroke: #14100a; stroke-width: 0.9; }
+    .hair-silver    { fill: #b8b0a8; opacity: 0.70; }
+    .iron-ring      { fill: none; stroke: #4a4844; stroke-width: 1.6; }
+    .brow           { stroke: #14100a; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .eye-white      { fill: #f8eed0; stroke: #3a1808; stroke-width: 0.5; }
+    .eye-iris       { fill: #3a3a48; }
+    .eye-pupil      { fill: #100804; }
+    .nose           { stroke: #7a4828; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+    .mouth          { stroke: #5a1810; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+    .nameplate      { fill: #f6efd5; stroke: #6b3018; stroke-width: 1.0; }
+    .name           { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; text-transform: uppercase; }
+    .title          { font-family: Georgia, serif; font-size: 9px;  fill: #4a3a2a; font-style: italic; text-anchor: middle; letter-spacing: 0.05em; }
+    .stud           { fill: #c89860; stroke: #5e3c00; stroke-width: 0.6; }
+  </style>
+
+  <rect class="frame-outer" x="2"  y="2"  width="216" height="276" rx="6"/>
+  <rect class="frame-mid"   x="6"  y="6"  width="208" height="268" rx="4"/>
+  <rect class="frame-mat"   x="10" y="10" width="200" height="260" rx="3"/>
+  <rect class="bg-field"    x="18" y="18" width="184" height="210" rx="2"/>
+
+  <!-- Hair fall behind shoulders, visible to either side of the neck -->
+  <path class="hair" d="M 70 130 Q 54 168, 58 210 L 82 210 Q 78 170, 86 138 Z"/>
+  <path class="hair" d="M 150 130 Q 166 168, 162 210 L 138 210 Q 142 170, 134 138 Z"/>
+  <path class="hair-silver" d="M 64 170 Q 62 192, 66 208 L 72 208 Q 68 190, 68 170 Z"/>
+  <path class="hair-silver" d="M 156 170 Q 158 192, 154 208 L 148 208 Q 152 190, 152 170 Z"/>
+
+  <!-- Tunic (slate) -->
+  <path class="tunic" d="M 18 228 L 18 218 Q 30 188, 70 178 L 95 175 Q 110 173, 125 175 L 150 178 Q 190 188, 202 218 L 202 228 Z"/>
+
+  <!-- Chainmail half-apron worn over the tunic -->
+  <path class="mail" d="M 72 184 Q 68 206, 78 222 L 142 222 Q 152 206, 148 184 Q 130 178, 110 178 Q 90 178, 72 184 Z"/>
+  <path class="mail-rim" d="M 72 184 Q 90 178, 110 178 Q 130 178, 148 184 L 148 188 Q 130 182, 110 182 Q 90 182, 72 188 Z"/>
+
+  <!-- Diagonal chain sash: right shoulder (screen-left) down to belt center -->
+  <ellipse class="chain-link" cx="76"  cy="190" rx="5.0" ry="2.6" transform="rotate(40 76 190)"/>
+  <ellipse class="chain-link" cx="84"  cy="196" rx="5.0" ry="2.6" transform="rotate(-40 84 196)"/>
+  <ellipse class="chain-link" cx="92"  cy="202" rx="5.0" ry="2.6" transform="rotate(40 92 202)"/>
+  <ellipse class="chain-link" cx="100" cy="208" rx="5.0" ry="2.6" transform="rotate(-40 100 208)"/>
+  <ellipse class="chain-link" cx="108" cy="214" rx="5.0" ry="2.6" transform="rotate(40 108 214)"/>
+  <ellipse class="chain-link" cx="116" cy="220" rx="5.0" ry="2.6" transform="rotate(-40 116 220)"/>
+  <ellipse class="chain-shine" cx="76"  cy="189" rx="2.4" ry="0.6" transform="rotate(40 76 189)"/>
+  <ellipse class="chain-shine" cx="92"  cy="201" rx="2.4" ry="0.6" transform="rotate(40 92 201)"/>
+  <ellipse class="chain-shine" cx="108" cy="213" rx="2.4" ry="0.6" transform="rotate(40 108 213)"/>
+
+  <!-- Brass tally-tag on a thin cord at the collar -->
+  <path class="tally-cord" d="M 96 178 Q 110 174, 124 178"/>
+  <path class="tally-cord" d="M 110 176 L 110 184"/>
+  <rect class="tally" x="105" y="184" width="10" height="7" rx="1"/>
+  <line stroke="#5e3c00" stroke-width="0.4" x1="107" y1="186.5" x2="113" y2="186.5"/>
+  <line stroke="#5e3c00" stroke-width="0.4" x1="107" y1="188.5" x2="111" y2="188.5"/>
+
+  <!-- Neck -->
+  <path class="skin" d="M 96 178 L 96 156 Q 100 152, 110 152 Q 120 152, 124 156 L 124 178 Z"/>
+  <ellipse class="skin-shadow" cx="110" cy="173" rx="14" ry="3"/>
+
+  <!-- Face -->
+  <ellipse class="skin" cx="110" cy="108" rx="38" ry="48"/>
+  <path class="skin-shadow" d="M 74 100 Q 74 138, 96 154 L 96 152 Q 78 134, 76 100 Z"/>
+
+  <!-- Hair on top: pulled back, with a centre part and side wings down past the jaw -->
+  <path class="hair" d="M 74 90 Q 72 56, 110 54 Q 148 56, 146 90 Q 110 76, 74 90 Z"/>
+  <path class="hair" d="M 70 90 Q 64 124, 70 152 L 82 152 Q 78 122, 80 92 Z"/>
+  <path class="hair" d="M 150 90 Q 156 124, 150 152 L 138 152 Q 142 122, 140 92 Z"/>
+  <path class="hair" d="M 109 56 L 110 90 L 111 56 Z"/>
+
+  <!-- Heavy silver streaks: long brushstrokes through the side hair and a temple sweep -->
+  <path class="hair-silver" d="M 72 96 Q 70 124, 76 150 L 80 150 Q 76 124, 76 96 Z"/>
+  <path class="hair-silver" d="M 148 96 Q 150 124, 144 150 L 140 150 Q 144 124, 144 96 Z"/>
+  <path class="hair-silver" d="M 88 64 Q 110 58, 132 64 L 130 70 Q 110 62, 90 70 Z"/>
+  <path class="hair-silver" d="M 80 86 Q 92 80, 104 84 L 102 88 Q 92 84, 82 90 Z"/>
+  <path class="hair-silver" d="M 116 84 Q 128 80, 140 86 L 138 90 Q 128 84, 118 88 Z"/>
+
+  <!-- Iron rings braided into hair: two at the temples (in the side hair), one at the crown -->
+  <circle class="iron-ring" cx="76"  cy="124" r="3.5"/>
+  <circle class="iron-ring" cx="144" cy="124" r="3.5"/>
+  <circle class="iron-ring" cx="110" cy="78"  r="3.0"/>
+
+  <!-- Brows -->
+  <path class="brow" d="M 84 100 Q 92 96, 102 100"/>
+  <path class="brow" d="M 118 100 Q 128 96, 136 100"/>
+
+  <!-- Eyes -->
+  <ellipse class="eye-white" cx="93" cy="110" rx="4.5" ry="2.8"/>
+  <ellipse class="eye-white" cx="127" cy="110" rx="4.5" ry="2.8"/>
+  <circle class="eye-iris" cx="93" cy="110" r="2.0"/>
+  <circle class="eye-iris" cx="127" cy="110" r="2.0"/>
+  <circle class="eye-pupil" cx="93" cy="110" r="0.9"/>
+  <circle class="eye-pupil" cx="127" cy="110" r="0.9"/>
+  <circle fill="#ffffff" cx="94"  cy="109" r="0.5"/>
+  <circle fill="#ffffff" cx="128" cy="109" r="0.5"/>
+
+  <!-- Nose -->
+  <path class="nose" d="M 110 116 L 107 130 Q 110 134, 114 130"/>
+
+  <!-- Mouth: a steady, faintly amused set -->
+  <path class="mouth" d="M 104 142 Q 110 144, 116 142"/>
+
+  <!-- Nameplate -->
+  <rect class="nameplate" x="22" y="234" width="176" height="32" rx="2"/>
+  <text class="name"  x="110" y="251">Quartermistress Mavren</text>
+  <text class="title" x="110" y="262">Keeper of the Chain Vault</text>
+
+  <!-- Corner studs -->
+  <circle class="stud" cx="14"  cy="14"  r="2.5"/>
+  <circle class="stud" cx="206" cy="14"  r="2.5"/>
+  <circle class="stud" cx="14"  cy="266" r="2.5"/>
+  <circle class="stud" cx="206" cy="266" r="2.5"/>
+</svg>
