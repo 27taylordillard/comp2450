@@ -40,7 +40,7 @@ By the end of this course, students will be able to:
 
 ## Schedule
 
-See [the floor overview]({{ site.baseurl }}/#the-floors) for the week-by-week floor plan.
+The week-by-week floor plan lives on the course site: <https://hogred.github.io/comp2450/>. Check there for the current schedule.
 
 ## Meeting pattern
 
