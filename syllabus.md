@@ -29,7 +29,7 @@ By the end of this course, students will be able to:
 - **C++ compiler:** `g++` (MinGW or via WSL on Windows; native on macOS/Linux) or Microsoft Visual C++.
 - **Editor:** VS Code with C/C++ extension recommended.
 
-## Grading *(placeholder — adjust to your policy)*
+## Grading
 
 | Component | Weight |
 |---|---|
@@ -40,7 +40,7 @@ By the end of this course, students will be able to:
 
 ## Schedule
 
-See [the dungeon map]({{ site.baseurl }}/) for the week-by-week floor plan.
+See [the floor overview]({{ site.baseurl }}/#the-floors) for the week-by-week floor plan.
 
 ## Meeting pattern
 
