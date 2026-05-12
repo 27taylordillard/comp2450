@@ -76,8 +76,8 @@ public:
         using pointer           = T*;
         using reference         = T&;
 
-        iterator() : p_(nullptr) {}
-        explicit iterator(Node* n) : p_(n) {}
+        iterator() : p_(nullptr), owner_(nullptr) {}
+        iterator(Node* n, Chain* o) : p_(n), owner_(o) {}
 
         // TODO Floor 5 (Monday) — return a reference to the node's data.
         //
@@ -99,23 +99,34 @@ public:
 
         // TODO Floor 5 (Friday) — retreat to the previous node.  Needed
         // by std::reverse and by std::reverse_iterator (rbegin/rend).
-        //   pre-decrement:    p_ = p_->prev;  return *this;
+        //
+        // The subtle bit: when *this is end() (p_ == nullptr), we still
+        // need to step back to the LAST node — but there's no `nullptr->prev`
+        // to follow.  That's why iterators carry an owner_ pointer to
+        // their Chain: when p_ is null, hop to owner_->tail_ instead.
+        //
+        //   pre-decrement:    p_ = p_ ? p_->prev : owner_->tail_;  return *this;
         //   post-decrement:   iterator tmp = *this;  --(*this);  return tmp;
         iterator& operator--()    { /* TODO Friday */                       return *this; }
         iterator  operator--(int) { /* TODO Friday */ iterator t = *this;   return t;     }
 
         // TODO Floor 5 (Monday) — compare the underlying Node*.
-        // The stub returns TRUE so begin() == end() and loops skip,
-        // which keeps the program runnable while operator++ is still empty.
+        // (owner_ is not part of identity — two iterators into the same
+        // chain that point at the same node are equal regardless of how
+        // they were spelled.)  The stub returns TRUE so begin() == end()
+        // and loops skip, which keeps the program runnable while
+        // operator++ is still empty.
         //   return p_ == other.p_;
         bool operator==(const iterator& /*other*/) const { return true; /* TODO Monday */ }
         bool operator!=(const iterator& other)     const { return !(*this == other); }
 
-        // Const-correctness handle for the const_iterator's copy ctor.
-        Node* node() const { return p_; }
+        // Const-correctness handles for the const_iterator's converting ctor.
+        Node*  node()  const { return p_; }
+        Chain* owner() const { return owner_; }
 
     private:
-        Node* p_;
+        Node*  p_;
+        Chain* owner_;   // Needed by operator-- so --end() can find the tail.
     };
 
     // =================================================================
@@ -132,10 +143,10 @@ public:
         using pointer           = const T*;
         using reference         = const T&;
 
-        const_iterator() : p_(nullptr) {}
-        explicit const_iterator(const Node* n) : p_(n) {}
+        const_iterator() : p_(nullptr), owner_(nullptr) {}
+        const_iterator(const Node* n, const Chain* o) : p_(n), owner_(o) {}
         // Allow implicit iterator → const_iterator (the SAFE direction).
-        const_iterator(const iterator& it) : p_(it.node()) {}
+        const_iterator(const iterator& it) : p_(it.node()), owner_(it.owner()) {}
 
         // TODO Floor 5 (Wednesday) — return a const reference to p_->data.
         //     return p_->data;
@@ -147,7 +158,9 @@ public:
         const_iterator& operator++()    { /* TODO Wednesday */                            return *this; }
         const_iterator  operator++(int) { /* TODO Wednesday */ const_iterator t = *this;  return t;     }
 
-        // TODO Floor 5 (Friday) — retreat via p_->prev.
+        // TODO Floor 5 (Friday) — retreat via p_->prev, with the same
+        // end-of-chain fallback as iterator::operator--:
+        //   p_ = p_ ? p_->prev : owner_->tail_;
         const_iterator& operator--()    { /* TODO Friday */                               return *this; }
         const_iterator  operator--(int) { /* TODO Friday */ const_iterator t = *this;     return t;     }
 
@@ -157,7 +170,8 @@ public:
         bool operator!=(const const_iterator& other)     const { return !(*this == other); }
 
     private:
-        const Node* p_;
+        const Node*  p_;
+        const Chain* owner_;
     };
 
     // Reverse iterators are wired pre-built using std::reverse_iterator.
@@ -201,19 +215,22 @@ public:
     const Node* tail() const { return tail_; }
     Node*       tail()       { return tail_; }
 
-    // TODO Floor 5 (Monday) — return iterator(head_) and iterator(nullptr).
+    // TODO Floor 5 (Monday) — return iterator(head_, this) and
+    // iterator(nullptr, this).
     //
     // The "end" iterator points ONE PAST the last element. For a
     // null-terminated chain, that's nullptr — there's no real node beyond
-    // the tail. Loops run while `it != end`, advancing via ++.
-    iterator begin() { return iterator();        /* TODO Monday */ }
-    iterator end()   { return iterator();        /* TODO Monday */ }
+    // the tail. Loops run while `it != end`, advancing via ++.  We pass
+    // `this` so the iterator can find the tail in operator-- when
+    // walking backward from end (see iterator::operator--).
+    iterator begin() { return iterator(); /* TODO Monday — return iterator(head_, this) */ }
+    iterator end()   { return iterator(); /* TODO Monday — return iterator(nullptr, this) */ }
 
     // TODO Floor 5 (Wednesday) — same shape, but const_iterator.
     // The cbegin / cend overloads give callers a way to ASK for a
     // const_iterator from a non-const Chain (useful for templated code).
-    const_iterator begin()  const { return const_iterator(); /* TODO Wednesday */ }
-    const_iterator end()    const { return const_iterator(); /* TODO Wednesday */ }
+    const_iterator begin()  const { return const_iterator(); /* TODO Wednesday — return const_iterator(head_, this) */ }
+    const_iterator end()    const { return const_iterator(); /* TODO Wednesday — return const_iterator(nullptr, this) */ }
     const_iterator cbegin() const { return begin(); }
     const_iterator cend()   const { return end(); }
 
