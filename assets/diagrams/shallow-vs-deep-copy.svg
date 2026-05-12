@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-labelledby="cp-title cp-desc">
+  <title id="cp-title">Shallow copy versus deep copy of a chain</title>
+  <desc id="cp-desc">Two side-by-side panels. Left panel — shallow copy, the bug. Two chain handles labelled a.head_ and b.head_ both have curved arrows pointing into the same row of three nodes containing the values 1, 2, 3. A red warning triangle marks the nodes as a double-free hazard, because both chain destructors will try to delete the same nodes. Right panel — deep copy, the fix. Chain handle a.head_ points to one row of three nodes containing 1, 2, 3; chain handle b.head_ points to a second, physically separate row of three nodes containing equal values 1, 2, 3. Each destructor cleans up only what it owns.</desc>
+  <style>
+    .panel-bad   { fill: #f4d9d3; stroke: #8b2a0a; stroke-width: 0.8; opacity: 0.5; }
+    .panel-good  { fill: #e0eccb; stroke: #4a6a1f; stroke-width: 0.8; opacity: 0.5; }
+    .node-outer  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .head-pill   { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.4; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .danger      { fill: #8b2a0a; stroke: #4a0a00; stroke-width: 1.2; }
+    .panel-title-bad  { font-family: Georgia, serif; font-size: 12px; fill: #8b2a0a; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .panel-title-good { font-family: Georgia, serif; font-size: 12px; fill: #4a6a1f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 14px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .code-pill   { font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .code-bang   { font-family: Georgia, serif; font-size: 18px; fill: #f6efd5; font-weight: 700; text-anchor: middle; }
+    .danger-text { font-family: Georgia, serif; font-size: 11px; fill: #8b2a0a; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; }
+    .good-text   { font-family: Georgia, serif; font-size: 11px; fill: #4a6a1f; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <!-- ============================ LEFT PANEL: shallow copy ============================ -->
+  <rect class="panel-bad" x="10" y="10" width="370" height="340" rx="6"/>
+  <text class="panel-title-bad" x="195" y="32">shallow copy  ·  the bug</text>
+  <text class="note" x="195" y="50">b = a;   copies pointers, not nodes</text>
+
+  <!-- two handles, left side -->
+  <rect class="head-pill" x="30" y="100" width="62" height="34" rx="4"/>
+  <text class="code-pill" x="61" y="123">a.head_</text>
+  <rect class="head-pill" x="30" y="260" width="62" height="34" rx="4"/>
+  <text class="code-pill" x="61" y="283">b.head_</text>
+
+  <!-- three shared nodes (one chain) -->
+  <rect class="node-outer" x="150" y="180" width="60" height="40" rx="3"/>
+  <text class="code" x="180" y="206">1</text>
+  <rect class="node-outer" x="230" y="180" width="60" height="40" rx="3"/>
+  <text class="code" x="260" y="206">2</text>
+  <rect class="node-outer" x="310" y="180" width="60" height="40" rx="3"/>
+  <text class="code" x="340" y="206">3</text>
+
+  <!-- inter-node next arrows -->
+  <line class="arrow-line" x1="210" y1="200" x2="222" y2="200"/>
+  <polygon class="arrow-fill" points="222,196 230,200 222,204"/>
+  <line class="arrow-line" x1="290" y1="200" x2="302" y2="200"/>
+  <polygon class="arrow-fill" points="302,196 310,200 302,204"/>
+
+  <!-- arrow from a.head_ curving down-right into Node 1 left edge -->
+  <path class="arrow-line" d="M 92 117 C 128 117, 128 196, 142 196"/>
+  <polygon class="arrow-fill" points="142,191 152,196 142,201"/>
+
+  <!-- arrow from b.head_ curving up-right into Node 1 left edge -->
+  <path class="arrow-line" d="M 92 277 C 128 277, 128 204, 142 204"/>
+  <polygon class="arrow-fill" points="142,199 152,204 142,209"/>
+
+  <!-- danger glyph: red triangle with exclamation mark -->
+  <polygon class="danger" points="240,98 270,98 255,70"/>
+  <text class="code-bang" x="255" y="95">!</text>
+  <text class="danger-text" x="255" y="120">double-free hazard</text>
+  <text class="danger-text" x="255" y="134">~a() deletes them — ~b() deletes them again</text>
+
+  <!-- bottom note for left panel -->
+  <text class="note" x="195" y="308">two handles, one set of nodes</text>
+  <text class="note" x="195" y="326">the compiler's default copy ctor is this picture</text>
+
+  <!-- ============================ RIGHT PANEL: deep copy ============================ -->
+  <rect class="panel-good" x="390" y="10" width="360" height="340" rx="6"/>
+  <text class="panel-title-good" x="570" y="32">deep copy  ·  the fix</text>
+  <text class="note" x="570" y="50">b = a;   walks a, allocates fresh nodes</text>
+
+  <!-- handle a -->
+  <rect class="head-pill" x="410" y="100" width="62" height="34" rx="4"/>
+  <text class="code-pill" x="441" y="123">a.head_</text>
+
+  <!-- top chain (for a) -->
+  <rect class="node-outer" x="520" y="100" width="60" height="40" rx="3"/>
+  <text class="code" x="550" y="126">1</text>
+  <rect class="node-outer" x="600" y="100" width="60" height="40" rx="3"/>
+  <text class="code" x="630" y="126">2</text>
+  <rect class="node-outer" x="680" y="100" width="60" height="40" rx="3"/>
+  <text class="code" x="710" y="126">3</text>
+
+  <!-- inter-node next arrows top -->
+  <line class="arrow-line" x1="580" y1="120" x2="592" y2="120"/>
+  <polygon class="arrow-fill" points="592,116 600,120 592,124"/>
+  <line class="arrow-line" x1="660" y1="120" x2="672" y2="120"/>
+  <polygon class="arrow-fill" points="672,116 680,120 672,124"/>
+
+  <!-- arrow from a.head_ → top node 1 -->
+  <line class="arrow-line" x1="472" y1="117" x2="510" y2="117"/>
+  <polygon class="arrow-fill" points="510,113 520,117 510,121"/>
+
+  <!-- handle b -->
+  <rect class="head-pill" x="410" y="260" width="62" height="34" rx="4"/>
+  <text class="code-pill" x="441" y="283">b.head_</text>
+
+  <!-- bottom chain (for b) -->
+  <rect class="node-outer" x="520" y="260" width="60" height="40" rx="3"/>
+  <text class="code" x="550" y="286">1</text>
+  <rect class="node-outer" x="600" y="260" width="60" height="40" rx="3"/>
+  <text class="code" x="630" y="286">2</text>
+  <rect class="node-outer" x="680" y="260" width="60" height="40" rx="3"/>
+  <text class="code" x="710" y="286">3</text>
+
+  <!-- inter-node next arrows bottom -->
+  <line class="arrow-line" x1="580" y1="280" x2="592" y2="280"/>
+  <polygon class="arrow-fill" points="592,276 600,280 592,284"/>
+  <line class="arrow-line" x1="660" y1="280" x2="672" y2="280"/>
+  <polygon class="arrow-fill" points="672,276 680,280 672,284"/>
+
+  <!-- arrow from b.head_ → bottom node 1 -->
+  <line class="arrow-line" x1="472" y1="277" x2="510" y2="277"/>
+  <polygon class="arrow-fill" points="510,273 520,277 510,281"/>
+
+  <!-- middle annotation -->
+  <text class="good-text" x="570" y="190">fresh nodes  ·  equal values  ·  no sharing</text>
+  <text class="good-text" x="570" y="208">~a() and ~b() each delete only their own</text>
+  <text class="good-text" x="570" y="226">six nodes total — three for a, three for b</text>
+</svg>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" role="img" aria-labelledby="dll-title dll-desc">
+  <title id="dll-title">Anatomy of a doubly-linked chain — head, tail, prev, next</title>
+  <desc id="dll-desc">A row of three Node objects. Each node has three cells: prev on the left, data in the middle, next on the right. A head pointer pill on the left points an arrow into the leftmost node; a tail pointer pill on the right points an arrow into the rightmost node. Between adjacent nodes, paired arrows run in opposite directions: the upper arrow follows next forward; the lower arrow follows prev backward. The leftmost node's prev points down to a ground symbol labelled nullptr; the rightmost node's next points down to another ground labelled nullptr.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .node-outer  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-data   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 0.9; }
+    .node-next   { fill: #eacf85; stroke: #8b5a00; stroke-width: 0.9; }
+    .node-prev   { fill: #eacf85; stroke: #8b5a00; stroke-width: 0.9; }
+    .head-pill   { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.4; }
+    .pointer-dot { fill: #6b0f0f; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .ground-line { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .cell-label  { font-family: Georgia, serif; font-size: 9.5px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
+    .end-label   { font-family: Georgia, serif; font-size: 10.5px; fill: #6b0f0f; text-transform: uppercase; letter-spacing: 0.10em; font-weight: 700; text-anchor: middle; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .code-pill   { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .code-null   { font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <!-- panel background -->
+  <rect class="panel" x="10" y="10" width="740" height="260" rx="6"/>
+  <text class="panel-title" x="380" y="28">anatomy of a doubly-linked chain</text>
+
+  <!-- end-of-chain labels above first and last node -->
+  <text class="end-label" x="213" y="78">newest  ·  head</text>
+  <text class="end-label" x="553" y="78">oldest  ·  tail</text>
+
+  <!-- ====================== head pointer pill ====================== -->
+  <rect class="head-pill" x="22" y="128" width="72" height="34" rx="4"/>
+  <text class="code-pill" x="58" y="150">head_</text>
+
+  <!-- arrow: head_ → node 1 -->
+  <line class="arrow-line" x1="94" y1="145" x2="138" y2="145"/>
+  <polygon class="arrow-fill" points="138,140 148,145 138,150"/>
+
+  <!-- ====================== NODE 1 (head / newest) ====================== -->
+  <rect class="node-outer" x="148" y="98" width="130" height="80" rx="3"/>
+  <rect class="node-prev"  x="148" y="98" width="32"  height="80"/>
+  <rect class="node-data"  x="180" y="98" width="66"  height="80"/>
+  <rect class="node-next"  x="246" y="98" width="32"  height="80"/>
+  <text class="cell-label" x="164" y="112">prev</text>
+  <text class="cell-label" x="213" y="112">data</text>
+  <text class="cell-label" x="262" y="112">next</text>
+  <text class="code"       x="213" y="148">"inspect"</text>
+  <circle class="pointer-dot" cx="164" cy="160" r="3.4"/>
+  <circle class="pointer-dot" cx="262" cy="140" r="3.4"/>
+
+  <!-- node 1 prev → ground (down) -->
+  <line class="arrow-line" x1="164" y1="160" x2="164" y2="210"/>
+  <polygon class="arrow-fill" points="159,210 164,220 169,210"/>
+  <line class="ground-line" x1="146" y1="224" x2="182" y2="224"/>
+  <line class="ground-line" x1="152" y1="231" x2="176" y2="231"/>
+  <line class="ground-line" x1="158" y1="238" x2="170" y2="238"/>
+  <text class="code-null" x="164" y="258">nullptr</text>
+
+  <!-- arrow: node 1 next → node 2 (upper) -->
+  <line class="arrow-line" x1="262" y1="140" x2="308" y2="140"/>
+  <polygon class="arrow-fill" points="308,135 318,140 308,145"/>
+
+  <!-- arrow: node 2 prev → node 1 (lower) -->
+  <line class="arrow-line" x1="334" y1="160" x2="288" y2="160"/>
+  <polygon class="arrow-fill" points="288,155 278,160 288,165"/>
+
+  <!-- ====================== NODE 2 ====================== -->
+  <rect class="node-outer" x="318" y="98" width="130" height="80" rx="3"/>
+  <rect class="node-prev"  x="318" y="98" width="32"  height="80"/>
+  <rect class="node-data"  x="350" y="98" width="66"  height="80"/>
+  <rect class="node-next"  x="416" y="98" width="32"  height="80"/>
+  <text class="cell-label" x="334" y="112">prev</text>
+  <text class="cell-label" x="383" y="112">data</text>
+  <text class="cell-label" x="432" y="112">next</text>
+  <text class="code"       x="383" y="148">"search"</text>
+  <circle class="pointer-dot" cx="334" cy="160" r="3.4"/>
+  <circle class="pointer-dot" cx="432" cy="140" r="3.4"/>
+
+  <!-- arrow: node 2 next → node 3 (upper) -->
+  <line class="arrow-line" x1="432" y1="140" x2="478" y2="140"/>
+  <polygon class="arrow-fill" points="478,135 488,140 478,145"/>
+
+  <!-- arrow: node 3 prev → node 2 (lower) -->
+  <line class="arrow-line" x1="504" y1="160" x2="458" y2="160"/>
+  <polygon class="arrow-fill" points="458,155 448,160 458,165"/>
+
+  <!-- ====================== NODE 3 (tail / oldest) ====================== -->
+  <rect class="node-outer" x="488" y="98" width="130" height="80" rx="3"/>
+  <rect class="node-prev"  x="488" y="98" width="32"  height="80"/>
+  <rect class="node-data"  x="520" y="98" width="66"  height="80"/>
+  <rect class="node-next"  x="586" y="98" width="32"  height="80"/>
+  <text class="cell-label" x="504" y="112">prev</text>
+  <text class="cell-label" x="553" y="112">data</text>
+  <text class="cell-label" x="602" y="112">next</text>
+  <text class="code"       x="553" y="148">"began"</text>
+  <circle class="pointer-dot" cx="504" cy="160" r="3.4"/>
+  <circle class="pointer-dot" cx="602" cy="140" r="3.4"/>
+
+  <!-- node 3 next → ground (down) -->
+  <line class="arrow-line" x1="602" y1="140" x2="602" y2="210"/>
+  <polygon class="arrow-fill" points="597,210 602,220 607,210"/>
+  <line class="ground-line" x1="584" y1="224" x2="620" y2="224"/>
+  <line class="ground-line" x1="590" y1="231" x2="614" y2="231"/>
+  <line class="ground-line" x1="596" y1="238" x2="608" y2="238"/>
+  <text class="code-null" x="602" y="258">nullptr</text>
+
+  <!-- ====================== tail pointer pill ====================== -->
+  <rect class="head-pill" x="664" y="128" width="72" height="34" rx="4"/>
+  <text class="code-pill" x="700" y="150">tail_</text>
+
+  <!-- arrow: tail_ → node 3 (right edge) -->
+  <line class="arrow-line" x1="664" y1="145" x2="630" y2="145"/>
+  <polygon class="arrow-fill" points="630,140 620,145 630,150"/>
+</svg>
