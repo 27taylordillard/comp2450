@@ -54,10 +54,11 @@
   <polygon class="arrow-fill" points="142,199 152,204 142,209"/>
 
   <!-- danger glyph: red triangle with exclamation mark -->
-  <polygon class="danger" points="240,98 270,98 255,70"/>
-  <text class="code-bang" x="255" y="95">!</text>
-  <text class="danger-text" x="255" y="120">double-free hazard</text>
-  <text class="danger-text" x="255" y="134">~a() deletes them — ~b() deletes them again</text>
+  <polygon class="danger" points="180,98 210,98 195,70"/>
+  <text class="code-bang" x="195" y="95">!</text>
+  <text class="danger-text" x="195" y="120">double-free hazard</text>
+  <text class="danger-text" x="195" y="136">~a() deletes the nodes</text>
+  <text class="danger-text" x="195" y="150">~b() deletes them again</text>
 
   <!-- bottom note for left panel -->
   <text class="note" x="195" y="308">two handles, one set of nodes</text>
