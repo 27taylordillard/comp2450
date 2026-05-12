@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" role="img" aria-labelledby="vael-title vael-desc">
+  <title id="vael-title">Sister Vael, the Lensbearer</title>
+  <desc id="vael-desc">A bust portrait. A pale woman in deep-violet robes with silver-thread trim at the collar, a strip of unbleached linen tied across her eyes with a small knot at the right temple, dark hair pulled back tight, a polished glass lens the size of a coin in a brass rim hanging on a brass chain at her sternum, against a deep-violet stippled field with pinpoint silver lights. A nameplate at the foot reads SISTER VAEL — The Lensbearer.</desc>
+  <defs>
+    <pattern id="vael-stipple" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#2a1f3a"/>
+      <circle cx="3"  cy="3"  r="0.6" fill="#c8c0e0" opacity="0.50"/>
+      <circle cx="11" cy="9"  r="0.5" fill="#a89cc8" opacity="0.45"/>
+      <circle cx="7"  cy="13" r="0.4" fill="#6e5e8a" opacity="0.60"/>
+      <circle cx="13" cy="3"  r="0.35" fill="#a89cc8" opacity="0.55"/>
+      <circle cx="9"  cy="6"  r="0.25" fill="#e8e0ff" opacity="0.70"/>
+      <circle cx="2"  cy="11" r="0.25" fill="#e8e0ff" opacity="0.65"/>
+    </pattern>
+  </defs>
+  <style>
+    .frame-outer    { fill: #8b5a00; stroke: #3a2406; stroke-width: 1.6; }
+    .frame-mid      { fill: #c89860; stroke: #6b3018; stroke-width: 0.8; }
+    .frame-mat      { fill: #f2e4bc; stroke: #6b3018; stroke-width: 1.0; }
+    .bg-field       { fill: url(#vael-stipple); stroke: #14101e; stroke-width: 1.0; }
+
+    .robe           { fill: #3e2a55; stroke: #18102a; stroke-width: 1.2; }
+    .robe-shadow    { fill: #2a1c3a; opacity: 0.55; }
+    .robe-trim      { fill: #9b94b8; stroke: #4a3a6a; stroke-width: 0.7; }
+    .robe-thread    { stroke: #c8c0e0; stroke-width: 0.5; fill: none; opacity: 0.85; }
+
+    .neck-chain     { stroke: #6e4818; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+    .lens-rim       { fill: #c89860; stroke: #5e3c00; stroke-width: 0.9; }
+    .lens-glass     { fill: #d8e6f0; stroke: #4a5a78; stroke-width: 0.6; }
+    .lens-arc       { stroke: #4a5a78; stroke-width: 0.4; fill: none; opacity: 0.45; }
+    .lens-highlight { fill: #ffffff; opacity: 0.65; }
+
+    .skin           { fill: #ead4b8; stroke: #7a5a4a; stroke-width: 0.9; }
+    .skin-shadow    { fill: #b89880; opacity: 0.32; }
+
+    .hair           { fill: #1c1418; stroke: #0a0608; stroke-width: 0.9; }
+    .hair-shine     { fill: #4a3a48; opacity: 0.40; }
+
+    .blindfold      { fill: #dac6a0; stroke: #8a7448; stroke-width: 0.9; }
+    .blindfold-shadow { fill: #b89c70; opacity: 0.45; }
+    .blindfold-fold { stroke: #8a7448; stroke-width: 0.5; fill: none; stroke-linecap: round; opacity: 0.65; }
+    .blindfold-knot { fill: #c8b088; stroke: #8a7448; stroke-width: 0.8; }
+
+    .brow           { stroke: #14100a; stroke-width: 1.4; fill: none; stroke-linecap: round; }
+    .nose           { stroke: #7a5a4a; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+    .mouth          { stroke: #5a1c30; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+
+    .nameplate      { fill: #f6efd5; stroke: #6b3018; stroke-width: 1.0; }
+    .name           { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; text-transform: uppercase; }
+    .title          { font-family: Georgia, serif; font-size: 9px;  fill: #4a3a2a; font-style: italic; text-anchor: middle; letter-spacing: 0.05em; }
+    .stud           { fill: #c89860; stroke: #5e3c00; stroke-width: 0.6; }
+  </style>
+
+  <!-- ===================== nested frame ===================== -->
+  <rect class="frame-outer" x="2"  y="2"  width="216" height="276" rx="6"/>
+  <rect class="frame-mid"   x="6"  y="6"  width="208" height="268" rx="4"/>
+  <rect class="frame-mat"   x="10" y="10" width="200" height="260" rx="3"/>
+  <rect class="bg-field"    x="18" y="18" width="184" height="210" rx="2"/>
+
+  <!-- ===================== hair fall behind shoulders (visible to either side of neck) ===================== -->
+  <path class="hair" d="M 70 132 Q 56 168, 60 212 L 80 212 Q 76 172, 82 138 Z"/>
+  <path class="hair" d="M 150 132 Q 164 168, 160 212 L 140 212 Q 144 172, 138 138 Z"/>
+  <path class="hair-shine" d="M 64 172 Q 62 196, 66 210 L 70 210 Q 66 192, 66 172 Z"/>
+  <path class="hair-shine" d="M 156 172 Q 158 196, 154 210 L 150 210 Q 154 192, 154 172 Z"/>
+
+  <!-- ===================== robe (deep violet, draped wide) ===================== -->
+  <path class="robe" d="M 18 228 L 18 218 Q 32 192, 72 182 L 96 178 Q 110 176, 124 178 L 148 182 Q 188 192, 202 218 L 202 228 Z"/>
+  <!-- robe shadow at neckline -->
+  <path class="robe-shadow" d="M 70 190 Q 90 184, 110 184 Q 130 184, 150 190 L 148 200 Q 130 192, 110 192 Q 90 192, 72 200 Z"/>
+  <!-- silver-thread V-neck trim -->
+  <path class="robe-trim" d="M 88 180 L 110 210 L 132 180 L 130 178 L 110 206 L 90 178 Z"/>
+  <!-- a few decorative silver threads on the robe shoulders -->
+  <path class="robe-thread" d="M 36 218 Q 50 210, 70 206"/>
+  <path class="robe-thread" d="M 184 218 Q 170 210, 150 206"/>
+  <path class="robe-thread" d="M 40 224 Q 56 218, 76 214"/>
+  <path class="robe-thread" d="M 180 224 Q 164 218, 144 214"/>
+
+  <!-- ===================== brass chain around neck, with lens at the sternum ===================== -->
+  <!-- chain loops up around the back of the neck and comes down to the lens at center -->
+  <path class="neck-chain" d="M 98 178 Q 92 168, 96 158"/>
+  <path class="neck-chain" d="M 122 178 Q 128 168, 124 158"/>
+  <!-- two short chain segments from each collar point down to the lens -->
+  <path class="neck-chain" d="M 100 180 L 108 200"/>
+  <path class="neck-chain" d="M 120 180 L 112 200"/>
+  <!-- the lens itself at the sternum -->
+  <circle class="lens-rim"   cx="110" cy="208" r="8.5"/>
+  <circle class="lens-glass" cx="110" cy="208" r="6.5"/>
+  <!-- subtle concentric arc inside the glass -->
+  <path class="lens-arc" d="M 105 204 Q 110 200, 115 204"/>
+  <ellipse class="lens-highlight" cx="107" cy="205" rx="2.2" ry="1.4"/>
+
+  <!-- ===================== neck ===================== -->
+  <path class="skin" d="M 96 178 L 96 156 Q 100 152, 110 152 Q 120 152, 124 156 L 124 178 Z"/>
+  <ellipse class="skin-shadow" cx="110" cy="174" rx="14" ry="3"/>
+
+  <!-- ===================== face ===================== -->
+  <ellipse class="skin" cx="110" cy="108" rx="38" ry="48"/>
+  <path class="skin-shadow" d="M 74 100 Q 74 138, 96 154 L 96 152 Q 78 134, 76 100 Z"/>
+
+  <!-- ===================== hair (pulled back tight, centre-parted) ===================== -->
+  <!-- crown -->
+  <path class="hair" d="M 74 86 Q 72 56, 110 54 Q 148 56, 146 86 Q 110 74, 74 86 Z"/>
+  <!-- side falls (kept narrow — sister-style austerity) -->
+  <path class="hair" d="M 70 86 Q 64 122, 70 152 L 78 152 Q 74 122, 78 88 Z"/>
+  <path class="hair" d="M 150 86 Q 156 122, 150 152 L 142 152 Q 146 122, 142 88 Z"/>
+  <!-- centre part -->
+  <path class="hair" d="M 109 56 L 110 88 L 111 56 Z"/>
+  <!-- faint hair shine to break the flat black -->
+  <path class="hair-shine" d="M 78 92 Q 76 120, 80 150 L 84 150 Q 80 122, 82 92 Z"/>
+  <path class="hair-shine" d="M 142 92 Q 144 120, 140 150 L 136 150 Q 140 122, 138 92 Z"/>
+
+  <!-- ===================== brows (above the blindfold) ===================== -->
+  <path class="brow" d="M 84 100 Q 92 96, 102 100"/>
+  <path class="brow" d="M 118 100 Q 128 96, 136 100"/>
+
+  <!-- ===================== blindfold across the eyes ===================== -->
+  <!-- main band: a horizontal sash crossing the face at eye level, slightly drooping in the middle -->
+  <path class="blindfold" d="M 74 106 Q 110 110, 146 106 L 146 122 Q 110 126, 74 122 Z"/>
+  <!-- subtle shadow below the band on the cheekbones -->
+  <path class="blindfold-shadow" d="M 74 122 Q 110 126, 146 122 L 146 124 Q 110 128, 74 124 Z"/>
+  <!-- fold lines suggesting woven linen -->
+  <path class="blindfold-fold" d="M 80 112 Q 110 116, 140 112"/>
+  <path class="blindfold-fold" d="M 80 118 Q 110 122, 140 118"/>
+  <!-- a small knot at the right temple (screen-left) -->
+  <ellipse class="blindfold-knot" cx="70" cy="114" rx="4.5" ry="3.5"/>
+  <!-- two short tails of the knot trailing into the hair -->
+  <path class="blindfold" d="M 66 114 L 60 118 L 60 120 L 66 116 Z"/>
+  <path class="blindfold" d="M 66 116 L 58 122 L 58 124 L 66 118 Z"/>
+
+  <!-- ===================== nose & mouth ===================== -->
+  <path class="nose" d="M 110 128 L 107 140 Q 110 144, 114 140"/>
+  <path class="mouth" d="M 104 152 Q 110 154, 116 152"/>
+
+  <!-- ===================== nameplate ===================== -->
+  <rect class="nameplate" x="22" y="234" width="176" height="32" rx="2"/>
+  <text class="name"  x="110" y="251">Sister Vael</text>
+  <text class="title" x="110" y="262">The Lensbearer</text>
+
+  <!-- ===================== corner studs ===================== -->
+  <circle class="stud" cx="14"  cy="14"  r="2.5"/>
+  <circle class="stud" cx="206" cy="14"  r="2.5"/>
+  <circle class="stud" cx="14"  cy="266" r="2.5"/>
+  <circle class="stud" cx="206" cy="266" r="2.5"/>
+</svg>

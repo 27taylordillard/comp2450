@@ -8,11 +8,11 @@ zybook: "Chapter 6.14 (selected)"
 
 ## The briefing
 
-Beyond Mavren's vault the corridor narrows into a circular chamber lit by a single hanging brass lantern. The walls are smooth stone, unmarked except for a wide unlidded eye carved at the apex of the ceiling. A woman stands at the centre with a strip of pale cloth tied across her eyes. A small lens on a brass chain hangs at her belt; she does not lift it for you.
+Beyond Mavren's vault the corridor narrows into a circular chamber lit by a single hanging brass lantern. The walls are smooth stone, unmarked except for a wide unlidded eye carved at the apex of the ceiling. A woman stands at the centre with a strip of pale cloth tied across her eyes. A small glass lens hangs on a brass chain at her sternum; she does not lift it for you.
 
 <div class="character-card" markdown="1">
 <div class="character-portrait">
-  <img src="{{ '/assets/portraits/vael.svg' | relative_url }}" alt="Sister Vael, the Lensbearer — pale woman in deep-violet robes with silver thread at the cuffs, a long strip of unbleached linen tied across her eyes, a polished glass lens the size of a coin hanging on a brass chain at her belt, hands held loosely at her sides."/>
+  <img src="{{ '/assets/portraits/vael.svg' | relative_url }}" alt="Sister Vael, the Lensbearer — pale woman in deep-violet robes with silver-thread trim at the collar, a strip of unbleached linen tied across her eyes with a small knot at her right temple, dark hair pulled back tight, a polished glass lens the size of a coin in a brass rim hanging on a brass chain at her sternum."/>
 </div>
 <div class="character-quote" markdown="1">
 <span class="speaker">Sister Vael, the Lensbearer</span>
