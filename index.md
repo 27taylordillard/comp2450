@@ -36,7 +36,7 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 | 5  | Warden I | [Warden of the Foundations]({{ site.baseurl }}/floors/warden-01/) | Midterm 1 — Floors 0–3 take-home + Friday quiz |
 | 5  | 4  | [The Chain Vault]({{ site.baseurl }}/floors/floor-04/) | Singly-linked lists |
 | 6  | 4½ | [The Chain Vault, Deeper]({{ site.baseurl }}/floors/floor-04h/) | Doubly-linked lists & the full Rule of Three |
-| 7  | 5  | The Eye of Scrying                            | Iterators — one spell to walk any container |
+| 7  | 5  | [The Eye of Scrying]({{ site.baseurl }}/floors/floor-05/) | Iterators — one spell to walk any container |
 | 8  | 6  | The Stacks                                    | LIFO, undo, call-stack intuition |
 | 9  | 7  | The Cisterns                                  | FIFO, queues, AI action scheduling |
 | 10 | 8  | The Branching Catacombs                       | Trees — dialog, skills, hierarchy |
