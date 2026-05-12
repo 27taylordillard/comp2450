@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" role="img" aria-labelledby="cat-title cat-desc">
+  <title id="cat-title">Iterator categories — each rung adds an operation</title>
+  <desc id="cat-desc">A vertical stack of four labelled boxes connected by short lines, with algorithm callouts on the right. From top to bottom: Random-access — supports plus-equals integer and index-by-bracket — used by Bag of T and std::vector — unlocks std::sort. Bidirectional — supports plus-plus and minus-minus — used by Chain of T (with operator minus minus) and std::list — unlocks std::reverse and std::prev. Forward — supports plus-plus and multi-pass — used by std::forward_list — unlocks std::find, std::find_if, and range-based for. Input — single-pass, read-once advance — used by std::istream_iterator — supports only single-pass algorithms.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .rung        { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .rung-top    { fill: #eacf85; stroke: #8b5a00; stroke-width: 1.4; }
+    .callout     { fill: #fdf4d3; stroke: #6b0f0f; stroke-width: 1.0; opacity: 0.85; }
+    .hier-line   { stroke: #8b5a00; stroke-width: 2.4; fill: none; stroke-linecap: round; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.4; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .rung-title  { font-family: Georgia, serif; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: start; letter-spacing: 0.03em; }
+    .rung-ops    { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; font-weight: 700; text-anchor: start; }
+    .rung-tag    { font-family: Georgia, serif; font-size: 10.5px; fill: #8b5a00; font-style: italic; text-anchor: start; }
+    .callout-title { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: start; text-transform: uppercase; letter-spacing: 0.08em; }
+    .callout-text  { font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; fill: #2a1a0a; font-weight: 700; text-anchor: start; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <!-- panel background -->
+  <rect class="panel" x="10" y="10" width="740" height="400" rx="6"/>
+  <text class="panel-title" x="380" y="28">iterator categories</text>
+  <text class="subtitle"    x="380" y="48">each higher rung includes everything below it</text>
+
+  <!-- ====== Rung 1 (top): Random-access ====== -->
+  <rect class="rung-top" x="60" y="72" width="300" height="60" rx="4"/>
+  <text class="rung-title" x="76" y="92">Random-access</text>
+  <text class="rung-ops"   x="76" y="110">++  --  += n  -= n  [i]   in O(1)</text>
+  <text class="rung-tag"   x="76" y="125">Bag&lt;T&gt;,  std::vector,  std::array</text>
+
+  <!-- hierarchy line from rung 1 → rung 2 -->
+  <line class="hier-line" x1="210" y1="132" x2="210" y2="142"/>
+
+  <!-- ====== Rung 2: Bidirectional ====== -->
+  <rect class="rung" x="60" y="142" width="300" height="60" rx="4"/>
+  <text class="rung-title" x="76" y="162">Bidirectional</text>
+  <text class="rung-ops"   x="76" y="180">++  --                       O(1)</text>
+  <text class="rung-tag"   x="76" y="195">Chain&lt;T&gt; (with operator--),  std::list</text>
+
+  <!-- hierarchy line from rung 2 → rung 3 -->
+  <line class="hier-line" x1="210" y1="202" x2="210" y2="212"/>
+
+  <!-- ====== Rung 3: Forward ====== -->
+  <rect class="rung" x="60" y="212" width="300" height="60" rx="4"/>
+  <text class="rung-title" x="76" y="232">Forward</text>
+  <text class="rung-ops"   x="76" y="250">++  ==  !=  (multi-pass)</text>
+  <text class="rung-tag"   x="76" y="265">std::forward_list,  most custom containers</text>
+
+  <!-- hierarchy line from rung 3 → rung 4 -->
+  <line class="hier-line" x1="210" y1="272" x2="210" y2="282"/>
+
+  <!-- ====== Rung 4 (bottom): Input ====== -->
+  <rect class="rung" x="60" y="282" width="300" height="60" rx="4"/>
+  <text class="rung-title" x="76" y="302">Input</text>
+  <text class="rung-ops"   x="76" y="320">++  *  (single-pass, read-only)</text>
+  <text class="rung-tag"   x="76" y="335">std::istream_iterator</text>
+
+  <!-- ====== Algorithm callouts on the right ====== -->
+  <!-- callout 1: random-access -->
+  <line class="arrow-line" x1="360" y1="102" x2="408" y2="102"/>
+  <polygon class="arrow-fill" points="408,98 416,102 408,106"/>
+  <rect class="callout" x="420" y="78" width="288" height="48" rx="4"/>
+  <text class="callout-title" x="430" y="93">unlocks at random-access</text>
+  <text class="callout-text"  x="430" y="115">std::sort,  std::nth_element</text>
+
+  <!-- callout 2: bidirectional -->
+  <line class="arrow-line" x1="360" y1="172" x2="408" y2="172"/>
+  <polygon class="arrow-fill" points="408,168 416,172 408,176"/>
+  <rect class="callout" x="420" y="148" width="288" height="48" rx="4"/>
+  <text class="callout-title" x="430" y="163">unlocks at bidirectional</text>
+  <text class="callout-text"  x="430" y="185">std::reverse,  std::prev</text>
+
+  <!-- callout 3: forward -->
+  <line class="arrow-line" x1="360" y1="242" x2="408" y2="242"/>
+  <polygon class="arrow-fill" points="408,238 416,242 408,246"/>
+  <rect class="callout" x="420" y="218" width="288" height="48" rx="4"/>
+  <text class="callout-title" x="430" y="233">unlocks at forward</text>
+  <text class="callout-text"  x="430" y="255">std::find,  std::find_if,  range-for</text>
+
+  <!-- callout 4: input -->
+  <line class="arrow-line" x1="360" y1="312" x2="408" y2="312"/>
+  <polygon class="arrow-fill" points="408,308 416,312 408,316"/>
+  <rect class="callout" x="420" y="288" width="288" height="48" rx="4"/>
+  <text class="callout-title" x="430" y="303">available at input</text>
+  <text class="callout-text"  x="430" y="325">single-pass algorithms only</text>
+
+  <!-- bottom note -->
+  <text class="note" x="380" y="380">std::sort wants the top rung — that is why it refuses Chain&lt;T&gt;::iterator</text>
+</svg>

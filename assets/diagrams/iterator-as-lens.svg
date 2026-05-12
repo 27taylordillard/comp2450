@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" role="img" aria-labelledby="lens-title lens-desc">
+  <title id="lens-title">The iterator is a lens</title>
+  <desc id="lens-desc">A row of five element cells along the middle of the panel. A brass-rimmed glass lens hangs above the first cell in full focus. Two semi-transparent ghost copies of the same lens hover over the third and fifth cells, showing it advancing rightward step by step. Arrows between the lens positions are labelled ++, indicating the iterator's advance operation. Beyond the last cell, a small ground-style sentinel is labelled end(). Two faded icons at the bottom — a tiny linked chain and a tiny indexed bag — show that the same lens works over either container shape.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .cell-outer  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .cell-data   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 0.9; }
+    .lens-glass         { fill: #d8e6f0; stroke: #6b0f0f; stroke-width: 2; opacity: 0.92; }
+    .lens-glass-ghost   { fill: #d8e6f0; stroke: #6b0f0f; stroke-width: 1.6; opacity: 0.45; }
+    .lens-rim           { fill: none; stroke: #8b5a00; stroke-width: 2.4; }
+    .lens-rim-ghost     { fill: none; stroke: #8b5a00; stroke-width: 1.6; opacity: 0.45; }
+    .lens-highlight     { fill: #ffffff; opacity: 0.45; }
+    .lens-chain         { stroke: #8b5a00; stroke-width: 1.2; fill: none; stroke-linecap: round; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .ground-line { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .faint-line  { stroke: #8b5a00; stroke-width: 1.0; fill: none; stroke-linecap: round; opacity: 0.4; }
+    .faint-fill  { fill: #eacf85; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.5; }
+    .faint-text  { font-family: Georgia, serif; font-size: 10px; fill: #8b5a00; font-style: italic; opacity: 0.7; text-anchor: middle; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .code-op     { font-family: Consolas, 'Courier New', monospace; font-size: 14px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .end-label   { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <!-- panel background -->
+  <rect class="panel" x="10" y="10" width="740" height="300" rx="6"/>
+  <text class="panel-title" x="380" y="28">the iterator is a lens</text>
+  <text class="subtitle"    x="380" y="48">it knows how to advance, and where to stop</text>
+
+  <!-- ============================ five element cells ============================ -->
+  <!-- cells at x=100, 220, 340, 460, 580; width 90, height 50, y=156 -->
+  <rect class="cell-outer" x="100" y="156" width="90" height="50" rx="3"/>
+  <text class="code" x="145" y="187">"began"</text>
+  <rect class="cell-outer" x="220" y="156" width="90" height="50" rx="3"/>
+  <text class="code" x="265" y="187">"battle"</text>
+  <rect class="cell-outer" x="340" y="156" width="90" height="50" rx="3"/>
+  <text class="code" x="385" y="187">"search"</text>
+  <rect class="cell-outer" x="460" y="156" width="90" height="50" rx="3"/>
+  <text class="code" x="505" y="187">"inventory"</text>
+  <rect class="cell-outer" x="580" y="156" width="90" height="50" rx="3"/>
+  <text class="code" x="625" y="187">"inspect"</text>
+
+  <!-- end() sentinel beyond the last cell -->
+  <line class="ground-line" x1="694" y1="172" x2="724" y2="172"/>
+  <line class="ground-line" x1="698" y1="180" x2="720" y2="180"/>
+  <line class="ground-line" x1="702" y1="188" x2="716" y2="188"/>
+  <text class="end-label" x="709" y="210">end()</text>
+
+  <!-- ============================ ghost lens at cell 5 (right) ============================ -->
+  <circle class="lens-glass-ghost" cx="625" cy="100" r="22"/>
+  <circle class="lens-rim-ghost"   cx="625" cy="100" r="22"/>
+
+  <!-- ============================ ghost lens at cell 3 (middle) ============================ -->
+  <circle class="lens-glass-ghost" cx="385" cy="100" r="22"/>
+  <circle class="lens-rim-ghost"   cx="385" cy="100" r="22"/>
+
+  <!-- ============================ bright lens at cell 1 (left) ============================ -->
+  <circle class="lens-glass" cx="145" cy="100" r="24"/>
+  <circle class="lens-rim"   cx="145" cy="100" r="24"/>
+  <!-- white highlight on the upper left of the glass -->
+  <ellipse class="lens-highlight" cx="137" cy="92" rx="7" ry="5"/>
+  <!-- brass chain from lens up to the top of the panel -->
+  <path class="lens-chain" d="M 130 84 Q 110 60 105 38"/>
+
+  <!-- ============================ advance arrows between lens positions ============================ -->
+  <!-- lens 1 → lens 2 -->
+  <line class="arrow-line" x1="172" y1="100" x2="356" y2="100"/>
+  <polygon class="arrow-fill" points="356,95 366,100 356,105"/>
+  <text class="code-op" x="264" y="92">++</text>
+
+  <!-- lens 2 → lens 3 -->
+  <line class="arrow-line" x1="408" y1="100" x2="596" y2="100"/>
+  <polygon class="arrow-fill" points="596,95 606,100 596,105"/>
+  <text class="code-op" x="502" y="92">++</text>
+
+  <!-- ============================ faint background containers at the bottom ============================ -->
+  <!-- a faded chain on the left -->
+  <g>
+    <rect class="faint-fill" x="100" y="248" width="40" height="22" rx="2"/>
+    <rect class="faint-fill" x="148" y="248" width="40" height="22" rx="2"/>
+    <rect class="faint-fill" x="196" y="248" width="40" height="22" rx="2"/>
+    <line class="faint-line" x1="140" y1="259" x2="148" y2="259"/>
+    <line class="faint-line" x1="188" y1="259" x2="196" y2="259"/>
+    <text class="faint-text" x="168" y="288">a chain — walk via next</text>
+  </g>
+
+  <!-- a faded bag on the right -->
+  <g>
+    <rect class="faint-fill" x="520" y="248" width="38" height="22" rx="2"/>
+    <rect class="faint-fill" x="558" y="248" width="38" height="22" rx="2"/>
+    <rect class="faint-fill" x="596" y="248" width="38" height="22" rx="2"/>
+    <rect class="faint-fill" x="634" y="248" width="38" height="22" rx="2"/>
+    <text class="faint-text" x="596" y="288">a bag — index by [i]</text>
+  </g>
+
+  <!-- centred bottom caption -->
+  <text class="note" x="380" y="288">the lens does not know which shape is behind it</text>
+</svg>
