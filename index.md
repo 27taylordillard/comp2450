@@ -37,7 +37,7 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 | 5  | 4  | [The Chain Vault]({{ site.baseurl }}/floors/floor-04/) | Singly-linked lists |
 | 6  | 4½ | [The Chain Vault, Deeper]({{ site.baseurl }}/floors/floor-04h/) | Doubly-linked lists & the full Rule of Three |
 | 7  | 5  | [The Eye of Scrying]({{ site.baseurl }}/floors/floor-05/) | Iterators — one spell to walk any container |
-| 8  | 6  | The Stacks                                    | LIFO, undo, call-stack intuition |
+| 8  | 6  | [The Hall of Echoes]({{ site.baseurl }}/floors/floor-06/)       | LIFO, undo, call-stack intuition |
 | 9  | 7  | The Cisterns                                  | FIFO, queues, AI action scheduling |
 | 10 | 8  | The Branching Catacombs                       | Trees — dialog, skills, hierarchy |
 | 11 | 9  | The Warden's Hall                             | Binary search trees |
