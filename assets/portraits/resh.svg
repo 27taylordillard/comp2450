@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" role="img" aria-labelledby="resh-title resh-desc">
+  <title id="resh-title">Cantor Resh, Keeper of the Hall of Echoes</title>
+  <desc id="resh-desc">A bust portrait. A gaunt elderly man in faded grey choirmaster's robes with frayed silver embroidery at the collar and cuffs, deep-set eyes nearly closed, thin silver-white hair pulled back, hands folded on a dark stone lectern at the bottom of the frame, a small brass tuning fork on a leather cord at his right wrist, against a cool slate-blue stippled field with pinpoint silver lights and faint concentric arcs suggesting sound. A nameplate at the foot reads CANTOR RESH — Keeper of the Hall of Echoes.</desc>
+  <defs>
+    <pattern id="resh-stipple" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#3a4452"/>
+      <circle cx="3"  cy="3"  r="0.6"  fill="#cad4dc" opacity="0.50"/>
+      <circle cx="11" cy="9"  r="0.5"  fill="#aab4bc" opacity="0.45"/>
+      <circle cx="7"  cy="13" r="0.4"  fill="#6c7884" opacity="0.60"/>
+      <circle cx="13" cy="3"  r="0.35" fill="#aab4bc" opacity="0.55"/>
+      <circle cx="9"  cy="6"  r="0.25" fill="#e8eef4" opacity="0.70"/>
+      <circle cx="2"  cy="11" r="0.25" fill="#e8eef4" opacity="0.65"/>
+    </pattern>
+    <pattern id="lectern-stone" x="0" y="0" width="18" height="6" patternUnits="userSpaceOnUse">
+      <rect width="18" height="6" fill="#2c303a"/>
+      <circle cx="3"  cy="2" r="0.5" fill="#1c2028" opacity="0.7"/>
+      <circle cx="11" cy="4" r="0.4" fill="#1c2028" opacity="0.6"/>
+      <circle cx="15" cy="2" r="0.3" fill="#4a5060" opacity="0.5"/>
+      <circle cx="7"  cy="5" r="0.3" fill="#4a5060" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <style>
+    .frame-outer    { fill: #8b5a00; stroke: #3a2406; stroke-width: 1.6; }
+    .frame-mid      { fill: #c89860; stroke: #6b3018; stroke-width: 0.8; }
+    .frame-mat      { fill: #f2e4bc; stroke: #6b3018; stroke-width: 1.0; }
+    .bg-field       { fill: url(#resh-stipple); stroke: #14181e; stroke-width: 1.0; }
+
+    /* faint echo arcs across the field */
+    .echo-arc       { stroke: #aac0d4; stroke-width: 0.5; fill: none; opacity: 0.18; stroke-linecap: round; }
+
+    .robe           { fill: #5a5e68; stroke: #2a2c34; stroke-width: 1.2; }
+    .robe-shadow    { fill: #3e424c; opacity: 0.55; }
+    .robe-trim      { fill: #a8acb6; stroke: #54585e; stroke-width: 0.7; }
+    .robe-thread    { stroke: #c8ccd4; stroke-width: 0.5; fill: none; opacity: 0.80; }
+    .cuff           { fill: #6e7280; stroke: #2a2c34; stroke-width: 1.0; }
+    .cuff-thread    { stroke: #d4d8e0; stroke-width: 0.5; fill: none; opacity: 0.90; }
+
+    .skin           { fill: #e6dccd; stroke: #7a6a58; stroke-width: 0.9; }
+    .skin-darker    { fill: #d4c4b0; stroke: #6a5a48; stroke-width: 0.9; }
+    .skin-shadow    { fill: #b8a890; opacity: 0.42; }
+    .skin-hollow    { fill: #8a7866; opacity: 0.55; }
+    .skin-deep      { fill: #6a5848; opacity: 0.45; }
+    .skin-crease    { stroke: #7a6a58; stroke-width: 0.7; fill: none; stroke-linecap: round; opacity: 0.70; }
+
+    .hair           { fill: #c8cad0; stroke: #6a6c74; stroke-width: 0.9; }
+    .hair-shine     { fill: #e8eaee; opacity: 0.55; }
+
+    .brow           { stroke: #6c6e76; stroke-width: 1.2; fill: none; stroke-linecap: round; }
+    .brow-stray     { stroke: #54565c; stroke-width: 0.5; fill: none; stroke-linecap: round; opacity: 0.85; }
+    .eye-closed     { stroke: #1a1a20; stroke-width: 1.2; fill: none; stroke-linecap: round; }
+    .eye-shadow     { fill: #8a7a68; opacity: 0.42; }
+    .nose           { stroke: #7a6a58; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+    .mouth          { stroke: #5a3a30; stroke-width: 1.0; fill: none; stroke-linecap: round; }
+
+    .lectern-top    { fill: #4a5060; stroke: #14161c; stroke-width: 1.0; }
+    .lectern-front  { fill: url(#lectern-stone); stroke: #14161c; stroke-width: 1.0; }
+    .lectern-line   { stroke: #14161c; stroke-width: 0.5; fill: none; opacity: 0.75; }
+    .lectern-crack  { stroke: #1c2028; stroke-width: 0.4; fill: none; opacity: 0.60; stroke-linecap: round; }
+
+    .leather-cord   { stroke: #4a3220; stroke-width: 1.0; fill: none; stroke-linecap: round; }
+    .fork           { fill: #c89860; stroke: #5e3c00; stroke-width: 0.8; }
+    .fork-shadow    { fill: #8a6418; opacity: 0.60; }
+    .fork-shine     { stroke: #f0d8a0; stroke-width: 0.5; fill: none; opacity: 0.90; }
+
+    .nameplate      { fill: #f6efd5; stroke: #6b3018; stroke-width: 1.0; }
+    .name           { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; text-transform: uppercase; }
+    .title          { font-family: Georgia, serif; font-size: 9px;  fill: #4a3a2a; font-style: italic; text-anchor: middle; letter-spacing: 0.05em; }
+    .stud           { fill: #c89860; stroke: #5e3c00; stroke-width: 0.6; }
+  </style>
+
+  <!-- ===================== nested frame ===================== -->
+  <rect class="frame-outer" x="2"  y="2"  width="216" height="276" rx="6"/>
+  <rect class="frame-mid"   x="6"  y="6"  width="208" height="268" rx="4"/>
+  <rect class="frame-mat"   x="10" y="10" width="200" height="260" rx="3"/>
+  <rect class="bg-field"    x="18" y="18" width="184" height="210" rx="2"/>
+
+  <!-- ===================== faint echo arcs behind the figure ===================== -->
+  <path class="echo-arc" d="M 30 40 Q 110 28, 190 40"/>
+  <path class="echo-arc" d="M 26 56 Q 110 40, 194 56"/>
+  <path class="echo-arc" d="M 24 72 Q 110 54, 196 72"/>
+  <path class="echo-arc" d="M 24 88 Q 110 68, 196 88"/>
+
+  <!-- ===================== hair fall behind shoulders (thin, austere) ===================== -->
+  <path class="hair" d="M 72 132 Q 62 158, 66 192 L 80 192 Q 76 164, 82 138 Z"/>
+  <path class="hair" d="M 148 132 Q 158 158, 154 192 L 140 192 Q 144 164, 138 138 Z"/>
+  <path class="hair-shine" d="M 68 158 Q 66 184, 70 190 L 74 190 Q 70 178, 70 158 Z"/>
+  <path class="hair-shine" d="M 152 158 Q 154 184, 150 190 L 146 190 Q 150 178, 150 158 Z"/>
+
+  <!-- ===================== robe (faded grey, thin shoulders, ends above lectern) ===================== -->
+  <path class="robe" d="M 18 210 L 18 200 Q 32 180, 70 174 L 96 172 Q 110 170, 124 172 L 150 174 Q 188 180, 202 200 L 202 210 Z"/>
+  <!-- robe shadow at neckline -->
+  <path class="robe-shadow" d="M 70 182 Q 90 178, 110 178 Q 130 178, 150 182 L 148 192 Q 130 184, 110 184 Q 90 184, 72 192 Z"/>
+  <!-- silver-thread V-neck trim -->
+  <path class="robe-trim" d="M 90 174 L 110 200 L 130 174 L 128 172 L 110 196 L 92 172 Z"/>
+  <!-- decorative silver threads on the robe shoulders -->
+  <path class="robe-thread" d="M 36 204 Q 50 196, 70 192"/>
+  <path class="robe-thread" d="M 184 204 Q 170 196, 150 192"/>
+  <path class="robe-thread" d="M 40 209 Q 56 203, 76 200"/>
+  <path class="robe-thread" d="M 180 209 Q 164 203, 144 200"/>
+
+  <!-- ===================== neck (thin, lined) ===================== -->
+  <path class="skin" d="M 100 172 L 100 156 Q 104 152, 110 152 Q 116 152, 120 156 L 120 172 Z"/>
+  <ellipse class="skin-shadow" cx="110" cy="170" rx="11" ry="2.5"/>
+  <!-- prominent neck cords on an aged neck -->
+  <path class="skin-crease" d="M 103 162 Q 106 168, 105 172"/>
+  <path class="skin-crease" d="M 117 162 Q 114 168, 115 172"/>
+  <path class="skin-crease" d="M 104 168 Q 110 170, 116 168"/>
+
+  <!-- ===================== face (gaunt, narrower jaw) ===================== -->
+  <!-- main face: slightly narrower at the bottom (jaw) -->
+  <path class="skin" d="M 78 92 Q 74 64, 110 60 Q 146 64, 142 92 Q 144 124, 130 144 Q 120 156, 110 156 Q 100 156, 90 144 Q 76 124, 78 92 Z"/>
+
+  <!-- temple hollows: deep, dark, angled -->
+  <path class="skin-hollow" d="M 78 96 Q 76 104, 80 112 Q 82 106, 84 100 Z"/>
+  <path class="skin-hollow" d="M 142 96 Q 144 104, 140 112 Q 138 106, 136 100 Z"/>
+
+  <!-- cheek hollow shadows: subtle, suggesting gauntness without skull -->
+  <path class="skin-shadow" d="M 82 124 Q 86 134, 94 142 L 94 140 Q 86 132, 84 124 Z" opacity="0.35"/>
+  <path class="skin-shadow" d="M 138 124 Q 134 134, 126 142 L 126 140 Q 134 132, 136 124 Z" opacity="0.35"/>
+
+  <!-- ===================== hair (thin silver, pulled back tight, receding) ===================== -->
+  <!-- crown -->
+  <path class="hair" d="M 78 84 Q 76 56, 110 54 Q 144 56, 142 84 Q 110 76, 78 84 Z"/>
+  <!-- side falls -->
+  <path class="hair" d="M 74 84 Q 68 118, 72 152 L 80 152 Q 76 122, 80 86 Z"/>
+  <path class="hair" d="M 146 84 Q 152 118, 148 152 L 140 152 Q 144 122, 140 86 Z"/>
+  <!-- centre part / receding hairline hint -->
+  <path class="hair" d="M 109 56 L 110 84 L 111 56 Z"/>
+  <!-- thin temple wisps along the hairline -->
+  <path class="brow-stray" d="M 84 82 Q 88 80, 92 80"/>
+  <path class="brow-stray" d="M 136 82 Q 132 80, 128 80"/>
+  <!-- faint hair shine -->
+  <path class="hair-shine" d="M 80 92 Q 78 118, 82 148 L 86 148 Q 82 120, 84 92 Z"/>
+  <path class="hair-shine" d="M 140 92 Q 142 118, 138 148 L 134 148 Q 138 120, 136 92 Z"/>
+
+  <!-- ===================== forehead creases (age) ===================== -->
+  <path class="skin-crease" d="M 90 86 Q 110 84, 130 86"/>
+  <path class="skin-crease" d="M 92 92 Q 110 90, 128 92"/>
+  <!-- glabellar creases between brows -->
+  <path class="skin-crease" d="M 107 102 L 107 110"/>
+  <path class="skin-crease" d="M 113 102 L 113 110"/>
+
+  <!-- ===================== brows (sparse, downward angle) ===================== -->
+  <path class="brow" d="M 84 108 Q 92 104, 102 108"/>
+  <path class="brow" d="M 118 108 Q 128 104, 136 108"/>
+  <!-- a few stray brow hairs -->
+  <path class="brow-stray" d="M 86 106 L 87 108"/>
+  <path class="brow-stray" d="M 92 104 L 92 107"/>
+  <path class="brow-stray" d="M 128 104 L 128 107"/>
+  <path class="brow-stray" d="M 134 106 L 133 108"/>
+
+  <!-- ===================== eyes (deep-set, nearly closed) ===================== -->
+  <!-- larger, darker shadow under brows for deep-set look -->
+  <ellipse class="eye-shadow" cx="93"  cy="118" rx="11" ry="5"/>
+  <ellipse class="eye-shadow" cx="127" cy="118" rx="11" ry="5"/>
+  <!-- almost-closed eye lines: a flat horizontal slit -->
+  <path class="eye-closed" d="M 84 119 Q 93 122, 102 119"/>
+  <path class="eye-closed" d="M 118 119 Q 127 122, 136 119"/>
+  <!-- crow's-feet wrinkles at the outer corners (subtle) -->
+  <path class="skin-crease" d="M 84 119 L 81 118" opacity="0.45"/>
+  <path class="skin-crease" d="M 84 122 L 81 123" opacity="0.45"/>
+  <path class="skin-crease" d="M 136 119 L 139 118" opacity="0.45"/>
+  <path class="skin-crease" d="M 136 122 L 139 123" opacity="0.45"/>
+  <!-- under-eye bag shadow -->
+  <ellipse class="skin-shadow" cx="93"  cy="124" rx="7" ry="2"/>
+  <ellipse class="skin-shadow" cx="127" cy="124" rx="7" ry="2"/>
+
+  <!-- ===================== nose (long, aquiline, bony) ===================== -->
+  <path class="nose" d="M 110 122 L 105 142 Q 110 147, 115 142"/>
+  <!-- bridge ridge -->
+  <path class="nose" d="M 109 124 L 109 138" opacity="0.55"/>
+  <!-- nostril hint -->
+  <path class="nose" d="M 107 142 Q 110 140, 113 142" opacity="0.65"/>
+  <!-- nasolabial fold (creases from nose-corners down past mouth) -->
+  <path class="skin-crease" d="M 103 144 Q 100 148, 99 152"/>
+  <path class="skin-crease" d="M 117 144 Q 120 148, 121 152"/>
+
+  <!-- ===================== mouth (tight, slight droop) ===================== -->
+  <path class="mouth" d="M 100 152 Q 110 153, 120 152"/>
+  <!-- corner droops -->
+  <path class="mouth" d="M 100 152 L 98 155" opacity="0.75"/>
+  <path class="mouth" d="M 120 152 L 122 155" opacity="0.75"/>
+  <!-- chin/jaw shadow -->
+  <ellipse class="skin-shadow" cx="110" cy="156" rx="6" ry="1.5"/>
+
+  <!-- ===================== stone lectern (thick slab across the bottom) ===================== -->
+  <!-- top surface of the slab (lighter, catching light) -->
+  <rect class="lectern-top" x="18" y="208" width="184" height="6"/>
+  <!-- front face of the slab (darker, stone-textured) -->
+  <rect class="lectern-front" x="18" y="214" width="184" height="14"/>
+  <!-- top edge highlight line -->
+  <path class="lectern-line" d="M 18 208 L 202 208"/>
+  <path class="lectern-line" d="M 18 214 L 202 214"/>
+  <!-- stone cracks/seams -->
+  <path class="lectern-crack" d="M 38 214 Q 40 220, 42 228"/>
+  <path class="lectern-crack" d="M 86 214 Q 88 220, 86 228"/>
+  <path class="lectern-crack" d="M 144 214 L 146 228"/>
+  <path class="lectern-crack" d="M 174 214 Q 176 222, 178 228"/>
+  <!-- two seams on the top surface -->
+  <path class="lectern-line" d="M 60 208 L 60 214" opacity="0.45"/>
+  <path class="lectern-line" d="M 156 208 L 156 214" opacity="0.45"/>
+
+  <!-- ===================== robe cuffs and folded hands sitting ON the lectern top ===================== -->
+  <!-- cuffs extend from the inside of the robe down to where they meet the lectern -->
+  <path class="cuff" d="M 86 196 Q 84 200, 86 206 L 102 206 Q 100 200, 96 196 Z"/>
+  <path class="cuff" d="M 134 196 Q 136 200, 134 206 L 118 206 Q 120 200, 124 196 Z"/>
+  <!-- silver embroidery bands on cuffs -->
+  <path class="cuff-thread" d="M 86 202 L 102 202"/>
+  <path class="cuff-thread" d="M 87 204 L 101 204"/>
+  <path class="cuff-thread" d="M 118 202 L 134 202"/>
+  <path class="cuff-thread" d="M 119 204 L 133 204"/>
+
+  <!-- HANDS: two distinct hands resting side-by-side on the lectern, with a deep shadow line between to read as separation. The right hand is slightly forward, overlapping the left at the thumbs. -->
+
+  <!-- LEFT HAND (screen-left) — base hand, slightly recessed -->
+  <path class="skin-darker" d="M 82 207 Q 80 200, 88 198 Q 100 197, 108 199 L 108 207 Q 108 211, 102 212 L 88 212 Q 82 212, 82 207 Z"/>
+  <!-- knuckle bumps on left hand -->
+  <ellipse class="skin-shadow" cx="88" cy="200" rx="2.5" ry="1.2"/>
+  <ellipse class="skin-shadow" cx="94" cy="199" rx="2.5" ry="1.2"/>
+  <ellipse class="skin-shadow" cx="100" cy="199" rx="2.5" ry="1.2"/>
+  <ellipse class="skin-shadow" cx="105" cy="200" rx="2.5" ry="1.2"/>
+  <!-- finger separation lines on left hand -->
+  <path class="skin-crease" d="M 91 201 L 91 210" opacity="0.6"/>
+  <path class="skin-crease" d="M 97 201 L 97 210" opacity="0.6"/>
+  <path class="skin-crease" d="M 103 201 L 103 210" opacity="0.6"/>
+
+  <!-- RIGHT HAND (screen-right) — laid slightly over the left at the thumbs, more forward -->
+  <path class="skin" d="M 112 199 Q 120 197, 132 198 Q 140 200, 138 207 Q 138 212, 132 212 L 118 212 Q 112 211, 112 207 Z"/>
+  <!-- knuckle bumps on right hand -->
+  <ellipse class="skin-shadow" cx="115" cy="200" rx="2.5" ry="1.2"/>
+  <ellipse class="skin-shadow" cx="121" cy="199" rx="2.5" ry="1.2"/>
+  <ellipse class="skin-shadow" cx="127" cy="199" rx="2.5" ry="1.2"/>
+  <ellipse class="skin-shadow" cx="132" cy="200" rx="2.5" ry="1.2"/>
+  <!-- finger separation lines on right hand -->
+  <path class="skin-crease" d="M 118 201 L 118 210" opacity="0.6"/>
+  <path class="skin-crease" d="M 124 201 L 124 210" opacity="0.6"/>
+  <path class="skin-crease" d="M 130 201 L 130 210" opacity="0.6"/>
+
+  <!-- separation shadow between the two hands -->
+  <path class="skin-deep" d="M 108 199 Q 109 205, 110 211 Q 111 205, 112 199 L 110 199 Z" opacity="0.70"/>
+
+  <!-- soft cast shadow under the hands on the lectern top -->
+  <ellipse class="skin-shadow" cx="110" cy="213" rx="32" ry="1.5" opacity="0.55"/>
+
+  <!-- ===================== brass tuning fork on a leather cord, hanging from the right wrist ===================== -->
+  <!-- leather cord from inside the right cuff down past the hand to the lectern surface -->
+  <path class="leather-cord" d="M 138 198 Q 144 202, 150 208 Q 152 212, 154 216"/>
+  <!-- tuning fork: clear U-shape, sized to actually read at thumbnail -->
+  <!-- left tine -->
+  <rect class="fork" x="148" y="216" width="2.5" height="10" rx="1"/>
+  <!-- right tine -->
+  <rect class="fork" x="156" y="216" width="2.5" height="10" rx="1"/>
+  <!-- U-bottom connecting the tines (curve under) -->
+  <path class="fork" d="M 148 224 L 148 226 Q 148 228, 150 228 L 157 228 Q 159 228, 159 226 L 159 224 L 156.5 224 L 156.5 226 L 150.5 226 L 150.5 224 Z"/>
+  <!-- stem dropping below the U -->
+  <rect class="fork" x="153" y="227" width="1.5" height="3"/>
+  <!-- shine line on the left tine -->
+  <path class="fork-shine" d="M 149 218 L 149 224"/>
+  <!-- shadow line on the right tine -->
+  <path class="fork-shadow" d="M 157.5 217 L 157.5 224" opacity="0.5"/>
+  <!-- small cord knot where it attaches to the fork stem -->
+  <ellipse class="leather-cord" cx="154" cy="216" rx="1.2" ry="0.8" fill="#4a3220"/>
+
+  <!-- ===================== nameplate ===================== -->
+  <rect class="nameplate" x="22" y="234" width="176" height="32" rx="2"/>
+  <text class="name"  x="110" y="251">Cantor Resh</text>
+  <text class="title" x="110" y="262">Keeper of the Hall of Echoes</text>
+
+  <!-- ===================== corner studs ===================== -->
+  <circle class="stud" cx="14"  cy="14"  r="2.5"/>
+  <circle class="stud" cx="206" cy="14"  r="2.5"/>
+  <circle class="stud" cx="14"  cy="266" r="2.5"/>
+  <circle class="stud" cx="206" cy="266" r="2.5"/>
+</svg>
