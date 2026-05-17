@@ -54,15 +54,15 @@
   <!-- ground line under the bottom of the stack -->
   <line class="pointer-line" x1="100" y1="220" x2="220" y2="220" opacity="0.5"/>
 
-  <!-- push arrow: curves IN from upper right and lands on top of C -->
-  <path class="arrow-line" d="M 250 80 Q 220 88, 200 102 Q 180 116, 170 122"/>
-  <polygon class="arrow-fill" points="173,115 162,124 169,113"/>
-  <text class="op-label" x="252" y="74">push</text>
+  <!-- push: vertical arrow pointing DOWN into the top of C (left half) -->
+  <text class="op-label" x="140" y="90">push</text>
+  <line class="arrow-line" x1="140" y1="96" x2="140" y2="106"/>
+  <polygon class="arrow-fill" points="135,104 145,104 140,112"/>
 
-  <!-- pop arrow: curves OUT from top of C and exits upper right -->
-  <path class="arrow-line" d="M 180 102 Q 200 92, 220 86 Q 240 80, 252 78"/>
-  <polygon class="arrow-fill" points="248,73 258,77 250,82"/>
-  <text class="op-label" x="252" y="100">pop</text>
+  <!-- pop: vertical arrow pointing UP out of the top of C (right half) -->
+  <text class="op-label" x="180" y="90">pop</text>
+  <line class="arrow-line" x1="180" y1="106" x2="180" y2="98"/>
+  <polygon class="arrow-fill" points="175,100 185,100 180,92"/>
 
   <!-- both-arrows-same-end note inside the left zone -->
   <text class="note" x="160" y="248">both arrows touch the TOP of the stack</text>
@@ -100,10 +100,10 @@
   <text class="op-small" x="464" y="252">push C</text>
 
   <!-- ===== State 4: pop → C, [B, A] ===== -->
-  <!-- C floats above with a return arrow -->
+  <!-- C floats above with a return arrow reaching down to the top of B -->
   <rect class="box-ghost" x="508" y="148" width="56" height="18" rx="2"/>
   <text class="returned" x="536" y="161">C</text>
-  <path class="arrow-line-thin" d="M 536 170 L 536 178"/>
+  <path class="arrow-line-thin" d="M 536 170 L 536 196"/>
   <polygon class="arrow-fill" points="532,170 540,170 536,166"/>
   <!-- remaining stack -->
   <rect class="box-top" x="508" y="196" width="56" height="18" rx="2"/>
