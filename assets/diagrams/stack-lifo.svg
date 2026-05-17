@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-labelledby="stack-lifo-title stack-lifo-desc">
+  <title id="stack-lifo-title">A stack is one rule — push and pop touch the same end</title>
+  <desc id="stack-lifo-desc">Left half: a vertical column of three boxes labelled A at the bottom, B in the middle, C on top. A curved arrow labelled push enters from the upper right and lands on the top of the column. A second curved arrow labelled pop leaves from the top of the column to the upper right. A pointer labelled top points at the topmost box, C. Right half: a six-step sequence showing the stack state after push A, push B, push C, pop, pop, pop. The popped element is shown floating above the stack with an arrow at each pop step. Caption at the bottom: push and pop both touch the same end — that is the whole rule.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .zone-divider{ stroke: #8b5a00; stroke-width: 0.8; stroke-dasharray: 4 3; opacity: 0.55; fill: none; }
+    .box-top     { fill: #eacf85; stroke: #8b5a00; stroke-width: 1.4; }
+    .box         { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .box-faded   { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.0; opacity: 0.55; }
+    .box-ghost   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 1.0; opacity: 0.40; stroke-dasharray: 3 2; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .arrow-line-thin { stroke: #6b0f0f; stroke-width: 1.4; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .pointer-line{ stroke: #8b5a00; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .pointer-fill{ fill: #8b5a00; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .box-label   { font-family: Consolas, 'Courier New', monospace; font-size: 18px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .small-box-label { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .op-label    { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .op-small    { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .pointer-text{ font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #8b5a00; font-weight: 700; text-anchor: end; }
+    .zone-title  { font-family: Georgia, serif; font-size: 10.5px; fill: #8b5a00; font-style: italic; text-transform: uppercase; letter-spacing: 0.08em; text-anchor: middle; }
+    .note        { font-family: Georgia, serif; font-size: 11.5px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .returned    { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+  </style>
+
+  <!-- panel background -->
+  <rect class="panel" x="10" y="10" width="740" height="340" rx="6"/>
+  <text class="panel-title" x="380" y="28">push and pop touch the same end</text>
+  <text class="subtitle"    x="380" y="48">that is the entire LIFO contract</text>
+
+  <!-- vertical dashed divider between the two zones -->
+  <line class="zone-divider" x1="280" y1="62" x2="280" y2="320"/>
+  <text class="zone-title" x="145" y="74">the stack, in repose</text>
+  <text class="zone-title" x="510" y="74">push A · push B · push C · pop · pop · pop</text>
+
+  <!-- ============================ LEFT ZONE: the stack itself ============================ -->
+
+  <!-- top pointer: arrow from left pointing at top-of-stack -->
+  <text class="pointer-text" x="60" y="130">top</text>
+  <line class="pointer-line" x1="65" y1="125" x2="98" y2="125"/>
+  <polygon class="pointer-fill" points="98,121 108,125 98,129"/>
+
+  <!-- the three boxes, top to bottom: C, B, A -->
+  <rect class="box-top" x="110" y="110" width="100" height="36" rx="3"/>
+  <text class="box-label" x="160" y="135">C</text>
+  <rect class="box"     x="110" y="146" width="100" height="36" rx="3"/>
+  <text class="box-label" x="160" y="171">B</text>
+  <rect class="box"     x="110" y="182" width="100" height="36" rx="3"/>
+  <text class="box-label" x="160" y="207">A</text>
+
+  <!-- ground line under the bottom of the stack -->
+  <line class="pointer-line" x1="100" y1="220" x2="220" y2="220" opacity="0.5"/>
+
+  <!-- push arrow: curves IN from upper right and lands on top of C -->
+  <path class="arrow-line" d="M 250 80 Q 220 88, 200 102 Q 180 116, 170 122"/>
+  <polygon class="arrow-fill" points="173,115 162,124 169,113"/>
+  <text class="op-label" x="252" y="74">push</text>
+
+  <!-- pop arrow: curves OUT from top of C and exits upper right -->
+  <path class="arrow-line" d="M 180 102 Q 200 92, 220 86 Q 240 80, 252 78"/>
+  <polygon class="arrow-fill" points="248,73 258,77 250,82"/>
+  <text class="op-label" x="252" y="100">pop</text>
+
+  <!-- both-arrows-same-end note inside the left zone -->
+  <text class="note" x="160" y="248">both arrows touch the TOP of the stack</text>
+  <text class="note" x="160" y="265">— never the middle, never the bottom</text>
+
+  <!-- ============================ RIGHT ZONE: sequence of states ============================ -->
+  <!-- six columns at x = 320, 392, 464, 536, 608, 680 (each 72 px apart) -->
+  <!-- each mini-stack: 56 wide boxes, 18 tall, top of stack ranges -->
+
+  <!-- helper: the "floor" line at y=232 below each mini-stack -->
+  <!-- helper: box stacking with A at y=214, B at y=196, C at y=178 -->
+
+  <!-- ===== State 1: push A → [A] ===== -->
+  <rect class="box-top" x="292" y="214" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="320" y="227">A</text>
+  <line class="pointer-line" x1="288" y1="232" x2="352" y2="232" opacity="0.45"/>
+  <text class="op-small" x="320" y="252">push A</text>
+
+  <!-- ===== State 2: push B → [B, A] ===== -->
+  <rect class="box-top" x="364" y="196" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="392" y="209">B</text>
+  <rect class="box"     x="364" y="214" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="392" y="227">A</text>
+  <line class="pointer-line" x1="360" y1="232" x2="424" y2="232" opacity="0.45"/>
+  <text class="op-small" x="392" y="252">push B</text>
+
+  <!-- ===== State 3: push C → [C, B, A] ===== -->
+  <rect class="box-top" x="436" y="178" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="464" y="191">C</text>
+  <rect class="box"     x="436" y="196" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="464" y="209">B</text>
+  <rect class="box"     x="436" y="214" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="464" y="227">A</text>
+  <line class="pointer-line" x1="432" y1="232" x2="496" y2="232" opacity="0.45"/>
+  <text class="op-small" x="464" y="252">push C</text>
+
+  <!-- ===== State 4: pop → C, [B, A] ===== -->
+  <!-- C floats above with a return arrow -->
+  <rect class="box-ghost" x="508" y="148" width="56" height="18" rx="2"/>
+  <text class="returned" x="536" y="161">C</text>
+  <path class="arrow-line-thin" d="M 536 170 L 536 178"/>
+  <polygon class="arrow-fill" points="532,170 540,170 536,166"/>
+  <!-- remaining stack -->
+  <rect class="box-top" x="508" y="196" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="536" y="209">B</text>
+  <rect class="box"     x="508" y="214" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="536" y="227">A</text>
+  <line class="pointer-line" x1="504" y1="232" x2="568" y2="232" opacity="0.45"/>
+  <text class="op-small" x="536" y="252">pop → C</text>
+
+  <!-- ===== State 5: pop → B, [A] ===== -->
+  <rect class="box-ghost" x="580" y="148" width="56" height="18" rx="2"/>
+  <text class="returned" x="608" y="161">B</text>
+  <path class="arrow-line-thin" d="M 608 170 L 608 196"/>
+  <polygon class="arrow-fill" points="604,170 612,170 608,166"/>
+  <!-- remaining stack -->
+  <rect class="box-top" x="580" y="214" width="56" height="18" rx="2"/>
+  <text class="small-box-label" x="608" y="227">A</text>
+  <line class="pointer-line" x1="576" y1="232" x2="640" y2="232" opacity="0.45"/>
+  <text class="op-small" x="608" y="252">pop → B</text>
+
+  <!-- ===== State 6: pop → A, [] ===== -->
+  <rect class="box-ghost" x="652" y="148" width="56" height="18" rx="2"/>
+  <text class="returned" x="680" y="161">A</text>
+  <path class="arrow-line-thin" d="M 680 170 L 680 214"/>
+  <polygon class="arrow-fill" points="676,170 684,170 680,166"/>
+  <!-- empty stack indicator: a dashed outline where the stack would be -->
+  <rect class="box-ghost" x="652" y="214" width="56" height="18" rx="2"/>
+  <text class="op-small" x="680" y="227" fill="#8b5a00" opacity="0.6" font-style="italic" font-family="Georgia">empty</text>
+  <line class="pointer-line" x1="648" y1="232" x2="712" y2="232" opacity="0.45"/>
+  <text class="op-small" x="680" y="252">pop → A</text>
+
+  <!-- ============================ bottom caption ============================ -->
+  <text class="note" x="380" y="298">read the sequence left-to-right: the order things come OUT is the reverse of the order they went IN</text>
+  <text class="note" x="380" y="316">— C came out first because C went in last.  That is LIFO.</text>
+</svg>
