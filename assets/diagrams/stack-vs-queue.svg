@@ -51,23 +51,23 @@
   <text class="adt-tag"  x="195" y="139">LIFO</text>
 
   <!-- Operation labels above the chain -->
-  <!-- push and pop BOTH at the head (left end of the chain) -->
-  <text class="op-label"  x="80"  y="180">push</text>
-  <text class="op-method" x="80"  y="195">push_front</text>
-  <text class="op-label"  x="140" y="180">pop</text>
-  <text class="op-method" x="140" y="195">pop_front</text>
+  <!-- push and pop BOTH at the head (left end of the chain); spaced to clear text -->
+  <text class="op-label"  x="75"  y="180">push</text>
+  <text class="op-method" x="75"  y="195">push_front</text>
+  <text class="op-label"  x="155" y="180">pop</text>
+  <text class="op-method" x="155" y="195">pop_front</text>
 
   <!-- Curved arrows from labels down into the head node -->
   <!-- push: arrow going down-right into the top of the head node -->
-  <path class="arrow-line" d="M 80 200 Q 80 220 95 233"/>
-  <polygon class="arrow-fill" points="91,229 99,237 100,229"/>
+  <path class="arrow-line" d="M 75 200 Q 75 220 88 233"/>
+  <polygon class="arrow-fill" points="84,229 92,237 93,229"/>
   <!-- pop: arrow going up-right from the top of the head node toward "pop" label -->
-  <path class="arrow-line" d="M 110 233 Q 125 220 140 200"/>
-  <polygon class="arrow-fill" points="136,202 140,194 145,202"/>
+  <path class="arrow-line" d="M 105 233 Q 130 218 155 200"/>
+  <polygon class="arrow-fill" points="151,202 155,194 160,202"/>
 
-  <!-- "same end" emphasis bracket -->
-  <path class="arrow-line" d="M 70 210 L 70 168 L 150 168 L 150 210" opacity="0.35" stroke-dasharray="3 3"/>
-  <text class="end-label" x="110" y="160" fill="#6b0f0f">SAME END</text>
+  <!-- "same end" emphasis bracket — widened to clear the label text -->
+  <path class="arrow-line" d="M 35 210 L 35 168 L 195 168 L 195 210" opacity="0.35" stroke-dasharray="3 3"/>
+  <text class="end-label" x="115" y="160" fill="#6b0f0f">SAME END</text>
 
   <!-- Chain<T> row: 4 nodes from x=50 to x=340 (each ~70 wide, gap-less) -->
   <!-- node centers: 80, 152, 224, 296 ; box size 60 wide, 36 tall ; y=240..276 -->
@@ -115,8 +115,8 @@
   <path class="arrow-line" d="M 680 200 Q 680 220 665 233"/>
   <polygon class="arrow-fill" points="661,229 669,237 670,229"/>
 
-  <!-- "opposite ends" emphasis bracket: spans almost the full chain -->
-  <path class="arrow-line" d="M 440 210 L 440 168 L 690 168 L 690 210" opacity="0.35" stroke-dasharray="3 3"/>
+  <!-- "opposite ends" emphasis bracket — widened to clear the label text -->
+  <path class="arrow-line" d="M 410 210 L 410 168 L 720 168 L 720 210" opacity="0.35" stroke-dasharray="3 3"/>
   <text class="end-label" x="565" y="160" fill="#6b0f0f">OPPOSITE ENDS</text>
 
   <!-- Chain<T> row: identical to the left column, shifted right -->
