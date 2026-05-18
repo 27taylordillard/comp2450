@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" role="img" aria-labelledby="quill-title quill-desc">
+  <title id="quill-title">Steward Quill, Keeper of the Cisterns</title>
+  <desc id="quill-desc">A bust portrait. A middle-aged clerk-monk in a damp grey robe with darker water-stained lower areas, seated behind a low ironwood desk that crosses the bottom of the frame. Hair receding, ink-stained fingers, eyes downcast on the open ledger in front of him whose pages are lined with the names of waiting petitioners and bear a single red wax seal. His right hand holds a small brass wax-stamp raised above the ledger. A brass ticket-dispenser hangs on a leather cord at his belt. Three faint silhouettes recede diagonally into the upper-left background — the line of petitioners trailing into the dark. A nameplate at the foot reads STEWARD QUILL — Keeper of the Cisterns.</desc>
+  <defs>
+    <pattern id="quill-stipple" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#2e3a40"/>
+      <circle cx="3"  cy="3"  r="0.6"  fill="#a8c0c4" opacity="0.42"/>
+      <circle cx="11" cy="9"  r="0.5"  fill="#88a4a8" opacity="0.40"/>
+      <circle cx="7"  cy="13" r="0.4"  fill="#506468" opacity="0.55"/>
+      <circle cx="13" cy="3"  r="0.35" fill="#88a4a8" opacity="0.50"/>
+      <circle cx="9"  cy="6"  r="0.25" fill="#d8e8ec" opacity="0.65"/>
+      <circle cx="2"  cy="11" r="0.25" fill="#c8dcdf" opacity="0.55"/>
+    </pattern>
+    <pattern id="ironwood" x="0" y="0" width="20" height="6" patternUnits="userSpaceOnUse">
+      <rect width="20" height="6" fill="#3a2818"/>
+      <path d="M 0 1 Q 5 0.5 10 1 Q 15 1.5 20 1" stroke="#2a1a0c" stroke-width="0.5" fill="none" opacity="0.85"/>
+      <path d="M 0 3 Q 6 3.5 12 3 Q 16 2.5 20 3" stroke="#1c100a" stroke-width="0.4" fill="none" opacity="0.70"/>
+      <path d="M 0 5 Q 4 4.5 10 5 Q 15 5.5 20 5" stroke="#4e3624" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <circle cx="6"  cy="2" r="0.3" fill="#1a0e08" opacity="0.7"/>
+      <circle cx="14" cy="4" r="0.25" fill="#1a0e08" opacity="0.6"/>
+    </pattern>
+  </defs>
+  <style>
+    .frame-outer    { fill: #8b5a00; stroke: #3a2406; stroke-width: 1.6; }
+    .frame-mid      { fill: #c89860; stroke: #6b3018; stroke-width: 0.8; }
+    .frame-mat      { fill: #f2e4bc; stroke: #6b3018; stroke-width: 1.0; }
+    .bg-field       { fill: url(#quill-stipple); stroke: #14181c; stroke-width: 1.0; }
+
+    /* faint vertical drip-marks across the field — cistern atmosphere */
+    .drip           { stroke: #aac8cc; stroke-width: 0.4; fill: none; opacity: 0.20; stroke-linecap: round; }
+
+    /* far background — line of petitioners receding to upper-left */
+    .silhouette     { fill: #1c2428; opacity: 0.55; }
+    .silhouette-far { fill: #1c2428; opacity: 0.35; }
+
+    .robe           { fill: #56606a; stroke: #28303a; stroke-width: 1.2; }
+    .robe-damp      { fill: #3a4450; opacity: 0.65; }
+    .robe-shadow    { fill: #2e3640; opacity: 0.55; }
+    .robe-trim      { fill: #aab2bc; stroke: #4e565e; stroke-width: 0.7; }
+    .robe-thread    { stroke: #c4ccd4; stroke-width: 0.5; fill: none; opacity: 0.70; }
+    .cuff           { fill: #4a5460; stroke: #28303a; stroke-width: 1.0; }
+    .cuff-thread    { stroke: #c4ccd4; stroke-width: 0.5; fill: none; opacity: 0.85; }
+
+    .skin           { fill: #e8dccc; stroke: #7a6a58; stroke-width: 0.9; }
+    .skin-darker    { fill: #d4c4b0; stroke: #6a5a48; stroke-width: 0.9; }
+    .skin-shadow    { fill: #b8a890; opacity: 0.42; }
+    .skin-hollow    { fill: #8a7866; opacity: 0.55; }
+    .skin-deep      { fill: #6a5848; opacity: 0.45; }
+    .skin-crease    { stroke: #7a6a58; stroke-width: 0.7; fill: none; stroke-linecap: round; opacity: 0.70; }
+    .ink-stain      { fill: #1a1820; opacity: 0.78; }
+
+    .hair           { fill: #6e5a44; stroke: #3e3224; stroke-width: 0.9; }
+    .hair-shine     { fill: #8a7058; opacity: 0.50; }
+    .hair-scalp     { fill: #dccab4; stroke: #7a6a58; stroke-width: 0.5; opacity: 0.92; }
+
+    .brow           { stroke: #4e3e2e; stroke-width: 1.2; fill: none; stroke-linecap: round; }
+    .brow-stray     { stroke: #3e3024; stroke-width: 0.5; fill: none; stroke-linecap: round; opacity: 0.85; }
+    .eye-closed     { stroke: #1a1620; stroke-width: 1.2; fill: none; stroke-linecap: round; }
+    .eye-shadow     { fill: #8a7a68; opacity: 0.42; }
+    .nose           { stroke: #7a6a58; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+    .mouth          { stroke: #5a3a30; stroke-width: 1.0; fill: none; stroke-linecap: round; }
+
+    .desk-top       { fill: #4a3424; stroke: #1c1008; stroke-width: 1.0; }
+    .desk-front     { fill: url(#ironwood); stroke: #1c1008; stroke-width: 1.0; }
+    .desk-edge      { stroke: #1c1008; stroke-width: 0.5; fill: none; opacity: 0.85; }
+    .desk-highlight { stroke: #6e4e34; stroke-width: 0.6; fill: none; opacity: 0.75; }
+
+    .ledger-page    { fill: #e6dcc0; stroke: #7a5c30; stroke-width: 0.7; }
+    .ledger-edge    { fill: #b89a68; stroke: #5e421c; stroke-width: 0.6; }
+    .ledger-spine   { stroke: #3a2412; stroke-width: 1.0; fill: none; opacity: 0.85; }
+    .ledger-line    { stroke: #2a1c10; stroke-width: 0.55; fill: none; opacity: 0.90; stroke-linecap: round; }
+    .ledger-line-faint { stroke: #5a4830; stroke-width: 0.4; fill: none; opacity: 0.65; stroke-linecap: round; }
+
+    .leather-cord   { stroke: #4a3220; stroke-width: 1.0; fill: none; stroke-linecap: round; }
+    .brass          { fill: #c89860; stroke: #5e3c00; stroke-width: 0.8; }
+    .brass-shadow   { fill: #8a6418; opacity: 0.55; }
+    .brass-shine    { stroke: #f0d8a0; stroke-width: 0.5; fill: none; opacity: 0.90; }
+
+    .wax            { fill: #8b1a1a; stroke: #3a0606; stroke-width: 0.6; }
+    .wax-shine      { stroke: #c84a3a; stroke-width: 0.5; fill: none; opacity: 0.80; }
+
+    .nameplate      { fill: #f6efd5; stroke: #6b3018; stroke-width: 1.0; }
+    .name           { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; text-transform: uppercase; }
+    .title          { font-family: Georgia, serif; font-size: 9px;  fill: #4a3a2a; font-style: italic; text-anchor: middle; letter-spacing: 0.05em; }
+    .stud           { fill: #c89860; stroke: #5e3c00; stroke-width: 0.6; }
+  </style>
+
+  <!-- ===================== nested frame ===================== -->
+  <rect class="frame-outer" x="2"  y="2"  width="216" height="276" rx="6"/>
+  <rect class="frame-mid"   x="6"  y="6"  width="208" height="268" rx="4"/>
+  <rect class="frame-mat"   x="10" y="10" width="200" height="260" rx="3"/>
+  <rect class="bg-field"    x="18" y="18" width="184" height="210" rx="2"/>
+
+  <!-- ===================== faint vertical drip-marks (cistern atmosphere) ===================== -->
+  <path class="drip" d="M 30 22 Q 30 60, 32 110"/>
+  <path class="drip" d="M 50 22 Q 51 70, 50 130"/>
+  <path class="drip" d="M 188 22 Q 188 60, 186 110"/>
+  <path class="drip" d="M 170 22 Q 169 70, 170 130"/>
+
+  <!-- ===================== petitioner silhouettes in the upper-left, receding ===================== -->
+  <!-- closest figure (largest, most opaque) -->
+  <path class="silhouette" d="M 24 96 Q 24 88, 28 86 Q 32 88, 32 96 L 33 124 L 23 124 Z"/>
+  <circle class="silhouette" cx="28" cy="84" r="3.2"/>
+  <!-- second figure -->
+  <path class="silhouette" d="M 38 102 Q 38 96, 41 94 Q 44 96, 44 102 L 44.5 122 L 37.5 122 Z"/>
+  <circle class="silhouette" cx="41" cy="92" r="2.6"/>
+  <!-- third figure (further, dimmer) -->
+  <path class="silhouette-far" d="M 49 108 Q 49 103, 51 102 Q 54 103, 54 108 L 54 120 L 49 120 Z"/>
+  <circle class="silhouette-far" cx="51.5" cy="100" r="2.0"/>
+  <!-- fourth figure (very dim, vanishing) -->
+  <path class="silhouette-far" d="M 58 112 Q 58 108, 60 107 Q 62 108, 62 112 L 62 119 L 58 119 Z" opacity="0.55"/>
+  <circle class="silhouette-far" cx="60" cy="106" r="1.4" opacity="0.55"/>
+
+  <!-- a faint floor line tying the silhouettes together as "a line" -->
+  <path class="drip" d="M 22 124 Q 40 122, 64 119" opacity="0.30"/>
+
+  <!-- ===================== robe (damp grey, shoulders broad and slumped) ===================== -->
+  <path class="robe" d="M 18 210 L 18 196 Q 32 176, 70 170 L 96 168 Q 110 167, 124 168 L 150 170 Q 188 176, 202 196 L 202 210 Z"/>
+  <!-- damp staining on the lower portion of the robe -->
+  <path class="robe-damp" d="M 18 205 Q 70 198, 110 200 Q 150 198, 202 205 L 202 210 L 18 210 Z"/>
+  <!-- neckline shadow -->
+  <path class="robe-shadow" d="M 70 182 Q 90 178, 110 178 Q 130 178, 150 182 L 148 192 Q 130 184, 110 184 Q 90 184, 72 192 Z"/>
+  <!-- silver V-neck trim (austere) -->
+  <path class="robe-trim" d="M 90 174 L 110 198 L 130 174 L 128 172 L 110 194 L 92 172 Z"/>
+  <!-- a thin belt rope across the waist (just visible above desk) -->
+  <path class="leather-cord" d="M 60 200 Q 110 198, 160 200"/>
+
+  <!-- decorative damp-thread highlights on robe shoulders -->
+  <path class="robe-thread" d="M 36 200 Q 50 192, 70 188"/>
+  <path class="robe-thread" d="M 184 200 Q 170 192, 150 188"/>
+  <path class="robe-thread" d="M 40 206 Q 56 200, 76 196"/>
+  <path class="robe-thread" d="M 180 206 Q 164 200, 144 196"/>
+
+  <!-- ===================== neck ===================== -->
+  <path class="skin" d="M 100 172 L 100 156 Q 104 152, 110 152 Q 116 152, 120 156 L 120 172 Z"/>
+  <ellipse class="skin-shadow" cx="110" cy="170" rx="11" ry="2.5"/>
+  <path class="skin-crease" d="M 104 162 Q 107 168, 106 172"/>
+  <path class="skin-crease" d="M 116 162 Q 113 168, 114 172"/>
+
+  <!-- ===================== face (head tilted slightly downward — chin drawn closer) ===================== -->
+  <!-- main face: slightly more vertical (downcast) than Resh; jaw is fuller -->
+  <path class="skin" d="M 78 92 Q 74 64, 110 60 Q 146 64, 142 92 Q 144 124, 130 146 Q 120 156, 110 156 Q 100 156, 90 146 Q 76 124, 78 92 Z"/>
+
+  <!-- temple hollows (subtle for a younger man than Resh) -->
+  <path class="skin-hollow" d="M 78 96 Q 76 104, 80 110 Q 82 106, 84 100 Z" opacity="0.45"/>
+  <path class="skin-hollow" d="M 142 96 Q 144 104, 140 110 Q 138 106, 136 100 Z" opacity="0.45"/>
+
+  <!-- soft cheek shadow -->
+  <path class="skin-shadow" d="M 82 126 Q 86 136, 94 144 L 94 142 Q 86 134, 84 126 Z" opacity="0.32"/>
+  <path class="skin-shadow" d="M 138 126 Q 134 136, 126 144 L 126 142 Q 134 134, 136 126 Z" opacity="0.32"/>
+
+  <!-- ===================== hair (receding clerk's tonsure — high forehead, hair fall behind) ===================== -->
+  <!-- back hair fall behind shoulders -->
+  <path class="hair" d="M 72 132 Q 64 158, 68 188 L 80 188 Q 76 162, 82 138 Z"/>
+  <path class="hair" d="M 148 132 Q 156 158, 152 188 L 140 188 Q 144 162, 138 138 Z"/>
+  <path class="hair-shine" d="M 68 158 Q 66 180, 70 186 L 74 186 Q 70 174, 70 158 Z"/>
+  <path class="hair-shine" d="M 152 158 Q 154 180, 150 186 L 146 186 Q 150 174, 150 158 Z"/>
+
+  <!-- crown — receded, leaving a high forehead. Hair only at the sides and back of the skull. -->
+  <path class="hair" d="M 80 80 Q 78 64, 86 60 Q 96 58, 110 58 Q 100 70, 90 80 Z"/>
+  <path class="hair" d="M 140 80 Q 142 64, 134 60 Q 124 58, 110 58 Q 120 70, 130 80 Z"/>
+  <!-- scalp showing through the receding hairline -->
+  <path class="hair-scalp" d="M 92 66 Q 110 60, 128 66 Q 122 72, 110 72 Q 98 72, 92 66 Z"/>
+  <!-- sides -->
+  <path class="hair" d="M 76 82 Q 70 116, 74 150 L 82 150 Q 78 120, 82 86 Z"/>
+  <path class="hair" d="M 144 82 Q 150 116, 146 150 L 138 150 Q 142 120, 138 86 Z"/>
+  <!-- faint side shine -->
+  <path class="hair-shine" d="M 82 92 Q 80 118, 84 146 L 86 146 Q 84 120, 86 92 Z"/>
+  <path class="hair-shine" d="M 138 92 Q 140 118, 136 146 L 134 146 Q 136 120, 134 92 Z"/>
+
+  <!-- ===================== forehead creases (concentration) ===================== -->
+  <path class="skin-crease" d="M 90 84 Q 110 82, 130 84"/>
+  <path class="skin-crease" d="M 92 90 Q 110 88, 128 90"/>
+  <!-- furrowed brow between eyebrows -->
+  <path class="skin-crease" d="M 107 102 L 107 110"/>
+  <path class="skin-crease" d="M 113 102 L 113 110"/>
+
+  <!-- ===================== brows (gentle inward droop — concentration, not anger) ===================== -->
+  <path class="brow" d="M 84 108 Q 92 111, 102 113"/>
+  <path class="brow" d="M 118 113 Q 128 111, 136 108"/>
+  <!-- stray brow hairs -->
+  <path class="brow-stray" d="M 86 107 L 87 109"/>
+  <path class="brow-stray" d="M 92 110 L 92 112"/>
+  <path class="brow-stray" d="M 128 110 L 128 112"/>
+  <path class="brow-stray" d="M 134 107 L 133 109"/>
+
+  <!-- ===================== eyes (downcast — looking at the page, lids low, lash-line angled slightly downward at the outer corner) ===================== -->
+  <!-- eye-socket shadow under brows -->
+  <ellipse class="eye-shadow" cx="93"  cy="122" rx="10" ry="4"/>
+  <ellipse class="eye-shadow" cx="127" cy="122" rx="10" ry="4"/>
+  <!-- almost-closed eyes with a downward tilt (outer corner lower than inner) -->
+  <path class="eye-closed" d="M 84 122 Q 93 126, 102 124"/>
+  <path class="eye-closed" d="M 118 124 Q 127 126, 136 122"/>
+  <!-- a faint dark crescent below the lash line, suggesting the iris seen through nearly-closed lids -->
+  <path class="eye-closed" d="M 88 124 Q 93 125, 98 124" opacity="0.55" stroke-width="0.8"/>
+  <path class="eye-closed" d="M 122 124 Q 127 125, 132 124" opacity="0.55" stroke-width="0.8"/>
+  <!-- under-eye bags -->
+  <ellipse class="skin-shadow" cx="93"  cy="129" rx="7" ry="2"/>
+  <ellipse class="skin-shadow" cx="127" cy="129" rx="7" ry="2"/>
+
+  <!-- ===================== nose (straight, average — clerk, not aquiline) ===================== -->
+  <path class="nose" d="M 110 124 L 106 142 Q 110 146, 114 142"/>
+  <path class="nose" d="M 109 126 L 109 140" opacity="0.55"/>
+  <path class="nose" d="M 107 142 Q 110 140, 113 142" opacity="0.65"/>
+  <path class="skin-crease" d="M 104 144 Q 101 148, 100 152"/>
+  <path class="skin-crease" d="M 116 144 Q 119 148, 120 152"/>
+
+  <!-- ===================== mouth (thin line of concentration, slightly compressed) ===================== -->
+  <path class="mouth" d="M 100 152 Q 110 153, 120 152"/>
+  <path class="mouth" d="M 100 152 L 99 154" opacity="0.75"/>
+  <path class="mouth" d="M 120 152 L 121 154" opacity="0.75"/>
+  <ellipse class="skin-shadow" cx="110" cy="156" rx="6" ry="1.5"/>
+
+  <!-- ===================== ironwood desk (thick slab across the bottom) ===================== -->
+  <rect class="desk-top"   x="18" y="208" width="184" height="6"/>
+  <rect class="desk-front" x="18" y="214" width="184" height="14"/>
+  <path class="desk-edge" d="M 18 208 L 202 208"/>
+  <path class="desk-edge" d="M 18 214 L 202 214"/>
+  <!-- a few highlight lines along the top edge -->
+  <path class="desk-highlight" d="M 32 210 L 56 210"/>
+  <path class="desk-highlight" d="M 80 210 L 100 210"/>
+  <path class="desk-highlight" d="M 134 210 L 168 210"/>
+
+  <!-- ===================== cuffs sitting on the desk top ===================== -->
+  <!-- left cuff -->
+  <path class="cuff" d="M 78 192 Q 76 200, 80 206 L 100 206 Q 98 200, 94 192 Z"/>
+  <!-- right cuff -->
+  <path class="cuff" d="M 142 192 Q 144 200, 140 206 L 120 206 Q 122 200, 126 192 Z"/>
+  <!-- silver embroidery bands on cuffs -->
+  <path class="cuff-thread" d="M 80 202 L 100 202"/>
+  <path class="cuff-thread" d="M 81 204 L 99 204"/>
+  <path class="cuff-thread" d="M 120 202 L 140 202"/>
+  <path class="cuff-thread" d="M 121 204 L 139 204"/>
+
+  <!-- ===================== open ledger sitting on the desk top, centered ===================== -->
+  <!-- book thickness: two thin trapezoids forming the side-edges -->
+  <rect class="ledger-edge" x="74" y="206" width="72" height="3" rx="0.5"/>
+  <!-- two flat pages joined at the spine -->
+  <rect class="ledger-page" x="74"  y="200" width="36" height="7" rx="0.5"/>
+  <rect class="ledger-page" x="110" y="200" width="36" height="7" rx="0.5"/>
+  <!-- spine -->
+  <path class="ledger-spine" d="M 110 200 L 110 207"/>
+  <!-- horizontal lines of "writing" — the names of waiting petitioners -->
+  <path class="ledger-line" d="M 78 202.5 L 105 202.5"/>
+  <path class="ledger-line" d="M 78 204 L 102 204"/>
+  <path class="ledger-line" d="M 78 205.5 L 107 205.5"/>
+  <path class="ledger-line-faint" d="M 78 206.5 L 100 206.5"/>
+  <path class="ledger-line" d="M 113 202.5 L 142 202.5"/>
+  <path class="ledger-line-faint" d="M 113 204 L 138 204"/>
+  <path class="ledger-line-faint" d="M 113 205.5 L 140 205.5"/>
+  <path class="ledger-line-faint" d="M 113 206.5 L 135 206.5"/>
+
+  <!-- a single red wax seal at the end of the top-left entry — the one petitioner already served -->
+  <circle class="wax" cx="106" cy="202.5" r="1.4"/>
+  <path class="wax-shine" d="M 105 202 L 106 202.5"/>
+
+  <!-- ===================== LEFT HAND pressing the ledger's left side ===================== -->
+  <path class="skin-darker" d="M 80 200 Q 78 195, 86 193 Q 96 192, 102 195 L 102 202 Q 100 207, 96 207 L 86 207 Q 80 207, 80 200 Z"/>
+  <!-- knuckle bumps -->
+  <ellipse class="skin-shadow" cx="86" cy="196" rx="2.2" ry="1.0"/>
+  <ellipse class="skin-shadow" cx="91" cy="195" rx="2.2" ry="1.0"/>
+  <ellipse class="skin-shadow" cx="96" cy="195" rx="2.2" ry="1.0"/>
+  <!-- finger separations -->
+  <path class="skin-crease" d="M 88 197 L 88 205" opacity="0.6"/>
+  <path class="skin-crease" d="M 93 197 L 93 205" opacity="0.6"/>
+  <path class="skin-crease" d="M 98 197 L 98 205" opacity="0.6"/>
+  <!-- ink stains on the fingertips -->
+  <ellipse class="ink-stain" cx="86" cy="205" rx="1.0" ry="0.6"/>
+  <ellipse class="ink-stain" cx="91" cy="205" rx="0.8" ry="0.5"/>
+
+  <!-- ===================== RIGHT HAND holding the brass wax-stamp, raised just above the ledger ===================== -->
+  <!-- the hand wraps a vertical handle; handle pokes up out of the fist, seal end pokes down below -->
+  <path class="skin" d="M 122 184 Q 120 179, 128 177 Q 136 177, 138 182 L 138 192 Q 136 196, 130 196 L 124 196 Q 120 194, 122 184 Z"/>
+  <!-- thumb visible at the top of the grip -->
+  <path class="skin" d="M 124 180 Q 121 178, 122 176 Q 125 175, 128 177 Z"/>
+  <!-- knuckle bumps -->
+  <ellipse class="skin-shadow" cx="127" cy="184" rx="2.0" ry="1.0"/>
+  <ellipse class="skin-shadow" cx="132" cy="184" rx="2.0" ry="1.0"/>
+  <!-- finger separations -->
+  <path class="skin-crease" d="M 129 186 L 129 194" opacity="0.6"/>
+  <path class="skin-crease" d="M 134 186 L 134 194" opacity="0.6"/>
+  <!-- ink stain on right thumb -->
+  <ellipse class="ink-stain" cx="124" cy="179" rx="0.8" ry="0.5"/>
+
+  <!-- BRASS WAX-STAMP — vertical handle gripped by the right hand, seal head pointing down -->
+  <!-- handle visible ABOVE the hand (sticking up out of the fist) -->
+  <rect class="brass" x="128" y="160" width="4" height="18" rx="0.8"/>
+  <path class="brass-shine" d="M 129 162 L 129 176"/>
+  <path class="brass-shadow" d="M 131 162 L 131 176" opacity="0.55"/>
+  <!-- decorative knob at the very top of the handle -->
+  <circle class="brass" cx="130" cy="159" r="1.8"/>
+  <path class="brass-shine" d="M 129 158 L 130 158" opacity="0.85"/>
+  <!-- collar between handle and seal (just below the fist) -->
+  <rect class="brass" x="127" y="196" width="6" height="2" rx="0.4"/>
+  <!-- seal head (wider than the handle, square-ish), just above the page -->
+  <rect class="brass" x="125" y="197.5" width="10" height="3" rx="0.5"/>
+  <path class="brass-shadow" d="M 125 200 L 135 200" opacity="0.50"/>
+  <!-- a smear of red wax on the seal face (the stamping surface) -->
+  <ellipse class="wax" cx="130" cy="199.5" rx="4" ry="0.6"/>
+  <!-- a tiny droplet of wax falling toward the page (about to land between the existing seal at 103 and the next entry) -->
+  <ellipse class="wax" cx="130" cy="201.5" rx="0.7" ry="0.9"/>
+
+  <!-- ===================== brass ticket-dispenser hanging at the belt (left side, just above the desk edge) ===================== -->
+  <!-- leather cord from the belt down to the dispenser -->
+  <path class="leather-cord" d="M 64 200 L 63 207"/>
+  <!-- dispenser body — a small brass cylinder -->
+  <rect class="brass" x="58" y="207" width="10" height="6" rx="1"/>
+  <!-- shine line on the cylinder -->
+  <path class="brass-shine" d="M 59 208 L 59 212"/>
+  <path class="brass-shadow" d="M 67 208 L 67 212" opacity="0.50"/>
+  <!-- slot at the bottom from which numbered tickets emerge -->
+  <rect class="brass" x="60" y="213" width="6" height="1" rx="0.2" fill="#3a2a14"/>
+  <!-- a tiny ticket just emerging from the slot -->
+  <rect class="ledger-page" x="62" y="214" width="2.5" height="2" rx="0.2"/>
+
+  <!-- soft cast shadow under the hands and ledger on the desk top -->
+  <ellipse class="skin-shadow" cx="110" cy="208.5" rx="42" ry="1.4" opacity="0.55"/>
+
+  <!-- ===================== nameplate ===================== -->
+  <rect class="nameplate" x="22" y="234" width="176" height="32" rx="2"/>
+  <text class="name"  x="110" y="251">Steward Quill</text>
+  <text class="title" x="110" y="262">Keeper of the Cisterns</text>
+
+  <!-- ===================== corner studs ===================== -->
+  <circle class="stud" cx="14"  cy="14"  r="2.5"/>
+  <circle class="stud" cx="206" cy="14"  r="2.5"/>
+  <circle class="stud" cx="14"  cy="266" r="2.5"/>
+  <circle class="stud" cx="206" cy="266" r="2.5"/>
+</svg>
