@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" role="img" aria-labelledby="svq-title svq-desc">
+  <title id="svq-title">Stack&lt;T&gt; and Queue&lt;T&gt; — same Chain&lt;T&gt;, different end-pairing</title>
+  <desc id="svq-desc">Two side-by-side panels share an identical Chain&lt;T&gt; underneath. On the left, a panel labelled Stack&lt;T&gt; LIFO shows both the push arrow and the pop arrow touching the head end of the chain — same end. On the right, a panel labelled Queue&lt;T&gt; FIFO shows the enqueue arrow at the tail and the dequeue arrow at the head — opposite ends. Both panels use the same row of four chain nodes with head on the left and tail on the right. A caption at the bottom states: same Chain&lt;T&gt; underneath, one decision flips the contract from LIFO to FIFO.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .col-bg-left { fill: #faf3dc; stroke: #8b5a00; stroke-width: 1.0; opacity: 0.5; }
+    .col-bg-right{ fill: #faecd4; stroke: #6b0f0f; stroke-width: 1.0; opacity: 0.5; }
+
+    .adt-head-stack { fill: #eacf85; stroke: #8b5a00; stroke-width: 1.6; }
+    .adt-head-queue { fill: #f2c89c; stroke: #6b0f0f; stroke-width: 1.6; }
+
+    .node       { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-head  { fill: #eacf85; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-tail  { fill: #eacf85; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-link  { stroke: #8b5a00; stroke-width: 1.2; fill: none; opacity: 0.75; }
+
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .pointer-line{ stroke: #8b5a00; stroke-width: 1.4; fill: none; stroke-linecap: round; }
+    .pointer-fill{ fill: #8b5a00; }
+
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+
+    .adt-name    { font-family: Consolas, 'Courier New', monospace; font-size: 18px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .adt-tag     { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.10em; }
+
+    .node-label  { font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .end-label   { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #8b5a00; font-weight: 700; text-anchor: middle; }
+
+    .op-label    { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .op-method   { font-family: Consolas, 'Courier New', monospace; font-size: 10.5px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+
+    .note        { font-family: Georgia, serif; font-size: 11.5px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .note-strong { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .col-caption { font-family: Georgia, serif; font-size: 11.5px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <!-- panel background -->
+  <rect class="panel" x="10" y="10" width="740" height="400" rx="6"/>
+  <text class="panel-title" x="380" y="28">same Chain&lt;T&gt;, different end-pairing</text>
+  <text class="subtitle"    x="380" y="48">one decision — which end does the remove touch — flips LIFO to FIFO</text>
+
+  <!-- ============================ LEFT COLUMN: Stack<T> ============================ -->
+  <rect class="col-bg-left" x="20" y="68" width="350" height="320" rx="6"/>
+
+  <!-- ADT header pill -->
+  <rect class="adt-head-stack" x="80" y="84" width="230" height="38" rx="4"/>
+  <text class="adt-name" x="195" y="109">Stack&lt;T&gt;</text>
+  <text class="adt-tag"  x="195" y="139">LIFO</text>
+
+  <!-- Operation labels above the chain -->
+  <!-- push and pop BOTH at the head (left end of the chain) -->
+  <text class="op-label"  x="80"  y="180">push</text>
+  <text class="op-method" x="80"  y="195">push_front</text>
+  <text class="op-label"  x="140" y="180">pop</text>
+  <text class="op-method" x="140" y="195">pop_front</text>
+
+  <!-- Curved arrows from labels down into the head node -->
+  <!-- push: arrow going down-right into the top of the head node -->
+  <path class="arrow-line" d="M 80 200 Q 80 220 95 233"/>
+  <polygon class="arrow-fill" points="91,229 99,237 100,229"/>
+  <!-- pop: arrow going up-right from the top of the head node toward "pop" label -->
+  <path class="arrow-line" d="M 110 233 Q 125 220 140 200"/>
+  <polygon class="arrow-fill" points="136,202 140,194 145,202"/>
+
+  <!-- "same end" emphasis bracket -->
+  <path class="arrow-line" d="M 70 210 L 70 168 L 150 168 L 150 210" opacity="0.35" stroke-dasharray="3 3"/>
+  <text class="end-label" x="110" y="160" fill="#6b0f0f">SAME END</text>
+
+  <!-- Chain<T> row: 4 nodes from x=50 to x=340 (each ~70 wide, gap-less) -->
+  <!-- node centers: 80, 152, 224, 296 ; box size 60 wide, 36 tall ; y=240..276 -->
+  <rect class="node-head" x="50"  y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="80"  y="263">n0</text>
+  <rect class="node"      x="120" y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="150" y="263">n1</text>
+  <rect class="node"      x="190" y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="220" y="263">n2</text>
+  <rect class="node-tail" x="260" y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="290" y="263">n3</text>
+
+  <!-- doubly-linked node connectors -->
+  <line class="node-link" x1="110" y1="258" x2="120" y2="258"/>
+  <line class="node-link" x1="180" y1="258" x2="190" y2="258"/>
+  <line class="node-link" x1="250" y1="258" x2="260" y2="258"/>
+
+  <!-- end labels below -->
+  <text class="end-label" x="80"  y="292">head</text>
+  <text class="end-label" x="290" y="292">tail</text>
+
+  <text class="col-caption" x="195" y="328">push_front and pop_front are</text>
+  <text class="col-caption" x="195" y="344">the same line in two methods</text>
+  <text class="col-caption" x="195" y="364">→ last in, first out</text>
+
+  <!-- ============================ RIGHT COLUMN: Queue<T> ============================ -->
+  <rect class="col-bg-right" x="390" y="68" width="350" height="320" rx="6"/>
+
+  <!-- ADT header pill -->
+  <rect class="adt-head-queue" x="450" y="84" width="230" height="38" rx="4"/>
+  <text class="adt-name" x="565" y="109">Queue&lt;T&gt;</text>
+  <text class="adt-tag"  x="565" y="139">FIFO</text>
+
+  <!-- Operation labels: dequeue at HEAD, enqueue at TAIL — opposite ends -->
+  <text class="op-label"  x="450" y="180">dequeue</text>
+  <text class="op-method" x="450" y="195">pop_front</text>
+  <text class="op-label"  x="680" y="180">enqueue</text>
+  <text class="op-method" x="680" y="195">push_back</text>
+
+  <!-- Curved arrows: dequeue out of head; enqueue into tail -->
+  <!-- dequeue: arrow going UP-left from the head node toward "dequeue" label -->
+  <path class="arrow-line" d="M 465 233 Q 450 220 450 200"/>
+  <polygon class="arrow-fill" points="446,202 450,194 455,202"/>
+  <!-- enqueue: arrow going DOWN-left from "enqueue" label into the tail node -->
+  <path class="arrow-line" d="M 680 200 Q 680 220 665 233"/>
+  <polygon class="arrow-fill" points="661,229 669,237 670,229"/>
+
+  <!-- "opposite ends" emphasis bracket: spans almost the full chain -->
+  <path class="arrow-line" d="M 440 210 L 440 168 L 690 168 L 690 210" opacity="0.35" stroke-dasharray="3 3"/>
+  <text class="end-label" x="565" y="160" fill="#6b0f0f">OPPOSITE ENDS</text>
+
+  <!-- Chain<T> row: identical to the left column, shifted right -->
+  <rect class="node-head" x="420" y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="450" y="263">n0</text>
+  <rect class="node"      x="490" y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="520" y="263">n1</text>
+  <rect class="node"      x="560" y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="590" y="263">n2</text>
+  <rect class="node-tail" x="630" y="240" width="60" height="36" rx="3"/>
+  <text class="node-label" x="660" y="263">n3</text>
+
+  <!-- doubly-linked node connectors -->
+  <line class="node-link" x1="480" y1="258" x2="490" y2="258"/>
+  <line class="node-link" x1="550" y1="258" x2="560" y2="258"/>
+  <line class="node-link" x1="620" y1="258" x2="630" y2="258"/>
+
+  <!-- end labels below -->
+  <text class="end-label" x="450" y="292">head</text>
+  <text class="end-label" x="660" y="292">tail</text>
+
+  <text class="col-caption" x="565" y="328">push_back and pop_front are</text>
+  <text class="col-caption" x="565" y="344">at the two ends of the chain</text>
+  <text class="col-caption" x="565" y="364">→ first in, first out</text>
+
+  <!-- ============================ bottom note ============================ -->
+  <text class="note-strong" x="380" y="394">same Chain&lt;T&gt; underneath; one method-pair decision flips the contract</text>
+</svg>

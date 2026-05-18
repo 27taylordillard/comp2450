@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-labelledby="queue-fifo-title queue-fifo-desc">
+  <title id="queue-fifo-title">A queue is one rule — enqueue and dequeue touch opposite ends</title>
+  <desc id="queue-fifo-desc">Left half: a horizontal row of three boxes labelled A on the left (the front), B in the middle, C on the right (the back). A curved arrow labelled dequeue leaves from the left of A pointing upper-left. A second curved arrow labelled enqueue enters from the upper right and lands on the right of C. A pointer labelled front points at the leftmost box A. A pointer labelled back points at the rightmost box C. Right half: a six-step sequence showing the queue state after enqueue A, enqueue B, enqueue C, dequeue, dequeue, dequeue. The dequeued element is shown floating above the queue with an arrow at each dequeue step. Caption at the bottom: the order things come out is the same as the order they went in — that is FIFO.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .zone-divider{ stroke: #8b5a00; stroke-width: 0.8; stroke-dasharray: 4 3; opacity: 0.55; fill: none; }
+    .box-head    { fill: #eacf85; stroke: #8b5a00; stroke-width: 1.4; }
+    .box         { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .box-ghost   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 1.0; opacity: 0.40; stroke-dasharray: 3 2; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .arrow-line-thin { stroke: #6b0f0f; stroke-width: 1.4; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .pointer-line{ stroke: #8b5a00; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .pointer-fill{ fill: #8b5a00; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .box-label   { font-family: Consolas, 'Courier New', monospace; font-size: 18px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .small-box-label { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .op-label    { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .op-small    { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .pointer-text{ font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #8b5a00; font-weight: 700; text-anchor: middle; }
+    .zone-title  { font-family: Georgia, serif; font-size: 10.5px; fill: #8b5a00; font-style: italic; text-transform: uppercase; letter-spacing: 0.08em; text-anchor: middle; }
+    .note        { font-family: Georgia, serif; font-size: 11.5px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .returned    { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+  </style>
+
+  <!-- panel background -->
+  <rect class="panel" x="10" y="10" width="740" height="340" rx="6"/>
+  <text class="panel-title" x="380" y="28">enqueue and dequeue touch opposite ends</text>
+  <text class="subtitle"    x="380" y="48">that is the entire FIFO contract</text>
+
+  <!-- vertical dashed divider between the two zones -->
+  <line class="zone-divider" x1="280" y1="62" x2="280" y2="320"/>
+  <text class="zone-title" x="145" y="74">the queue, in repose</text>
+  <text class="zone-title" x="510" y="74">enqueue A · enqueue B · enqueue C · dequeue · dequeue · dequeue</text>
+
+  <!-- ============================ LEFT ZONE: the queue itself ============================ -->
+
+  <!-- Three horizontal boxes: A (front, leftmost), B, C (back, rightmost) -->
+  <!-- Box geometry: x = 50, 105, 160 ; width=55, height=36 ; y=130..166 -->
+  <rect class="box-head" x="50"  y="130" width="55" height="36" rx="3"/>
+  <text class="box-label" x="77"  y="155">A</text>
+  <rect class="box"      x="105" y="130" width="55" height="36" rx="3"/>
+  <text class="box-label" x="132" y="155">B</text>
+  <rect class="box"      x="160" y="130" width="55" height="36" rx="3"/>
+  <text class="box-label" x="187" y="155">C</text>
+
+  <!-- front pointer: arrow from below, pointing up at A -->
+  <text class="pointer-text" x="77" y="195">front</text>
+  <line class="pointer-line" x1="77" y1="183" x2="77" y2="172"/>
+  <polygon class="pointer-fill" points="73,172 81,172 77,166"/>
+
+  <!-- back pointer: arrow from below, pointing up at C -->
+  <text class="pointer-text" x="187" y="195">back</text>
+  <line class="pointer-line" x1="187" y1="183" x2="187" y2="172"/>
+  <polygon class="pointer-fill" points="183,172 191,172 187,166"/>
+
+  <!-- dequeue: curved arrow leaving A's top-left, exiting upper-left.
+       Arrowhead points UP (continuing the motion away from the queue). -->
+  <text class="op-label" x="38" y="106">dequeue</text>
+  <path class="arrow-line" d="M 50 138 Q 40 128 32 120"/>
+  <polygon class="arrow-fill" points="32,114 27,122 36,123"/>
+
+  <!-- enqueue: curved arrow entering from upper-right into C's right edge.
+       Arrowhead points DOWN into the box (the destination). -->
+  <text class="op-label" x="227" y="106">enqueue</text>
+  <path class="arrow-line" d="M 233 120 Q 225 128 215 138"/>
+  <polygon class="arrow-fill" points="215,144 220,135 211,134"/>
+
+  <!-- both-arrows-opposite-ends note inside the left zone -->
+  <text class="note" x="135" y="240">arrows touch OPPOSITE ends</text>
+  <text class="note" x="135" y="257">— never the middle</text>
+
+  <!-- ============================ RIGHT ZONE: sequence of states ============================ -->
+  <!-- six mini-queues at x-centers 320, 392, 464, 536, 608, 680 (each 72 px apart) -->
+  <!-- each mini-cell: 18 wide, 18 tall; queue grows horizontally to the right -->
+  <!-- queue centered around its column x; positions for 1/2/3 cells laid out below -->
+
+  <!-- ===== State 1: enqueue A → [A] ===== -->
+  <rect class="box-head" x="311" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="320" y="183">A</text>
+  <text class="op-small" x="320" y="208">enqueue A</text>
+
+  <!-- ===== State 2: enqueue B → [A, B] ===== -->
+  <rect class="box-head" x="374" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="383" y="183">A</text>
+  <rect class="box"      x="392" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="401" y="183">B</text>
+  <text class="op-small" x="392" y="208">enqueue B</text>
+
+  <!-- ===== State 3: enqueue C → [A, B, C] ===== -->
+  <rect class="box-head" x="437" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="446" y="183">A</text>
+  <rect class="box"      x="455" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="464" y="183">B</text>
+  <rect class="box"      x="473" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="482" y="183">C</text>
+  <text class="op-small" x="464" y="208">enqueue C</text>
+
+  <!-- ===== State 4: dequeue → A, [B, C] ===== -->
+  <!-- A floats above with a return arrow reaching down/left from the front -->
+  <rect class="box-ghost" x="509" y="140" width="18" height="18" rx="2"/>
+  <text class="returned" x="518" y="153">A</text>
+  <path class="arrow-line-thin" d="M 518 162 L 518 170"/>
+  <polygon class="arrow-fill" points="514,162 522,162 518,158"/>
+  <!-- remaining queue (B, C) -->
+  <rect class="box-head" x="527" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="536" y="183">B</text>
+  <rect class="box"      x="545" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="554" y="183">C</text>
+  <text class="op-small" x="536" y="208">dequeue → A</text>
+
+  <!-- ===== State 5: dequeue → B, [C] ===== -->
+  <rect class="box-ghost" x="590" y="140" width="18" height="18" rx="2"/>
+  <text class="returned" x="599" y="153">B</text>
+  <path class="arrow-line-thin" d="M 599 162 L 599 170"/>
+  <polygon class="arrow-fill" points="595,162 603,162 599,158"/>
+  <!-- remaining queue (C) -->
+  <rect class="box-head" x="608" y="170" width="18" height="18" rx="2"/>
+  <text class="small-box-label" x="617" y="183">C</text>
+  <text class="op-small" x="608" y="208">dequeue → B</text>
+
+  <!-- ===== State 6: dequeue → C, [] ===== -->
+  <rect class="box-ghost" x="671" y="140" width="18" height="18" rx="2"/>
+  <text class="returned" x="680" y="153">C</text>
+  <path class="arrow-line-thin" d="M 680 162 L 680 170"/>
+  <polygon class="arrow-fill" points="676,162 684,162 680,158"/>
+  <!-- empty queue indicator: a dashed outline -->
+  <rect class="box-ghost" x="671" y="170" width="18" height="18" rx="2"/>
+  <text class="op-small" x="680" y="183" fill="#8b5a00" opacity="0.6" font-style="italic" font-family="Georgia">∅</text>
+  <text class="op-small" x="680" y="208">dequeue → C</text>
+
+  <!-- ============================ bottom caption ============================ -->
+  <text class="note" x="380" y="298">read the sequence left-to-right: the order things come OUT is the same as the order they went IN</text>
+  <text class="note" x="380" y="316">— A came out first because A went in first.  That is FIFO.</text>
+</svg>
