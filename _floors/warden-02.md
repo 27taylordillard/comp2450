@@ -13,7 +13,7 @@ It does not move *yet*. It does not need to. Four floors built you a hero who ca
 
 <div class="character-card" markdown="1">
 <div class="character-portrait">
-  <img src="{{ '/assets/portraits/warden-02.svg' | relative_url }}" alt="The Warden of the Middle Gates — a hooded, faceless figure in dark iron plate, only two ember-gold eye-points visible inside the deep cowl. Four small sigils on the breastplate: a chain link, a polished lens, a coiled echo, a stamped ticket. Behind the figure, a marshalling yard with four torch-lit corners."/>
+  <img src="{{ '/assets/portraits/warden-02.svg' | relative_url }}" alt="The Warden of the Middle Gates — a hooded, faceless figure in dark iron plate. Where the first Warden showed two ember-gold eye-points inside the deep cowl, this one shows a single horizontal ember slit — the visor of a great-helm worn beneath the hood. Four small sigils on the breastplate: a chain link, a polished lens, a coiled echo, a stamped ticket. Behind the figure, a marshalling yard with four torch-lit corners."/>
 </div>
 <div class="character-quote" markdown="1">
 <span class="speaker">The Warden, who has no name to give</span>

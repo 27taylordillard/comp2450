@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" role="img" aria-labelledby="warden02-title warden02-desc">
   <title id="warden02-title">The Warden of the Middle Gates</title>
-  <desc id="warden02-desc">A bust portrait. A hooded, faceless figure in dark iron plate, only two ember-gold points visible inside the deep cowl, against a cold slate field flecked with faint blue motes. Four small sigils across its breastplate — a chain link, a polished lens, a coiled echo, and a stamped ticket — for the four floors above (linked lists, iterators, stacks, queues). The nameplate at the foot has no name; only the title WARDEN OF THE MIDDLE GATES.</desc>
+  <desc id="warden02-desc">A bust portrait. A hooded, faceless figure in dark iron plate. Where the first Warden showed two ember-gold eye-points inside the deep cowl, this one shows a single horizontal ember slit — the visor of a great-helm worn beneath the hood. The field is cold slate flecked with faint blue motes. Four small sigils across the breastplate — a chain link, a polished lens, a coiled echo, and a stamped ticket — for the four floors above (linked lists, iterators, stacks, queues). The nameplate at the foot has no name; only the title WARDEN OF THE MIDDLE GATES.</desc>
   <defs>
     <pattern id="warden02-stipple" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
       <rect width="14" height="14" fill="#1a1c22"/>
@@ -53,10 +53,9 @@
   <ellipse class="face-shadow" cx="110" cy="116" rx="28" ry="38"/>
   <path    class="face-shadow" d="M 82 118 Q 82 154, 96 168 L 124 168 Q 138 154, 138 118 Q 128 134, 110 134 Q 92 134, 82 118 Z"/>
 
-  <circle class="eye-glow" cx="100" cy="114" r="3.4"/>
-  <circle class="eye-glow" cx="120" cy="114" r="3.4"/>
-  <circle fill="#fff5c8" cx="100" cy="113" r="1.1"/>
-  <circle fill="#fff5c8" cx="120" cy="113" r="1.1"/>
+  <!-- Visor slit — single horizontal ember-glow band, replacing Warden 1's two eye-points. -->
+  <ellipse class="eye-glow" cx="110" cy="114" rx="18" ry="1.9"/>
+  <ellipse fill="#fff5c8"   cx="110" cy="113.4" rx="12" ry="0.55"/>
 
   <path class="plate-edge" d="M 92 174 Q 110 168, 128 174 L 130 184 Q 110 180, 90 184 Z"/>
 
