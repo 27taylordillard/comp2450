@@ -170,7 +170,7 @@ Counter by:
 <div class="callout check" markdown="1">
 <p class="callout-title">Check for understanding</p>
 
-Before you face the Warden of the Middle Gates next week, you should be able to answer these without looking:
+Before you face the [Warden of the Middle Gates]({{ site.baseurl }}/floors/warden-02/) next week, you should be able to answer these without looking:
 
 1. State the FIFO contract in one sentence, in your own words. Then state in one sentence what `Stack`, `Queue`, `List`, and `Map` all *are* in the same vocabulary.
 2. Your `Queue<T>` adapts `Chain<T>`. Which two `Chain<T>` methods do `enqueue` and `dequeue` call? Why does using `push_back` for enqueue + `pop_front` for dequeue make this FIFO, and what would happen if you used `push_back` + `pop_back` instead?

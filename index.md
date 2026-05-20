@@ -39,6 +39,7 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 | 7  | 5  | [The Eye of Scrying]({{ site.baseurl }}/floors/floor-05/) | Iterators — one spell to walk any container |
 | 8  | 6  | [The Hall of Echoes]({{ site.baseurl }}/floors/floor-06/)       | LIFO, undo, call-stack intuition |
 | 9  | 7  | [The Cisterns]({{ site.baseurl }}/floors/floor-07/) | FIFO, queues, AI action scheduling |
+| 10 | Warden II | [Warden of the Middle Gates]({{ site.baseurl }}/floors/warden-02/) | Midterm 2 — Floors 4–7 take-home + Friday quiz |
 | 10 | 8  | The Branching Catacombs                       | Trees — dialog, skills, hierarchy |
 | 11 | 9  | The Warden's Hall                             | Binary search trees |
 | 12 | 9½ | The Balanced Hall                             | Self-balancing trees |
