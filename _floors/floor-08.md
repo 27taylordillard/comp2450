@@ -3,7 +3,7 @@ title: The Hall of Lineages
 floor_number: Floor 8
 flavor_quote: "A line remembers what came before it. A tree remembers where everything belongs."
 week: 10
-zybook: "Chapter 8 (Trees), §8.1–8.2"
+zybook: "Chapter 8 (Trees) — full chapter; class focus §8.1–8.2"
 ---
 
 ## The briefing
@@ -54,15 +54,19 @@ By the end of Floor 8 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 8, the tree sections)
+### Reading (ZyBook Ch. 8, *Trees* — the whole chapter)
 
-Before **Monday**: §8.1 *Binary trees* — read it for the **vocabulary**, not the "binary" part. Root, leaf, internal node, parent, ancestors, edge, depth, level, height: every one of those terms applies to *any* tree, not just two-child ones. We build the general case first; the two-children-with-a-rule special case is next floor.
+**Read all of Chapter 8.** That includes the binary-search-tree and trie sections we will not touch in class until later floors. The Hold spends three more floors inside this chapter; reading it once, whole, now is how you see where this week fits in the larger map. We map *class time* to specific sections below — but the **reading assignment is the entire chapter**, and the pre-class checks may draw from any of it.
 
-Before **Wednesday**: §8.2 *Applications of trees* — especially the animation "*a file system is a hierarchy that can be represented by a tree*." A folder containing files and other folders is exactly the structure you are building: a node with a bag of children. McCown's classification is a file system for monsters.
+The sections class leans on this week, and what to watch for in each:
 
-Before **Friday**: re-read the §8.1 definitions of **depth** and **height** and the line *"a node's ancestors include the node's parent, the parent's parent, etc., up to the tree's root."* That sentence *is* the `lineage` algorithm — read it as pseudocode.
+- Before **Monday** — §8.1 *Binary trees*. Read it for the **vocabulary**, not the "binary" part. Root, leaf, internal node, parent, ancestors, edge, depth, level, height: every one of those terms applies to *any* tree, not just two-child ones. We build the general case first; the two-children-with-a-rule special case comes a floor or two on.
+- Before **Wednesday** — §8.2 *Applications of trees*. Watch the animation "*a file system is a hierarchy that can be represented by a tree*." A folder containing files and other folders is exactly the structure you are building: a node with a bag of children. McCown's classification is a file system for monsters.
+- Before **Friday** — re-read the §8.1 definitions of **depth** and **height** and the line *"a node's ancestors include the node's parent, the parent's parent, etc., up to the tree's root."* That sentence *is* the `lineage` algorithm — read it as pseudocode.
 
-> **A note on "binary."** The ZyBook chapter is mostly about *binary* trees (≤ 2 children) and *binary search* trees. We are deliberately starting with the **general** tree — any number of children, no ordering rule — because the vocabulary and the recursion are clearest there. Next floor we add the two constraints (at most two children; left < node < right) that turn this loose tree into a `BST`, and you will see exactly what each constraint buys.
+The rest of the chapter (§8.3 onward — BST search, insert, remove, inorder traversal, recursion, tries) is **not** wasted pre-reading: it is the next two floors. Reading it now means that when we get there, you are reviewing, not meeting it cold.
+
+> **A note on "binary."** The ZyBook chapter is mostly about *binary* trees (≤ 2 children) and *binary search* trees. We are deliberately starting with the **general** tree — any number of children, no ordering rule — because the vocabulary and the recursion are clearest there. The next floors add the two constraints (at most two children; left < node < right) that turn this loose tree into a `BST`, and you will see exactly what each constraint buys.
 
 There are no pre-class videos. Class time is for live coding and discussion together — your reading is the prep.
 
