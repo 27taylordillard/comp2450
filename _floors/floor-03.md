@@ -3,7 +3,7 @@ title: The Forgemaster's Vault
 floor_number: Floor 3
 flavor_quote: "One mold. Every chest. Every monster. Every name."
 week: 4
-zybook: "Chapters 4 & 5"
+zybook: "Chapters 4 & 5 — both in full"
 ---
 
 ## The briefing
@@ -54,13 +54,15 @@ By the end of Floor 3 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 4 & 5)
+### Reading (ZyBook Ch. 4 & 5 — both chapters in full)
+
+**Read all of Chapters 4 and 5.** Both chapters in full are the assignment, even the parts class doesn't cover directly. The day-by-day pointers below are the sections *class time* leans on — not the boundary of what you're responsible for.
 
 Before **Monday**: §4.1 Function templates; §4.2 Class templates
 Before **Wednesday**: §4.3 C++ example — map values using a function template (the worked example ties Monday and Wednesday together)
 Before **Friday**: §5.1 Handling exceptions (`try` / `catch`); §5.2 Throwing exceptions; §5.4 User-defined exceptions; skim §5.5 (a second worked example)
 
-You can skip §5.3 (exceptions with files) — we do not touch files this week.
+We don't touch files in class this week, so §5.3 (exceptions with files) won't come up in lecture — but it's part of Chapter 5, so read it on your own.
 
 Work the Question Sets and Animations inside each section. The §4.2 animation of a class template being stamped for two different types is exactly what will happen to `Bag<T>` on Wednesday — watch it twice.
 

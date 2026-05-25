@@ -3,7 +3,7 @@ title: The Antechamber
 floor_number: Floor 0
 flavor_quote: "The gate is open. Before you descend, you must learn the names of the things that hunt in the dark."
 week: 1
-zybook: "Chapter 1"
+zybook: "Chapter 1 — full chapter"
 ---
 
 <div class="character-card" markdown="1">
@@ -41,7 +41,9 @@ By the end of Floor 0 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 1)
+### Reading (ZyBook Ch. 1 — the whole chapter)
+
+**Read all of Chapter 1.** The reading assignment is the entire chapter, even the parts class doesn't cover directly. The day-by-day pointers below are the sections *class time* leans on — not the boundary of what you're responsible for.
 
 Before **Monday**: §1.1 Data structures, §1.2 Introduction to algorithms
 Before **Wednesday**: §1.3 Relation between data structures and algorithms, §1.4 Abstract data types, §1.5 Applications of ADTs

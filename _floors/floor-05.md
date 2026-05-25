@@ -3,7 +3,7 @@ title: The Eye of Scrying
 floor_number: Floor 5
 flavor_quote: "The lens does not know the shelf. The lens only knows how to move and how to stop."
 week: 7
-zybook: "Chapter 6.14 (selected)"
+zybook: "Chapter 6 (continued) — class focus §6.14 (iterators)"
 ---
 
 ## The briefing
@@ -57,7 +57,9 @@ By the end of Floor 5 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 6.14, selected)
+### Reading (ZyBook Ch. 6, continued — the iterator sections)
+
+**The whole of Chapter 6 was assigned back on Floor 4** — this week we reach its iterator material (§6.14). If you read the chapter through on Floor 4, this is review; if not, read the rest now. The pointers below are what *this week's* class leans on.
 
 Before **Monday**: §6.14.1 What an iterator is; §6.14.2 Defining `begin` and `end` on a custom container
 Before **Wednesday**: §6.14.3 Iterator categories — Input through Random-access; §6.14.5 Using `std::find` and `std::find_if` with custom iterators

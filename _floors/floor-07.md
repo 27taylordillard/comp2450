@@ -3,7 +3,7 @@ title: The Cisterns
 floor_number: Floor 7
 flavor_quote: "Take your number. I will see you in order. There is no other order."
 week: 9
-zybook: "Chapter 7 (Queues), §7.6–7.10"
+zybook: "Chapter 7 (continued) — class focus §7.6–7.10 (queues)"
 ---
 
 ## The briefing
@@ -55,7 +55,9 @@ By the end of Floor 7 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 7, queue sections)
+### Reading (ZyBook Ch. 7, continued — the queue sections)
+
+**The whole of Chapter 7 was assigned back on Floor 6** — this week we reach its queue material (§7.6–7.10). If you read the chapter through then, this is review. The pointers below are what *this week's* class leans on.
 
 Before **Monday**: §7.6 The queue ADT; §7.7 Queue operations: enqueue, dequeue, front, empty
 Before **Wednesday**: §7.8 Queue applications — simulation, scheduling, BFS preview; §7.9 `std::queue` and the adapter pattern

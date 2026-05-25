@@ -3,7 +3,7 @@ title: The Chain Vault
 floor_number: Floor 4
 flavor_quote: "The mold made a shape that fit a known size. The chain holds whatever you bring it."
 week: 5
-zybook: "Chapter 6"
+zybook: "Chapter 6 — full chapter; class focus §6.1–6.5"
 ---
 
 ## The briefing
@@ -54,7 +54,9 @@ By the end of Floor 4 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 6)
+### Reading (ZyBook Ch. 6 — the whole chapter)
+
+**Read all of Chapter 6.** The reading assignment is the entire chapter — including the doubly-linked-list and iterator sections we won't reach in class until Floors 4½ and 5. Reading them now means you meet them twice: once cold here, once in depth later. The day-by-day pointers below are what *this week's* class leans on.
 
 Before **Monday**: §6.1 Singly-linked lists; §6.2 List operations
 Before **Wednesday**: §6.3 Insertion and removal at arbitrary positions; §6.5 Memory management for nodes

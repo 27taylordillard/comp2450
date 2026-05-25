@@ -3,7 +3,7 @@ title: The Sorting Crucible
 floor_number: Floor 2
 flavor_quote: "Order is not given to the world. Order is hammered into it."
 week: 3
-zybook: "Chapter 3"
+zybook: "Chapter 3 — full chapter"
 ---
 
 <div class="character-card" markdown="1">
@@ -56,7 +56,9 @@ By the end of Floor 2 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 3)
+### Reading (ZyBook Ch. 3 — the whole chapter)
+
+**Read all of Chapter 3.** The reading assignment is the entire chapter, even the parts class doesn't cover directly. The day-by-day pointers below are the sections *class time* leans on — not the boundary of what you're responsible for.
 
 Before **Monday**: §3.1 Sorting: introduction; §3.5 Merge sort
 Before **Wednesday**: §3.4 Quicksort

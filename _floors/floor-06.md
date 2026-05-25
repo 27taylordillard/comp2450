@@ -3,7 +3,7 @@ title: The Hall of Echoes
 floor_number: Floor 6
 flavor_quote: "Push, and the hall remembers. Pop, and the hall forgets in the reverse order it learned. There is no other order."
 week: 8
-zybook: "Chapter 7 (Stacks)"
+zybook: "Chapter 7 — full chapter; class focus §7.1–7.5 (stacks)"
 ---
 
 ## The briefing
@@ -55,7 +55,9 @@ By the end of Floor 6 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 7, selected)
+### Reading (ZyBook Ch. 7 — the whole chapter)
+
+**Read all of Chapter 7.** The reading assignment is the entire chapter — including the queue sections we won't reach in class until next floor. Reading them now means next week is review, not a cold start. The day-by-day pointers below are what *this week's* class (stacks) leans on.
 
 Before **Monday**: §7.1 The stack ADT; §7.2 Stack operations: push, pop, top, empty
 Before **Wednesday**: §7.3 Stack applications — bracket balancing, expression evaluation; §7.4 `std::stack` and the adapter pattern

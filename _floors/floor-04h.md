@@ -3,7 +3,7 @@ title: The Chain Vault, Deeper
 floor_number: Floor 4½
 flavor_quote: "A chain that runs one way is a leash. A chain that runs two ways is a record."
 week: 6
-zybook: "Chapter 6 (continued)"
+zybook: "Chapter 6 (continued) — class focus §6.4–6.8"
 ---
 
 ## The briefing
@@ -57,6 +57,8 @@ By the end of Floor 4½ you will be able to:
 ## Pre-class
 
 ### Reading (ZyBook Ch. 6, continued)
+
+**The whole of Chapter 6 was assigned back on Floor 4.** If any of it is still unread — especially the doubly-linked and iterator sections we hadn't reached in class yet — catch up now. The pointers below are what *this week's* class leans on.
 
 Before **Monday**: §6.4 Doubly-linked lists; §6.6 Common doubly-linked list operations
 Before **Wednesday**: §6.7 Doubly-linked list — implementation in C++; reread §6.5 (memory management) with two pointers per node in mind

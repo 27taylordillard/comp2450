@@ -3,7 +3,7 @@ title: The Scrying Well
 floor_number: Floor 1
 flavor_quote: "Every thing that lives in this Keep has a name. The Well will show you any of them — if you can find the name first."
 week: 2
-zybook: "Chapter 2"
+zybook: "Chapter 2 — full chapter"
 ---
 
 ## The briefing
@@ -56,7 +56,9 @@ By the end of Floor 1 you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 2)
+### Reading (ZyBook Ch. 2 — the whole chapter)
+
+**Read all of Chapter 2.** The reading assignment is the entire chapter, even the parts class doesn't cover directly. The day-by-day pointers below are the sections *class time* leans on — not the boundary of what you're responsible for.
 
 Before **Monday**: §2.1 Searching and algorithms (covers linear search)
 Before **Wednesday**: §2.2 Binary search; skim §2.3 Growth of functions and complexity (focus on Big-O, not Big-Ω/Big-Θ)
