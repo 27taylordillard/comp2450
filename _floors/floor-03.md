@@ -85,12 +85,12 @@ You will receive (in your starter drop):
 - Everything through Floor 2, fully working — `search`, `sort inventory by <criterion>`, all three benchmarks from Floor 1 and Floor 2.
 - A header `hero/Bag.h` with the class template declaration — `template<typename T> class Bag`, private `std::vector<T>` member, and signatures for every method you need to implement.
 - A header `hero/BagException.h` — a user-defined exception derived from `std::exception` with a `what()` message.
-- A header `hero/Search.h` with the new `findByName<T>` function template declaration (Floor 1's monster-specific version is still there for comparison, marked *deprecated*).
-- `hero/Hero.h` updated so the inventory is `Bag<Item>`; `bestiary/Bestiary.h` updated so monsters live in `Bag<Monster>`. Every existing command stops compiling until Monday's work is in. That is intentional.
+- A header `bestiary/Search.h` with the new `findByName<T>` function template declaration (Floor 1's monster-specific searches are still there, kept as reference — you are not editing them this week).
+- A working **Floor 2 baseline**: `hero/Hero.h` still stores the inventory as a `std::vector<Item>`, and `main.cpp` still calls the Floor 1 search. Everything compiles and runs the moment you unzip it. Your job this week is to *flip* that storage to `Bag<T>` and wire in the template — the starter does not ship broken. Each TODO marker in the code names the day it's due.
 
 You will write:
 
-1. **Monday:** `findByName<T>` in `hero/Search.h` (templates live in headers). Rewire `main.cpp`'s `search` command to call the template. Demonstrate calling it on both `Bag<Monster>` and `Bag<Item>` from different commands.
+1. **Monday:** `findByName<T>` in `bestiary/Search.h` (templates live in headers). Rewire `main.cpp`'s `search` command to call the template. Demonstrate calling it on both the bestiary and your inventory — same source template, two instantiations. (This week the parameter starts as `std::vector<T>`; Wednesday you flip it to `Bag<T>` and the body never changes.)
 2. **Wednesday:** `Bag<T>` — `push_back`, `size`, `empty`, `operator[]`, `begin`/`end` (delegate to the underlying `std::vector`), `clear`. When this is done, `inventory`, `sort inventory`, and `search` all run through it.
 3. **Friday:** `BagException`, `Bag<T>::at()` that throws on bad index, and a `try`/`catch` around the main command dispatch in `main.cpp`. A bad `inspect 99` must print a clean error and return to the prompt.
 
@@ -111,7 +111,7 @@ Demo target (Friday):
   (same Bag<T> — different T)
 > search Goblin
   Goblin   HP 8   ATK 2   weakness: fire
-> search "Iron key"
+> search Iron key
   Iron key          (wt 0.1, val 0)
   (same findByName<T>, two instantiations)
 > inspect 99

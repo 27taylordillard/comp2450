@@ -1,9 +1,15 @@
-// COMP 2450 — Floor 2 starter
-// hero/Hero.h — provided by the framework. Do not edit.
+// COMP 2450 — Floor 3 starter
+// hero/Hero.h — you edit this ONCE, on Wednesday.
 //
-// This is the hero the rest of the game will grow around. Right now it's
-// a name and an inventory. Later floors will bolt on more: spell book
-// (Floor 6, stack), action queue (Floor 7, queue), skill tree (Floor 8).
+// Right now `inventory` is a std::vector<Item> — the Floor 2 baseline,
+// which compiles and runs as-is. On WEDNESDAY, after you build Bag<T>,
+// you flip the one token `std::vector<Item>` to `Bag<Item>` (and
+// loadInventory's return type with it). The Hero struct doesn't care
+// what container holds its loot — that's the whole point of the flip.
+//
+// This is the hero the rest of the game will grow around. Later floors
+// will bolt on more: spell book (Floor 6, stack), action queue
+// (Floor 7, queue), skill tree (Floor 8).
 #pragma once
 #include <string>
 #include <vector>
