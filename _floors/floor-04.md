@@ -101,24 +101,32 @@ Demo target (Friday):
 > inventory
   1.  Rusty sword       (wt 4.0, val 5)
   2.  Healing potion    (wt 0.5, val 12)
-  ...
+  3.  Iron key          (wt 0.1, val 0)
+  4.  Loaf of bread     (wt 0.1, val 1)
+  5.  Cloak of shadows  (wt 1.5, val 80)
+> sort inventory by value desc
+  1.  Cloak of shadows  (wt 1.5, val 80)
+  2.  Healing potion    (wt 0.5, val 12)
+  3.  Rusty sword       (wt 4.0, val 5)
+  4.  Loaf of bread     (wt 0.1, val 1)
+  5.  Iron key          (wt 0.1, val 0)
 > inspect 99
-  No such item. (BagException: index 99 out of bounds for size 5)
-> log 5
-  1.  inspect 99 — failed (index out of bounds)
-  2.  inventory — listed 5 items
-  3.  search Goblin — found in bestiary
-  4.  battle warden — outcome: Victory
+  No such item. (index 98 out of bounds for size 5)
+> log 8
+  1.  error: index 98 out of bounds for size 5
+  2.  sort inventory by value desc
+  3.  inventory — listed 5 items
+  4.  search Goblin — found in bestiary
   5.  began session as "Aric"
-  (newest first; chain length 17)
+  (newest first; chain length 5)
 > benchmark log 100000
-  N= 100000  Chain::push_front =   3.21 ms  Bag::insert(begin) = 4180.55 ms
-  (linked O(1) per insert; vector O(n) per insert — feel the difference)
+  N= 100000   Chain::push_front =     9.04 ms   Bag::insert(begin) = 13318.22 ms
+  (numbers vary by machine; the ~1000x gap is the point — O(1) vs O(n) per insert)
 > selftest chain
-  Chain<int> allocations: 1000   deallocations: 1000   leaked: 0   OK
+  Chain<int> allocations:  1000   deallocations:  1000   leaked:     0   OK
 > quit
   The forge cools. The chain dissolves link by link.
-  (Chain destructor freed 17 nodes.)
+  (the Chain destructor runs silently here — verify it with `selftest chain`)
 ```
 
 ### Lab 4 — *One Link at a Time* (folded into the project)
