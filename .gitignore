@@ -15,6 +15,7 @@ build/
 # Editor / tooling
 .vscode/
 .idea/
+.vs/
 *.swp
 .claude/
 

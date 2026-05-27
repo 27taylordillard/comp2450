@@ -97,34 +97,49 @@ You will write:
 Demo target (Friday):
 
 ```
+> search Goblin
+  Goblin   HP 8   ATK 2   weakness: fire
+> inventory
+  1.  Rusty sword       (wt 4.0, val 5)
+  2.  Healing potion    (wt 0.5, val 12)
+  3.  Iron key          (wt 0.1, val 0)
+  4.  Loaf of bread     (wt 0.1, val 1)
+  5.  Cloak of shadows  (wt 1.5, val 80)
+> inspect 99
+  No such item. (index 98 out of bounds for size 5)
 > log --oldest 5
   1.  began session as "Aric"
-  2.  battle warden — outcome: Victory
-  3.  search Goblin — found in bestiary
-  4.  inventory — listed 5 items
-  5.  inspect 99 — failed (index out of bounds)
-  (oldest first; chain length 17)
+  2.  search Goblin — found in bestiary
+  3.  inventory — listed 5 items
+  4.  error: index 98 out of bounds for size 5
+  (oldest first; chain length 4)
 > clone hero
   -- original log (newest first) --
-  1.  inspect 99 — failed (index out of bounds)
+  1.  error: index 98 out of bounds for size 5
   2.  inventory — listed 5 items
   3.  search Goblin — found in bestiary
-  ...
+  4.  began session as "Aric"
+  (newest first; chain length 4)
   -- cloned log (newest first) --
-  1.  inspect 99 — failed (index out of bounds)
+  1.  error: index 98 out of bounds for size 5
   2.  inventory — listed 5 items
   3.  search Goblin — found in bestiary
-  ...
+  4.  began session as "Aric"
+  (newest first; chain length 4)
   (clone is being destroyed now)
-  (clone destructor freed 17 nodes; original still has 17 nodes — try `log 3`)
+  (clone destroyed; original event log still has 4 entries — try `log 3`)
 > log 3
-  1.  inspect 99 — failed (index out of bounds)
-  2.  inventory — listed 5 items
-  3.  search Goblin — found in bestiary
-  (original survives; deep copy works)
+  1.  clone hero — copy lived and died
+  2.  error: index 98 out of bounds for size 5
+  3.  inventory — listed 5 items
+  (newest first; chain length 5)
 > selftest chain
-  Chain<int> allocations: 2000   deallocations: 2000   leaked: 0   OK
-  (1000 original + 1000 deep-copied; both freed cleanly)
+  Phase 1 (single chain)
+    allocations:  1000   deallocations:  1000   leaked:     0   OK
+  Phase 2 (deep copy)
+    original after copy died — forward walk:  1000   backward walk:  1000
+    copy before death        — forward walk:  1000   backward walk:  1000
+    allocations:  2000   deallocations:  2000   leaked:     0   OK
 > quit
   The forge cools. Two chains dissolve, each by its own hand.
 ```
