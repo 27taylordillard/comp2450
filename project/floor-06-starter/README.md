@@ -4,7 +4,7 @@ Read [the public Floor 6 page](https://hogred.github.io/comp2450/floors/floor-06
 
 ## What's new for Floor 6
 
-- `hero/Stack.h` — `Stack<T>`, a LIFO adapter over `Chain<T>`. **All five method bodies are stubbed.** Your work is here Monday.
+- `hero/Stack.h` — `Stack<T>`, a LIFO adapter over `Chain<T>`. **Four method bodies are stubbed** (`push`, `pop`, `size`, `empty`); `top()` ships written — a reference-returning `T&` can't be honestly stubbed. Your work is here Monday.
 - `hero/UndoAction.h` — a tiny struct: `description` + `inventorySnapshot`. What gets pushed onto `hero.undoStack` every time a mutating command runs.
 - `hero/Lint.h` and `hero/Lint.cpp` — `bool isBalanced(const std::string&)` checks that `()`, `[]`, and `{}` balance. **Body is stubbed.** Your work, Wednesday.
 - `hero/StackTests.h/.cpp` — `selftest stack` harness with five phases. **Provided** (you do not edit).
@@ -46,7 +46,7 @@ If you modified `hero/Hero.cpp` (printInventory formatting, extra event-log call
 
 | Day | File | Work |
 |-----|------|------|
-| **Mon** | `hero/Stack.h` | Five one-line bodies: `push`, `pop`, `top` (two overloads — same body), `size`, `empty`. After this, `selftest stack` passes every phase. |
+| **Mon** | `hero/Stack.h` | Four one-line bodies: `push`, `pop`, `size`, `empty`. (`top()` — two overloads, same body — ships written; a reference-returning `T&` can't be honestly stubbed.) After this, `selftest stack` passes every phase. |
 | **Wed** | `hero/Lint.cpp` | `isBalanced` body — the classic stack-balancing algorithm using `Stack<char>`. After this, `lint <text>` returns real answers. |
 | **Fri** | `main.cpp`     | The `undo` dispatcher. Read the top action, restore its inventory snapshot, pop, print. After this, `take` and `sort` are reversible. |
 

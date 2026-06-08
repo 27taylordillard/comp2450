@@ -1,8 +1,8 @@
 // COMP 2450 — Floor 6 starter
 // hero/Stack.h — LIFO stack template. THE WORK IS HERE.
 //
-// One header, five one-line method bodies, one day:
-//   Monday — push, pop, top, size, empty.
+// One header, four one-line method bodies you write, one day:
+//   Monday — push, pop, size, empty.  (top() ships written; see below.)
 //
 // This week's lesson, on one slide: a stack is NOT a data structure.
 // It is an *ADT* — a contract that says "the last thing pushed is the
@@ -28,7 +28,7 @@
 // =====================================================================
 // Why the bodies are TODOs even though they are one line each.
 // =====================================================================
-// Brevity IS the lesson. Five trivial bodies look like nothing, but
+// Brevity IS the lesson. These trivial bodies look like nothing, but
 // the choice you make — which Chain operation maps to which Stack
 // operation — determines whether your Stack is actually LIFO. If you
 // pick push_back here and pop_front for pop(), you have built a queue
@@ -55,7 +55,7 @@ public:
     Stack(const Stack& other)            = default;
     Stack& operator=(const Stack& other) = default;
 
-    // ----- THE FIVE THINGS YOU WRITE THIS WEEK -----------------------
+    // ----- THE FOUR THINGS YOU WRITE THIS WEEK (top() is provided) ---
 
     // Push `value` onto the top of the stack. O(1).
     //
@@ -76,20 +76,21 @@ public:
         // TODO Monday
     }
 
-    // Read the top of the stack. O(1). Stubbed bodies return through
-    // chain_.head()->data — that's already the right implementation;
-    // it just relies on push() actually having put something there.
-    //
-    // TODO Floor 6 (Monday). Body is one line each — and the same line.
-    //     return chain_.head()->data;
+    // Read the top of the stack. O(1). PROVIDED — you do not write this.
+    // A reference-returning method (T& / const T&) can't be honestly
+    // stubbed: there is no safe placeholder T& to hand back before push()
+    // works, so we ship the real one-line body. It returns
+    // chain_.head()->data — which means top() on an EMPTY stack
+    // dereferences nullptr (the Hollow Echo on the Floor 6 page). The
+    // `selftest stack` harness checks empty() before every top(), so the
+    // build stays runnable while push()/size() are still stubbed. Read
+    // this body: it's the same delegate-to-chain_ move your four methods
+    // make.
     T& top() {
-        // TODO Monday — this stub will dereference nullptr if push() is
-        // not implemented yet. The selftest stack harness checks empty()
-        // first to avoid that, so the build stays runnable.
         return chain_.head()->data;
     }
     const T& top() const {
-        // TODO Monday — same body as the non-const version above.
+        // same body as the non-const version above
         return chain_.head()->data;
     }
 

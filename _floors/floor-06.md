@@ -47,7 +47,7 @@ By the end of Floor 6 you will be able to:
 
 - State the LIFO contract in one sentence and identify which end of the underlying storage each stack operation touches.
 - Distinguish an **ADT** from a **data structure** by example: name two data structures that could implement the stack ADT, and explain why both can keep the same promise despite different internals.
-- Implement `Stack<T>` as an adapter over `Chain<T>` — five one-line method bodies — and explain *why* the same Stack would also work over `std::vector` or `Bag<T>` (with which trade-off).
+- Implement `Stack<T>` as an adapter over `Chain<T>` — four one-line method bodies (`push`, `pop`, `size`, `empty`; `top()` ships written — a reference-returning `T&` can't be honestly stubbed) — and explain *why* the same Stack would also work over `std::vector` or `Bag<T>` (with which trade-off).
 - Use a `Stack<char>` to check that brackets, parens, and braces are balanced in a string — the classical exercise that introduces stacks in every textbook for a reason.
 - Implement an `undo` command for the dungeon game by snapshotting state onto a `Stack<UndoAction>` before every mutating command and restoring on pop.
 - Recognize the *implicit* stack inside every recursive function and (optionally, Friday lab) rewrite one recursive function from an earlier floor as an iterative version with an explicit `Stack`.
@@ -71,7 +71,7 @@ There are no pre-class videos. Class time is for live coding and discussion toge
 
 | Day | Focus | Activity |
 |-----|-------|----------|
-| **M** | `Stack<T>` as adapter            | Live-code the five method bodies on `Stack<T>` together. push → `chain_.push_front`. pop → `chain_.pop_front`. top → `chain_.head()->data`. size and empty → delegate. Run `selftest stack` — all phases pass. Then on the projector: `std::stack<int> s; s.push(1); s.push(2); std::cout << s.top();` — point out that you have just recreated the standard library. |
+| **M** | `Stack<T>` as adapter            | Live-code the four stubbed method bodies on `Stack<T>` together: push → `chain_.push_front`, pop → `chain_.pop_front`, size and empty → delegate. (`top()` → `chain_.head()->data` *ships written* — a reference-returning `T&` can't be honestly stubbed; read it together and note the reference return.) Run `selftest stack` — all phases pass. Then on the projector: `std::stack<int> s; s.push(1); s.push(2); std::cout << s.top();` — point out that you have just recreated the standard library. |
 | **W** | Bracket balancing                | Live-code `isBalanced` in `hero/Lint.cpp` using `Stack<char>`. Walk through `({a} (b) [c])`, pushing and popping aloud. Then try `({)}` and watch the algorithm catch the mismatch on the very first closer. Discuss: this is the *first* real use of a stack most programmers ever write. The compiler used one to parse the file you're typing in. |
 | **F** | Undo + recursion as a stack       | Live-code the `undo` dispatcher in `main.cpp`. Run `take Lantern; sort inventory by weight; undo; undo` — the inventory walks backward through your history. Then a board exercise: take Floor 1's `binarySearchRecursive`, draw the call stack on the board frame by frame, and rewrite the function iteratively with an explicit `Stack<Range>`. (No checked-in code required — the demo *is* the lesson.) |
 
@@ -82,7 +82,7 @@ This week's project increment is **a `Stack<T>` adapter and three things you do 
 You will receive (in your starter drop):
 
 - Everything through Floor 5, fully working — `Bag<T>`, `Chain<T>` with `iterator` / `const_iterator`, `BagException`, `findByName<T>` via `std::find_if`, every benchmark, the boss battle, `clone hero`, the `log` and `log --oldest` commands.
-- A new `hero/Stack.h` with **all five method bodies stubbed**. The TODOs name each method's one-line implementation in comment form.
+- A new `hero/Stack.h` with **four method bodies stubbed** — `push`, `pop`, `size`, `empty`. (`top()` ships written — a reference-returning `T&` can't be honestly stubbed.) The TODOs name each stubbed method's one-line implementation in comment form.
 - A new `hero/UndoAction.h` defining the small struct that gets pushed onto `hero.undoStack`: a `description` string and a `Bag<Item> inventorySnapshot`.
 - A new `hero/Lint.h`/`Lint.cpp` declaring `bool isBalanced(const std::string&)`. The body is **stubbed** — your Wednesday work.
 - A new `hero/StackTests.cpp` harness — `selftest stack` exercises `push`, `pop`, `top`, `size`, `empty` across five phases with diagnostic output on FAIL.
@@ -91,7 +91,7 @@ You will receive (in your starter drop):
 
 You will write:
 
-1. **Monday:** `Stack<T>`'s five method bodies in `hero/Stack.h`. Each is one line. After this, `selftest stack` passes every phase, and *every* mutating command in `main.cpp` starts recording undo snapshots correctly (you just won't be able to *use* them yet).
+1. **Monday:** `Stack<T>`'s four stubbed method bodies in `hero/Stack.h` — `push`, `pop`, `size`, `empty` (`top()` is already provided). Each is one line. After this, `selftest stack` passes every phase, and *every* mutating command in `main.cpp` starts recording undo snapshots correctly (you just won't be able to *use* them yet).
 2. **Wednesday:** `isBalanced` in `hero/Lint.cpp`, using your `Stack<char>`. After this, `lint <text>` returns real answers, not the stub `not balanced` for everything.
 3. **Friday:** The `undo` dispatcher in `main.cpp`. Five lines: bind a reference to `hero.undoStack.top()`, copy its `inventorySnapshot` over `hero.inventory`, print the description, push an event-log entry, then pop. After this, `take Lantern; undo` round-trips your inventory.
 
@@ -162,7 +162,7 @@ Commit `floor-06/lab-notes.md` to your project repo with:
 3. **The cheap swap.** In your `Stack<T>` definition, change the underlying container from `Chain<T>` to `Bag<T>`. You will also need to change `push_front` → `push_back`, `pop_front` → `pop_back`, and `head()->data` → `back()` (or equivalent). Build, run `selftest stack`, paste the output. Then run `benchmark log` (the Floor 4 prepend bench) — does anything change? Why or why not? Restore.
 4. **An empty stack call.** Without checking `empty()` first, call `s.top()` on an empty `Stack<int>` from a small main. Build, run, paste what you see — a crash, garbage, or silent UB. Then add the guard. In one sentence: what does the stack ADT *not* promise that a queue, a list, or a map *also* doesn't promise, and what should callers always do?
 5. **One recursive function, one stack.** Pick a recursive function from any earlier floor — `binarySearchRecursive` is the cleanest target — and rewrite it iteratively in a scratch file using an explicit `Stack<Range>` (where `Range = { int lo, hi; }`). Run a small test. Paste both versions side-by-side. In two sentences: what does the explicit-stack version *show* that the recursive one *hides*?
-6. **One-paragraph reflection.** You wrote five one-line methods this week. What did you spend the rest of class time on, and why was that the right ratio? Compare to Floor 4, when you wrote a destructor, a copy ctor, an operator=, and a Rule-of-Three discussion in roughly the same amount of class time.
+6. **One-paragraph reflection.** You wrote four one-line methods this week (`top()` came written). What did you spend the rest of class time on, and why was that the right ratio? Compare to Floor 4, when you wrote a destructor, a copy ctor, an operator=, and a Rule-of-Three discussion in roughly the same amount of class time.
 
 Your commit history this week should show at least three commits — Mon (`Stack<T>` + `selftest stack` passes), Wed (`isBalanced` + `lint` returns real answers), Fri (`undo` dispatcher + lab notes).
 

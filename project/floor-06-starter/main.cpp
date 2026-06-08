@@ -10,7 +10,8 @@
 //
 // What is NEW for Floor 6:
 //   * hero/Stack.h       — Stack<T>, a LIFO adapter over Chain<T>.
-//                          Five one-line method bodies, all TODOs.
+//                          Four one-line bodies you write (push, pop,
+//                          size, empty); top() ships written.
 //   * hero/UndoAction.h  — what gets pushed on hero.undoStack: a
 //                          description + a snapshot of hero.inventory.
 //   * hero/Lint.h/.cpp   — bool isBalanced(const std::string&) over
@@ -31,7 +32,8 @@
 //   * `selftest stack`   — runs StackTests.
 //
 // What you do this week (see the Floor 6 page):
-//   Mon — Stack<T>'s five method bodies; `selftest stack` passes.
+//   Mon — Stack<T>'s four stubbed bodies (top() is provided);
+//         `selftest stack` passes.
 //   Wed — isBalanced in Lint.cpp; `lint <text>` returns real answers.
 //   Fri — the `undo` dispatcher body in this file; `undo` reverses
 //         the most recent mutating command. Also: live-rewrite the
