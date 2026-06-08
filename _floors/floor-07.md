@@ -47,7 +47,7 @@ By the end of Floor 7 you will be able to:
 
 - State the FIFO contract in one sentence and identify which end of the underlying storage each queue operation touches.
 - Read your Floor 6 `Stack.h` and your new `Queue.h` side by side and explain — *in terms of which `Chain<T>` method each operation calls* — why one is LIFO and the other is FIFO.
-- Implement `Queue<T>` as an adapter over `Chain<T>` — five one-line method bodies — and explain why `Bag<T>` would be a *worse* choice underneath (and which operation would slow down).
+- Implement `Queue<T>` as an adapter over `Chain<T>` — four one-line method bodies (`enqueue`, `dequeue`, `size`, `empty`; `front()` ships written — a reference-returning `T&` can't be honestly stubbed) — and explain why `Bag<T>` would be a *worse* choice underneath (and which operation would slow down).
 - Use a `Queue<std::string>` to play the classical *Hot Potato* / Josephus-lite elimination — the canonical "rotate-then-dequeue" pattern — and explain why this algorithm fundamentally needs FIFO order (would not work on a stack).
 - Implement a turn-resolution loop that drains an enemy action queue in arrival order, demonstrating that the queue is what makes the resolution *fair*.
 - Read a compile error caused by calling a non-existent method on `Queue<T>` (say, `Queue::back()`) and explain what the queue ADT *deliberately omits* and why (no random access, no peek-at-back, no iterator — and what that buys you).
@@ -71,7 +71,7 @@ There are no pre-class videos. Class time is for live coding and discussion toge
 
 | Day | Focus | Activity |
 |-----|-------|----------|
-| **M** | `Queue<T>` as adapter            | Open `Queue.h` and `Stack.h` side by side on the projector. Type the five method bodies on `Queue<T>` together: enqueue → `chain_.push_back`; dequeue → `chain_.pop_front`; front → `chain_.head()->data`; size and empty → delegate. Run `selftest queue` — all phases pass. Then on the projector: `std::queue<int> q; q.push(1); q.push(2); std::cout << q.front();` — point out that you have just recreated the standard library again, on top of the same `Chain<T>` we wrote in Floor 4½. |
+| **M** | `Queue<T>` as adapter            | Open `Queue.h` and `Stack.h` side by side on the projector. Type the four stubbed method bodies on `Queue<T>` together: enqueue → `chain_.push_back`; dequeue → `chain_.pop_front`; size and empty → delegate. (`front()` → `chain_.head()->data` *ships written* — a reference-returning `T&` can't be honestly stubbed; read it alongside `Stack::top()` and note the reference return.) Run `selftest queue` — all phases pass. Then on the projector: `std::queue<int> q; q.push(1); q.push(2); std::cout << q.front();` — point out that you have just recreated the standard library again, on top of the same `Chain<T>` we wrote in Floor 4½. |
 | **W** | Hot Potato                        | Live-code `hotPotato` in `hero/Potato.cpp` using `Queue<std::string>`. Walk through `{A,B,C,D,E}` with `k=3` on the board first, slot by slot, narrating which name moves to the back and which gets dequeued. Then write the function: load the queue, then loop "rotate k-1 times, then dequeue" until size == 1. Run `potato A B C D E 3` — survivor `D`. Discuss: this algorithm cannot be done on a stack, and that is *why* the queue exists. |
 | **F** | Drain + queue-from-two-stacks     | Live-code the `simulate` dispatcher in `main.cpp`. Same hazard as Floor 6's `undo`: bind a `const std::string& action = hero.enemyActionQueue.front();` *before* you `dequeue()`. Run `provoke Goblin; provoke Skeleton; provoke Imp; simulate` — three turns, in arrival order. Then on the board: sketch a `Queue<T>` implemented as *two `Stack<T>`s* — an in-stack and an out-stack. Cute interview classic; reinforces that ADT and DS are different (Queue ADT, Stack DS underneath). No checked-in code — the sketch *is* the lesson. |
 
@@ -82,7 +82,7 @@ This week's project increment is **a `Queue<T>` adapter and three things you do 
 You will receive (in your starter drop):
 
 - Everything through Floor 6, fully working — `Bag<T>`, `Chain<T>` with `iterator` / `const_iterator`, `BagException`, `findByName<T>`, `Stack<T>` (LIFO adapter over `Chain<T>`), `isBalanced`, the `lint` command, the `undo` command, `take`, the `selftest chain` / `iterator` / `stack` harnesses, every benchmark, the boss battle, `clone hero`, the `log` and `log --oldest` commands.
-- A new `hero/Queue.h` with **all five method bodies stubbed**. The TODOs name each method's one-line implementation in comment form. Deliberately mirrors `Stack.h` so you can read them side by side.
+- A new `hero/Queue.h` with **four method bodies stubbed** — `enqueue`, `dequeue`, `size`, `empty`. (`front()` ships written — a reference-returning `T&` can't be honestly stubbed, exactly like `Stack::top()`.) The TODOs name each stubbed method's one-line implementation in comment form. Deliberately mirrors `Stack.h` so you can read them side by side.
 - A new `hero/Potato.h`/`Potato.cpp` declaring `std::string hotPotato(names, k)`. The body is **stubbed** — your Wednesday work.
 - A new `hero/QueueTests.cpp` harness — `selftest queue` exercises `enqueue`, `dequeue`, `front`, `size`, `empty` across five phases with diagnostic output on FAIL. Phase 3 is the FIFO-vs-LIFO assertion (front after three enqueues must be the *first*, not the *last*).
 - A modified `hero/Hero.h` that now owns a `Queue<std::string> enemyActionQueue` field alongside its Floor 6 `Stack<UndoAction> undoStack`.
@@ -90,7 +90,7 @@ You will receive (in your starter drop):
 
 You will write:
 
-1. **Monday:** `Queue<T>`'s five method bodies in `hero/Queue.h`. Each is one line. After this, `selftest queue` passes every phase, and `provoke <name>` actually grows the queue (you can verify with repeated provokes and then a `simulate` that will print *empty* until Friday but at least sees the queue is non-empty if you check `.empty()` from inside its TODO).
+1. **Monday:** `Queue<T>`'s four stubbed method bodies in `hero/Queue.h` — `enqueue`, `dequeue`, `size`, `empty` (`front()` is already provided). Each is one line. After this, `selftest queue` passes every phase, and `provoke <name>` actually grows the queue (you can verify with repeated provokes and then a `simulate` that will print *empty* until Friday but at least sees the queue is non-empty if you check `.empty()` from inside its TODO).
 2. **Wednesday:** `hotPotato` in `hero/Potato.cpp`, using your `Queue<std::string>`. After this, `potato Grix Skrit Quill Vael Resh 3` returns a real survivor name.
 3. **Friday:** The `simulate` dispatcher in `main.cpp`. While the queue is non-empty: read `front()`, print it, push an event-log entry, `dequeue()`, increment a turn counter. After this, `provoke; provoke; provoke; simulate` resolves three turns in arrival order.
 
@@ -108,7 +108,7 @@ Demo target (Friday):
 > potato A B C D E 3
   Survivor: D
 > potato Grix Skrit Quill Vael Resh 2
-  Survivor: Skrit
+  Survivor: Quill
 > potato OnlyOne 7
   Survivor: OnlyOne
 

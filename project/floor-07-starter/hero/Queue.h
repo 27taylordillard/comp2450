@@ -1,8 +1,8 @@
 // COMP 2450 — Floor 7 starter
 // hero/Queue.h — FIFO queue template. THE WORK IS HERE.
 //
-// One header, five one-line method bodies, one day:
-//   Monday — enqueue, dequeue, front, size, empty.
+// One header, four one-line method bodies you write, one day:
+//   Monday — enqueue, dequeue, size, empty.  (front() ships written; see below.)
 //
 // This week's lesson, on one slide: a queue is a stack with the OPPOSITE
 // end-pairing. Last week your Stack<T>'s push and pop touched the SAME
@@ -29,7 +29,7 @@
 // =====================================================================
 // Why the bodies are TODOs even though they are one line each.
 // =====================================================================
-// Brevity IS the lesson. Five trivial bodies look like nothing, but
+// Brevity IS the lesson. These trivial bodies look like nothing, but
 // the choice — which end of chain_ becomes the front of the queue —
 // determines whether your Queue is actually FIFO. If you pick
 // push_front for enqueue, you have built a stack instead. The
@@ -57,7 +57,7 @@ public:
     Queue(const Queue& other)            = default;
     Queue& operator=(const Queue& other) = default;
 
-    // ----- THE FIVE THINGS YOU WRITE THIS WEEK -----------------------
+    // ----- THE FOUR THINGS YOU WRITE THIS WEEK (front() is provided) -
 
     // Enqueue `value` at the back of the queue. O(1).
     //
@@ -78,17 +78,20 @@ public:
     }
 
     // Read the front of the queue (the oldest enqueued item). O(1).
-    // Stubbed bodies already return through chain_.head()->data; that
-    // is the right body, it just relies on enqueue having put something
-    // there. The selftest queue harness guards empty() first so this
-    // does not crash on Monday morning.
-    //
-    // TODO Floor 7 (Monday). Body is one line each — and the same line.
-    //     return chain_.head()->data;
+    // PROVIDED — you do not write this. A reference-returning method
+    // (T& / const T&) can't be honestly stubbed: there is no safe
+    // placeholder T& to hand back before enqueue() works, so we ship the
+    // real one-line body. It returns chain_.head()->data — which means
+    // front() on an EMPTY queue dereferences nullptr (the underflow the
+    // Floor 6 Hollow Echo warned about). The `selftest queue` harness
+    // checks empty() before every front(), so the build stays runnable
+    // while enqueue()/size() are still stubbed. Read this body and
+    // Stack::top() side by side — the same delegate-to-chain_ move.
     T& front() {
         return chain_.head()->data;
     }
     const T& front() const {
+        // same body as the non-const version above
         return chain_.head()->data;
     }
 

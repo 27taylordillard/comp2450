@@ -12,7 +12,8 @@
 //
 // What is NEW for Floor 7:
 //   * hero/Queue.h         — Queue<T>, a FIFO adapter over Chain<T>.
-//                            Five one-line method bodies, all TODOs.
+//                            Four one-line bodies you write (enqueue,
+//                            dequeue, size, empty); front() ships written.
 //                            Mirrors Stack<T>; opposite end-pairing.
 //   * hero/Potato.h/.cpp   — std::string hotPotato(names, k) — classical
 //                            FIFO elimination algorithm over Queue<string>.
@@ -32,7 +33,8 @@
 //   * `selftest queue`     — runs QueueTests.
 //
 // What you do this week (see the Floor 7 page):
-//   Mon — Queue<T>'s five method bodies; `selftest queue` passes.
+//   Mon — Queue<T>'s four stubbed bodies (front() is provided);
+//         `selftest queue` passes.
 //   Wed — hotPotato in Potato.cpp; `potato <names...> <k>` works.
 //   Fri — the `simulate` dispatcher body in this file; `simulate`
 //         drains hero.enemyActionQueue in FIFO order. Also: live-rewrite

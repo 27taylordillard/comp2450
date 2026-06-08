@@ -4,7 +4,7 @@ Read [the public Floor 7 page](https://hogred.github.io/comp2450/floors/floor-07
 
 ## What's new for Floor 7
 
-- `hero/Queue.h` — `Queue<T>`, a FIFO adapter over `Chain<T>`. **All five method bodies are stubbed.** Your work is here Monday. Deliberately mirrors `Stack.h` from Floor 6; the difference is which end of `chain_` each operation touches.
+- `hero/Queue.h` — `Queue<T>`, a FIFO adapter over `Chain<T>`. **Four method bodies are stubbed** (`enqueue`, `dequeue`, `size`, `empty`); `front()` ships written — a reference-returning `T&` can't be honestly stubbed. Your work is here Monday. Deliberately mirrors `Stack.h` from Floor 6; the difference is which end of `chain_` each operation touches.
 - `hero/Potato.h` and `hero/Potato.cpp` — `std::string hotPotato(names, k)` runs the classical FIFO elimination ("pass-the-potato") game and returns the survivor. **Body is stubbed.** Your work, Wednesday.
 - `hero/QueueTests.h/.cpp` — `selftest queue` harness with five phases. **Provided** (you do not edit). Phase 3 is the FIFO-vs-LIFO assertion: `front()` after three enqueues must be the FIRST, not the LAST.
 - `hero/Hero.h` — `Hero` now owns a `Queue<std::string> enemyActionQueue` in addition to its Floor 6 `Stack<UndoAction> undoStack`.
@@ -44,7 +44,7 @@ If you modified `hero/Hero.cpp` (printInventory formatting, extra event-log call
 
 | Day | File | Work |
 |-----|------|------|
-| **Mon** | `hero/Queue.h` | Five one-line bodies: `enqueue`, `dequeue`, `front` (two overloads — same body), `size`, `empty`. After this, `selftest queue` passes every phase. |
+| **Mon** | `hero/Queue.h` | Four one-line bodies: `enqueue`, `dequeue`, `size`, `empty`. (`front()` — two overloads, same body — ships written; a reference-returning `T&` can't be honestly stubbed.) After this, `selftest queue` passes every phase. |
 | **Wed** | `hero/Potato.cpp` | `hotPotato` body — the classical FIFO elimination algorithm using `Queue<std::string>`. After this, `potato <names...> <k>` returns real survivors. |
 | **Fri** | `main.cpp`     | The `simulate` dispatcher. Drain `hero.enemyActionQueue` front-to-back, printing each turn. After this, `provoke` → `simulate` resolves the line in arrival order. |
 
