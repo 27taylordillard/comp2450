@@ -233,8 +233,23 @@ int main() {
                 // flavors (forward vs reverse). The function does not
                 // know or care which container it's walking.
                 if (oldestFirst) {
-                    printLog(hero.eventLog.rbegin(), hero.eventLog.rend(),
-                             n, "oldest first", hero.eventLog.size());
+                    // Oldest-first uses rbegin()/rend(), which depend on
+                    // Chain<T>::iterator::operator-- (Floor 5, Friday). On a
+                    // non-empty chain, probe it first: --end() must step off
+                    // the end. The stubbed operator-- is a no-op, so the probe
+                    // never dereferences null; an empty chain needs no probe.
+                    bool ready = true;
+                    if (!hero.eventLog.empty()) {
+                        auto probe = hero.eventLog.end();
+                        --probe;
+                        ready = (probe != hero.eventLog.end());
+                    }
+                    if (ready) {
+                        printLog(hero.eventLog.rbegin(), hero.eventLog.rend(),
+                                 n, "oldest first", hero.eventLog.size());
+                    } else {
+                        std::cout << "  (oldest-first needs Chain::iterator operator-- — that's Friday's work)\n";
+                    }
                 } else {
                     printLog(hero.eventLog.begin(),  hero.eventLog.end(),
                              n, "newest first", hero.eventLog.size());

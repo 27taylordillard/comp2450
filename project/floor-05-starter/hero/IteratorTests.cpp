@@ -86,18 +86,25 @@ bool runIteratorSelfTest() {
     }
 
     // --- Phase 5: std::reverse + spot check ---
-    // std::reverse needs bidirectional — calls operator-- on the iterator.
-    // We guard *r.begin() with `begin() != end()` to avoid dereferencing
-    // the stub iterator (p_ == nullptr) before operator++/operator== are
-    // implemented; with the stubs in place, the guard short-circuits and
-    // we just report FAIL without crashing.
+    // std::reverse needs bidirectional — it calls operator-- on the
+    // iterator. In the starter operator-- is a NO-OP stub until Friday,
+    // so std::reverse COMPILES but, left unguarded, would walk past the
+    // end and dereference null. PROBE operator-- safely first: --end()
+    // must move off the end. The stub returns *this without touching p_
+    // (so the probe never derefs null); a real operator-- hops to the
+    // tail. Only call std::reverse once the probe proves the step moves.
     {
         Chain<int> r;
         for (int i = 0; i < 10; ++i) r.push_back(i);   // 0,1,2,...,9
-        std::reverse(r.begin(), r.end());
+
+        auto back = r.end();
+        --back;
+        const bool canWalkBack = (back != r.end());
+
         bool ok = false;
-        if (!r.empty() && r.begin() != r.end()) {
-            ok = (*r.begin() == 9);
+        if (canWalkBack) {
+            std::reverse(r.begin(), r.end());
+            ok = (!r.empty() && r.begin() != r.end() && *r.begin() == 9);
         }
         result("std::reverse(Chain<int>) — first now == 9", ok,
                "operator-- not yet wired (Friday) — std::reverse can't walk back");
