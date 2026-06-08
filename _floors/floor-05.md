@@ -47,10 +47,10 @@ You will learn three things this week, and they sit on top of each other:
 
 By the end of Floor 5 you will be able to:
 
-- Define a nested `iterator` type inside a container template and implement the five operations of a forward iterator (`*`, `->`, `++`, `==`, `!=`).
+- Define a nested `iterator` type inside a container template and implement the operators that make it a forward iterator: `++` (pre/post) and `==` / `!=`. (`*` and `->` ship written — a reference-returning dereference can't be honestly stubbed — but you'll explain what they return and why.)
 - Define a separate `const_iterator` and explain *why* — what `const Chain<T>&` would otherwise let you do that it shouldn't.
 - Wire `begin()`, `end()`, `cbegin()`, `cend()` on `Chain<T>` and walk a chain with `for (const auto& s : chain) ...`.
-- Replace `printLog` and `printLogOldest` with a *single* templated `printLog(Begin, End, label)` that does not know whether it's walking a chain or a bag.
+- Read the *single* templated `printLog(first, last, ...)` the starter ships — it replaced Floor 4½'s `printLog`/`printLogOldest` pair — and explain how one function walks a chain forward (`begin`/`end`) and backward (`rbegin`/`rend`) without knowing the container.
 - Use `std::find` and `std::find_if` against `Chain<std::string>`, `Bag<Item>`, and `Bag<Monster>` from one source line each.
 - Read a `std::sort` template error against a forward iterator and name the missing operation it asked for.
 - State the five iterator categories in order and identify which one your container's iterator belongs to.
@@ -73,9 +73,9 @@ There are no pre-class videos. Class time is for live coding and discussion toge
 
 | Day | Focus | Activity |
 |-----|-------|----------|
-| **M** | The five operations + `begin`/`end` | Live-code `Chain<T>::iterator` from the starter declaration: a single `Node* p_` member, then `operator*`, `operator->`, `operator++` (pre- and post-), and `operator==` / `!=`. Wire `begin()` and `end()` on `Chain`. Write `for (const auto& s : hero.eventLog) std::cout << s << "\n";` on the projector — students see it Just Work. |
-| **W** | `const_iterator` and `std::find`     | Live-code `Chain<T>::const_iterator`. Discussion: why two types, why not one with `const T*`. Then rewrite `printLog` as a single templated function and delete `printLogOldest`. Then call `std::find(chain.begin(), chain.end(), needle)` on the event log to find a past command — one source line, works because the iterator satisfies the contract. |
-| **F** | Iterator categories                  | Try `std::sort(chain.begin(), chain.end())`. Read the compiler error together — locate the line that names `random_access_iterator_tag`. Then `std::sort(inventory.begin(), inventory.end())` works (the Bag iterator delegates to the vector's random-access iterator). Discuss what category buys what. |
+| **M** | The iterator contract + `begin`/`end` | Read the iterator's five typedefs and its *provided* `operator*`/`operator->` (note the reference return). Live-code the stubbed operators: `operator++` (pre- and post-) and `operator==` (with `!=` derived). Wire `begin()` and `end()` on `Chain`. Write `for (const auto& s : hero.eventLog) std::cout << s << "\n";` on the projector — students see it Just Work. |
+| **W** | `const_iterator` and `std::find_if`  | Live-code `Chain<T>::const_iterator` (its `operator++`/`==`; `*`/`->` provided) and `begin()/end() const`. Discussion: why a separate type, not `const iterator`. Then rewrite `findByName<T>` to use `std::find_if` (one line) — and watch the *same* `std::find_if` search the bestiary, the inventory, and the event log, because all satisfy the iterator contract. |
+| **F** | Iterator categories + `operator--`   | Try `std::sort(chain.begin(), chain.end())` — it won't compile; read the error together and find the line about random-access / the missing `operator-`. (`std::sort(inventory.begin(), inventory.end())` *does* compile — the Bag's iterator is random-access.) Then implement `operator--` on both iterators so `std::reverse`, `rbegin`/`rend`, and `log --oldest` work. |
 
 ## The project — Floor 5
 
@@ -84,39 +84,47 @@ This week's project increment is **one `search` command that walks three contain
 You will receive (in your starter drop):
 
 - Everything through Floor 4½, fully working — `Bag<T>`, `Chain<T>` (doubly-linked, full Rule of Three), `BagException`, `findByName<T>`, every benchmark, the boss battle, `clone hero`.
-- An upgraded `hero/Chain.h` with **stubbed nested types** — `iterator`, `const_iterator` — and stubbed `begin()`, `end()`, `cbegin()`, `cend()` member functions. The TODOs walk you through each operation in order.
-- A `hero/Hero.h` whose `printLog` is now a function template: `template <typename It> void printLog(It first, It last, const char* label)`. The Floor 4½ `printLogOldest` is gone — `main.cpp` now calls `printLog(eventLog.rbegin(), eventLog.rend(), "oldest first")` for the backward walk. (You will write `rbegin()`/`rend()` on Wednesday using a small reverse-iterator wrapper provided in the starter; the implementation is short.)
+- An upgraded `hero/Chain.h` with two nested types — `iterator`, `const_iterator` — whose movement/comparison operators and `begin()`/`end()` are stubbed for you to fill in. (`operator*`/`->`, `!=`, `cbegin`/`cend`, and `rbegin`/`rend` ship written.) The TODOs walk you through each operation in order.
+- A `hero/Hero.h` whose `printLog` is now a function template taking a `(first, last)` iterator pair. The Floor 4½ `printLog`/`printLogOldest` pair is gone — `main.cpp` calls `printLog(eventLog.begin(), eventLog.end(), ...)` for newest-first and `printLog(eventLog.rbegin(), eventLog.rend(), ...)` for oldest-first. (`rbegin()`/`rend()` are *pre-wired* in the starter on top of `std::reverse_iterator`; they start working the moment your `operator--` does, on Friday.)
 - A `main.cpp` with a new `search` command behavior: one call to `findByName` on the bestiary, one on the inventory, one on the event log — all using the *same* templated function, which itself uses `std::find_if` internally.
 - A new `selftest iterator` harness that builds a `Chain<int>`, calls `std::find`, `std::distance`, and range-based-`for` on it, and reports pass/fail.
 
 You will write:
 
-1. **Monday:** `Chain<T>::iterator` — `operator*`, `operator->`, `operator++` (pre- and post-), `operator==`, `operator!=`. Then `begin()` and `end()` on `Chain`. Convert `printLog`'s body to use range-based `for` (or explicit `it != end`).
+1. **Monday:** `Chain<T>::iterator` — `operator++` (pre- and post-) and `operator==`. Then `begin()` and `end()` on `Chain`. (`operator*`/`->` and `!=` are provided.)
 2. **Wednesday:** `Chain<T>::const_iterator`. Then `cbegin()` / `cend()`. Then rewrite `findByName<T>` to call `std::find_if` internally (one line). Then call it from `search` against all three containers.
-3. **Friday:** Iterator categories. Try `std::sort` on a `Chain` iterator — paste the compiler error into lab notes. Then try `std::reverse(chain.begin(), chain.end())` — also fails (needs bidirectional). Then implement bidirectional support by adding `operator--` to your iterator and watch `std::reverse` start working. Finally, run `selftest iterator` and confirm.
+3. **Friday:** Iterator categories. Try `std::sort` on a `Chain` iterator — it won't compile; paste the error into lab notes. Then note that `std::reverse(chain.begin(), chain.end())` *does* compile (your iterator claims bidirectional and `operator--` exists as a stub) but is broken until you finish it — `selftest iterator` phase 5 catches that. Implement `operator--` on `iterator` and `const_iterator` and watch `std::reverse`, `rbegin`/`rend`, and `log --oldest` come alive. Finally, run `selftest iterator` and confirm all phases pass.
 
 Demo target (Friday):
 
 ```
 > search Goblin
-  Goblin            HP 8   ATK 2   weakness: fire
+  Goblin   HP 8   ATK 2   weakness: fire
   (found in bestiary)
-> search "Iron key"
-  Iron key          (wt 0.1, val 0)
+> search Iron key
+  Iron key  (wt 0.1, val 0)
   (found in inventory)
-> search "inspect 99"
-  inspect 99 — failed (index out of bounds)
-  (found in event log, entry #4 from the top)
+> search began
+  began session as "Aric"
+  (found in event log)
 > log
-   1.  search "inspect 99" — found in event log
-   2.  search "Iron key" — found in inventory
+   1.  search began — found in event log
+   2.  search Iron key — found in inventory
    3.  search Goblin — found in bestiary
-   ...
+   4.  began session as "Aric"
+  (newest first; chain length 4)
+> log --oldest 3
+   1.  began session as "Aric"
+   2.  search Goblin — found in bestiary
+   3.  search Iron key — found in inventory
+  (oldest first; chain length 4)
 > selftest iterator
-  Chain<int>::iterator: range-for OK   std::find OK   std::distance OK
-  Chain<int>::const_iterator: range-for OK on const ref   OK
-  std::sort on Chain iterator: refused at compile time as expected (Friday lab)
-  std::reverse on Chain iterator: OK   (you implemented operator--)
+  range-for over Chain<int>: OK
+  std::find(Chain<int>, 42): OK
+  std::distance(begin, end): OK
+  range-for over const Chain<int>&: OK
+  std::reverse(Chain<int>) — first now == 9: OK
+  all phases OK
 > quit
   The lens dims. The lens does not remember what it saw — only how it moved.
 ```
