@@ -31,7 +31,7 @@ build\the_descent.exe        # Windows cmd
 You should land at the `> ` prompt with everything from previous floors working. The new commands work-but-do-nothing-useful-yet:
 
 - `selftest tree` — Phase 1 passes (empty-tree invariants — the stubbed `size()`/`height()` return 0, which is the right answer for an empty tree). Phases 2–7 FAIL with one-line diagnostics that name the likely stubbed method.
-- `taxonomy` — prints just the root line (`Creatures of the Hold`) because `addChild` is a no-op until Monday, so the loader cannot hang any categories off it.
+- `taxonomy` — prints just the root line (`Creatures of the Hold`) plus a footer claiming `(0 creatures and categories; height 0)`. `addChild` is a no-op until Monday, so the loader cannot hang any categories off the root — and the zeroes are the stubbed `countFrom`/`heightFrom` answering. After Monday the footer reads `(23 creatures and categories; height 3)`.
 - `taxonomy --dfs` / `--bfs` — print empty lists (the traversals are stubbed).
 - `lineage Lich` — prints "not in McCown's catalogue" because `findFrom` is stubbed to return `nullptr` for everything.
 

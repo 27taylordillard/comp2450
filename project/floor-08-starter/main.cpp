@@ -23,7 +23,7 @@
 //                            Rule of Three are PROVIDED.
 //   * hero/TreeTests.*     — `selftest tree` exercises Tree<int> in seven
 //                            phases against one fixed sample tree.
-//   * bestiary/Taxonomy.*  — loadTaxonomy() builds a Tree<std::string>
+//   * hero/Taxonomy.*      — loadTaxonomy() builds a Tree<std::string>
 //                            from data/taxonomy.txt; printTaxonomy() prints
 //                            it as an indented outline. PROVIDED framework.
 //   * `taxonomy`           — print McCown's classification as an outline.
