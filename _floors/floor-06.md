@@ -8,7 +8,19 @@ zybook: "Chapter 7 — full chapter; class focus §7.1–7.5 (stacks)"
 
 ## The briefing
 
-Past Sister Vael's chamber the corridor opens into a vast, low-ceilinged hall whose walls are tiered like the inside of a bell. Every step you take echoes back, then again, then again — and the echoes do not arrive in the order you made them. The hall serves them up *last shout first*. A figure in faded choirmaster's robes stands at a lectern at the centre, eyes half-closed, hands folded. As you cross the threshold you say the word *"hello"*. He answers, very softly, *"hello."* Then, after a pause, *"adventurer."* — which you had said a moment earlier. The hall has handed your words back in reverse.
+Past Sister Vael's chamber, the corridor opens into a vast, low-ceilinged hall whose walls are tiered like the inside of a bell. Every step you take echoes back, then again, then again — but not in the order you made them. The hall serves them up *last shout first*.
+
+A figure in faded choirmaster's robes stands at a lectern in the centre, eyes half-closed, hands folded.
+
+"I am an adventurer," you call. Then, after a nervous pause: "Hello?"
+
+The choirmaster does not move. His lips do not part.
+
+From the walls comes a soft reply: "Hello."
+
+Then, a moment later: "Adventurer."
+
+The hall has handed your words back in reverse.
 
 <div class="character-card" markdown="1">
 <div class="character-portrait">
