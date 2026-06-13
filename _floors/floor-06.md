@@ -40,7 +40,7 @@ This week you build a `Stack<T>` — the **L**ast-**I**n, **F**irst-**O**ut cont
 You will learn three things this week, and they layer on top of each other:
 
 1. **An ADT is not a data structure.** A *list* is an ADT (the contract: an ordered sequence). A *stack* is an ADT (the contract: LIFO). `std::vector` is a data structure that *implements* the list ADT. `Chain<T>` is another. Your `Stack<T>` will implement the stack ADT — by *delegating every operation* to a `Chain<T>` underneath. Three nouns, two layers, one tiny class.
-2. **The adapter pattern.** `Stack<T>` will be five one-line methods, each one forwarding to a `Chain<T>` method. `push` becomes `chain_.push_front`. `pop` becomes `chain_.pop_front`. `top` becomes `chain_.head()->data`. The brevity is the lesson — and it is the exact pattern `std::stack` uses in the standard library (adapter over `std::deque` by default). You are recreating a real library move.
+2. **The adapter pattern.** `Stack<T>` will be five one-line methods — four you'll write (`push`, `pop`, `size`, `empty`) plus `top()`, which ships done — each one forwarding to a `Chain<T>` method. `push` becomes `chain_.push_front`. `pop` becomes `chain_.pop_front`. `top` becomes `chain_.head()->data`. The brevity is the lesson — and it is the exact pattern `std::stack` uses in the standard library (adapter over `std::deque` by default). You are recreating a real library move.
 3. **What a stack is *for*.** Three classical use-cases land this week. *Bracket balancing:* a syntax check that needs to remember "the most recent opener I haven't closed yet." *Undo:* a record of "the most recent change I might want to reverse." *Recursion as an explicit stack:* every function call your CPU executes is pushed onto a stack of return frames; if you write the same algorithm iteratively with your *own* `Stack`, you make the implicit explicit.
 
 <figure class="diagram">
@@ -50,7 +50,7 @@ You will learn three things this week, and they layer on top of each other:
 
 <figure class="diagram">
   <img src="{{ '/assets/diagrams/stack-as-adapter.svg' | relative_url }}" alt="Two stacked boxes. The outer box is labeled 'Stack<T>' and contains five method names: push, pop, top, size, empty. The inner box is labeled 'Chain<T>' and contains the corresponding methods: push_front, pop_front, head(), size, empty. Arrows connect each Stack method to its Chain delegate. A label at the top reads 'ADT (the promise)'; a label at the bottom reads 'data structure (the storage)'."/>
-  <figcaption>Adapter pattern: <code>Stack&lt;T&gt;</code> is a thin shell that forwards every operation to a <code>Chain&lt;T&gt;</code> underneath. The ADT lives on the outside; the storage lives on the inside; the five method bodies are the bridge. <code>std::stack</code> does the exact same thing — by default it adapts <code>std::deque</code>.</figcaption>
+  <figcaption>Adapter pattern: <code>Stack&lt;T&gt;</code> is a thin shell that forwards every operation to a <code>Chain&lt;T&gt;</code> underneath. The ADT lives on the outside; the storage lives on the inside; the five method bodies are the bridge (you write four; <code>top()</code> ships done). <code>std::stack</code> does the exact same thing — by default it adapts <code>std::deque</code>.</figcaption>
 </figure>
 
 ## Objectives
