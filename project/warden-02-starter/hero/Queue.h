@@ -1,16 +1,24 @@
-// COMP 2450 — Floor 7 INSTRUCTOR SOLUTION
-// hero/Queue.h — FIFO queue template, complete reference.
+// COMP 2450 — Floor 8 starter
+// hero/Queue.h — FIFO queue template, complete reference (your Floor 7 work).
 //
-// Drop-in replacement for the starter's stubbed Queue.h. Five method
-// bodies, one line each. Lines tagged `INSTRUCTOR:` are notes to you,
-// NOT for live-typing.
+// As-of state from Floor 7 onward: Queue<T> is a thin adapter over Chain<T>,
+// exactly like Stack<T> — a handful of one-line method bodies. The one
+// difference that makes it a QUEUE and not a stack: insert and remove happen
+// at OPPOSITE ends of the chain.
 //
-// INSTRUCTOR: Open this alongside the starter on the projector. Reveal
-// one method body at a time. On enqueue, ask the class "which `Chain<T>`
-// method moves an item to the BACK of the line?" before showing
-// `push_back`. On dequeue, ask "which one removes from the FRONT?"
-// before showing `pop_front`. The point is that the class hears
-// themselves narrate FIFO before they see the code.
+// You will not edit this file on later floors. It is here as working
+// reference — Floor 8's levelOrder (BFS) and this floor's demos reuse it.
+//
+// =====================================================================
+// Why this is FIFO:
+//
+// `enqueue` maps to `chain_.push_back`     — new items join at the BACK.
+// `dequeue` maps to `chain_.pop_front`     — the OLDEST item leaves the FRONT.
+// `front`   maps to `chain_.head()->data`  — peek the oldest item.
+//
+// enqueue and dequeue touch OPPOSITE ends. Contrast Stack<T>, where push
+// and pop touch the same end. The chain's geography never changed; only
+// which end each operation uses — and that asymmetry is the whole contract.
 
 #pragma once
 
@@ -30,17 +38,16 @@ public:
     Queue(const Queue& other)            = default;
     Queue& operator=(const Queue& other) = default;
 
-    // INSTRUCTOR: enqueue at the back; oldest item drifts toward front.
+    // enqueue at the back; the oldest item drifts toward the front.
     void enqueue(const T& value) { chain_.push_back(value); }
 
-    // INSTRUCTOR: dequeue from the front; opposite end from enqueue.
-    // This single asymmetry is what makes the data structure FIFO.
+    // dequeue from the front — the opposite end from enqueue. This single
+    // asymmetry is what makes the data structure FIFO.
     void dequeue() { chain_.pop_front(); }
 
-    // INSTRUCTOR: front is the OLDEST element still in the queue.
-    // Contrast with Stack<T>::top — same physical end (head_), but
-    // here it is the *oldest* element because we enqueue at the
-    // tail. The chain's geography did not change; the contract did.
+    // front is the OLDEST element still in the queue. Same physical end as
+    // Stack<T>::top (head_), but here it is the oldest element, because we
+    // enqueue at the tail.
     T&       front()       { return chain_.head()->data; }
     const T& front() const { return chain_.head()->data; }
 

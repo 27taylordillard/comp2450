@@ -300,17 +300,11 @@ int main() {
                 hero.eventLog.push_front("provoke " + rest);
             }
             else if (cmd == "simulate") {
-                // INSTRUCTOR: Friday's work, complete reference. Bind
-                // `action` BEFORE calling dequeue() — same hazard as
-                // Floor 6's undo. dequeue() destroys the front node;
-                // anything you want to read FROM it has to be read first.
-                //
-                // INSTRUCTOR: live-type the WRONG order first if you have
-                // nerve — dequeue then read front — and watch the second
-                // turn print the wrong action (or crash on the last). Then
-                // restore. The bug is identical in shape to Floor 6's
-                // pop-before-bind in undo; both ADTs share the rule
-                // "read before you remove."
+                // Drain the enemy line in FIFO order. Note the ordering:
+                // bind `action` BEFORE calling dequeue() — the same hazard
+                // as Floor 6's undo. dequeue() destroys the front node, so
+                // anything you want to read FROM it must be read first.
+                // Both ADTs share one rule: read before you remove.
                 if (hero.enemyActionQueue.empty()) {
                     std::cout << "No enemies are in line. Use `provoke <name>` first.\n";
                 } else {

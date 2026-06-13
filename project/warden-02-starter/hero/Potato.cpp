@@ -1,14 +1,10 @@
-// COMP 2450 — Floor 7 INSTRUCTOR SOLUTION
-// hero/Potato.cpp — hotPotato body, complete reference.
+// COMP 2450 — Floor 8 starter
+// hero/Potato.cpp — hotPotato body, complete reference (your Floor 7 work).
 //
-// Drop-in replacement for the starter's stubbed Potato.cpp.
-//
-// INSTRUCTOR: Before writing the function, do the algorithm on the board
-// with names = {A,B,C,D,E} and k = 3. Slot by slot, who moves to the
-// back? Who gets dequeued? By the time you have eliminated three names,
-// the algorithm is already in everyone's head — the function is just
-// the formal write-down. Then run `potato A B C D E 3` and confirm the
-// survivor is D.
+// The classic Josephus-style elimination: people stand in a circle and
+// count off by k; the k-th is out; repeat until one survivor remains. A
+// Queue<T> models the circle — rotate k-1 people from the front to the back
+// (they're safe this round), then dequeue the unlucky one now at the front.
 
 #include "Potato.h"
 
@@ -17,19 +13,18 @@
 namespace dungeon {
 
 std::string hotPotato(const std::vector<std::string>& names, std::size_t k) {
-    // INSTRUCTOR: the empty-input guard is the off-by-one prevention.
-    // Without it, the size() > 1 loop is fine on empty (never enters),
-    // but the final front() dereferences head_ == nullptr → segfault.
+    // The empty-input guard prevents an off-by-one crash: without it the
+    // size() > 1 loop is simply skipped, but the final front() would
+    // dereference head_ == nullptr.
     if (names.empty()) return "";
 
     Queue<std::string> q;
     for (const std::string& n : names) q.enqueue(n);
 
-    // INSTRUCTOR: the outer loop runs until ONE survivor remains.
-    // Inside: k-1 rotations move "safe" people to the back, then the
-    // unlucky one at the front is dequeued. For k = 1 this is zero
-    // rotations: each round just drops the front. For k = names.size()
-    // (large k), most of every round is rotation.
+    // Run until ONE survivor remains. Each round: k-1 rotations move "safe"
+    // people to the back, then the front person is dequeued (eliminated).
+    // For k == 1 there are zero rotations — each round just drops the front.
+    // For large k, most of each round is rotation.
     while (q.size() > 1) {
         for (std::size_t i = 0; i < k - 1; ++i) {
             q.enqueue(q.front());
