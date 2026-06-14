@@ -41,7 +41,7 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 | 9  | 7  | [The Cisterns]({{ site.baseurl }}/floors/floor-07/) | FIFO, queues, AI action scheduling |
 | 10 | Warden II | [Warden of the Middle Gates]({{ site.baseurl }}/floors/warden-02/) | Midterm 2 — Floors 4–7 take-home + Friday quiz |
 | 10 | 8  | [The Hall of Lineages]({{ site.baseurl }}/floors/floor-08/)     | General (n-ary) trees — recursion, DFS/BFS, lineage |
-| 11 | 9  | The Warden's Hall                             | Binary search trees |
+| 11 | 9  | [The Halving Hall]({{ site.baseurl }}/floors/floor-09/)         | Binary search trees — fast lookup, the free sort |
 | 12 | 9½ | The Balanced Hall                             | Self-balancing trees |
 | 13 | 10 | The Hall of Names                             | Sets & maps |
 | 14 | 11 | The Hall of Whispers                          | Hash tables — O(1) lookup |

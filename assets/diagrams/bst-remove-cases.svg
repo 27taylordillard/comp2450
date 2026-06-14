@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" role="img" aria-labelledby="br-title br-desc">
+  <title id="br-title">Removing a node from a BST — the three cases</title>
+  <desc id="br-desc">Three panels. Panel one, a leaf: removing a childless node (3, under root 5) just detaches it. Panel two, one child: removing a node (8) that has a single child (9) splices that child up into the removed node's place. Panel three, two children: removing a node (the root 5, with children 3 and 8) replaces its value with its in-order successor — the smallest value in its right subtree, here 7, the leftmost node under 8 — by copying 7 up into the root, then deleting the old 7, which is now a leaf. The hard case reduces to an easy one.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .col-bg      { fill: #faf3dc; stroke: #8b5a00; stroke-width: 1.0; opacity: 0.5; }
+    .col-bg-hard { fill: #faecd4; stroke: #6b0f0f; stroke-width: 1.0; opacity: 0.5; }
+    .node        { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.6; }
+    .node-root   { fill: #eacf85; stroke: #6b0f0f; stroke-width: 2.0; }
+    .node-succ   { fill: #e7efcf; stroke: #4a6b0f; stroke-width: 2.4; }
+    .node-faded  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; opacity: 0.32; }
+    .edge        { stroke: #8b5a00; stroke-width: 1.6; fill: none; }
+    .edge-faded  { stroke: #8b5a00; stroke-width: 1.4; fill: none; opacity: 0.28; }
+    .node-label  { font-family: Consolas, 'Courier New', monospace; font-size: 14px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .label-faded { font-family: Consolas, 'Courier New', monospace; font-size: 14px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; opacity: 0.36; }
+    .remove-x    { stroke: #b3261e; stroke-width: 2.4; stroke-linecap: round; }
+    .remove-ring { fill: none; stroke: #b3261e; stroke-width: 1.5; stroke-dasharray: 3 2; }
+    .tag-remove  { font-family: Georgia, serif; font-size: 10.5px; fill: #b3261e; font-weight: 700; text-anchor: middle; }
+    .move-arrow  { stroke: #4a6b0f; stroke-width: 2.0; fill: none; }
+    .tag-move    { font-family: Georgia, serif; font-size: 10.5px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .col-title   { font-family: Georgia, serif; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.06em; }
+    .col-tag     { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #4a3a2a; text-anchor: middle; }
+    .col-caption { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .note-strong { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+  </style>
+  <defs>
+    <marker id="rmv-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6b0f"/>
+    </marker>
+  </defs>
+
+  <rect class="panel" x="10" y="10" width="740" height="420" rx="6"/>
+  <text class="panel-title" x="380" y="30">removing a node is three cases</text>
+  <text class="subtitle"    x="380" y="48">and the hard one reduces to an easy one</text>
+
+  <!-- ===================== PANEL 1: LEAF ===================== -->
+  <rect class="col-bg" x="20" y="64" width="226" height="332" rx="6"/>
+  <text class="col-title" x="133" y="88">LEAF</text>
+  <text class="col-tag"   x="133" y="106">no children</text>
+
+  <line class="edge-faded" x1="133" y1="170" x2="98"  y2="240"/>
+  <line class="edge"       x1="133" y1="170" x2="168" y2="240"/>
+  <circle class="node-root" cx="133" cy="170" r="17"/><text class="node-label" x="133" y="175">5</text>
+  <circle class="node-faded" cx="98"  cy="240" r="17"/><text class="label-faded" x="98" y="245">3</text>
+  <circle class="node"      cx="168" cy="240" r="17"/><text class="node-label" x="168" y="245">8</text>
+  <!-- remove mark on the leaf 3 -->
+  <circle class="remove-ring" cx="98" cy="240" r="21"/>
+  <line class="remove-x" x1="88" y1="230" x2="108" y2="250"/>
+  <line class="remove-x" x1="108" y1="230" x2="88" y2="250"/>
+  <text class="tag-remove" x="98" y="290">remove 3</text>
+
+  <text class="col-caption" x="133" y="356">just detach it —</text>
+  <text class="col-caption" x="133" y="374">nothing to re-link</text>
+
+  <!-- ===================== PANEL 2: ONE CHILD ===================== -->
+  <rect class="col-bg" x="256" y="64" width="226" height="332" rx="6"/>
+  <text class="col-title" x="369" y="88">ONE CHILD</text>
+  <text class="col-tag"   x="369" y="106">one subtree</text>
+
+  <line class="edge-faded" x1="350" y1="160" x2="404" y2="226"/>
+  <line class="edge-faded" x1="404" y1="226" x2="442" y2="298"/>
+  <circle class="node-root" cx="350" cy="160" r="17"/><text class="node-label" x="350" y="165">5</text>
+  <circle class="node-faded" cx="404" cy="226" r="17"/><text class="label-faded" x="404" y="231">8</text>
+  <circle class="node"      cx="442" cy="298" r="17"/><text class="node-label" x="442" y="303">9</text>
+  <!-- remove mark on 8 -->
+  <circle class="remove-ring" cx="404" cy="226" r="21"/>
+  <line class="remove-x" x1="394" y1="216" x2="414" y2="236"/>
+  <line class="remove-x" x1="414" y1="216" x2="394" y2="236"/>
+  <text class="tag-remove" x="404" y="200">remove 8</text>
+  <!-- 9 splices up into 8's slot -->
+  <path class="move-arrow" d="M 432 284 Q 400 262 406 246" marker-end="url(#rmv-arrow)"/>
+  <text class="tag-move" x="452" y="266">9 moves up</text>
+
+  <text class="col-caption" x="369" y="356">the single child</text>
+  <text class="col-caption" x="369" y="374">takes its place</text>
+
+  <!-- ===================== PANEL 3: TWO CHILDREN ===================== -->
+  <rect class="col-bg-hard" x="492" y="64" width="248" height="332" rx="6"/>
+  <text class="col-title" x="616" y="88">TWO CHILDREN</text>
+  <text class="col-tag"   x="616" y="106">the hard case</text>
+
+  <line class="edge" x1="600" y1="158" x2="558" y2="226"/>
+  <line class="edge" x1="600" y1="158" x2="656" y2="226"/>
+  <line class="edge-faded" x1="656" y1="226" x2="622" y2="296"/>
+  <circle class="node-root" cx="600" cy="158" r="17"/><text class="node-label" x="600" y="163">5</text>
+  <circle class="node" cx="558" cy="226" r="17"/><text class="node-label" x="558" y="231">3</text>
+  <circle class="node" cx="656" cy="226" r="17"/><text class="node-label" x="656" y="231">8</text>
+  <circle class="node-succ" cx="622" cy="296" r="17"/><text class="node-label" x="622" y="301">7</text>
+  <!-- remove mark on root 5 (its value is being replaced) -->
+  <circle class="remove-ring" cx="600" cy="158" r="21"/>
+  <line class="remove-x" x1="590" y1="148" x2="610" y2="168"/>
+  <line class="remove-x" x1="610" y1="148" x2="590" y2="168"/>
+  <text class="tag-remove" x="600" y="132">remove 5</text>
+  <!-- successor 7 copied up; then deleted -->
+  <path class="move-arrow" d="M 616 280 Q 600 226 600 176" marker-end="url(#rmv-arrow)"/>
+  <text class="tag-move"   x="556" y="284">copy 7 up</text>
+  <text class="tag-remove" x="622" y="332">successor — then delete it</text>
+
+  <text class="col-caption" x="616" y="356">copy the in-order successor (smallest</text>
+  <text class="col-caption" x="616" y="374">on the right) up, then delete it</text>
+
+  <text class="note-strong" x="380" y="418">the two-child case copies its in-order successor up — which is always a leaf or one-child node</text>
+</svg>
