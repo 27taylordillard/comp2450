@@ -19,7 +19,7 @@ The stair out of the scriptorium climbs to a smaller room, and a colder one. Whe
 <div class="character-quote" markdown="1">
 <span class="speaker">Scrivener McCown, Keeper of the Bestiary</span>
 
-One rule, and it is the whole floor. At *every* node on this chart: everything to the **left** is smaller, everything to the **right** is larger. That is all. But watch what it buys me. I want *Lich*. I stand at the root — *Goblin*. Is Lich before Goblin or after? After. So I go **right**, and I throw away the entire left half of the chart — every beast whose name comes before Goblin, gone, unconsidered, in one step. Now I stand at *Skeleton*. Before or after? Before. **Left**, and half of what remained is gone too. I am not *reading* the chart. I am *halving* it. A thousand beasts, and I have my answer in ten questions, not a thousand. — You will build me this. And you will build the one piece I did not have to lend you on the last floor: the tree must own its nodes, and clean up after itself. The destructor you *read* in the Hall of Lineages, you *write* here.
+One rule, and it is the whole floor. At *every* node on this chart: everything to the **left** is smaller, everything to the **right** is larger. That is all. But watch what it buys me. I want *Skeleton*. I stand at the root — *Goblin*. Does Skeleton come before Goblin or after? After. So I go **right**, to *Wraith* — and every beast whose name falls before Goblin, an entire branch of this chart, I have set aside in one step, unconsidered. Now: *Wraith*. Before or after? Before. **Left** — and there is Skeleton. Two questions, and the branches I never walked I never had to. A thousand beasts, and I would have my answer in ten such questions, not a thousand. I am not *reading* the chart. I am *halving* it. — You will build me this. And you will build the one piece I did not have to lend you on the last floor: the tree must own its nodes, and clean up after itself. The destructor you *read* in the Hall of Lineages, you *write* here.
 </div>
 </div>
 
@@ -62,9 +62,9 @@ By the end of Floor 9 you will be able to:
 
 You already read all of Chapter 8 on Floor 8. This week we **live inside §8.3–8.8** — the binary-search-tree sections you previewed then and were promised you'd return to. Re-read them; they are the week, not background.
 
-- Before **Monday** — §8.3–8.4 *BST search* and *BST insert*. Watch the search animation and say the rule out loud each step: *less than? go left. greater than? go right.* Notice that insert is the same walk as search, right up until it falls off the bottom into an empty spot.
-- Before **Wednesday** — §8.5–8.6 *BST in-order traversal* and the recursion behind it. The key sentence to internalize: an in-order traversal of a BST visits nodes *in sorted order*. Ask yourself **why** before class — the answer is the whole reason BSTs are everywhere.
-- Before **Friday** — §8.7–8.8 *BST remove*. This is the hard reading of the chapter. Pay attention to the **two-children** case and the word **successor**. Read it twice. We will write it together, but you should arrive having seen the shape of the problem.
+- Before **Monday** — §8.3 *Binary search trees* (the ordering property) and §8.4 *BST search algorithm*. Say the rule out loud each step: *less than? go left. greater than? go right.* Then §8.7 *BST insert algorithm* — insert is the same downward walk as search, right up until it falls off the bottom into an empty spot. If you read one more, make it §8.6 *BST height and insertion order*: it shows, in the book's own words, why inserting in *sorted* order is the worst thing you can do to a tree — our phase-5 stick.
+- Before **Wednesday** — §8.5 *BST inorder traversal*. The key sentence to internalize: *an inorder traversal visits a BST from smallest to largest.* Ask yourself **why** before class — it is the whole reason BSTs are everywhere. (§8.10 *BST: Recursion* is the recursive shape your `destroy` and `clone` will share.)
+- Before **Friday** — §8.8 *BST remove algorithm*. The hard reading of the chapter: §8.8.1 is the leaf / single-child case, §8.8.2 the two-children case. Watch for the word **successor**. We will write it together, but arrive having seen the shape of the problem.
 
 > **A note on "balanced."** The chapter shows you BSTs at their best — bushy, shallow, fast. It is honest about the catch, and so are we: a BST is only fast if it is *balanced*, and nothing in this floor's code forces it to be. Insert your data already sorted and the tree degenerates into a glorified linked list. Floor 9½ adds the rule that keeps it balanced. This floor earns that floor.
 
@@ -126,7 +126,7 @@ Lich   HP 35   ATK 6   weakness: holy
 
 > benchmark bst
   N= 100000  query=last    linear=  1813.323 us  BST=     0.456 us  (tree height 40)
-  ... BST stays flat while linear climbs ...
+  ... your microseconds vary by machine, but the shape never does: BST flat, linear climbing ...
 > quit
 McCown notes your departure. "You leave in order."
 ```
