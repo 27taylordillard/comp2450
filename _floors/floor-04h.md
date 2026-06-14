@@ -3,7 +3,7 @@ title: The Chain Vault, Deeper
 floor_number: Floor 4½
 flavor_quote: "A chain that runs one way is a leash. A chain that runs two ways is a record."
 week: 6
-zybook: "Chapter 6 (continued) — class focus §6.4–6.8"
+zybook: "Chapter 6 (continued) — class focus §6.6–6.9 (doubly-linked lists)"
 ---
 
 ## The briefing
@@ -60,11 +60,11 @@ By the end of Floor 4½ you will be able to:
 
 **The whole of Chapter 6 was assigned back on Floor 4.** If any of it is still unread — especially the doubly-linked and iterator sections we hadn't reached in class yet — catch up now. The pointers below are what *this week's* class leans on.
 
-Before **Monday**: §6.4 Doubly-linked lists; §6.6 Common doubly-linked list operations
-Before **Wednesday**: §6.7 Doubly-linked list — implementation in C++; reread §6.5 (memory management) with two pointers per node in mind
-Before **Friday**: §6.8 Linked list sorted-insert (skim — we'll touch this idea but not implement it this floor); revisit the §6.4 animation, watching the <code>prev</code> pointers light up as each node is inserted
+Before **Monday**: §6.6 *Doubly-linked lists* — each node now carries a `prev` as well as a `next`, and the list keeps both a head and a tail.
+Before **Wednesday**: §6.7 *Doubly-linked lists: Insert* and §6.8 *Doubly-linked lists: Remove* — the four-pointer surgery (two writes on each side) that two-way links demand.
+Before **Friday**: §6.9 *Linked list traversal* (forward *and* reverse — the reverse walk is exactly what `prev` buys you) and §6.12 *Linked lists: Recursion*. The full Rule of Three (destructor, copy, move) your `Chain<T>` needs is class material; the textbook doesn't section it.
 
-The §6.4 animation is the picture you want in your head when you write `push_back`. Watch what changes about `tail_` and what changes about the previous tail's `next`. There are two writes, not one.
+The §6.6 animation is the picture you want in your head when you write `push_back`. Watch what changes about `tail_` and what changes about the previous tail's `next`. There are two writes, not one.
 
 There are no pre-class videos. Class time is for live coding and discussion together — your reading is the prep.
 

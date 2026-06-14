@@ -58,11 +58,11 @@ By the end of Floor 4 you will be able to:
 
 **Read all of Chapter 6.** The reading assignment is the entire chapter — including the doubly-linked-list and iterator sections we won't reach in class until Floors 4½ and 5. Reading them now means you meet them twice: once cold here, once in depth later. The day-by-day pointers below are what *this week's* class leans on.
 
-Before **Monday**: §6.1 Singly-linked lists; §6.2 List operations
-Before **Wednesday**: §6.3 Insertion and removal at arbitrary positions; §6.5 Memory management for nodes
-Before **Friday**: §6.4 Doubly-linked list preview (we'll come back to this on Floor 4½); reread §6.5 with the Rule of Three in mind
+Before **Monday**: §6.1 *List abstract data type* (the operations any list supports) and §6.2 *Singly-linked lists* (nodes, head and tail, the `next` pointer, append and prepend).
+Before **Wednesday**: §6.3 *Singly-linked lists: Insert* and §6.4 *Singly-linked lists: Remove* — the splice-in / splice-out pointer surgery behind `push_front`, `pop_front`, and friends.
+Before **Friday**: §6.5 *Linked list search* (walking the chain to find a key). The Rule of Three — the destructor and deep copy your `Chain<T>` needs — is class material this floor; the textbook doesn't give it a section. The doubly-linked sections (§6.6–6.8) are Floor 4½'s preview.
 
-The animation in §6.1 — the one that draws each `next` arrow as a node is added — is the picture you want in your head when you write `push_front`. Watch it twice.
+The animation in §6.2 — the one that draws each `next` arrow as a node is added — is the picture you want in your head when you write `push_front`. Watch it twice.
 
 There are no pre-class videos. Class time is for live coding and discussion together — your reading is the prep.
 

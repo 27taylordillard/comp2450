@@ -3,7 +3,7 @@ title: The Hall of Echoes
 floor_number: Floor 6
 flavor_quote: "Push, and the hall remembers. Pop, and the hall forgets in the reverse order it learned. There is no other order."
 week: 8
-zybook: "Chapter 7 — full chapter; class focus §7.1–7.5 (stacks)"
+zybook: "Chapter 7 — full chapter; class focus §7.1–7.4 (stacks)"
 ---
 
 ## The briefing
@@ -71,9 +71,9 @@ By the end of Floor 6 you will be able to:
 
 **Read all of Chapter 7.** The reading assignment is the entire chapter — including the queue sections we won't reach in class until next floor. Reading them now means next week is review, not a cold start. The day-by-day pointers below are what *this week's* class (stacks) leans on.
 
-Before **Monday**: §7.1 The stack ADT; §7.2 Stack operations: push, pop, top, empty
-Before **Wednesday**: §7.3 Stack applications — bracket balancing, expression evaluation; §7.4 `std::stack` and the adapter pattern
-Before **Friday**: §7.5 Stacks and recursion — every function call is a push
+Before **Monday**: §7.1 *Stack abstract data type* — push, pop, top, and the LIFO contract; and §7.3 *Stacks using linked lists* — a stack built on a linked list, which is exactly this week's adapter over your `Chain<T>`.
+Before **Wednesday**: §7.2 *C++ stack class* — the standard library's own `std::stack`, the adapter pattern you're recreating; and §7.4 *Array-based stacks* — the same stack ADT on a different container, so you see why the adapter doesn't care what's underneath.
+Before **Friday**: no new stack section to read — undo, and "a recursive call is an implicit stack," are class material. For the textbook's classic stack application, skim §7.10 *LAB: Calculator*, where a stack evaluates an expression (the same shape as Wednesday's bracket check).
 
 Skim the ZyBook §7.1 animation that pushes three letters onto a stack and pops them off — the LIFO contract takes ninety seconds to absorb visually and saves you twenty minutes of confusion in code.
 

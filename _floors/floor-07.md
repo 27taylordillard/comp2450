@@ -3,7 +3,7 @@ title: The Cisterns
 floor_number: Floor 7
 flavor_quote: "Take your number. I will see you in order. There is no other order."
 week: 9
-zybook: "Chapter 7 (continued) — class focus §7.6–7.10 (queues)"
+zybook: "Chapter 7 (continued) — class focus §7.5–7.9 (queues)"
 ---
 
 ## The briefing
@@ -57,13 +57,13 @@ By the end of Floor 7 you will be able to:
 
 ### Reading (ZyBook Ch. 7, continued — the queue sections)
 
-**The whole of Chapter 7 was assigned back on Floor 6** — this week we reach its queue material (§7.6–7.10). If you read the chapter through then, this is review. The pointers below are what *this week's* class leans on.
+**The whole of Chapter 7 was assigned back on Floor 6** — this week we reach its queue material (§7.5–7.9). If you read the chapter through then, this is review. The pointers below are what *this week's* class leans on.
 
-Before **Monday**: §7.6 The queue ADT; §7.7 Queue operations: enqueue, dequeue, front, empty
-Before **Wednesday**: §7.8 Queue applications — simulation, scheduling, BFS preview; §7.9 `std::queue` and the adapter pattern
-Before **Friday**: §7.10 Comparing queues and stacks — when each is the right shape
+Before **Monday**: §7.5 *Queue abstract data type* — enqueue, dequeue, front, and the FIFO contract; and §7.7 *Queues using linked lists* — a queue built on a linked list, which is exactly this week's adapter over your `Chain<T>`.
+Before **Wednesday**: §7.6 *C++ queue class* — the standard library's own `std::queue`, the adapter pattern you're recreating; and §7.8 *Array-based queues* — the same queue ADT on a different container.
+Before **Friday**: §7.9 *Deque abstract data type* — the double-ended queue, where items go in and out at *both* ends. (Friday's hot-potato simulation is class material built on the plain queue.)
 
-Skim the ZyBook §7.6 animation that enqueues three letters and dequeues them. Watch for the *opposite-ends* movement — and contrast it mentally with last week's §7.1 stack animation, which moved the same end up and down. The contrast is the whole lesson.
+Skim the ZyBook §7.5 animation that enqueues three letters and dequeues them. Watch for the *opposite-ends* movement — and contrast it mentally with last week's §7.1 stack animation, which moved the same end up and down. The contrast is the whole lesson.
 
 There are no pre-class videos. Class time is for live coding and discussion together — your reading is the prep.
 

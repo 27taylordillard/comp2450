@@ -61,11 +61,11 @@ By the end of Floor 5 you will be able to:
 
 **The whole of Chapter 6 was assigned back on Floor 4** — this week we reach its iterator material (§6.14). If you read the chapter through on Floor 4, this is review; if not, read the rest now. The pointers below are what *this week's* class leans on.
 
-Before **Monday**: §6.14.1 What an iterator is; §6.14.2 Defining `begin` and `end` on a custom container
-Before **Wednesday**: §6.14.3 Iterator categories — Input through Random-access; §6.14.5 Using `std::find` and `std::find_if` with custom iterators
-Before **Friday**: §6.14.6 Const iterators — why a separate type; skim §6.14.7 (L-values vs R-values — we'll touch this without dwelling)
+Before **Monday**: §6.14 *List* — read the first half, where an *iterator* is introduced as "an object that points to a location in a list," and `begin()` / `end()` give you the two ends. That arrow-that-points-into-a-container is the abstraction you'll build for `Chain<T>`.
+Before **Wednesday**: the rest of §6.14 — traversing with `begin()`/`end()`, the range-based `for` loop over a list, and `insert()`/`erase()` at an iterator position. Notice that one iterator interface drives every walk.
+Before **Friday**: no new section — iterator *categories* (input → random-access), the separate `const_iterator` type, and L-values vs R-values are class material this floor. The textbook's §6.14 hands you the iterator; we build the rest on top of it.
 
-Watch the §6.14.1 animation that draws the iterator as an arrow advancing across the cells. Then immediately compare the same animation on a vector versus a list — same arrow, different storage. That is the abstraction you're building.
+Watch §6.14's animation of the list accessing elements through an iterator — the arrow advancing across the cells. Then picture the same arrow walking a vector versus a list — same interface, different storage. That is the abstraction you're building.
 
 There are no pre-class videos. Class time is for live coding and discussion together — your reading is the prep.
 
