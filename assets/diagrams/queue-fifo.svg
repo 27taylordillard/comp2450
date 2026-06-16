@@ -48,12 +48,12 @@
 
   <!-- front pointer: arrow from below, pointing up at A -->
   <text class="pointer-text" x="77" y="195">front</text>
-  <line class="pointer-line" x1="77" y1="183" x2="77" y2="172"/>
+  <line class="pointer-line" x1="77" y1="179" x2="77" y2="172"/>
   <polygon class="pointer-fill" points="73,172 81,172 77,166"/>
 
   <!-- back pointer: arrow from below, pointing up at C -->
   <text class="pointer-text" x="187" y="195">back</text>
-  <line class="pointer-line" x1="187" y1="183" x2="187" y2="172"/>
+  <line class="pointer-line" x1="187" y1="179" x2="187" y2="172"/>
   <polygon class="pointer-fill" points="183,172 191,172 187,166"/>
 
   <!-- dequeue: curved arrow leaving A's top-left, exiting upper-left.
