@@ -1,0 +1,31 @@
+# COMP 2450 — Floor 8 taxonomy
+# Scrivener McCown's reconstructed classification of the Hold's creatures.
+# Each line is one ROOT-TO-LEAF path, slash-separated. The loader walks the
+# path from the root, creating any interior node it has not seen yet and
+# reusing the ones it has. The first label on every line is the root and
+# must be identical on every line.
+#
+# Lines starting with '#' and blank lines are ignored.
+# Edit freely: add a creature by adding a path; add a whole new branch by
+# naming a category that does not exist yet. The tree's shape is just the
+# set of paths below.
+
+Creatures of the Hold/Undead/Corporeal/Skeleton
+Creatures of the Hold/Undead/Corporeal/Necrothrall
+Creatures of the Hold/Undead/Corporeal/Lich
+Creatures of the Hold/Undead/Incorporeal/Wraith
+Creatures of the Hold/Undead/Incorporeal/Wisp
+Creatures of the Hold/Beasts/Mammals/Shadow Hound
+Creatures of the Hold/Beasts/Mammals/Ironclaw Bear
+Creatures of the Hold/Beasts/Mammals/Cinder Bat
+Creatures of the Hold/Beasts/Giants/Cave Troll
+Creatures of the Hold/Beasts/Giants/Frostmaw
+Creatures of the Hold/Vermin/Bone Spider
+Creatures of the Hold/Vermin/Ratking
+Creatures of the Hold/Vermin/Marsh Lurker
+Creatures of the Hold/Constructs/Stone Sentinel
+
+# Note: the Goblin is deliberately absent. McCown never finished cataloguing
+# Grix's kin — they slept through the Plague and were missed. `lineage Goblin`
+# therefore returns "not classified," which is the not-found path working
+# correctly, not a bug. Adding the Goblin back is a Lab 8 exercise.
