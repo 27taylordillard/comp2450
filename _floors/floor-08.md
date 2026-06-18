@@ -199,7 +199,7 @@ Counter by:
 <div class="callout check" markdown="1">
 <p class="callout-title">Check for understanding</p>
 
-You are now in the Trees stretch of the Hold (Floors 8–11). Before you move on to the next floor, you should be able to answer these without looking:
+You are now in the Trees stretch of the Hold (Floors 8–9½). Before you move on to the next floor, you should be able to answer these without looking:
 
 1. Define root, leaf, edge, depth, and height in one sentence each, pointing at the tree-anatomy diagram. Why does the root have depth 0, and why is a one-node tree's height 0?
 2. Write the shared three-line skeleton of `countFrom`, `heightFrom`, and `preOrderInto`. What is the base case they all share, and what is the *one* line that differs between them?

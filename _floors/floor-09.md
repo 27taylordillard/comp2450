@@ -172,7 +172,7 @@ Counter by:
 <div class="callout check" markdown="1">
 <p class="callout-title">Check for understanding</p>
 
-You are deep in the Trees stretch now (Floors 8–11). Before the next floor, you should be able to answer these without looking:
+You are deep in the Trees stretch now (Floors 8–9½). Before the next floor, you should be able to answer these without looking:
 
 1. State the BST invariant in one sentence. On the tree `8(3(1,6),10(_,14))`, trace `find(6)` and `find(9)` — which nodes do you visit, and which do you never look at?
 2. Why is `find` O(log n) on a balanced tree but O(n) on Grix's? Express both in terms of the tree's **height**, and say how height relates to n in each case.
