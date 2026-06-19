@@ -52,8 +52,8 @@
   <text class="row-dim" x="44" y="366">… 15 total</text>
 
   <!-- index(m) label on the arrows -->
-  <text class="tag" x="232" y="160">index(m)</text>
-  <text class="tag" x="232" y="174">once each</text>
+  <text class="tag" x="232" y="178">index(m)</text>
+  <text class="tag" x="232" y="192">once each</text>
 
   <!-- three arrows fanning out -->
   <path class="arrow" d="M182,180 C210,180 215,140 268,140"/>
