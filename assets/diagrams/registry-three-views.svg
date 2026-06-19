@@ -41,9 +41,9 @@
   <text class="row" x="44" y="168">Wraith · holy</text>
   <text class="row" x="44" y="186">Skeleton · blunt</text>
   <text class="row" x="44" y="204">Bone Spider · fire</text>
-  <text class="row" x="44" y="222">Shadow Hound·light</text>
+  <text class="row" x="44" y="222">Shadow Hound · light</text>
   <text class="row" x="44" y="240">Cinder Bat · water</text>
-  <text class="row" x="44" y="258">Marsh Lurker·fire</text>
+  <text class="row" x="44" y="258">Marsh Lurker · fire</text>
   <text class="row" x="44" y="276">Stone Sent. · blunt</text>
   <text class="row" x="44" y="294">Frostmaw · fire</text>
   <text class="row" x="44" y="312">Ratking · fire</text>
@@ -78,10 +78,11 @@
   <text class="row-dim" x="286" y="312">6 distinct (dups collapsed)</text>
 
   <!-- ===== VIEW 3: weaknessCounts_ (std::map) ===== -->
-  <rect class="box-map" x="272" y="340" width="210" height="50" rx="5"/>
+  <rect class="box-map" x="272" y="340" width="210" height="66" rx="5"/>
   <text class="col-title col-map" x="377" y="357">weaknessCounts_</text>
   <text class="col-kind" x="377" y="371">std::map&lt;string, int&gt;</text>
-  <text class="row" x="286" y="386" style="font-size:10.5px">blunt 2 · fire 6 · holy 3 · light 2 · slashing 1 · water 1</text>
+  <text class="row" x="286" y="386" style="font-size:10.5px">blunt 2 · fire 6 · holy 3</text>
+  <text class="row" x="286" y="400" style="font-size:10.5px">light 2 · slashing 1 · water 1</text>
 
   <!-- ===== right rail: the point ===== -->
   <text class="col-title col-map" x="620" y="150">sorted on insert</text>

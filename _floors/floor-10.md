@@ -167,7 +167,13 @@ Goblin   HP 8   ATK 2   weakness: fire
   N=  10000  query=absent  linear=     4.670 us  BST=   0.082 us  std::map=   0.100 us  (tree height 30)
   N= 100000  query=last    linear=   585.573 us  BST=   0.143 us  std::map=   0.239 us  (tree height 40)
   N= 100000  query=absent  linear=   156.566 us  BST=   0.087 us  std::map=   0.124 us  (tree height 40)
-... your microseconds vary by machine; the shape never does: linear climbs with N, BST and std::map stay flat (~log N), and std::map tracks the BST ...
+
+std::map::find tracks the BST — both grow with log N, both crush
+the linear scan. The difference is the code: the BST was a class you
+wrote across a whole floor; std::map was one declaration. And unlike
+your plain BST, std::map is balanced (a red-black tree), so it NEVER
+degenerates into a stick — the library gives you the balanced tree of
+Floor 9½ and a key->value index on top of it, for free.
 
 > quit
 McCown notes your departure. "You leave in order."
@@ -211,7 +217,7 @@ Counter by:
 
 - **Ask with `count()` or `find()`; reserve `[]` and `at()` for keys you mean to set or know exist.** `m.count(k)` and `m.find(k)` never insert. `m[k]` always *might*. That is the whole rule.
 - **Make read-only query methods `const`.** On a `const` map, `operator[]` will not compile — so the right design makes the bug *mechanically impossible*. This floor's `countWeakness` is `const` for exactly that reason; reach for `[]` inside it and the compiler stops you.
-- **Remember a phantom insert on a balanced tree is also a phantom *rotation*.** The map is a red-black tree; inserting a key it didn't need re-balances the tree to make room. You paid O(log n) — and a structural change — to corrupt your own data while *looking*.
+- **Remember a phantom insert on a balanced tree may also force a phantom *rotation*.** The map is a red-black tree; inserting a key it didn't need can re-balance the tree to make room. You paid O(log n) — and possibly a rotation — to corrupt your own data while *looking*.
 - **The Phantom Key completes a family.** Floor 9's False Heir broke *order*, so `find` lied. Floor 9½'s Leaning Tower kept order but lost *balance*, so `find` crawled. The Phantom Key keeps both order and balance and instead **silently grows the container on a read** — the associative-era version of "the structure betrays you while looking perfectly correct."
 </div>
 
