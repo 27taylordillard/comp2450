@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" role="img" aria-labelledby="pk-title pk-desc">
+  <title id="pk-title">The Phantom Key — operator[] inserts on read, find() does not</title>
+  <desc id="pk-desc">Two ways to ask a std::map of weakness counts how many monsters fear thunder, a weakness no monster has. On the left, the wrong way: weaknessCounts["thunder"] returns 0, but because operator[] default-constructs and inserts a missing key, the map silently grows a new entry thunder mapped to 0. The distinct-weakness shelf now lists a phantom weakness nothing actually has, and size() crept from 6 to 7. On the right, the correct way: weaknessCounts.find("thunder") returns the end iterator, the method returns 0 without touching the map, and the container is unchanged at 6 entries. The lesson: reading is not free; operator[] is a writer wearing a reader's hat. Make read-only query methods const so operator[] cannot even compile.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .divider     { stroke: #8b5a00; stroke-width: 0.8; stroke-dasharray: 4 3; opacity: 0.55; fill: none; }
+    .row         { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.3; }
+    .row-new     { fill: #f4ddd2; stroke: #6b0f0f; stroke-width: 2.0; }
+    .row-ok      { fill: #e7efcf; stroke: #4a6b0f; stroke-width: 1.3; }
+    .key         { font-family: Consolas, 'Courier New', monospace; font-size: 12.5px; fill: #2a1a0a; font-weight: 700; text-anchor: start; }
+    .val         { font-family: Consolas, 'Courier New', monospace; font-size: 12.5px; fill: #2a1a0a; text-anchor: end; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 12.5px; fill: #2a1a0a; text-anchor: middle; }
+    .code-bad    { font-family: Consolas, 'Courier New', monospace; font-size: 12.5px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .code-ok     { font-family: Consolas, 'Courier New', monospace; font-size: 12.5px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .zone-bad    { font-family: Georgia, serif; font-size: 11.5px; fill: #6b0f0f; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; text-anchor: middle; }
+    .zone-ok     { font-family: Georgia, serif; font-size: 11.5px; fill: #4a6b0f; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; text-anchor: middle; }
+    .cap-bad     { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .cap-ok      { font-family: Georgia, serif; font-size: 11px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .note-strong { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .tag-bad     { font-family: Georgia, serif; font-size: 10px; fill: #6b0f0f; font-style: italic; text-anchor: middle; }
+    .tag-ok      { font-family: Georgia, serif; font-size: 10px; fill: #4a6b0f; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <rect class="panel" x="10" y="10" width="740" height="420" rx="6"/>
+  <text class="panel-title" x="380" y="30">the phantom key — a read that writes</text>
+  <text class="subtitle"    x="380" y="48">both ask the SAME question: "how many monsters fear thunder?" (none do). only one corrupts the map.</text>
+
+  <line class="divider" x1="380" y1="62" x2="380" y2="404"/>
+  <text class="zone-bad" x="195" y="78">operator[] — reads by WRITING</text>
+  <text class="zone-ok"  x="565" y="78">find() — reads, full stop</text>
+
+  <!-- ===== LEFT: operator[] path ===== -->
+  <rect x="60" y="92" width="270" height="26" rx="4" fill="#efe2be" stroke="#6b0f0f" stroke-width="1.2"/>
+  <text class="code-bad" x="195" y="110">count = weaknessCounts["thunder"];</text>
+  <text class="tag-bad" x="195" y="134">"thunder" is missing → [] inserts it, returns 0</text>
+
+  <!-- map after, with phantom row -->
+  <text class="cap-bad" x="195" y="158">weaknessCounts_  (after the read)</text>
+  <rect class="row" x="95" y="168" width="200" height="20"/><text class="key" x="105" y="182">blunt</text><text class="val" x="285" y="182">2</text>
+  <rect class="row" x="95" y="190" width="200" height="20"/><text class="key" x="105" y="204">fire</text><text class="val" x="285" y="204">6</text>
+  <rect class="row" x="95" y="212" width="200" height="20"/><text class="key" x="105" y="226">holy</text><text class="val" x="285" y="226">3</text>
+  <rect class="row" x="95" y="234" width="200" height="20"/><text class="key" x="105" y="248">light</text><text class="val" x="285" y="248">2</text>
+  <rect class="row" x="95" y="256" width="200" height="20"/><text class="key" x="105" y="270">slashing / water</text><text class="val" x="285" y="270">1 1</text>
+  <rect class="row-new" x="95" y="278" width="200" height="22"/><text class="key" x="105" y="293" fill="#6b0f0f">thunder</text><text class="val" x="285" y="293" fill="#6b0f0f">0  ← phantom</text>
+
+  <text class="cap-bad" x="195" y="324">size(): 6 → 7</text>
+  <text class="tag-bad" x="195" y="344">a "read-only" query grew the container;</text>
+  <text class="tag-bad" x="195" y="358">the distinct-weakness shelf now lists a</text>
+  <text class="tag-bad" x="195" y="372">weakness no beast actually has.</text>
+
+  <!-- ===== RIGHT: find() path ===== -->
+  <rect x="430" y="92" width="270" height="26" rx="4" fill="#efe2be" stroke="#4a6b0f" stroke-width="1.2"/>
+  <text class="code-ok" x="565" y="110">auto it = weaknessCounts.find("thunder");</text>
+  <text class="tag-ok" x="565" y="134">it == end() → return 0, map untouched</text>
+
+  <text class="cap-ok" x="565" y="158">weaknessCounts_  (after the read)</text>
+  <rect class="row-ok" x="465" y="168" width="200" height="20"/><text class="key" x="475" y="182">blunt</text><text class="val" x="655" y="182">2</text>
+  <rect class="row-ok" x="465" y="190" width="200" height="20"/><text class="key" x="475" y="204">fire</text><text class="val" x="655" y="204">6</text>
+  <rect class="row-ok" x="465" y="212" width="200" height="20"/><text class="key" x="475" y="226">holy</text><text class="val" x="655" y="226">3</text>
+  <rect class="row-ok" x="465" y="234" width="200" height="20"/><text class="key" x="475" y="248">light</text><text class="val" x="655" y="248">2</text>
+  <rect class="row-ok" x="465" y="256" width="200" height="20"/><text class="key" x="475" y="270">slashing / water</text><text class="val" x="655" y="270">1 1</text>
+  <rect x="465" y="278" width="200" height="22" rx="3" fill="none" stroke="#4a6b0f" stroke-width="1.0" stroke-dasharray="3 3"/>
+  <text class="key" x="565" y="293" fill="#4a6b0f" text-anchor="middle" font-style="italic">(no thunder row)</text>
+
+  <text class="cap-ok" x="565" y="324">size(): 6 → 6</text>
+  <text class="tag-ok" x="565" y="344">nothing inserted. this is what</text>
+  <text class="tag-ok" x="565" y="358">countWeakness() does — and it's</text>
+  <text class="tag-ok" x="565" y="372">const, so [] can't even compile.</text>
+
+  <text class="note-strong" x="380" y="398">reading is not free: operator[] is a writer wearing a reader's hat — use count()/find() to ask, [] only to set</text>
+</svg>

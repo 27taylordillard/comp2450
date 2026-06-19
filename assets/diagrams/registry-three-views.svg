@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="r3-title r3-desc">
+  <title id="r3-title">One bestiary, three standard associative views — sorted for free on insert</title>
+  <desc id="r3-desc">The same monster records, loaded from data/monsters.txt in file order (Goblin, Wraith, Skeleton, Bone Spider, and so on — not alphabetical), are fed into three standard containers. A std::map keyed by name (byName_) comes out alphabetical: Bone Spider, Cave Troll, Cinder Bat, and so on. A std::set of distinct weaknesses (weaknesses_) collapses the duplicates fire, holy, blunt, light, water, slashing into six entries and keeps them sorted: blunt, fire, holy, light, slashing, water. A std::map from weakness to count (weaknessCounts_) records how many monsters share each: blunt 2, fire 6, holy 3, light 2, slashing 1, water 1. None of the three were sorted by hand; std::set and std::map are balanced trees and order on insert, so the same in-order result Floor 9 earned from a BST walk arrives here with no tree code of your own.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .box         { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .box-src     { fill: #efe2be; stroke: #6b0f0f; stroke-width: 1.8; }
+    .box-map     { fill: #e7efcf; stroke: #4a6b0f; stroke-width: 1.8; }
+    .box-set     { fill: #e3e7f0; stroke: #34507a; stroke-width: 1.8; }
+    .arrow       { stroke: #8b5a00; stroke-width: 1.8; fill: none; marker-end: url(#ah); }
+    .row         { font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; fill: #2a1a0a; text-anchor: start; }
+    .row-dim     { font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; fill: #6b5a3a; text-anchor: start; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .col-title   { font-family: Consolas, 'Courier New', monospace; font-size: 12px; font-weight: 700; text-anchor: middle; }
+    .col-map     { fill: #4a6b0f; }
+    .col-set     { fill: #34507a; }
+    .col-kind    { font-family: Georgia, serif; font-size: 10px; fill: #8b5a00; font-style: italic; text-anchor: middle; letter-spacing: 0.04em; }
+    .src-title   { font-family: Consolas, 'Courier New', monospace; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .src-kind    { font-family: Georgia, serif; font-size: 10px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
+    .note-strong { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .tag         { font-family: Georgia, serif; font-size: 10px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+  </style>
+
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#8b5a00"/>
+    </marker>
+  </defs>
+
+  <rect class="panel" x="10" y="10" width="740" height="450" rx="6"/>
+  <text class="panel-title" x="380" y="30">the library hands you the balanced tree — and a key→value index on top</text>
+  <text class="subtitle"    x="380" y="48">one bestiary, inserted in FILE order, becomes three sorted views — and you wrote no sort and no tree</text>
+
+  <!-- ===== SOURCE: bestiary in file order ===== -->
+  <rect class="box-src" x="30" y="92" width="150" height="300" rx="5"/>
+  <text class="src-title" x="105" y="112">bestiary (Bag)</text>
+  <text class="src-kind"  x="105" y="127">file order — not sorted</text>
+  <text class="row" x="44" y="150">Goblin · fire</text>
+  <text class="row" x="44" y="168">Wraith · holy</text>
+  <text class="row" x="44" y="186">Skeleton · blunt</text>
+  <text class="row" x="44" y="204">Bone Spider · fire</text>
+  <text class="row" x="44" y="222">Shadow Hound·light</text>
+  <text class="row" x="44" y="240">Cinder Bat · water</text>
+  <text class="row" x="44" y="258">Marsh Lurker·fire</text>
+  <text class="row" x="44" y="276">Stone Sent. · blunt</text>
+  <text class="row" x="44" y="294">Frostmaw · fire</text>
+  <text class="row" x="44" y="312">Ratking · fire</text>
+  <text class="row" x="44" y="330">Cave Troll · fire</text>
+  <text class="row-dim" x="44" y="348">Lich · holy</text>
+  <text class="row-dim" x="44" y="366">… 15 total</text>
+
+  <!-- index(m) label on the arrows -->
+  <text class="tag" x="232" y="160">index(m)</text>
+  <text class="tag" x="232" y="174">once each</text>
+
+  <!-- three arrows fanning out -->
+  <path class="arrow" d="M182,180 C210,180 215,140 268,140"/>
+  <path class="arrow" d="M182,240 C210,240 215,250 268,250"/>
+  <path class="arrow" d="M182,300 C210,300 215,348 268,348"/>
+
+  <!-- ===== VIEW 1: byName_ (std::map) ===== -->
+  <rect class="box-map" x="272" y="92" width="210" height="118" rx="5"/>
+  <text class="col-title col-map" x="377" y="110">byName_</text>
+  <text class="col-kind" x="377" y="124">std::map&lt;string, Monster&gt;</text>
+  <text class="row" x="286" y="144">Bone Spider · fire</text>
+  <text class="row" x="286" y="160">Cave Troll · fire</text>
+  <text class="row" x="286" y="176">Cinder Bat · water</text>
+  <text class="row-dim" x="286" y="192">… alphabetical, all 15</text>
+
+  <!-- ===== VIEW 2: weaknesses_ (std::set) ===== -->
+  <rect class="box-set" x="272" y="222" width="210" height="106" rx="5"/>
+  <text class="col-title col-set" x="377" y="240">weaknesses_</text>
+  <text class="col-kind" x="377" y="254">std::set&lt;string&gt; — distinct</text>
+  <text class="row" x="286" y="274">blunt   fire   holy</text>
+  <text class="row" x="286" y="292">light   slashing   water</text>
+  <text class="row-dim" x="286" y="312">6 distinct (dups collapsed)</text>
+
+  <!-- ===== VIEW 3: weaknessCounts_ (std::map) ===== -->
+  <rect class="box-map" x="272" y="340" width="210" height="50" rx="5"/>
+  <text class="col-title col-map" x="377" y="357">weaknessCounts_</text>
+  <text class="col-kind" x="377" y="371">std::map&lt;string, int&gt;</text>
+  <text class="row" x="286" y="386" style="font-size:10.5px">blunt 2 · fire 6 · holy 3 · light 2 · slashing 1 · water 1</text>
+
+  <!-- ===== right rail: the point ===== -->
+  <text class="col-title col-map" x="620" y="150">sorted on insert</text>
+  <text class="subtitle" x="620" y="170" style="text-anchor:middle">std::set and std::map</text>
+  <text class="subtitle" x="620" y="186" style="text-anchor:middle">are balanced (red-black)</text>
+  <text class="subtitle" x="620" y="202" style="text-anchor:middle">trees — they keep order</text>
+  <text class="subtitle" x="620" y="218" style="text-anchor:middle">for you, every insert.</text>
+
+  <text class="col-title col-set" x="620" y="262">membership in 1 call</text>
+  <text class="subtitle" x="620" y="282" style="text-anchor:middle">.count() / .find() answer</text>
+  <text class="subtitle" x="620" y="298" style="text-anchor:middle">"is it here?" in O(log n) —</text>
+  <text class="subtitle" x="620" y="314" style="text-anchor:middle">no loop over the bestiary.</text>
+
+  <text class="note-strong" x="380" y="430">the in-order walk Floor 9 earned from a BST — handed to you finished, plus a key→value index, for free</text>
+  <text class="subtitle" x="380" y="448">you wrote one declaration per view; the balancing and the sorting are the library's job now</text>
+</svg>
