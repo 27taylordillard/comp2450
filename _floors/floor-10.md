@@ -1,6 +1,7 @@
 ---
 title: The Hall of Names
 floor_number: Floor 10
+order: 150
 flavor_quote: "A tree you must walk. A name you need only speak. The Hall keeps every name beside its meaning, and asks for nothing but the word."
 week: 13
 zybook: "Chapter 11 (Sets and Maps) — full chapter; class focus §11.1, §11.3–11.6"

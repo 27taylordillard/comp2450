@@ -1,6 +1,7 @@
 ---
 title: The Cisterns
 floor_number: Floor 7
+order: 100
 flavor_quote: "Take your number. I will see you in order. There is no other order."
 week: 9
 zybook: "Chapter 7 (continued) — class focus §7.5–7.9 (queues)"

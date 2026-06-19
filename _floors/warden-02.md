@@ -1,6 +1,7 @@
 ---
 title: The Warden of the Middle Gates
 floor_number: "Warden · II"
+order: 110
 flavor_quote: "Four floors taught you to hold the line. The Warden asks whether the line holds when more than one enemy arrives at once."
 covers: "Floors 4 – 7 · Midterm 2"
 ---

@@ -1,6 +1,7 @@
 ---
 title: The Warden of the Foundations
 floor_number: "Warden · I"
+order: 50
 flavor_quote: "Four floors built you a hero. The Warden waits for the hero to use what was built."
 covers: "Floors 0–3 · Midterm 1"
 ---

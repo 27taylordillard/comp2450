@@ -1,6 +1,7 @@
 ---
 title: The Antechamber
 floor_number: Floor 0
+order: 10
 flavor_quote: "The gate is open. Before you descend, you must learn the names of the things that hunt in the dark."
 week: 1
 zybook: "Chapter 1 — full chapter"

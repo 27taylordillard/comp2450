@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign floors = site.floors %}
+{% assign floors = site.floors | sort: 'order' %}
 {% assign current_index = -1 %}
 {% for f in floors %}
   {% if f.url == page.url %}{% assign current_index = forloop.index0 %}{% endif %}

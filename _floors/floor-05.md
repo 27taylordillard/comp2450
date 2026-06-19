@@ -1,6 +1,7 @@
 ---
 title: The Eye of Scrying
 floor_number: Floor 5
+order: 80
 flavor_quote: "The lens does not know the shelf. The lens only knows how to move and how to stop."
 week: 7
 zybook: "Chapter 6 (continued) — class focus §6.14 (iterators)"

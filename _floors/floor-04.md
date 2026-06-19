@@ -1,6 +1,7 @@
 ---
 title: The Chain Vault
 floor_number: Floor 4
+order: 60
 flavor_quote: "The mold made a shape that fit a known size. The chain holds whatever you bring it."
 week: 5
 zybook: "Chapter 6 — full chapter; class focus §6.1–6.5"

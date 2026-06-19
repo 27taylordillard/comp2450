@@ -1,6 +1,7 @@
 ---
 title: The Hall of Echoes
 floor_number: Floor 6
+order: 90
 flavor_quote: "Push, and the hall remembers. Pop, and the hall forgets in the reverse order it learned. There is no other order."
 week: 8
 zybook: "Chapter 7 — full chapter; class focus §7.1–7.4 (stacks)"

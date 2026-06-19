@@ -1,6 +1,7 @@
 ---
 title: The Balanced Hall
 floor_number: Floor 9½
+order: 140
 flavor_quote: "A tree leans the way it was planted. It takes a hand the tree cannot feel to set the branches level again — and the line, once short, stays short."
 week: 12
 zybook: "Chapter 10 (Balanced Trees) — class focus §10.1–10.4 (AVL trees & rotations)"

@@ -1,6 +1,7 @@
 ---
 title: The Chain Vault, Deeper
 floor_number: Floor 4½
+order: 70
 flavor_quote: "A chain that runs one way is a leash. A chain that runs two ways is a record."
 week: 6
 zybook: "Chapter 6 (continued) — class focus §6.6–6.9 (doubly-linked lists)"

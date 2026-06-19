@@ -1,6 +1,7 @@
 ---
 title: The Sorting Crucible
 floor_number: Floor 2
+order: 30
 flavor_quote: "Order is not given to the world. Order is hammered into it."
 week: 3
 zybook: "Chapter 3 — full chapter"

@@ -1,6 +1,7 @@
 ---
 title: The Halving Hall
 floor_number: Floor 9
+order: 130
 flavor_quote: "Ask the tree a name. It will not search everywhere — only left, or only right, and the half it does not choose it never thinks of again."
 week: 11
 zybook: "Chapter 8 (Trees) — full chapter; class focus §8.3–8.8 (binary search trees)"

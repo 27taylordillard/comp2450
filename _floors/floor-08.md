@@ -1,6 +1,7 @@
 ---
 title: The Hall of Lineages
 floor_number: Floor 8
+order: 120
 flavor_quote: "A line remembers what came before it. A tree remembers where everything belongs."
 week: 10
 zybook: "Chapter 8 (Trees) — full chapter; class focus §8.1–8.2"

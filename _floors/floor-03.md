@@ -1,6 +1,7 @@
 ---
 title: The Forgemaster's Vault
 floor_number: Floor 3
+order: 40
 flavor_quote: "One mold. Every chest. Every monster. Every name."
 week: 4
 zybook: "Chapters 4 & 5 — both in full"

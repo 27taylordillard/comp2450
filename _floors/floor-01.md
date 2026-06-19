@@ -1,6 +1,7 @@
 ---
 title: The Scrying Well
 floor_number: Floor 1
+order: 20
 flavor_quote: "Every thing that lives in this Keep has a name. The Well will show you any of them — if you can find the name first."
 week: 2
 zybook: "Chapter 2 — full chapter"
