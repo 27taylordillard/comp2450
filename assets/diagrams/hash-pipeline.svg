@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" role="img" aria-labelledby="hp-title hp-desc">
+  <title id="hp-title">From a name to its slot — hash, mod, then straight to the bucket's chain</title>
+  <desc id="hp-desc">The three steps from a name to its slot, drawn left to right. The string 'Lich' enters a hash function box labelled multiplicative string hash, h = h times 31 plus each character, which emits a large hash code 2368194. An arrow labelled mod 32 (the modulo hash) reduces that code to a bucket index, 2. A final arrow points into bucket 2 of a vertical array of 32 buckets, where bucket 2 holds a Chain of Monster — Lich's full record sitting in a one-node linked list. The caption notes each step's ZyBook section.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .box         { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .box-src     { fill: #efe2be; stroke: #6b0f0f; stroke-width: 1.8; }
+    .box-fn      { fill: #e7efcf; stroke: #4a6b0f; stroke-width: 1.8; }
+    .box-code    { fill: #e3e7f0; stroke: #34507a; stroke-width: 1.8; }
+    .bucket      { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 1.0; }
+    .bucket-hit  { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.8; }
+    .node-outer  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-data   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 0.9; }
+    .node-next   { fill: #eacf85; stroke: #8b5a00; stroke-width: 0.9; }
+    .arrow       { stroke: #8b5a00; stroke-width: 1.8; fill: none; marker-end: url(#hpah); }
+    .arrow-red   { stroke: #6b0f0f; stroke-width: 1.8; fill: none; marker-end: url(#hpahr); }
+    .ground-line { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .step-title  { font-family: Consolas, 'Courier New', monospace; font-size: 12px; font-weight: 700; text-anchor: middle; }
+    .t-src       { fill: #6b0f0f; }
+    .t-fn        { fill: #4a6b0f; }
+    .t-code      { fill: #34507a; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .code-sm     { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; text-anchor: middle; }
+    .code-big    { font-family: Consolas, 'Courier New', monospace; font-size: 18px; fill: #34507a; font-weight: 700; text-anchor: middle; }
+    .idx         { font-family: Consolas, 'Courier New', monospace; font-size: 10px; fill: #6b5a3a; text-anchor: end; }
+    .cell-label  { font-family: Georgia, serif; font-size: 9px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
+    .tag         { font-family: Georgia, serif; font-size: 11px; fill: #8b5a00; font-weight: 700; text-anchor: middle; }
+    .sec         { font-family: Georgia, serif; font-size: 9.5px; fill: #8b5a00; font-style: italic; text-anchor: middle; letter-spacing: 0.03em; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+  </style>
+
+  <defs>
+    <marker id="hpah" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#8b5a00"/>
+    </marker>
+    <marker id="hpahr" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#6b0f0f"/>
+    </marker>
+  </defs>
+
+  <rect class="panel" x="10" y="10" width="740" height="320" rx="6"/>
+  <text class="panel-title" x="380" y="30">from a name to its niche — three computed steps</text>
+  <text class="subtitle"    x="380" y="48">you do not search for the name; you compute where it lives and go straight there</text>
+
+  <!-- ===== STEP 1: the key "Lich" ===== -->
+  <text class="step-title t-src" x="78" y="92">the key</text>
+  <rect class="box-src" x="34" y="106" width="88" height="46" rx="5"/>
+  <text class="code" x="78" y="135">"Lich"</text>
+  <text class="sec"  x="78" y="170">a name to look up</text>
+
+  <!-- arrow key -> hash fn -->
+  <path class="arrow" d="M124,129 H160"/>
+
+  <!-- ===== STEP 2: hash function ===== -->
+  <text class="step-title t-fn" x="248" y="92">hash function</text>
+  <rect class="box-fn" x="164" y="100" width="168" height="58" rx="5"/>
+  <text class="code-sm" x="248" y="122">multiplicative string hash</text>
+  <text class="code"    x="248" y="144">h = h*31 + c</text>
+  <text class="sec"  x="248" y="170">mix every character · §12.5</text>
+
+  <!-- arrow hash fn -> hash code -->
+  <path class="arrow" d="M334,129 H372"/>
+  <text class="tag" x="353" y="119">emits</text>
+
+  <!-- ===== STEP 3: hash code ===== -->
+  <text class="step-title t-code" x="426" y="92">hash code</text>
+  <rect class="box-code" x="376" y="106" width="100" height="46" rx="5"/>
+  <text class="code-big" x="426" y="137">2368194</text>
+  <text class="sec"  x="426" y="170">one big integer</text>
+
+  <!-- arrow hash code -> bucket index, labelled mod 32 -->
+  <path class="arrow" d="M478,129 H540"/>
+  <text class="tag" x="509" y="118">mod 32</text>
+  <text class="sec" x="509" y="170">the modulo hash · §12.5</text>
+
+  <!-- ===== STEP 4: bucket index ===== -->
+  <text class="step-title t-src" x="582" y="92">bucket index</text>
+  <rect class="box-src" x="552" y="106" width="60" height="46" rx="5"/>
+  <text class="code-big" x="582" y="137" style="fill:#6b0f0f">2</text>
+
+  <!-- arrow bucket index -> into the array at bucket 2 -->
+  <path class="arrow-red" d="M612,129 C648,129 648,150 670,150"/>
+
+  <!-- ===== STEP 5: vertical array of 32 buckets ===== -->
+  <text class="step-title t-src" x="700" y="92">32 buckets</text>
+
+  <!-- bucket 0 -->
+  <rect class="bucket" x="668" y="100" width="64" height="20"/>
+  <text class="idx" x="664" y="114">0</text>
+  <!-- bucket 1 -->
+  <rect class="bucket" x="668" y="120" width="64" height="20"/>
+  <text class="idx" x="664" y="134">1</text>
+  <!-- bucket 2 (HIT) -->
+  <rect class="bucket-hit" x="668" y="140" width="64" height="20"/>
+  <text class="idx" x="664" y="154" style="fill:#6b0f0f;font-weight:700">2</text>
+  <!-- bucket 3 -->
+  <rect class="bucket" x="668" y="160" width="64" height="20"/>
+  <text class="idx" x="664" y="174">3</text>
+  <!-- bucket 4 -->
+  <rect class="bucket" x="668" y="180" width="64" height="20"/>
+  <text class="idx" x="664" y="194">4</text>
+  <!-- ellipsis -->
+  <text class="code" x="700" y="214" style="fill:#6b5a3a">&#8942;</text>
+  <!-- bucket 31 -->
+  <rect class="bucket" x="668" y="222" width="64" height="20"/>
+  <text class="idx" x="664" y="236">31</text>
+
+  <!-- ===== bucket 2 holds a one-node Chain<Monster> ===== -->
+  <text class="step-title t-src" x="300" y="240">bucket 2 is one of your <tspan style="font-family:Consolas,'Courier New',monospace">Chain&lt;Monster&gt;</tspan> lists</text>
+  <text class="sec" x="300" y="256">class material — the bucket IS the linked list you built on Floor 4</text>
+
+  <!-- arrow from bucket 2 down to the chain node -->
+  <path class="arrow-red" d="M700,160 C700,200 470,210 410,278"/>
+
+  <!-- one-node chain: data | next -> ground -->
+  <rect class="node-outer" x="300" y="278" width="118" height="40" rx="3"/>
+  <rect class="node-data"  x="300" y="278" width="80"  height="40"/>
+  <rect class="node-next"  x="380" y="278" width="38"  height="40"/>
+  <text class="cell-label" x="340" y="289">data</text>
+  <text class="cell-label" x="399" y="289">next</text>
+  <text class="code"       x="340" y="304" style="font-size:12px">Lich · holy</text>
+
+  <!-- next -> ground (nullptr) just to the right of the node -->
+  <line class="ground-line" x1="430" y1="296" x2="450" y2="296"/>
+  <line class="ground-line" x1="433" y1="301" x2="447" y2="301"/>
+  <line class="ground-line" x1="436" y1="306" x2="444" y2="306"/>
+  <path class="arrow-red" d="M399,298 H424" />
+
+  <!-- bottom note -->
+  <text class="note" x="380" y="324">average O(1): no comparisons on the way in — the index is computed, not searched</text>
+</svg>

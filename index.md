@@ -44,7 +44,7 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 | 11 | 9  | [The Halving Hall]({{ site.baseurl }}/floors/floor-09/)         | Binary search trees — fast lookup, the free sort |
 | 12 | 9½ | [The Balanced Hall]({{ site.baseurl }}/floors/floor-09h/)     | Self-balancing trees — diagnose the lean, rotate, then reach for std::set |
 | 13 | 10 | [The Hall of Names]({{ site.baseurl }}/floors/floor-10/)         | Sets & maps |
-| 14 | 11 | The Hall of Whispers                          | Hash tables — O(1) lookup |
+| 14 | 11 | [The Hall of Whispers]({{ site.baseurl }}/floors/floor-11/)     | Hash tables — O(1) lookup |
 | 15 | 12 | The Labyrinth / Final Descent                 | Graphs, project capstone, final prep |
 
 ## The Rules of the Dungeon

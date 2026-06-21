@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" role="img" aria-labelledby="hr-title hr-desc">
+  <title id="hr-title">Rehash by doubling — every item recomputes its home against the new bucket count</title>
+  <desc id="hr-desc">A before-and-after of a rehash. On the left, a four-bucket table whose buckets are getting full: bucket 1 holds a three-node chain, bucket 2 holds a two-node chain, with a load factor label reading items over buckets above the threshold of 0.75. A wide arrow labelled rehash: double the buckets and re-file every item points right. On the right, an eight-bucket table where the same items have been spread out — each item recomputed its home as hash code mod 8 instead of mod 4, so the long chains have broken up into mostly one-node buckets, and the load factor label now reads well under 0.75. A caption stresses that every item's bucket is recomputed against the NEW bucket count, because mod 8 sends a name to a different slot than mod 4.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .bucket      { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 1.0; }
+    .bucket-full { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.6; }
+    .node-outer  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.3; }
+    .node-data   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 0.8; }
+    .node-next   { fill: #eacf85; stroke: #8b5a00; stroke-width: 0.8; }
+    .pointer-dot { fill: #6b0f0f; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.5; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .ground-line { stroke: #6b0f0f; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .bigarrow    { fill: #e7efcf; stroke: #4a6b0f; stroke-width: 1.8; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .side-title  { font-family: Georgia, serif; font-size: 11px; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.08em; }
+    .t-before    { fill: #6b0f0f; }
+    .t-after     { fill: #4a6b0f; }
+    .idx         { font-family: Consolas, 'Courier New', monospace; font-size: 10px; fill: #6b5a3a; text-anchor: middle; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .cell-label  { font-family: Georgia, serif; font-size: 8px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
+    .lf          { font-family: Consolas, 'Courier New', monospace; font-size: 12px; font-weight: 700; text-anchor: middle; }
+    .lf-bad      { fill: #6b0f0f; }
+    .lf-good     { fill: #4a6b0f; }
+    .lf-note     { font-family: Georgia, serif; font-size: 10px; font-style: italic; text-anchor: middle; }
+    .arrow-text  { font-family: Georgia, serif; font-size: 11px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .arrow-sub   { font-family: Consolas, 'Courier New', monospace; font-size: 10px; fill: #4a6b0f; text-anchor: middle; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .note-strong { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+  </style>
+
+  <rect class="panel" x="10" y="10" width="800" height="400" rx="6"/>
+  <text class="panel-title" x="410" y="30">rehash: double the buckets, re-file every item against the NEW count</text>
+  <text class="subtitle"    x="410" y="48">a bigger array sends a name to a different slot — so the long chains break apart</text>
+
+  <!-- =================== BEFORE: 4-bucket table =================== -->
+  <text class="side-title t-before" x="150" y="78">before · 4 buckets</text>
+
+  <!-- bucket 0 (empty) -->
+  <text class="idx" x="44" y="112">0</text>
+  <rect class="bucket" x="56" y="100" width="88" height="24"/>
+  <!-- bucket 1 (three-node chain) -->
+  <text class="idx" x="44" y="150">1</text>
+  <rect class="bucket-full" x="56" y="138" width="88" height="24"/>
+  <!-- bucket 2 (two-node chain) -->
+  <text class="idx" x="44" y="222">2</text>
+  <rect class="bucket-full" x="56" y="210" width="88" height="24"/>
+  <!-- bucket 3 (empty) -->
+  <text class="idx" x="44" y="284">3</text>
+  <rect class="bucket" x="56" y="272" width="88" height="24"/>
+
+  <!-- bucket 1 chain: Goblin -> Ratking -> Frostmaw -->
+  <line class="arrow-line" x1="144" y1="150" x2="160" y2="150"/>
+  <polygon class="arrow-fill" points="160,146 168,150 160,154"/>
+  <g>
+    <rect class="node-outer" x="170" y="136" width="76" height="28" rx="2"/>
+    <rect class="node-data"  x="170" y="136" width="52" height="28"/>
+    <rect class="node-next"  x="222" y="136" width="24" height="28"/>
+    <text class="code" x="196" y="154" style="font-size:10px">Goblin</text>
+    <circle class="pointer-dot" cx="234" cy="150" r="2.6"/>
+  </g>
+  <line class="arrow-line" x1="234" y1="150" x2="252" y2="150"/>
+  <polygon class="arrow-fill" points="252,146 260,150 252,154"/>
+  <g>
+    <rect class="node-outer" x="262" y="136" width="76" height="28" rx="2"/>
+    <rect class="node-data"  x="262" y="136" width="52" height="28"/>
+    <rect class="node-next"  x="314" y="136" width="24" height="28"/>
+    <text class="code" x="288" y="154" style="font-size:10px">Ratking</text>
+    <circle class="pointer-dot" cx="326" cy="150" r="2.6"/>
+  </g>
+  <line class="arrow-line" x1="326" y1="150" x2="344" y2="150"/>
+  <polygon class="arrow-fill" points="344,146 352,150 344,154"/>
+  <g>
+    <rect class="node-outer" x="354" y="136" width="80" height="28" rx="2"/>
+    <rect class="node-data"  x="354" y="136" width="56" height="28"/>
+    <rect class="node-next"  x="410" y="136" width="24" height="28"/>
+    <text class="code" x="382" y="154" style="font-size:10px">Frostmaw</text>
+    <circle class="pointer-dot" cx="422" cy="150" r="2.6"/>
+  </g>
+  <line class="arrow-line" x1="422" y1="150" x2="438" y2="150"/>
+  <polygon class="arrow-fill" points="438,146 446,150 438,154"/>
+  <line class="ground-line" x1="450" y1="143" x2="450" y2="157"/>
+  <line class="ground-line" x1="454" y1="146" x2="454" y2="154"/>
+  <line class="ground-line" x1="458" y1="148" x2="458" y2="152"/>
+
+  <!-- bucket 2 chain: Wraith -> Lich -->
+  <line class="arrow-line" x1="144" y1="222" x2="160" y2="222"/>
+  <polygon class="arrow-fill" points="160,218 168,222 160,226"/>
+  <g>
+    <rect class="node-outer" x="170" y="208" width="76" height="28" rx="2"/>
+    <rect class="node-data"  x="170" y="208" width="52" height="28"/>
+    <rect class="node-next"  x="222" y="208" width="24" height="28"/>
+    <text class="code" x="196" y="226" style="font-size:10px">Wraith</text>
+    <circle class="pointer-dot" cx="234" cy="222" r="2.6"/>
+  </g>
+  <line class="arrow-line" x1="234" y1="222" x2="252" y2="222"/>
+  <polygon class="arrow-fill" points="252,218 260,222 252,226"/>
+  <g>
+    <rect class="node-outer" x="262" y="208" width="76" height="28" rx="2"/>
+    <rect class="node-data"  x="262" y="208" width="52" height="28"/>
+    <rect class="node-next"  x="314" y="208" width="24" height="28"/>
+    <text class="code" x="288" y="226" style="font-size:10px">Lich</text>
+    <circle class="pointer-dot" cx="326" cy="222" r="2.6"/>
+  </g>
+  <line class="arrow-line" x1="326" y1="222" x2="344" y2="222"/>
+  <polygon class="arrow-fill" points="344,218 352,222 344,226"/>
+  <line class="ground-line" x1="356" y1="215" x2="356" y2="229"/>
+  <line class="ground-line" x1="360" y1="218" x2="360" y2="226"/>
+  <line class="ground-line" x1="364" y1="220" x2="364" y2="224"/>
+
+  <!-- before load factor -->
+  <text class="lf lf-bad" x="150" y="330">load factor = 5 / 4 = 1.25</text>
+  <text class="lf-note lf-bad" x="150" y="346">above the 0.75 threshold — chains growing</text>
+
+  <!-- =================== WIDE ARROW (rehash) =================== -->
+  <!-- block arrow pointing right -->
+  <path class="bigarrow" d="M474,196 H540 V184 L568,210 L540,236 V224 H474 Z"/>
+  <text class="arrow-text" x="556" y="150">rehash</text>
+  <text class="arrow-text" x="556" y="166">double the buckets</text>
+  <text class="arrow-text" x="556" y="182">&amp; re-file every item</text>
+  <text class="arrow-sub"  x="556" y="262">hash % 8</text>
+  <text class="arrow-sub"  x="556" y="276" style="fill:#6b0f0f">not  % 4</text>
+
+  <!-- =================== AFTER: 8-bucket table =================== -->
+  <text class="side-title t-after" x="690" y="78">after · 8 buckets</text>
+
+  <!-- helper: index + bucket + (optional) one node, vertically stacked -->
+  <!-- bucket 0 empty -->
+  <text class="idx" x="598" y="100">0</text>
+  <rect class="bucket" x="610" y="90" width="60" height="20"/>
+  <!-- bucket 1: Goblin -->
+  <text class="idx" x="598" y="124">1</text>
+  <rect class="bucket-full" x="610" y="114" width="60" height="20"/>
+  <line class="arrow-line" x1="670" y1="124" x2="684" y2="124"/>
+  <polygon class="arrow-fill" points="684,120 690,124 684,128"/>
+  <rect class="node-outer" x="692" y="113" width="64" height="22" rx="2"/>
+  <rect class="node-data"  x="692" y="113" width="44" height="22"/>
+  <rect class="node-next"  x="736" y="113" width="20" height="22"/>
+  <text class="code" x="714" y="128" style="font-size:9.5px">Goblin</text>
+  <line class="ground-line" x1="760" y1="118" x2="760" y2="130"/>
+  <line class="ground-line" x1="763" y1="120" x2="763" y2="128"/>
+  <line class="ground-line" x1="766" y1="122" x2="766" y2="126"/>
+  <line class="arrow-line" x1="746" y1="124" x2="756" y2="124"/>
+  <polygon class="arrow-fill" points="756,120 762,124 756,128"/>
+
+  <!-- bucket 2: Wraith -->
+  <text class="idx" x="598" y="148">2</text>
+  <rect class="bucket-full" x="610" y="138" width="60" height="20"/>
+  <line class="arrow-line" x1="670" y1="148" x2="684" y2="148"/>
+  <polygon class="arrow-fill" points="684,144 690,148 684,152"/>
+  <rect class="node-outer" x="692" y="137" width="64" height="22" rx="2"/>
+  <rect class="node-data"  x="692" y="137" width="44" height="22"/>
+  <rect class="node-next"  x="736" y="137" width="20" height="22"/>
+  <text class="code" x="714" y="152" style="font-size:9.5px">Wraith</text>
+  <line class="ground-line" x1="760" y1="142" x2="760" y2="154"/>
+  <line class="ground-line" x1="763" y1="144" x2="763" y2="152"/>
+  <line class="ground-line" x1="766" y1="146" x2="766" y2="150"/>
+  <line class="arrow-line" x1="746" y1="148" x2="756" y2="148"/>
+  <polygon class="arrow-fill" points="756,144 762,148 756,152"/>
+
+  <!-- bucket 3 empty -->
+  <text class="idx" x="598" y="172">3</text>
+  <rect class="bucket" x="610" y="162" width="60" height="20"/>
+  <!-- bucket 4: Ratking -->
+  <text class="idx" x="598" y="196">4</text>
+  <rect class="bucket-full" x="610" y="186" width="60" height="20"/>
+  <line class="arrow-line" x1="670" y1="196" x2="684" y2="196"/>
+  <polygon class="arrow-fill" points="684,192 690,196 684,200"/>
+  <rect class="node-outer" x="692" y="185" width="64" height="22" rx="2"/>
+  <rect class="node-data"  x="692" y="185" width="44" height="22"/>
+  <rect class="node-next"  x="736" y="185" width="20" height="22"/>
+  <text class="code" x="714" y="200" style="font-size:9.5px">Ratking</text>
+  <line class="ground-line" x1="760" y1="190" x2="760" y2="202"/>
+  <line class="ground-line" x1="763" y1="192" x2="763" y2="200"/>
+  <line class="ground-line" x1="766" y1="194" x2="766" y2="198"/>
+  <line class="arrow-line" x1="746" y1="196" x2="756" y2="196"/>
+  <polygon class="arrow-fill" points="756,192 762,196 756,200"/>
+
+  <!-- bucket 5 empty -->
+  <text class="idx" x="598" y="220">5</text>
+  <rect class="bucket" x="610" y="210" width="60" height="20"/>
+  <!-- bucket 6: Frostmaw -->
+  <text class="idx" x="598" y="244">6</text>
+  <rect class="bucket-full" x="610" y="234" width="60" height="20"/>
+  <line class="arrow-line" x1="670" y1="244" x2="684" y2="244"/>
+  <polygon class="arrow-fill" points="684,240 690,244 684,248"/>
+  <rect class="node-outer" x="692" y="233" width="64" height="22" rx="2"/>
+  <rect class="node-data"  x="692" y="233" width="44" height="22"/>
+  <rect class="node-next"  x="736" y="233" width="20" height="22"/>
+  <text class="code" x="714" y="248" style="font-size:9px">Frostmaw</text>
+  <line class="ground-line" x1="760" y1="238" x2="760" y2="250"/>
+  <line class="ground-line" x1="763" y1="240" x2="763" y2="248"/>
+  <line class="ground-line" x1="766" y1="242" x2="766" y2="246"/>
+  <line class="arrow-line" x1="746" y1="244" x2="756" y2="244"/>
+  <polygon class="arrow-fill" points="756,240 762,244 756,248"/>
+
+  <!-- bucket 7: Lich -->
+  <text class="idx" x="598" y="268">7</text>
+  <rect class="bucket-full" x="610" y="258" width="60" height="20"/>
+  <line class="arrow-line" x1="670" y1="268" x2="684" y2="268"/>
+  <polygon class="arrow-fill" points="684,264 690,268 684,272"/>
+  <rect class="node-outer" x="692" y="257" width="64" height="22" rx="2"/>
+  <rect class="node-data"  x="692" y="257" width="44" height="22"/>
+  <rect class="node-next"  x="736" y="257" width="20" height="22"/>
+  <text class="code" x="714" y="272" style="font-size:9.5px">Lich</text>
+  <line class="ground-line" x1="760" y1="262" x2="760" y2="274"/>
+  <line class="ground-line" x1="763" y1="264" x2="763" y2="272"/>
+  <line class="ground-line" x1="766" y1="266" x2="766" y2="270"/>
+  <line class="arrow-line" x1="746" y1="268" x2="756" y2="268"/>
+  <polygon class="arrow-fill" points="756,264 762,268 756,272"/>
+
+  <!-- after load factor -->
+  <text class="lf lf-good" x="690" y="330">load factor = 5 / 8 = 0.625</text>
+  <text class="lf-note lf-good" x="690" y="346">well under 0.75 — mostly one-node buckets</text>
+
+  <!-- =================== bottom captions =================== -->
+  <text class="note-strong" x="410" y="382">every item recomputes its home against the NEW bucket count — <tspan style="font-family:Consolas,'Courier New',monospace">hash % 8</tspan> sends a name to a different slot than <tspan style="font-family:Consolas,'Courier New',monospace">hash % 4</tspan></text>
+  <text class="note" x="410" y="400">a rehash that copied items into the same index would be silently wrong (§12.4)</text>
+</svg>

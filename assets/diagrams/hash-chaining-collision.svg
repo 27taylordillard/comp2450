@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 440" role="img" aria-labelledby="hc-title hc-desc">
+  <title id="hc-title">A collision absorbed by chaining — and why find must compare the name</title>
+  <desc id="hc-desc">A small hash table of eight buckets drawn as a vertical array, indices 0 through 7. Most buckets are empty. Bucket 3 holds a Chain with one node: Skeleton. Bucket 6 holds a Chain with two nodes linked head to tail: Goblin then Wraith — two different names that hashed to the same bucket, a collision, absorbed by the bucket's linked list. An inset shows that to find Wraith the table computes bucket 6 once, then scans that two-node chain comparing names, returning Wraith on the second node. A separate caption notes that returning the first item in the bucket — Goblin — would be the bug.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .inset       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 1.2; opacity: 0.55; }
+    .arr-frame   { fill: none; stroke: #8b5a00; stroke-width: 1.4; }
+    .bucket      { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 1.0; }
+    .bucket-hit  { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.8; }
+    .node-outer  { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-data   { fill: #fdf4d3; stroke: #8b5a00; stroke-width: 0.9; }
+    .node-next   { fill: #eacf85; stroke: #8b5a00; stroke-width: 0.9; }
+    .node-match  { fill: #f2e4bc; stroke: #4a6b0f; stroke-width: 2.0; }
+    .pointer-dot { fill: #6b0f0f; }
+    .arrow-line  { stroke: #6b0f0f; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .ground-line { stroke: #6b0f0f; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .inset-title { font-family: Georgia, serif; font-size: 11px; fill: #34507a; font-weight: 700; text-anchor: start; text-transform: uppercase; letter-spacing: 0.08em; }
+    .idx         { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #6b5a3a; text-anchor: middle; }
+    .arr-label   { font-family: Georgia, serif; font-size: 10px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
+    .code        { font-family: Consolas, 'Courier New', monospace; font-size: 13px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .code-sm     { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; text-anchor: start; }
+    .cell-label  { font-family: Georgia, serif; font-size: 9px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
+    .tag-red     { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .tag-grn     { font-family: Georgia, serif; font-size: 11px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .bug         { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+  </style>
+
+  <rect class="panel" x="10" y="10" width="640" height="420" rx="6"/>
+  <text class="panel-title" x="330" y="30">a collision, absorbed by the bucket's chain</text>
+  <text class="subtitle"    x="330" y="48">two names that hashed alike share one bucket — so the bucket holds a list of both</text>
+
+  <!-- ===== vertical array of 8 buckets (left) ===== -->
+  <text class="arr-label" x="92" y="70">table of 8 buckets</text>
+  <!-- index column + bucket cells -->
+  <!-- bucket 0 -->
+  <text class="idx" x="56" y="92">0</text>
+  <rect class="bucket" x="70" y="80" width="100" height="26"/>
+  <!-- bucket 1 -->
+  <text class="idx" x="56" y="120">1</text>
+  <rect class="bucket" x="70" y="108" width="100" height="26"/>
+  <!-- bucket 2 -->
+  <text class="idx" x="56" y="148">2</text>
+  <rect class="bucket" x="70" y="136" width="100" height="26"/>
+  <!-- bucket 3 (one node) -->
+  <text class="idx" x="56" y="176">3</text>
+  <rect class="bucket-hit" x="70" y="164" width="100" height="26"/>
+  <!-- bucket 4 -->
+  <text class="idx" x="56" y="204">4</text>
+  <rect class="bucket" x="70" y="192" width="100" height="26"/>
+  <!-- bucket 5 -->
+  <text class="idx" x="56" y="232">5</text>
+  <rect class="bucket" x="70" y="220" width="100" height="26"/>
+  <!-- bucket 6 (two nodes - collision) -->
+  <text class="idx" x="56" y="260">6</text>
+  <rect class="bucket-hit" x="70" y="248" width="100" height="26"/>
+  <!-- bucket 7 -->
+  <text class="idx" x="56" y="288">7</text>
+  <rect class="bucket" x="70" y="276" width="100" height="26"/>
+
+  <text class="arr-label" x="120" y="93" style="fill:#a08a5a">empty</text>
+  <text class="arr-label" x="120" y="121" style="fill:#a08a5a">empty</text>
+  <text class="arr-label" x="120" y="149" style="fill:#a08a5a">empty</text>
+  <text class="code" x="120" y="183" style="font-size:11px;fill:#6b0f0f">chain</text>
+  <text class="arr-label" x="120" y="205" style="fill:#a08a5a">empty</text>
+  <text class="arr-label" x="120" y="233" style="fill:#a08a5a">empty</text>
+  <text class="code" x="120" y="267" style="font-size:11px;fill:#6b0f0f">chain</text>
+  <text class="arr-label" x="120" y="289" style="fill:#a08a5a">empty</text>
+
+  <!-- ===== bucket 3: one-node chain (Skeleton) ===== -->
+  <!-- arrow from bucket 3 to its node -->
+  <line class="arrow-line" x1="170" y1="177" x2="214" y2="177"/>
+  <polygon class="arrow-fill" points="214,172 224,177 214,182"/>
+  <rect class="node-outer" x="226" y="158" width="118" height="38" rx="3"/>
+  <rect class="node-data"  x="226" y="158" width="80"  height="38"/>
+  <rect class="node-next"  x="306" y="158" width="38"  height="38"/>
+  <text class="cell-label" x="266" y="169">data</text>
+  <text class="cell-label" x="325" y="169">next</text>
+  <text class="code"       x="266" y="183" style="font-size:12px">Skeleton</text>
+  <circle class="pointer-dot" cx="325" cy="180" r="3.2"/>
+  <!-- next -> ground -->
+  <line class="arrow-line" x1="325" y1="180" x2="356" y2="180"/>
+  <polygon class="arrow-fill" points="356,175 366,180 356,185"/>
+  <line class="ground-line" x1="370" y1="172" x2="370" y2="188"/>
+  <line class="ground-line" x1="375" y1="175" x2="375" y2="185"/>
+  <line class="ground-line" x1="380" y1="178" x2="380" y2="182"/>
+
+  <!-- ===== bucket 6: two-node chain (Goblin -> Wraith) the collision ===== -->
+  <!-- arrow from bucket 6 to first node -->
+  <line class="arrow-line" x1="170" y1="261" x2="214" y2="261"/>
+  <polygon class="arrow-fill" points="214,256 224,261 214,266"/>
+  <!-- node A: Goblin -->
+  <rect class="node-outer" x="226" y="242" width="118" height="38" rx="3"/>
+  <rect class="node-data"  x="226" y="242" width="80"  height="38"/>
+  <rect class="node-next"  x="306" y="242" width="38"  height="38"/>
+  <text class="cell-label" x="266" y="253">data</text>
+  <text class="cell-label" x="325" y="253">next</text>
+  <text class="code"       x="266" y="267" style="font-size:12px">Goblin</text>
+  <circle class="pointer-dot" cx="325" cy="264" r="3.2"/>
+  <!-- arrow A.next -> node B -->
+  <line class="arrow-line" x1="325" y1="264" x2="404" y2="264"/>
+  <polygon class="arrow-fill" points="404,259 414,264 404,269"/>
+  <!-- node B: Wraith -->
+  <rect class="node-outer" x="416" y="242" width="118" height="38" rx="3"/>
+  <rect class="node-data"  x="416" y="242" width="80"  height="38"/>
+  <rect class="node-next"  x="496" y="242" width="38"  height="38"/>
+  <text class="cell-label" x="456" y="253">data</text>
+  <text class="cell-label" x="515" y="253">next</text>
+  <text class="code"       x="456" y="267" style="font-size:12px">Wraith</text>
+  <circle class="pointer-dot" cx="515" cy="264" r="3.2"/>
+  <!-- B.next -> ground -->
+  <line class="arrow-line" x1="515" y1="264" x2="546" y2="264"/>
+  <polygon class="arrow-fill" points="546,259 556,264 546,269"/>
+  <line class="ground-line" x1="560" y1="256" x2="560" y2="272"/>
+  <line class="ground-line" x1="565" y1="259" x2="565" y2="269"/>
+  <line class="ground-line" x1="570" y1="262" x2="570" y2="266"/>
+
+  <!-- collision callout above bucket 6's chain -->
+  <text class="tag-red" x="370" y="232">a collision — both hashed to bucket 6, the list absorbs it</text>
+
+  <!-- ===== inset: find("Wraith") ===== -->
+  <rect class="inset" x="40" y="318" width="580" height="78" rx="5"/>
+  <rect class="arr-frame" x="40" y="318" width="580" height="78" rx="5"/>
+  <text class="inset-title" x="54" y="338">find("Wraith")</text>
+
+  <!-- step 1 -->
+  <text class="code-sm" x="54" y="360"><tspan class="tag-grn" style="font-size:12px">1.</tspan>  bucket = hash("Wraith") % 8  =  6     <tspan style="fill:#6b5a3a">— computed once, no scan to get here</tspan></text>
+  <!-- step 2 -->
+  <text class="code-sm" x="54" y="380"><tspan class="tag-grn" style="font-size:12px">2.</tspan>  scan bucket 6, <tspan style="font-weight:700">comparing the name</tspan>:  Goblin <tspan style="fill:#6b0f0f">&#8800;</tspan> Wraith  &#8594;  Wraith <tspan style="fill:#4a6b0f">=</tspan> Wraith  &#8594;  <tspan class="tag-grn" style="font-weight:700">return node 2</tspan></text>
+
+  <!-- bug callout -->
+  <text class="bug" x="330" y="416">returning the first item it sees — Goblin — would be the bug; find must compare the name, not just the bucket</text>
+</svg>
