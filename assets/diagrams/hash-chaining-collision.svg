@@ -25,7 +25,7 @@
     .code-sm     { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; text-anchor: start; }
     .cell-label  { font-family: Georgia, serif; font-size: 9px; fill: #8b5a00; font-style: italic; text-anchor: middle; }
     .tag-red     { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
-    .tag-grn     { font-family: Georgia, serif; font-size: 11px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .tag-grn     { font-family: Georgia, serif; font-size: 11px; fill: #4a6b0f; font-weight: 700; }
     .note        { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
     .bug         { font-family: Georgia, serif; font-size: 11px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
   </style>

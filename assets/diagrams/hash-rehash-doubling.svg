@@ -118,11 +118,11 @@
   <!-- =================== WIDE ARROW (rehash) =================== -->
   <!-- block arrow pointing right -->
   <path class="bigarrow" d="M474,196 H540 V184 L568,210 L540,236 V224 H474 Z"/>
-  <text class="arrow-text" x="556" y="150">rehash</text>
-  <text class="arrow-text" x="556" y="166">double the buckets</text>
-  <text class="arrow-text" x="556" y="182">&amp; re-file every item</text>
-  <text class="arrow-sub"  x="556" y="262">hash % 8</text>
-  <text class="arrow-sub"  x="556" y="276" style="fill:#6b0f0f">not  % 4</text>
+  <text class="arrow-text" x="505" y="150">rehash</text>
+  <text class="arrow-text" x="505" y="166">double the buckets</text>
+  <text class="arrow-text" x="505" y="182">&amp; re-file every item</text>
+  <text class="arrow-sub"  x="505" y="262">hash % 8</text>
+  <text class="arrow-sub"  x="505" y="276" style="fill:#6b0f0f">not  % 4</text>
 
   <!-- =================== AFTER: 8-bucket table =================== -->
   <text class="side-title t-after" x="690" y="78">after · 8 buckets</text>

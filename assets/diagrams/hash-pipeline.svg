@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" role="img" aria-labelledby="hp-title hp-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 358" role="img" aria-labelledby="hp-title hp-desc">
   <title id="hp-title">From a name to its slot — hash, mod, then straight to the bucket's chain</title>
   <desc id="hp-desc">The three steps from a name to its slot, drawn left to right. The string 'Lich' enters a hash function box labelled multiplicative string hash, h = h times 31 plus each character, which emits a large hash code 2368194. An arrow labelled mod 32 (the modulo hash) reduces that code to a bucket index, 2. A final arrow points into bucket 2 of a vertical array of 32 buckets, where bucket 2 holds a Chain of Monster — Lich's full record sitting in a one-node linked list. The caption notes each step's ZyBook section.</desc>
   <style>
@@ -41,7 +41,7 @@
     </marker>
   </defs>
 
-  <rect class="panel" x="10" y="10" width="740" height="320" rx="6"/>
+  <rect class="panel" x="10" y="10" width="740" height="338" rx="6"/>
   <text class="panel-title" x="380" y="30">from a name to its niche — three computed steps</text>
   <text class="subtitle"    x="380" y="48">you do not search for the name; you compute where it lives and go straight there</text>
 
@@ -69,7 +69,6 @@
   <text class="step-title t-code" x="426" y="92">hash code</text>
   <rect class="box-code" x="376" y="106" width="100" height="46" rx="5"/>
   <text class="code-big" x="426" y="137">2368194</text>
-  <text class="sec"  x="426" y="170">one big integer</text>
 
   <!-- arrow hash code -> bucket index, labelled mod 32 -->
   <path class="arrow" d="M478,129 H540"/>
@@ -113,7 +112,7 @@
   <text class="sec" x="300" y="256">class material — the bucket IS the linked list you built on Floor 4</text>
 
   <!-- arrow from bucket 2 down to the chain node -->
-  <path class="arrow-red" d="M700,160 C700,200 470,210 410,278"/>
+  <path class="arrow-red" d="M700,160 C560,180 530,250 410,278"/>
 
   <!-- one-node chain: data | next -> ground -->
   <rect class="node-outer" x="300" y="278" width="118" height="40" rx="3"/>
@@ -130,5 +129,5 @@
   <path class="arrow-red" d="M399,298 H424" />
 
   <!-- bottom note -->
-  <text class="note" x="380" y="324">average O(1): no comparisons on the way in — the index is computed, not searched</text>
+  <text class="note" x="380" y="341">average O(1): no comparisons on the way in — the index is computed, not searched</text>
 </svg>
