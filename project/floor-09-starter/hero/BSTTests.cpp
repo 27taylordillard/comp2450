@@ -35,13 +35,15 @@ bool sameVec(const std::vector<int>& a, const std::vector<int>& b) {
     return a == b;
 }
 
-// Build the fixed sample tree. Returns by value; BST<T>'s deep-copy ctor
-// (your Wednesday work) makes that safe once written — until then the copy
-// is empty and the later phases FAIL rather than crash.
-BST<int> buildSample() {
-    BST<int> t;
+// Fill the caller's tree with the fixed sample IN PLACE. Deliberately NOT a
+// by-value `BST<int> buildSample()`: returning a BST by value invokes the
+// copy ctor -> clone(), which is stubbed until Wednesday, so on any compiler
+// that does not elide the copy (notably MSVC /Od Debug, which skips NRVO) the
+// sample would come back EMPTY and fail insert/find for the wrong reason.
+// Filling in place keeps phases 2-5 and 7 dependent only on the method each
+// one tests. Phase 6 exercises clone() explicitly via a real copy.
+void fillSample(BST<int>& t) {
     for (int v : {5, 3, 8, 2, 4, 7, 9}) t.insert(v);
-    return t;
 }
 
 }  // anonymous namespace
@@ -60,7 +62,8 @@ bool runBSTSelfTest() {
 
     // --- Phase 2: insert built the sorted structure ---
     {
-        BST<int> t = buildSample();
+        BST<int> t;
+        fillSample(t);
         bool ok = (!t.empty() && t.root() != nullptr);
         if (ok) ok = (t.root()->data == 5 && t.size() == 7);
         result("insert: root==5 and size==7 over the sample", ok,
@@ -70,7 +73,8 @@ bool runBSTSelfTest() {
 
     // --- Phase 3: find goes one way (contains hits and misses) ---
     {
-        BST<int> t = buildSample();
+        BST<int> t;
+        fillSample(t);
         const bool ok = (t.contains(7) && t.contains(2) && !t.contains(6) && !t.contains(404));
         result("contains: 7 and 2 present, 6 and 404 absent", ok,
                "findFrom must recurse LEFT when value<data, RIGHT when value>data, and stop on equal");
@@ -79,7 +83,8 @@ bool runBSTSelfTest() {
 
     // --- Phase 4: in-order traversal emerges sorted (the free sort) ---
     {
-        BST<int> t = buildSample();
+        BST<int> t;
+        fillSample(t);
         const std::vector<int> expected = {2, 3, 4, 5, 7, 8, 9};
         const bool ok = sameVec(t.inOrder(), expected);
         result("inOrder == {2,3,4,5,7,8,9} (ascending)", ok,
@@ -100,7 +105,8 @@ bool runBSTSelfTest() {
 
     // --- Phase 6: deep copy is independent (Rule of Three) ---
     {
-        BST<int> original = buildSample();
+        BST<int> original;
+        fillSample(original);
         BST<int> copy = original;          // copy ctor -> your clone()
         original.insert(99);               // mutate ONLY the original
         const std::vector<int> expected = {2, 3, 4, 5, 7, 8, 9};
@@ -113,7 +119,8 @@ bool runBSTSelfTest() {
 
     // --- Phase 7: remove handles leaf / one-child / two-children ---
     {
-        BST<int> t = buildSample();
+        BST<int> t;
+        fillSample(t);
         bool ok = !t.remove(404);                      // absent -> false, no change
         ok = ok && t.remove(2)                         // leaf
                 && sameVec(t.inOrder(), {3, 4, 5, 7, 8, 9});
