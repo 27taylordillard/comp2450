@@ -100,9 +100,9 @@
 
   <!-- refused re-entry Skel->En -->
   <path class="skip-arrow" d="M598,238 C588,214 572,190 552,162"/>
-  <text class="skip-tag" x="588" y="200">already</text>
-  <text class="skip-tag" x="588" y="212">visited —</text>
-  <text class="skip-tag" x="588" y="224">skip</text>
+  <text class="skip-tag" x="638" y="192">already</text>
+  <text class="skip-tag" x="638" y="204">visited —</text>
+  <text class="skip-tag" x="638" y="216">skip</text>
 
   <!-- nodes (checked off green) -->
   <circle class="node-done" cx="540" cy="150" r="17"/><text class="node-label" x="540" y="139" style="font-size:8.5px">Entr-</text><text class="node-label" x="540" y="150" style="font-size:8.5px">ance</text>

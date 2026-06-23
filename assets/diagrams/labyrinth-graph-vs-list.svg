@@ -71,7 +71,7 @@
   <circle class="node-iso" cx="362" cy="150" r="20"/><text class="node-label-sm" x="362" y="147">Oubli-</text><text class="node-label-sm" x="362" y="158">ette</text>
 
   <!-- annotations -->
-  <text class="cycle-tag" x="170" y="166">the cycle</text>
+  <text class="cycle-tag" x="168" y="178">the cycle</text>
   <text class="dead-tag"  x="58"  y="392">dead end</text>
   <text class="iso-tag"   x="362" y="186">isolated —</text>
   <text class="iso-tag"   x="362" y="198">no doors</text>
