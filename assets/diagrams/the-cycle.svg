@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 440" role="img" aria-labelledby="cy-title cy-desc">
+  <title id="cy-title">The Cycle — a traversal with no memory loops forever</title>
+  <desc id="cy-desc">The three-room cycle Entrance, Goblin, Skeleton drawn as a triangle of rooms with doors between all three. Two crossings are shown. On the left, WITHOUT a visited set: an arrow loops Entrance to Goblin to Skeleton back to Entrance to Goblin again and again, spiralling, with a label reading hangs forever — never reaches the corridor beyond. On the right, WITH a visited set: each room is checked off in a small unordered-set box the first time it is seen, the walk refuses to re-enter a checked room, and after three rooms the walk exits cleanly down the passage to the rest of the map. A caption stresses the program does not crash — it simply never returns.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .col-bg-left { fill: #faf3dc; stroke: #8b5a00; stroke-width: 1.0; opacity: 0.5; }
+    .col-bg-right{ fill: #faecd4; stroke: #6b0f0f; stroke-width: 1.0; opacity: 0.5; }
+    .node        { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-root   { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.8; }
+    .node-done   { fill: #e7efcf; stroke: #4a6b0f; stroke-width: 1.8; }
+    .door        { stroke: #8b5a00; stroke-width: 1.4; fill: none; opacity: 0.7; }
+    .loop-arrow  { stroke: #6b0f0f; stroke-width: 2.2; fill: none; stroke-linecap: round; }
+    .loop-arrow2 { stroke: #6b0f0f; stroke-width: 1.6; fill: none; stroke-linecap: round; opacity: 0.55; stroke-dasharray: 4 4; }
+    .walk-arrow  { stroke: #4a6b0f; stroke-width: 2.2; fill: none; stroke-linecap: round; }
+    .arrow-fill  { fill: #6b0f0f; }
+    .arrow-fill-g{ fill: #4a6b0f; }
+    .skip-arrow  { stroke: #a33; stroke-width: 1.4; fill: none; stroke-linecap: round; stroke-dasharray: 3 3; opacity: 0.8; }
+    .node-label  { font-family: Consolas, 'Courier New', monospace; font-size: 10px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .col-title   { font-family: Georgia, serif; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.06em; }
+    .col-title-g { font-family: Georgia, serif; font-size: 13px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.06em; }
+    .col-tag     { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #4a3a2a; text-anchor: middle; }
+    .doom-tag    { font-family: Georgia, serif; font-size: 11.5px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .step-tag    { font-family: Consolas, 'Courier New', monospace; font-size: 9.5px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .step-tag-g  { font-family: Consolas, 'Courier New', monospace; font-size: 9.5px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .skip-tag    { font-family: Georgia, serif; font-size: 9.5px; fill: #a33; font-style: italic; text-anchor: middle; }
+    .vset-box    { fill: #fdf4d3; stroke: #4a6b0f; stroke-width: 1.6; }
+    .vset-title  { font-family: Georgia, serif; font-size: 10px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.06em; }
+    .vset-row    { font-family: Consolas, 'Courier New', monospace; font-size: 10.5px; fill: #2a1a0a; font-weight: 700; text-anchor: start; }
+    .check       { fill: #4a6b0f; font-family: Georgia, serif; font-size: 11px; font-weight: 700; }
+    .exit-tag    { font-family: Georgia, serif; font-size: 10.5px; fill: #4a6b0f; font-weight: 700; text-anchor: middle; }
+    .col-caption { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .note-strong { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+  </style>
+
+  <rect class="panel" x="10" y="10" width="760" height="420" rx="6"/>
+  <text class="panel-title" x="390" y="30">the cycle, with and without memory</text>
+  <text class="subtitle"    x="390" y="48">the same three rooms — one walk loops forever, the other terminates and moves on</text>
+
+  <!-- ===================== LEFT: WITHOUT visited ===================== -->
+  <rect class="col-bg-left" x="20" y="64" width="360" height="338" rx="6"/>
+  <text class="col-title" x="200" y="86">WITHOUT a visited set</text>
+  <text class="col-tag"   x="200" y="104">no memory — it never stops</text>
+
+  <!-- triangle doors (drawn first) -->
+  <line class="door" x1="200" y1="150" x2="135" y2="252"/>
+  <line class="door" x1="200" y1="150" x2="265" y2="252"/>
+  <line class="door" x1="135" y1="252" x2="265" y2="252"/>
+
+  <!-- spiralling loop arrow En->Gob->Skel->En, drawn just inside the triangle -->
+  <path class="loop-arrow" d="M188,162 C168,190 152,214 142,238"/>
+  <polygon class="arrow-fill" points="138,242 148,240 144,231"/>
+  <path class="loop-arrow" d="M154,256 C180,266 220,266 246,256"/>
+  <polygon class="arrow-fill" points="250,254 240,250 241,260"/>
+  <path class="loop-arrow" d="M258,238 C248,214 232,190 212,162"/>
+  <polygon class="arrow-fill" points="208,158 212,168 219,161"/>
+  <!-- a fainter inner second lap to suggest "again and again" -->
+  <path class="loop-arrow2" d="M192,176 C178,198 168,216 162,234"/>
+  <path class="loop-arrow2" d="M170,250 C190,257 214,257 232,250"/>
+  <path class="loop-arrow2" d="M240,234 C232,216 222,198 208,176"/>
+
+  <!-- nodes -->
+  <circle class="node-root" cx="200" cy="150" r="17"/><text class="node-label" x="200" y="139" style="font-size:8.5px">Entr-</text><text class="node-label" x="200" y="150" style="font-size:8.5px">ance</text>
+  <circle class="node" cx="135" cy="252" r="17"/><text class="node-label" x="135" y="255">Goblin</text>
+  <circle class="node" cx="265" cy="252" r="17"/><text class="node-label" x="265" y="248" style="font-size:8.5px">Skel-</text><text class="node-label" x="265" y="258" style="font-size:8.5px">eton</text>
+
+  <!-- "again and again" tag in the middle -->
+  <text class="step-tag" x="200" y="214">↻ again</text>
+  <text class="step-tag" x="200" y="226">and again</text>
+
+  <!-- the corridor beyond, never reached -->
+  <line class="skip-arrow" x1="265" y1="269" x2="300" y2="320"/>
+  <text class="skip-tag" x="318" y="312">corridor</text>
+  <text class="skip-tag" x="318" y="324">beyond —</text>
+  <text class="skip-tag" x="318" y="336">never reached</text>
+
+  <text class="doom-tag" x="200" y="364">hangs forever —</text>
+  <text class="doom-tag" x="200" y="380">never reaches the corridor beyond</text>
+
+  <!-- ===================== RIGHT: WITH visited ===================== -->
+  <rect class="col-bg-right" x="400" y="64" width="360" height="338" rx="6"/>
+  <text class="col-title-g" x="580" y="86">WITH a visited set</text>
+  <text class="col-tag"   x="580" y="104">check off each room once — then leave</text>
+
+  <!-- triangle doors -->
+  <line class="door" x1="540" y1="150" x2="475" y2="252"/>
+  <line class="door" x1="540" y1="150" x2="605" y2="252"/>
+  <line class="door" x1="475" y1="252" x2="605" y2="252"/>
+
+  <!-- walk arrows: En->Gob (1), Gob->Skel (2); Skel back to En is REFUSED -->
+  <path class="walk-arrow" d="M528,162 C508,190 492,214 482,238"/>
+  <polygon class="arrow-fill-g" points="478,242 488,240 484,231"/>
+  <text class="step-tag-g" x="486" y="200">1</text>
+
+  <path class="walk-arrow" d="M494,256 C520,266 560,266 586,256"/>
+  <polygon class="arrow-fill-g" points="590,254 580,250 581,260"/>
+  <text class="step-tag-g" x="540" y="278">2</text>
+
+  <!-- refused re-entry Skel->En -->
+  <path class="skip-arrow" d="M598,238 C588,214 572,190 552,162"/>
+  <text class="skip-tag" x="588" y="200">already</text>
+  <text class="skip-tag" x="588" y="212">visited —</text>
+  <text class="skip-tag" x="588" y="224">skip</text>
+
+  <!-- nodes (checked off green) -->
+  <circle class="node-done" cx="540" cy="150" r="17"/><text class="node-label" x="540" y="139" style="font-size:8.5px">Entr-</text><text class="node-label" x="540" y="150" style="font-size:8.5px">ance</text>
+  <circle class="node-done" cx="475" cy="252" r="17"/><text class="node-label" x="475" y="255">Goblin</text>
+  <circle class="node-done" cx="605" cy="252" r="17"/><text class="node-label" x="605" y="248" style="font-size:8.5px">Skel-</text><text class="node-label" x="605" y="258" style="font-size:8.5px">eton</text>
+
+  <!-- clean exit down the passage to the rest of the map -->
+  <path class="walk-arrow" d="M605,269 C615,295 625,312 636,330"/>
+  <polygon class="arrow-fill-g" points="639,334 638,324 630,329"/>
+  <text class="exit-tag" x="668" y="322">exit to</text>
+  <text class="exit-tag" x="668" y="336">the rest</text>
+  <text class="exit-tag" x="668" y="350">of the map</text>
+
+  <!-- small unordered-set box -->
+  <rect class="vset-box" x="430" y="318" width="150" height="70" rx="5"/>
+  <text class="vset-title" x="505" y="334">unordered_set</text>
+  <text class="vset-row" x="446" y="352"><tspan class="check">&#10003;</tspan> Entrance</text>
+  <text class="vset-row" x="446" y="368"><tspan class="check">&#10003;</tspan> Goblin</text>
+  <text class="vset-row" x="446" y="384"><tspan class="check">&#10003;</tspan> Skeleton</text>
+
+  <!-- ===================== bottom caption ===================== -->
+  <text class="note-strong" x="390" y="420">the program does not crash — without memory it simply never returns</text>
+</svg>

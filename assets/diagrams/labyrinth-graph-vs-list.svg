@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 470" role="img" aria-labelledby="gl-title gl-desc">
+  <title id="gl-title">The dungeon map as a graph and as an adjacency list</title>
+  <desc id="gl-desc">On the left, the dungeon map drawn as a graph: ten rooms as labelled circles — Entrance, Goblin, Skeleton, Wraith, Necrothrall, Shadow Hound, Lich, Stair, Frostmaw, and an isolated Oubliette off by itself — joined by lines for passages. Entrance, Goblin, and Skeleton form a small triangle (a cycle); Shadow Hound hangs off Wraith as a dead-end branch; Oubliette floats alone with no line to anything. On the right, the same map written as an adjacency list: each room name followed by its list of neighbour rooms (Entrance: Goblin, Skeleton; Goblin: Entrance, Skeleton, Wraith; and so on), with Oubliette showing an empty list. A caption notes that the list stores only the doors that exist.</desc>
+  <style>
+    .panel       { fill: #f6efd5; stroke: #8b5a00; stroke-width: 0.8; opacity: 0.4; }
+    .col-bg-left { fill: #faf3dc; stroke: #8b5a00; stroke-width: 1.0; opacity: 0.5; }
+    .col-bg-right{ fill: #faecd4; stroke: #6b0f0f; stroke-width: 1.0; opacity: 0.5; }
+    .node        { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; }
+    .node-root   { fill: #eacf85; stroke: #6b0f0f; stroke-width: 1.8; }
+    .node-iso    { fill: #f2e4bc; stroke: #8b5a00; stroke-width: 1.4; stroke-dasharray: 3 2.5; }
+    .edge        { stroke: #8b5a00; stroke-width: 1.4; fill: none; opacity: 0.8; }
+    .edge-cycle  { stroke: #6b0f0f; stroke-width: 1.8; fill: none; opacity: 0.85; }
+    .node-label  { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .node-label-sm { font-family: Consolas, 'Courier New', monospace; font-size: 9px; fill: #2a1a0a; font-weight: 700; text-anchor: middle; }
+    .panel-title { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.10em; }
+    .subtitle    { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .col-title   { font-family: Georgia, serif; font-size: 13px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.06em; }
+    .col-tag     { font-family: Consolas, 'Courier New', monospace; font-size: 11px; fill: #4a3a2a; text-anchor: middle; }
+    .row-key     { font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; fill: #6b0f0f; font-weight: 700; text-anchor: start; }
+    .row-val     { font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; fill: #2a1a0a; text-anchor: start; }
+    .row-empty   { font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; fill: #a08a5a; font-style: italic; text-anchor: start; }
+    .cycle-tag   { font-family: Georgia, serif; font-size: 10px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+    .dead-tag    { font-family: Georgia, serif; font-size: 9.5px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .iso-tag     { font-family: Georgia, serif; font-size: 9.5px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .col-caption { font-family: Georgia, serif; font-size: 11px; fill: #4a3a2a; font-style: italic; text-anchor: middle; }
+    .note-strong { font-family: Georgia, serif; font-size: 12px; fill: #6b0f0f; font-weight: 700; text-anchor: middle; }
+  </style>
+
+  <rect class="panel" x="10" y="10" width="840" height="450" rx="6"/>
+  <text class="panel-title" x="430" y="30">one map, two shapes</text>
+  <text class="subtitle"    x="430" y="48">rooms are vertices, passages are edges — stored as each room's list of doors</text>
+
+  <!-- ===================== LEFT: the graph ===================== -->
+  <rect class="col-bg-left" x="20" y="64" width="404" height="386" rx="6"/>
+  <text class="col-title" x="222" y="86">THE MAP · a graph</text>
+  <text class="col-tag"   x="222" y="104">10 rooms joined by passages</text>
+
+  <!-- edges (drawn before nodes so nodes sit on top) -->
+  <!-- triangle cycle: Entrance-Goblin-Skeleton -->
+  <line class="edge-cycle" x1="150" y1="132" x2="108" y2="196"/>
+  <line class="edge-cycle" x1="150" y1="132" x2="232" y2="186"/>
+  <line class="edge-cycle" x1="108" y1="196" x2="232" y2="186"/>
+  <!-- Goblin-Wraith -->
+  <line class="edge" x1="108" y1="196" x2="100" y2="278"/>
+  <!-- Skeleton-Necrothrall -->
+  <line class="edge" x1="232" y1="186" x2="244" y2="270"/>
+  <!-- Wraith-Shadow Hound (dead end) -->
+  <line class="edge" x1="100" y1="278" x2="58" y2="360"/>
+  <!-- Wraith-Lich -->
+  <line class="edge" x1="100" y1="278" x2="176" y2="356"/>
+  <!-- Necrothrall-Lich -->
+  <line class="edge" x1="244" y1="270" x2="176" y2="356"/>
+  <!-- Lich-Stair -->
+  <line class="edge" x1="176" y1="356" x2="268" y2="380"/>
+  <!-- Stair-Frostmaw -->
+  <line class="edge" x1="268" y1="380" x2="338" y2="330"/>
+
+  <!-- nodes -->
+  <circle class="node-root" cx="150" cy="132" r="20"/><text class="node-label-sm" x="150" y="135">Entrance</text>
+  <circle class="node" cx="108" cy="196" r="18"/><text class="node-label" x="108" y="199">Goblin</text>
+  <circle class="node" cx="232" cy="186" r="18"/><text class="node-label-sm" x="232" y="189">Skeleton</text>
+  <circle class="node" cx="100" cy="278" r="18"/><text class="node-label" x="100" y="281">Wraith</text>
+  <circle class="node" cx="244" cy="270" r="20"/><text class="node-label-sm" x="244" y="266">Necro-</text><text class="node-label-sm" x="244" y="277">thrall</text>
+  <circle class="node" cx="58"  cy="360" r="20"/><text class="node-label-sm" x="58" y="356">Shadow</text><text class="node-label-sm" x="58" y="367">Hound</text>
+  <circle class="node" cx="176" cy="356" r="16"/><text class="node-label" x="176" y="359">Lich</text>
+  <circle class="node" cx="268" cy="380" r="16"/><text class="node-label" x="268" y="383">Stair</text>
+  <circle class="node" cx="338" cy="330" r="18"/><text class="node-label-sm" x="338" y="333">Frostmaw</text>
+
+  <!-- isolated Oubliette, floating with no edges -->
+  <circle class="node-iso" cx="362" cy="150" r="20"/><text class="node-label-sm" x="362" y="147">Oubli-</text><text class="node-label-sm" x="362" y="158">ette</text>
+
+  <!-- annotations -->
+  <text class="cycle-tag" x="170" y="166">the cycle</text>
+  <text class="dead-tag"  x="58"  y="392">dead end</text>
+  <text class="iso-tag"   x="362" y="186">isolated —</text>
+  <text class="iso-tag"   x="362" y="198">no doors</text>
+
+  <text class="col-caption" x="222" y="436">a triangle of doors loops back on itself</text>
+
+  <!-- ===================== RIGHT: adjacency list ===================== -->
+  <rect class="col-bg-right" x="436" y="64" width="404" height="386" rx="6"/>
+  <text class="col-title" x="638" y="86">THE STORAGE · adjacency list</text>
+  <text class="col-tag"   x="638" y="104">each room keeps a list of its doors</text>
+
+  <!-- list rows: key then neighbour list -->
+  <text class="row-key" x="456" y="138">Entrance:</text><text class="row-val" x="556" y="138">Goblin, Skeleton</text>
+  <text class="row-key" x="456" y="164">Goblin:</text><text class="row-val" x="556" y="164">Entrance, Skeleton, Wraith</text>
+  <text class="row-key" x="456" y="190">Skeleton:</text><text class="row-val" x="556" y="190">Entrance, Goblin, Necrothrall</text>
+  <text class="row-key" x="456" y="216">Wraith:</text><text class="row-val" x="556" y="216">Goblin, Shadow Hound, Lich</text>
+  <text class="row-key" x="456" y="242">Necrothrall:</text><text class="row-val" x="572" y="242">Skeleton, Lich</text>
+  <text class="row-key" x="456" y="268">Shadow Hound:</text><text class="row-val" x="582" y="268">Wraith</text>
+  <text class="row-key" x="456" y="294">Lich:</text><text class="row-val" x="556" y="294">Wraith, Necrothrall, Stair</text>
+  <text class="row-key" x="456" y="320">Stair:</text><text class="row-val" x="556" y="320">Lich, Frostmaw</text>
+  <text class="row-key" x="456" y="346">Frostmaw:</text><text class="row-val" x="556" y="346">Stair</text>
+  <text class="row-key" x="456" y="372">Oubliette:</text><text class="row-empty" x="556" y="372">(empty — no doors)</text>
+
+  <text class="col-caption" x="638" y="436">the list stores only the doors that exist</text>
+
+  <text class="note-strong" x="430" y="450"></text>
+</svg>

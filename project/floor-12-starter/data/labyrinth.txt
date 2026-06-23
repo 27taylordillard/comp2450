@@ -1,0 +1,45 @@
+# COMP 2450 — Floor 12 (the finale) — the Labyrinth
+# The dungeon MAP as an undirected, unweighted graph. Rooms are vertices,
+# passages are edges. Unlike every data file before it, this one describes no
+# monster stats at all — only which room opens onto which. The data stopped
+# being a list of THINGS and became a web of CONNECTIONS. That shift is the
+# finale: crossing this map is the last lesson of the descent.
+#
+# FORMAT (mirrors taxonomy.txt's commented, line-based style):
+#   * an EDGE  — two room names separated by ' | ', e.g.  Goblin | Wraith
+#                the provided loader calls connect(a, b) for it (UNDIRECTED:
+#                the passage runs both ways).
+#   * a ROOM   — a single room name on its own line, e.g.  Oubliette
+#                the loader calls addRoom(room) for it — used for a room that
+#                has no passages (a deliberately ISOLATED room).
+#   * '#'-comment lines and blank lines are ignored.
+#
+# The map is CONNECTED except for one isolated room (Oubliette — a sealed pit),
+# so `reach Entrance Oubliette` is the demo of an unreachable room. (Its name is
+# one word on purpose: the reach/cross/descend verbs take space-separated room
+# arguments, so a room you query by name must be a single token. Two-word lairs
+# like Shadow Hound still appear in the map and the traversal dumps.) The map has
+# a CYCLE (Entrance–Goblin–Skeleton–Entrance) and a BRANCH (Shadow Hound hangs
+# off Wraith), so a breadth-first crossing and a depth-first crossing of the
+# SAME map come out in visibly DIFFERENT orders — and the cycle is what the
+# visited set has to tame (omit it and the traversal loops forever).
+#
+# Edit freely: add a room by adding a passage to it; isolate a room by listing
+# it alone. The traversal ORDER depends on the order the passages are listed
+# (that is the neighbor insertion order), so re-capture the DEMO-TRANSCRIPT
+# after any edit here.
+
+# --- the way down: Entrance to the Lich's chamber and the Stair below ---
+Entrance | Goblin
+Entrance | Skeleton
+Goblin | Skeleton
+Goblin | Wraith
+Skeleton | Necrothrall
+Wraith | Shadow Hound
+Wraith | Lich
+Necrothrall | Lich
+Lich | Stair
+Stair | Frostmaw
+
+# --- a sealed pit: no passage reaches it (for `reach ... == false`) ---
+Oubliette
