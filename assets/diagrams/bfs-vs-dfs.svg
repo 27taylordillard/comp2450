@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="bd-title bd-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 512" role="img" aria-labelledby="bd-title bd-desc">
   <title id="bd-title">Breadth-first vs depth-first — same map, two orders</title>
   <desc id="bd-desc">Two crossings of the same small map from the same start room, side by side. On the left, breadth-first search using a FIFO queue: the start room is shaded, then its immediate neighbours are shaded as level 1, then their neighbours as level 2, in concentric rings fanning outward; a small queue diagram shows rooms entering at the back and leaving at the front. On the right, depth-first search using a LIFO stack: a single bold path plunges from the start straight down one chain of rooms to a dead end, then a dashed backtrack line returns and takes a different branch; a small stack diagram shows rooms pushed and popped from the top. Both share a visited-set box listing the rooms already seen, identical between the two.</desc>
   <style>
@@ -47,7 +47,7 @@
     <clipPath id="bfs-left-clip"><rect x="22" y="122" width="368" height="320" rx="6"/></clipPath>
   </defs>
 
-  <rect class="panel" x="10" y="10" width="780" height="480" rx="6"/>
+  <rect class="panel" x="10" y="10" width="780" height="492" rx="6"/>
   <text class="panel-title" x="400" y="30">same map, same start, two orders</text>
   <text class="subtitle"    x="400" y="48">a FIFO queue fans out in rings; a LIFO stack plunges down one passage</text>
 
@@ -55,7 +55,7 @@
   <text class="col-caption" x="400" y="66" style="font-size:9.5px">En=Entrance · Gob=Goblin · Skel=Skeleton · Wr=Wraith · Necro=Necrothrall · SH=Shadow Hound</text>
 
   <!-- ===================== LEFT: BFS ===================== -->
-  <rect class="col-bg-left" x="20" y="76" width="372" height="368" rx="6"/>
+  <rect class="col-bg-left" x="20" y="76" width="372" height="380" rx="6"/>
   <text class="col-title" x="206" y="98">BFS · FIFO Queue</text>
   <text class="col-tag"   x="206" y="115">fan out in rings, level by level</text>
 
@@ -117,10 +117,10 @@
   <text class="op-small" x="331" y="216" style="font-size:8.5px">leave front · enter back</text>
 
   <text class="order"       x="206" y="416" style="opacity:0">x</text>
-  <text class="col-caption" x="206" y="436">En · Gob · Skel · Wr · Necro · SH · Lich · Stair · Frost</text>
+  <text class="col-caption" x="206" y="446">En · Gob · Skel · Wr · Necro · SH · Lich · Stair · Frost</text>
 
   <!-- ===================== RIGHT: DFS ===================== -->
-  <rect class="col-bg-right" x="408" y="76" width="372" height="368" rx="6"/>
+  <rect class="col-bg-right" x="408" y="76" width="372" height="380" rx="6"/>
   <text class="col-title" x="594" y="98">DFS · LIFO Stack</text>
   <text class="col-tag"   x="594" y="115">plunge down one passage, then backtrack</text>
 
@@ -178,10 +178,10 @@
   <rect class="cell" x="690" y="214" width="44" height="18" rx="2"/><text class="cell-label" x="712" y="226">En</text>
   <text class="op-small" x="712" y="244" style="font-size:8.5px">push / pop on top</text>
 
-  <text class="col-caption" x="594" y="436">En · Skel · Necro · Lich · Stair · Frost · Wr · SH · Gob</text>
+  <text class="col-caption" x="594" y="446">En · Skel · Necro · Lich · Stair · Frost · Wr · SH · Gob</text>
 
   <!-- ===================== SHARED visited-set box ===================== -->
-  <rect class="vset-box" x="150" y="456" width="500" height="28" rx="5"/>
-  <text class="vset-title" x="186" y="474">visited</text>
-  <text class="vset-code" x="430" y="474">{ En, Gob, Skel, Wr, Necro, SH, Lich, Stair, Frost }  — same for both</text>
+  <rect class="vset-box" x="150" y="468" width="500" height="28" rx="5"/>
+  <text class="vset-title" x="186" y="486">visited</text>
+  <text class="vset-code" x="430" y="486">{ En, Gob, Skel, Wr, Necro, SH, Lich, Stair, Frost }  — same for both</text>
 </svg>

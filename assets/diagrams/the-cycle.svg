@@ -62,7 +62,7 @@
   <path class="loop-arrow2" d="M240,234 C232,216 222,198 208,176"/>
 
   <!-- nodes -->
-  <circle class="node-root" cx="200" cy="150" r="17"/><text class="node-label" x="200" y="139" style="font-size:8.5px">Entr-</text><text class="node-label" x="200" y="150" style="font-size:8.5px">ance</text>
+  <circle class="node-root" cx="200" cy="150" r="17"/><text class="node-label" x="200" y="146" style="font-size:8.5px">Entr-</text><text class="node-label" x="200" y="156" style="font-size:8.5px">ance</text>
   <circle class="node" cx="135" cy="252" r="17"/><text class="node-label" x="135" y="255">Goblin</text>
   <circle class="node" cx="265" cy="252" r="17"/><text class="node-label" x="265" y="248" style="font-size:8.5px">Skel-</text><text class="node-label" x="265" y="258" style="font-size:8.5px">eton</text>
 
@@ -105,7 +105,7 @@
   <text class="skip-tag" x="638" y="216">skip</text>
 
   <!-- nodes (checked off green) -->
-  <circle class="node-done" cx="540" cy="150" r="17"/><text class="node-label" x="540" y="139" style="font-size:8.5px">Entr-</text><text class="node-label" x="540" y="150" style="font-size:8.5px">ance</text>
+  <circle class="node-done" cx="540" cy="150" r="17"/><text class="node-label" x="540" y="146" style="font-size:8.5px">Entr-</text><text class="node-label" x="540" y="156" style="font-size:8.5px">ance</text>
   <circle class="node-done" cx="475" cy="252" r="17"/><text class="node-label" x="475" y="255">Goblin</text>
   <circle class="node-done" cx="605" cy="252" r="17"/><text class="node-label" x="605" y="248" style="font-size:8.5px">Skel-</text><text class="node-label" x="605" y="258" style="font-size:8.5px">eton</text>
 
