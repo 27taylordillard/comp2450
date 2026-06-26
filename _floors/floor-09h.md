@@ -54,7 +54,7 @@ By the end of Floor 9½ you will be able to:
 
 ## Pre-class
 
-### Reading (ZyBook Ch. 10, *Balanced Trees* — §10.1–10.4 this week)
+### Reading (ZyBook Ch. 10, *Balanced Trees* — §10.1–10.4 AVL + a §10.5 red-black skim this week)
 
 This is new reading, and it is short. Chapter 10 is the chapter that fixes Chapter 8's catch. Read the AVL sections; the red-black sections are a skim for context (they are the family `std::set`/`std::map` actually belong to).
 
