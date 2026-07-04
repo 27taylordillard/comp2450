@@ -35,9 +35,9 @@ It does not move *yet*. It does not need to. Four floors built you a hero who ca
 | **Gauntlet closes** | Friday of Week 10, **9:00 AM** | All artifacts and battle code committed and pushed to your project repo. |
 | **In-class quiz** | Friday of Week 10, during class | ~20-minute paper quiz — every question pulled from *your own* battle code. |
 | **Grades returned** | Following Wednesday | Per-trial rubric notes + total. |
-</div>
 
 Plan your week. Trials I and II can be knocked out in an evening each. Trial III — the wave-survival encounter — is real engineering work and will take you several focused sittings. Start it early. Floor 8 (Trees) opens the same week; do not let the new floor eat your Warden time.
+</div>
 
 <div class="character-card" markdown="1">
 <div class="character-portrait">
