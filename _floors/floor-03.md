@@ -161,18 +161,11 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you face the first boss, you should be able to answer these without looking:
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 
-1. What does `template<typename T>` buy you that a non-templated class doesn't? Give a concrete example from *this week*: one class, two instantiations, both appearing in the same program.
-2. Where does `Bag<T>`'s code have to live — `Bag.h` or `Bag.cpp`? Why?
-3. Your function template uses `x.name` somewhere inside its body. You instantiate it with `T = int`. At what point do you find out there's a problem — writing the code, compiling, or running? Why?
-4. `operator[]` does not bounds-check; `at()` does and throws. Give one situation in the game where you'd reach for each.
-5. Your custom exception inherits from `std::exception` and overrides `what()`. What would change if it didn't inherit from anything — what still works, and what becomes awkward for the caller?
-6. A thrown exception is not caught anywhere before it reaches `main`. What does the C++ runtime do? Demonstrate in your lab notes, and explain in one sentence why that default behavior is actually *good* — i.e., what it forces you to do.
-
-Answers are discussed at the start of Floor 4 — but first, **Midterm 1** stands between you and Floor 4. The boss tests Floors 0 – 3 together. Prepare for it.
+But first, **Midterm 1** stands between you and Floor 4. The boss tests Floors 0 – 3 together. Prepare for it.
 </div>
 
 ---

@@ -168,18 +168,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you descend to Floor 4½, you should be able to answer these without looking:
-
-1. A `Node<T>` holds a `T data` and a pointer to the next node. Why a *pointer* and not a `Node<T> next` by value? (Hint: think about the size of the struct.)
-2. `Chain<T>::push_front` is O(1). `std::vector<T>::insert(begin(), x)` is O(n). Both put one new element at the front. *Why* does the vector pay O(n)? What is it physically doing that the chain isn't?
-3. Indexed access on a chain — `the nth element` — is O(n). Random access on a `Bag<T>` (which is `std::vector<T>` underneath) is O(1). For an event log that is only ever read *most-recent-first*, does this matter? For the bestiary that is searched by binary search, does it matter?
-4. State the **Rule of Three** in one sentence. Which of the three did you implement this week, which did you `= delete`, and which is Floor 4½?
-5. Your destructor walks the chain and deletes each node. What goes catastrophically wrong if you delete the current node *before* you save its `next` pointer? Be specific about what memory you read.
-6. Mavren says "I never re-cast the chain." Translate that into Big-O. Compare what *adding the 1,000th element* costs on a `Chain<T>` versus on a `Bag<T>` whose internal vector has just hit capacity.
-
-Answers are discussed in the Monday Floor 4½ warmup.
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

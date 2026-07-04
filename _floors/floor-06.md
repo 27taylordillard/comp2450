@@ -205,19 +205,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you descend to Floor 7, you should be able to answer these without looking:
-
-1. State the LIFO contract in one sentence, in your own words. Then state in one sentence what `Stack`, `Queue`, `List`, and `Map` all *are* in the same vocabulary.
-2. Name three different data structures that could keep the stack ADT's promise. For each, name the underlying operations that map to `push` and `pop`, and state whether both are O(1).
-3. Your `Stack<T>` adapts `Chain<T>`. If you swapped the underlying container to `std::vector<T>`, which two operations would you have to flip, and why? Would the LIFO behaviour change?
-4. Bracket balancing: walk through `({a} (b) [c])` push-by-push and pop-by-pop, in your own words. At each step, what is on the stack and what is `top()`?
-5. The bracket balancer rejects `({)}` on a specific character. Which one, and what does the stack look like when the rejection happens?
-6. `top()` on an empty stack is undefined behaviour. *Define* "undefined behaviour" in one sentence. Then name two real-program failure modes you could see from this specific UB.
-7. Every recursive function uses a stack — name two ways. Then sketch in plain English what an iterative-with-explicit-stack version of `binarySearchRecursive` would do on each iteration.
-
-Answers are discussed in the Monday Floor 7 warmup.
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

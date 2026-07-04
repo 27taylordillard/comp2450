@@ -222,19 +222,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-You have finished the Trees stretch (Floors 8–9½) and stepped into the associative run (Floors 10–11). Before the Hall of Whispers, you should be able to answer these without looking:
-
-1. When do you reach for `std::set` (membership / uniqueness, no value) versus `std::map` (key→value)? Give a bestiary example of each, and name the member call each becomes.
-2. Why do `weaknesses` and `names` come out sorted with no sort step in your code? What *are* `std::set`/`std::map` under the hood, and which floor did you build that thing by hand?
-3. `recall` on Floor 9 was a recursive tree descent you wrote; on Floor 10 it is one `map::find`. What did you give up by switching, and what did you gain?
-4. The Phantom Key: why does `m["thunder"]` used to *read* a count corrupt the map? What does `operator[]` do on a missing key, what should you have called, and how does `const` make the bug impossible?
-5. Iterating a `std::map` hands you a `std::pair<const Key, Value>`. Why is the key half `const`? What breaks if you could mutate a key in place?
-6. `forget` had to touch three containers to stay consistent. Why can the bestiary Bag, the Floor-9 BST, and the Floor-10 Registry legitimately *disagree* about whether "Goblin" exists after a mutation?
-7. *(Bridge.)* The map answers in O(log n) by keeping everything in order. What would you trade away to answer in O(1)? Name the structure that makes that trade — and the new failure mode it introduces.
-
-Answers are discussed at the start of the Hall of Whispers.
+You have finished the Trees stretch (Floors 8–9½) and stepped into the associative run (Floors 10–11). This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

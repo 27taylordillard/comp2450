@@ -236,19 +236,11 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-You have reached the bottom of the Hold. The descent is finished — eleven halls of containers behind you, and one last room that asked you to *cross* instead of *keep*. Before the cumulative **Final Descent** (the final exam and your finished capstone game), you should be able to answer these without looking:
+You have reached the bottom of the Hold. The descent is finished — eleven halls of containers behind you, and one last room that asked you to *cross* instead of *keep*. This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything the floor taught. If you can still say *why* each structure earned its place in the game, the check takes ten minutes.
 
-1. What is a **graph**, and what does it store that every prior structure did not? Define *vertex*, *edge*, *adjacent*, *path*, and *distance* (§13.1).
-2. What is an **adjacency list** (§13.3), and why is it the right representation for a **sparse** dungeon map — versus an adjacency **matrix** (§13.4)?
-3. **BFS vs DFS:** which container does each reuse (Queue vs Stack), and how does that one choice — FIFO vs LIFO — produce "level by level" versus "plunge then backtrack"? (§13.7/§13.8; callback to Floors 6–7.)
-4. Why does **BFS give the shortest path** in hops on an **unweighted** graph, and what would you need instead if the passages had **weights** (§13.6 → Dijkstra, §13.9)?
-5. What is the **visited set**, and what *exactly* goes wrong without it on a graph with a **cycle** (§13.5)? Why does the program *hang* rather than crash, and why does the same set serve both BFS and DFS?
-6. The off-by-one: if `descend A A` is **0** doors and `A` is adjacent to `B`, how many doors is `descend A B`? Where in a BFS do you count the hop?
-7. *(Whole-arc.)* You built **seven** structures by hand across the descent and reused **two** to cross the last room. Name the seven, say which two the Labyrinth handed back to you, and explain why a graph traversal needed *those two* specifically.
-
-These are the questions of the Final Descent. There is no next floor — only the bottom, and the way back up.
+The questions of the **Final Descent** ask after all of it. There is no next floor — only the bottom, and the way back up.
 </div>
 
 ---

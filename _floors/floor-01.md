@@ -145,18 +145,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you descend to Floor 2, you should be able to answer these without looking:
-
-1. What is the worst-case Big-O of linear search? Of binary search? Why?
-2. Binary search is faster, so why would anyone ever use linear search?
-3. You call `binarySearch` on an unsorted bestiary and it returns `nullptr` for "Goblin" even though "Goblin" is in the list. Explain *exactly* why, in terms of the algorithm's steps.
-4. If your bestiary doubles in size from 1,000 to 2,000 monsters, how many *more* comparisons does linear search do in the worst case? How many more does binary search do?
-5. Iterative and recursive binary search have the same Big-O. Why might the iterative version still be a better default in production code?
-6. In our codebase, `findMonster` is the one place the rest of the game asks "is this monster in the bestiary?" Why is that a good design — i.e., what would change in Week 11 if every place in the game called the search function directly?
-
-Answers are discussed in the Monday Floor 2 warmup.
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

@@ -233,24 +233,13 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-You have closed the associative-structures run (Floors 10–11) and finished the last data structure you build by hand. The Warden of the Trees (Midterm 3, end of this week) covers the whole tree-and-associative arc — trees, BSTs, balanced trees, sets/maps, and hash tables. Before the Labyrinth, you should be able to answer these without looking:
+You have closed the associative-structures run (Floors 10–11) and finished the last data structure you build by hand. This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 
-1. What are the three steps from a name to its slot? (key → **hash code** → **bucket index** → the **chain** in that bucket.) Which ZyBook section names each?
-2. Why does `whisper`/`find` only scan ONE bucket, while Floor 1's `search` scanned all fifteen? What makes that average O(1) — and what makes it O(n) in the worst case?
-3. What is a **collision**, and why is it *inevitable*, not a bug? What does **chaining** (§12.2) do about it, and why is the bucket being *your `Chain`* the whole point?
-4. Define **load factor** (§12.4). Why does a high load factor make `find` slow, and what does **rehashing** do to fix it? What did `rehash` have to do to *every* item — and why recompute the bucket?
-5. Floor 10's `names` printed alphabetically; Floor 11's `buckets` prints scrambled. Why? What did you **trade away** to get the O(1) whisper?
-6. `std::map` vs `std::unordered_map`: both map a key to a value — when would you pick the **ordered** one and when the **unordered** one? (Hint: do you need sorted iteration / range queries, or just fast point lookup?)
-7. Grix's hash returned the name's length. What goes wrong, and what makes a *good* hash function (§12.5)?
-8. *(Bridge.)* Every structure so far stored *items*. What does a **graph** store instead — and which two containers you already built will you reuse to cross one?
-
-Answers are discussed at the start of the Labyrinth.
+The **Warden of the Trees** (Midterm 3, end of this week) covers the whole tree-and-associative arc — trees, BSTs, balanced trees, sets/maps, and hash tables.
 </div>
 
 ---
 
 *McCown speaks one last name into the wall, and the niche answers in the same breath it always has, and he lowers his cupped hands for the final time in the stretch. "Five floors I kept for you," he says, "a lineage, a search, a level, a name, and a whisper. They are yours now." He does not follow you to the stair; keepers of order do not go where there is none left to keep. From the dark below comes a sound unlike any hall you have crossed — not a shelf, not a tree, not a whispered niche, but a draft moving through a thousand doorways at once, corridor calling to corridor. Every hall above stored the monsters as separate things — in a bag, a chain, a stack, a queue, a tree, a sorted shelf, and now a scattered whisper. The hall below stores something else entirely: not the beasts, but the **passages between them**, room to room, door to door. And the question is no longer "where is the Lich?" but "**can I get from here to the Lich, and what is the shortest way down?**" The Nameless Bard tunes a low string and does not sing yet; he is saving the verse. Two old friends are waiting for you in the dark, McCown says as you go — the **Queue** you built becomes a way to search a maze breadth-first, and the **Stack** you built becomes a way to search it depth-first. The last descent is not about storing. It is about **connecting**. **Floor 12 — The Labyrinth (graphs, ZyBook Chapter 13) — is the next floor down.***
-</content>
-</invoke>

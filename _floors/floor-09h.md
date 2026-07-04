@@ -154,18 +154,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-You are near the end of the Trees stretch (Floors 8–9½). Before the Hall of Names, you should be able to answer these without looking:
-
-1. Define a node's **balance factor**. Why must an empty subtree count as height −1 rather than 0 — what goes wrong in a three-node stick if you use 0?
-2. A BST has *n* nodes. Give its best-case and worst-case height in terms of *n*, and the input that produces each. Why does the worst case make `find` *O(n)*?
-3. State the AVL property in one sentence. On the stick `1→2→3→4→5`, what is the balance factor at the root, and is the tree AVL-balanced?
-4. A **rotation** changes a subtree's height but not its in-order order. Why is "in-order unchanged" exactly the condition that guarantees the result is still a valid BST?
-5. A root is left-heavy (balance factor +2). Which single rotation does `rebalanceAt` apply? Now describe a shape where *one* rotation is not enough (the zig-zag) and what a real AVL tree does about it.
-6. `std::set` and `std::map` are balanced trees. What do they do on every insert that your Floor 9 BST does not — and why does that mean you can stop worrying about the stick? Why is "use `std::set`" the *right* engineering answer here and not a cop-out?
-
-Answers are discussed at the start of the Hall of Names.
+You are near the end of the Trees stretch (Floors 8–9½). This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

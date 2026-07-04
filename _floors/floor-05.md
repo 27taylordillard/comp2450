@@ -170,18 +170,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you descend to Floor 6, you should be able to answer these without looking:
-
-1. Name the five operations a forward iterator must support. Which two are *invariants of position* (asking the iterator about itself) and which three are *acts of looking or moving*?
-2. `end()` returns an iterator that points *one past the last element*. Why not just have it return an iterator that points *at the last element*? What does the off-by-one convention buy you in your loops?
-3. Range-based `for` — `for (const auto& x : chain)` — is sugar. Write the equivalent explicit `for` loop with `begin()`, `end()`, and `++it`. Which operations of the iterator did you have to call by name?
-4. `Chain<T>::iterator` is a forward iterator. `Bag<T>::iterator` is random-access. `std::find` works on both. `std::sort` works only on the latter. Why does `std::find` need so much less? What does it actually do with the iterator?
-5. Your container has a `const_iterator` separate from `iterator`. What does the existence of the separate type *prevent* a caller from doing through a `const Chain<T>&`?
-6. The Quadratic Mire bestiary entry. Translate it into Big-O: what is the cost of `for (i = 0; i < n; ++i) chain[i]` on a linked chain? On a `Bag<T>`? Why are they different?
-
-Answers are discussed in the Monday Floor 6 warmup.
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

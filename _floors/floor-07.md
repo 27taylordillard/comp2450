@@ -171,19 +171,11 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you face the [Warden of the Middle Gates]({{ site.baseurl }}/floors/warden-02/) next week, you should be able to answer these without looking:
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 
-1. State the FIFO contract in one sentence, in your own words. Then state in one sentence what `Stack`, `Queue`, `List`, and `Map` all *are* in the same vocabulary.
-2. Your `Queue<T>` adapts `Chain<T>`. Which two `Chain<T>` methods do `enqueue` and `dequeue` call? Why does using `push_back` for enqueue + `pop_front` for dequeue make this FIFO, and what would happen if you used `push_back` + `pop_back` instead?
-3. Read `Stack.h` and `Queue.h` side by side. Name the *one* line that is different in shape between them, and explain — in terms of which end of the chain it touches — why that one line is the difference between LIFO and FIFO.
-4. Hot Potato with names = `{A,B,C,D,E}` and k = 3. Walk through it: which name moves to the back at each step, and which gets dequeued? Verify the survivor is `D`.
-5. Hot Potato with k = 1. Walk through one round on any 4-name input. What does the algorithm do when k = 1? Why?
-6. `front()` on an empty queue is undefined behaviour. Why does the queue ADT not promise to throw, the way `Bag<T>::at()` does? What is the philosophy difference between those two ADT contracts?
-7. Sketch in plain English how a *breadth-first* walk of a tree would use a queue. Start at the root: enqueue it; then loop "dequeue, visit, enqueue children." Why are nodes visited closest-first? (Foreshadows Floor 10.)
-
-Answers are discussed in the Monday Warden midterm review.
+And this check is the small one: the [Warden of the Middle Gates]({{ site.baseurl }}/floors/warden-02/) waits next week. It tests Floors 4 – 7 together.
 </div>
 
 ---

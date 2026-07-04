@@ -92,17 +92,9 @@ Strikes when your code is fine but your *environment* isn't. Symptoms: `g++: com
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you descend to Floor 1, you should be able to answer these without looking:
-
-1. In one sentence, what is the difference between a **data structure** and an **abstract data type**?
-2. Name three ADTs and, for each, name one real-world situation where it's the right tool.
-3. If Algorithm A takes 1 ms on 100 inputs and 4 ms on 200 inputs, and Algorithm B takes 1 ms on 100 inputs and 100 ms on 1000 inputs — which one do you trust on a million inputs, and why?
-4. What does it mean to say a container is "encapsulated"?
-5. What command compiles `main.cpp` on your machine? Write it from memory.
-
-Answers are discussed in the Monday Floor 1 warmup.
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

@@ -171,19 +171,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-You are deep in the Trees stretch now (Floors 8–9½). Before the next floor, you should be able to answer these without looking:
-
-1. State the BST invariant in one sentence. On the tree `8(3(1,6),10(_,14))`, trace `find(6)` and `find(9)` — which nodes do you visit, and which do you never look at?
-2. Why is `find` O(log n) on a balanced tree but O(n) on Grix's? Express both in terms of the tree's **height**, and say how height relates to n in each case.
-3. Why does an in-order traversal come out sorted? What does the invariant promise about *every* value in a node's left subtree versus its right?
-4. `insert` and `find` are almost the same walk. Where do they differ — what does `insert` do that `find` doesn't when it reaches the bottom?
-5. Write the three cases of `remove`. For the two-children case, what is the *in-order successor*, why is it always a leaf-or-one-child node, and why is it the only value that can legally replace the one you're removing?
-6. Your `destroy` and `clone` recurse over `left` and `right`. What leaks if `destroy` deletes the node before recursing? What aliases if `clone` copies the node but not its children?
-7. A BST guarantees O(log n) only if it stays *balanced*. Describe the input that makes a correct BST degenerate to O(n), and name what a self-balancing tree adds to prevent it. (You are describing next floor.)
-
-Answers are discussed at the start of the next floor.
+You are deep in the Trees stretch now (Floors 8–9½). This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

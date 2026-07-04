@@ -198,19 +198,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-You are now in the Trees stretch of the Hold (Floors 8–9½). Before you move on to the next floor, you should be able to answer these without looking:
-
-1. Define root, leaf, edge, depth, and height in one sentence each, pointing at the tree-anatomy diagram. Why does the root have depth 0, and why is a one-node tree's height 0?
-2. Write the shared three-line skeleton of `countFrom`, `heightFrom`, and `preOrderInto`. What is the base case they all share, and what is the *one* line that differs between them?
-3. `preOrder` pushes the node *before* recursing into children; *post*-order pushes it after. On the sample tree `{1:(2:(5,6)),3,4:(7)}`, write both sequences. Which one lists a parent before its children, and which after?
-4. `levelOrder` is the only traversal that is not recursive. Why does it need a `Queue<T>` specifically — what would go wrong if you used a `Stack<T>` instead? (What order would you get?)
-5. Trace `lineage("Lich")` on McCown's tree. Which method finds the node, and which pointers does the walk *up* to the root follow? Why is a parent pointer required, and what `Chain<T>` feature is it the analogue of?
-6. `findFrom` may have to visit *every* node before reporting "not found." Why does a general tree give no search advantage over a flat sorted list? What single ordering rule would let search skip half the tree at each step?
-7. Grix's "tree of height one" really is a tree. Describe the tree that is *also* exactly a `Chain<T>` — every node has at most one child. What is its height in terms of N, and why is that the worst case for any tree algorithm?
-
-Answers are discussed at the start of the next floor.
+You are now in the Trees stretch of the Hold (Floors 8–9½). This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

@@ -168,18 +168,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you descend to Floor 3, you should be able to answer these without looking:
-
-1. What does **divide-and-conquer** mean? Name two algorithms that use it (one you wrote this week, one you wrote last week).
-2. Merge sort is `O(n log n)` *always*. Quicksort is `O(n log n)` *on average*. Why isn't quicksort always `O(n log n)`?
-3. Define **stable sort** in one sentence. Suppose `Iron key` (wt 0.1) appears before `Loaf of bread` (wt 0.1) in your inventory. After a **stable** `sort by weight`, which appears first — and what does an **unstable** sort fail to guarantee about those two? (Hint: this is why to get *weight-primary, name-tiebreak* order you sort by name **first** and then stably by weight — not the other way around.)
-4. Define **in-place sort**. Which of {merge sort, quicksort, std::sort} are in-place?
-5. A **comparator** is a function (or lambda) that returns true if `a` should come before `b`. Why does taking a comparator let one sort routine produce *every possible ordering* of your items?
-6. In our codebase, `sortInventory` is the one place the rest of the game asks "put these items in order." Why is that a good design — i.e., what would change in Week 11 (when the inventory becomes a balanced tree) if every command sorted directly?
-
-Answers are discussed in the Monday Floor 3 warmup.
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---

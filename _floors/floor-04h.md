@@ -186,18 +186,9 @@ Counter by:
 </div>
 
 <div class="callout check" markdown="1">
-<p class="callout-title">Check for understanding</p>
+<p class="callout-title">The Keeper's Check</p>
 
-Before you descend to Floor 5, you should be able to answer these without looking:
-
-1. A doubly-linked `Node<T>` has `prev` and `next`. What is `head_->prev` on a non-empty chain? What is `tail_->next`? What are both on an empty chain?
-2. `push_back` is O(1) on a doubly-linked chain *with* a `tail_` pointer. Walk through what it does in three lines. Now: why would `push_back` on a doubly-linked chain *without* a `tail_` pointer be O(n)?
-3. You wrote a deep copy ctor. After `Chain<int> a; a.push_front(1); Chain<int> b = a;`, how many `Node<int>` objects exist? How many `Chain<int>` objects? Where do `a.head_` and `b.head_` point?
-4. The compiler-generated copy assignment would have done `head_ = other.head_; tail_ = other.tail_; size_ = other.size_;`. Beyond the double-free, name one *other* thing this loses — what happens to the nodes `*this` *used to own* before the assignment?
-5. State the Rule of Three. State the Rule of Zero. Which one does `Chain<T>` follow? Which one does `Bag<T>` follow? Why are they different?
-6. `pop_back` on a doubly-linked chain with `tail_` is O(1). On a singly-linked chain with `tail_` it is O(n). What is the one step you can do in O(1) on one and not the other?
-
-Answers are discussed in the Monday Floor 5 warmup.
+This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 </div>
 
 ---
