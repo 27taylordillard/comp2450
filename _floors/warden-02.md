@@ -110,6 +110,33 @@ This is the trial. You will program a **wave-survival encounter** into your dung
 
 **Do.** In your floor-07 project (the one you've been building through stacks and queues), add a **`battle waves N`** command to `main.cpp` — where `N` is the number of waves the player wants to face. Factor the encounter into `battle/Battle.cpp` (the file already exists from Warden 1; add a second function alongside `runWardenBattle`). When the player types `battle waves 3`, the encounter begins with three waves queued up.
 
+**You will receive (in your starter drop).** The public drop at `project/warden-02-starter/` ships everything the yard assumes, so the only thing left to build is the encounter itself:
+
+- The **post-Floor-7 reference baseline** — `Chain` with its iterators, `Stack`, `Queue`, the Floor 7 commands, and the Warden 1 battle, all working. This is the state your own project should already be in.
+- **`battle/Battle.cpp`** with the `runWaveSurvival` TODO scaffold — and, in its comments, the per-tie checklist and the exact test script the grader will run against your build.
+- **`hero/UndoAction.h`** already carrying the one `playerHP` field the wave-survival undo needs — on Path A you add the same field to your own copy.
+- The four **`warden-2-trials/`** templates: `AI-USE.md`, `trial-1-brief.md`, `trial-2-critique.md`, `encounter-notes.md`.
+- The **README** with the exact Path A wiring diffs — the `UndoAction` field, the `Battle.h` declaration, the `main.cpp` dispatch.
+
+Even on Path A — building in your own project, which is the preferred route — read the starter's battle file and README first: the checklist and wiring diffs in them are the map.
+
+<div class="callout check" markdown="1">
+<p class="callout-title">Suggested campaign — five sittings</p>
+
+A suggested order, not a mandate — this exam is yours to pace. But several short sittings beat one long night, and this split has every sitting end with something you can *run*:
+
+| Sitting | Build | You know it held when |
+|--------:|-------|-----------------------|
+| 1 | The wave queue + **Attack**, against one wave of one enemy. No items, no undo, no log yet. | `battle waves 1` plays to *both* endings — you can win it, and (crank a test enemy's ATK, or drop your starting HP, for one run) you can lose it; each prints its banner. |
+| 2 | `eventLog` appends on every action and every retaliation + the **Inspect log** option that walks it. | Attack an enemy that survives the hit, take the retaliation, pick **Inspect log**: both lines are there, in the direction your comment documents, and the turn is not consumed. |
+| 3 | The `Stack<UndoAction>` snapshots + **Undo** restoring HP and inventory. | Attack, then **Undo**: your HP is back, the front enemy keeps its wound, and a second **Undo** the same turn is refused. |
+| 4 | Multi-enemy waves + **Use item** + **Flee**. | `battle waves 3` plays start to finish; a potion heals; **Flee** exits with waves uncleared. |
+| 5 | `encounter-notes.md`, your two no-AI functions, Trials I and II if not already done, and one paper rehearsal for Friday. | You can write both functions' signatures from memory with the laptop closed. |
+
+Mavren's advice at the gate below is this same plan in her own words.
+
+</div>
+
 **Required mechanics — minimum viable:**
 
 - **Stats.** Player starts at 40 HP. Each enemy has its own HP (suggested: imp 8, rat 5, skeleton 12 — numbers are yours to tune; document them in `encounter-notes.md`).
@@ -139,6 +166,114 @@ This is the trial. You will program a **wave-survival encounter** into your dung
   - One paragraph (≤ 200 words) reflecting on the integration: which Floor's tie was hardest to wire in, and why. Was it picking the iterator direction for **Inspect log**, the snapshot-and-restore on `Stack<UndoAction>`, the front-of-queue targeting, or deciding what to leave OUT of the undo snapshot?
 - A working **build**. We will `cmake --build build` your project. If it does not compile, the Warden has won by default.
 
+**Demo target.** Below is a real transcript of the reference encounter (`battle waves 2`), captured over piped input — so what the player typed (attack, inspect, undo, undo again, a bad `9`, then attacks to the end) is not echoed, and the bracketed lines are trims, not program output. It shows the required *behaviours*, not required text — your wording, your numbers, and your menu order may all differ. (One nuance: the reference shows the hero's surviving HP in its last state line; your win condition above asks for it in the closing line itself — do that.)
+
+```
+  >> Wave 1 enters: 2 enemies.
+
+  -- Wave 1/2 --   you HP 40    enemies remaining: 2
+    front of line: Imp #1  (HP 8, ATK 3)
+    1. Attack front
+    2. Use item
+    3. Inspect log
+    4. Undo
+    5. Flee
+  >   You strike Imp #1 for 7.  HP -> 1.
+  Imp #1 retaliates for 3.  Your HP -> 37.
+
+  -- Wave 1/2 --   you HP 37    enemies remaining: 2
+    front of line: Imp #1  (HP 1, ATK 3)
+  [same 5-line menu prints every turn — trimmed from here on]
+  >   -- recent log (newest first; free action) --
+   1.  Imp #1 struck for 3
+   2.  struck Imp #1 for 7
+   3.  wave 1 enters (2 enemies)
+   4.  battle waves 2 — yard opens
+   5.  began session as "Aria"
+  (newest first; chain length 5)
+
+  -- Wave 1/2 --   you HP 37    enemies remaining: 2
+    front of line: Imp #1  (HP 1, ATK 3)
+  >   Undid: attack Imp #1.  Your HP -> 40.  (wave queue is NOT rewound — front of line still acts next.)
+
+  -- Wave 1/2 --   you HP 40    enemies remaining: 2
+    front of line: Imp #1  (HP 1, ATK 3)
+  >   You may only undo once per turn.
+  [unchanged state block trimmed]
+  >   index 9 out of bounds for size 5 — try again.
+
+  -- Wave 1/2 --   you HP 40    enemies remaining: 2
+    front of line: Imp #1  (HP 1, ATK 3)
+  >   You strike Imp #1 for 7.  HP -> 0.
+  Imp #1 falls.  Next in line steps forward.
+
+  -- Wave 1/2 --   you HP 40    enemies remaining: 1
+    front of line: Rat #2  (HP 5, ATK 2)
+  >   You strike Rat #2 for 7.  HP -> 0.
+  Rat #2 falls.  Next in line steps forward.
+  >> Wave 1 cleared.
+
+  >> Wave 2 enters: 3 enemies.
+
+  -- Wave 2/2 --   you HP 40    enemies remaining: 3
+    front of line: Imp #1  (HP 8, ATK 3)
+  [four attack turns trimmed — Imp #1 falls (retaliation took you to 37), Rat #2 falls, Skeleton #3 wounded 12 -> 5 and retaliates for 4 -> you HP 33]
+  >   You strike Skeleton #3 for 7.  HP -> 0.
+  Skeleton #3 falls.  Next in line steps forward.
+  >> Wave 2 cleared.
+
+The yard quiets. The inner gate opens.
+```
+
+And the other ending, so you know both are reachable — the last two turns of a `battle waves 5` run that went all-attack:
+
+```
+  -- Wave 5/5 --   you HP 3    enemies remaining: 4
+    front of line: Skeleton #3  (HP 5, ATK 4)
+    1. Attack front
+    2. Use item
+    3. Inspect log
+    4. Undo
+    5. Flee
+  >   You strike Skeleton #3 for 7.  HP -> 0.
+  Skeleton #3 falls.  Next in line steps forward.
+
+  -- Wave 5/5 --   you HP 3    enemies remaining: 3
+    front of line: Imp #4  (HP 8, ATK 3)
+    1. Attack front
+    2. Use item
+    3. Inspect log
+    4. Undo
+    5. Flee
+  >   You strike Imp #4 for 7.  HP -> 1.
+  Imp #4 retaliates for 3.  Your HP -> 0.
+
+You fall in the yard. The gate stays shut.
+```
+
+<div class="callout check" markdown="1">
+<p class="callout-title">The Warden's own checks — run these before you push</p>
+
+Three phases, built from the grader's script printed in the comments of the starter's `battle/Battle.cpp`. Every line is something you can verify at your own keyboard.
+
+**Phase 1 — the skeleton holds.**
+- `battle waves 2` starts an encounter, and the state line (your HP, wave *i*/*N*, enemies remaining, the front enemy and its HP) prints every turn.
+- Both endings are reachable: you can clear every wave to the victory banner, and you can die to the defeat banner.
+
+**Phase 2 — the yard holds.**
+- Typing `9` or `abc` at the menu neither crashes nor exits — it re-prompts the *same* turn.
+- **Inspect log** prints recent entries newest-first (or in the direction your one-line comment documents) and costs nothing — the same state line comes back, with no retaliation in between.
+- Every action *and* every retaliation lands in the log: attack, take the retaliation, inspect — both lines are there.
+
+**Phase 3 — the memory holds.**
+- Attack, then **Undo**: your HP and inventory rewind, and the front enemy keeps its wounds.
+- A second consecutive **Undo** is refused.
+- **Flee** exits with waves uncleared — the run ends as Fled, not Victory.
+
+Friday's grader starts with exactly this list, then reads your four ties in the source — if all three phases pass at your keyboard, the build half of the grade is already earned.
+
+</div>
+
 **Submit.** Your modified `main.cpp` + `battle/Battle.h` and `battle/Battle.cpp` (and any helpers you split out) + `hero/UndoAction.h` (with the new `playerHP` field) + `encounter-notes.md`, all committed to your project repo.
 
 **Full credit (rubric inside the 60 %):**
@@ -160,9 +295,25 @@ Twenty minutes. Closed everything — no books, no laptops, no phones, no AI. Yo
 
 If you wrote your encounter, this quiz takes ten minutes. If you didn't, it takes the full twenty and the gap is what we grade.
 
+<div class="callout check" markdown="1">
+<p class="callout-title">Before Friday</p>
+
+Closed laptop, blank paper. You should be able to:
+
+- write the signatures of your two no-AI functions from memory, and sketch each body's control flow in five lines;
+- rewrite one comparator or one queue operation on paper;
+- say which line pushes the `UndoAction` and which line mutates state — and why that order;
+- trace one full turn of your encounter — what prints, what is read, what changes — without opening the file.
+
+If any of these takes more than two minutes, that is Thursday night's studying, located for you.
+
+</div>
+
 ## Submission and grading
 
 **Submission.** Commit and push the entire `floor-07/warden-2-trials/` folder *and* your modified battle code to your project repo by **9:00 AM Friday of Week 10**. Late commits drop one letter grade per day on the take-home portion.
+
+**Commit cadence.** Your Trial III work must arrive in **at least three commits, on at least two different days** — one per sitting is the natural rhythm, each message naming the link that now holds weight ("wave queue + attack holds", "eventLog + inspect holds"). This is priced inside the existing code-quality points, not a new line item. A single Thursday-night megacommit costs those points — and invites Friday-quiz questions you will not enjoy.
 
 **Folder + code shape:**
 
@@ -211,6 +362,14 @@ The second of four wardens. Cataloguers caught its silhouette in the marshalling
 The Warden does not punish you for choosing the wrong container; the *yard* does. Pick `Bag<Item>` for the inventory and the iterator question is still answerable but the *reason* you needed iterators evaporates. Pick a queue for the undo stack and the most-recent action is the *last* one available, not the first — your `undo` will reverse the wrong turn at the worst time. The Warden watches. The Warden does not explain.
 
 You will fight this creature inside the game you wrote. That fact, again, is the test.
+
+Counter by:
+
+- **Snapshot *before* you strike.** Push the `UndoAction` first, mutate second. Reversed, your undo faithfully restores the already-damaged state — it "works", and does nothing.
+- **Never hold a reference to `front()` past a `dequeue()`.** The node is gone; the reference dangles. Read what you need out of the front enemy, *then* dequeue.
+- **A free action ends nothing.** **Inspect log** and **Undo** must reach the top of the loop without the enemy moving — retaliation-on-inspect is the most common bug in this yard.
+- **Catch inside the wave loop, not around it.** A `BagException` caught around the whole encounter unwinds the yard; caught inside the turn, it costs one re-prompt.
+
 </div>
 
 <div class="character-card" markdown="1">
