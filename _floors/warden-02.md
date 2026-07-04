@@ -75,7 +75,7 @@ Four short answers, each anchored to the encounter you are about to build. No co
 **Do.** Open `floor-07/warden-2-trials/trial-1-brief.md` and write **50–100 words per answer**:
 
 1. **(Floors 4 / 4½ — linked lists.)** Your encounter's **event log** (every "Aric strikes Imp for 6", every "Imp retaliates for 3") is appended to `hero.eventLog`, which is a `Chain<std::string>`. Defend that against a `Bag<std::string>` (vector-backed) in terms of one operation the battle actually performs — naming the Big-O of that operation in `Chain` and in `Bag`. *Hint: think about what `Bag` has to do the moment its capacity is exceeded.*
-2. **(Floor 5 — iterators.)** When the player picks the **Inspect log** menu option, your encounter calls `printLog(hero.eventLog.begin(), hero.eventLog.end(), 5, ...)` — the same function template you wrote on Floor 5. (Because `eventLog` is built with `push_front` everywhere in the program, the *front* of the chain is the most recent entry; the forward iterator walks newest-to-oldest naturally.) Show **one line** of C++ that does the equivalent walk by hand using an explicit `Chain<std::string>::iterator` loop. Then one sentence: why is this iterator *bidirectional* (and what becomes impossible the moment you ask for random-access on it)?
+2. **(Floor 5 — iterators.)** When the player picks the **Inspect log** menu option, your encounter calls `printLog(hero.eventLog.begin(), hero.eventLog.end(), 5, ...)` — the same function template your Floor 5 iterators brought to life. (Because `eventLog` is built with `push_front` everywhere in the program, the *front* of the chain is the most recent entry; the forward iterator walks newest-to-oldest naturally.) Show **one line** of C++ that does the equivalent walk by hand using an explicit `Chain<std::string>::iterator` loop. Then one sentence: why is this iterator *bidirectional* (and what becomes impossible the moment you ask for random-access on it)?
 3. **(Floor 6 — stacks.)** Your `undo` command pops the most recent action off a `Stack<UndoAction>` and restores its snapshot. Defend the choice of stack against a queue or a deque in one sentence — referencing the *contract* of LIFO (not the implementation). Then one extra sentence: name one piece of battle state that your `undo` *intentionally does not* restore, and explain why the player won't mind.
 4. **(Floor 7 — queues.)** Each wave's enemies sit in a `Queue<Enemy>` in arrival order. Explain — in one sentence — what *visibly* changes for the player if you swap `Queue<Enemy>` for `Stack<Enemy>`: which enemy gets attacked first, and in what order the rest are picked off.
 
@@ -118,7 +118,7 @@ This is the trial. You will program a **wave-survival encounter** into your dung
 - **Menu — at least five options:**
   1. **Attack** — deal damage to the *front* enemy of the current wave. If its HP drops to 0 or below, dequeue it; the next-oldest enemy becomes the new front. If it survives, *it* retaliates this turn.
   2. **Use item** — display the inventory (which is still `hero.inventory`, a `Bag<Item>` — same as every prior floor) and prompt for an item name; apply the item's effect; turn ends. The front enemy retaliates after.
-  3. **Inspect log** — print the last few entries of `hero.eventLog` in reverse-chronological order via the same `printLog` function template you wrote on Floor 5. **Free action** — does not consume a turn.
+  3. **Inspect log** — print the last few entries of `hero.eventLog` in reverse-chronological order via the same `printLog` function template your Floor 5 iterators brought to life. **Free action** — does not consume a turn.
   4. **Undo** — reverse the most recent turn by popping the action stack and restoring its snapshot (player HP + inventory). **Free action** — does not consume a turn, and the front enemy does not retaliate. Maximum one undo per turn (no chained undo-undo loops). The wave queue is *not* rewound; see the F6 tie below for why.
   5. **Flee** — leave the encounter. The Warden does not chase; the marshalling yard remains closed and any uncleared waves remain.
 - **Win condition.** All N waves cleared (every queue emptied) → print a victory message and the inner gate opens. Note your hero's surviving HP in the closing line.
@@ -128,7 +128,7 @@ This is the trial. You will program a **wave-survival encounter** into your dung
 
 - **Floors 4 / 4½ (linked lists):** every turn — both the player's action and the front enemy's retaliation — must append a one-line string to `hero.eventLog` (already a `Chain<std::string>` from Floor 4½). The log grows forward, never backward; even `undo` appends an "(undo) reverted: <description>" entry rather than rewinding the chain. The log is what the **Inspect log** menu option reads.
 - **Floor 5 (iterators):** the **Inspect log** menu option must call your Floor 5 `printLog` function template over `hero.eventLog`. Because every push elsewhere in the program is `push_front`, the most recent entry is at the chain's head — `begin()/end()` is newest-first; `rbegin()/rend()` is oldest-first (a "battle replay" framing). Pick whichever direction matches what Inspect log should mean for your encounter and document the choice in a one-line comment. The point is *iterator pair into `printLog`* — no subscripting the chain, no `chain.at(i)`, no manual `head()`-chase anywhere in your battle.
-- **Floor 6 (stacks):** the undo history must be a `Stack<UndoAction>`. Every attack and every use-item pushes one `UndoAction` (with a snapshot of player HP and inventory) onto the stack *before* executing. `undo` pops the top entry and restores both. A comment above the stack's declaration must say in one line: *why a stack and not a queue.* A second comment above the `undo` body must name **one thing undo intentionally does not restore** (the wave queue is the obvious answer — pick that or another, and defend it).
+- **Floor 6 (stacks):** the undo history must be a `Stack<UndoAction>`. Every attack and every use-item pushes one `UndoAction` (with a snapshot of player HP and inventory) onto the stack *before* executing. `undo` pops the top entry and restores both. Your Floor 6 `UndoAction` holds a description and an inventory snapshot — no HP — so extend `hero/UndoAction.h` with one `int playerHP` field to make the snapshot cover both; the starter README shows the exact three-line diff. A comment above the stack's declaration must say in one line: *why a stack and not a queue.* A second comment above the `undo` body must name **one thing undo intentionally does not restore** (the wave queue is the obvious answer — pick that or another, and defend it).
 - **Floor 7 (queues):** the current wave's enemies must be held in a `Queue<Enemy>`, with `front()` always returning the currently-targeted enemy and `dequeue()` only called when that enemy dies. The waves themselves may *also* be a `Queue<Wave>` (encouraged) — if you do that, document the nested-queue choice in `encounter-notes.md`.
 
 **Also required:**
@@ -139,7 +139,7 @@ This is the trial. You will program a **wave-survival encounter** into your dung
   - One paragraph (≤ 200 words) reflecting on the integration: which Floor's tie was hardest to wire in, and why. Was it picking the iterator direction for **Inspect log**, the snapshot-and-restore on `Stack<UndoAction>`, the front-of-queue targeting, or deciding what to leave OUT of the undo snapshot?
 - A working **build**. We will `cmake --build build` your project. If it does not compile, the Warden has won by default.
 
-**Submit.** Your modified `main.cpp` + `battle/Battle.cpp` (and any helpers you split out) + `encounter-notes.md`, all committed to your project repo.
+**Submit.** Your modified `main.cpp` + `battle/Battle.h` and `battle/Battle.cpp` (and any helpers you split out) + `hero/UndoAction.h` (with the new `playerHP` field) + `encounter-notes.md`, all committed to your project repo.
 
 **Full credit (rubric inside the 60 %):**
 
@@ -173,7 +173,7 @@ If you wrote your encounter, this quiz takes ten minutes. If you didn't, it take
     battle/Battle.h, Battle.cpp       <-- add runWaveSurvival(...) alongside runWardenBattle
     hero/Chain.h                      <-- already there from Floor 4/4½
     hero/Stack.h, Queue.h             <-- already there from Floors 6, 7
-    hero/UndoAction.h                 <-- already there from Floor 6
+    hero/UndoAction.h                 <-- from Floor 6; you add one playerHP field
     warden-2-trials/
       AI-USE.md
       trial-1-brief.md

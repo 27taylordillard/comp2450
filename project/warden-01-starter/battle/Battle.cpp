@@ -25,20 +25,23 @@
 //   F0 (ADT)         — the available actions on a turn must live in a
 //                      container of your choice. ABOVE the declaration,
 //                      in a comment, name the ADT and defend it in one
-//                      sentence (this is your Trial I Q1 answer, in
-//                      code form).
+//                      sentence (the same kind of defence Trial I Q1
+//                      practiced — but this is a different collection
+//                      than Q1's items menu; the right ADT may differ).
 //
 //   F1 (search)      — the Use-item branch MUST call findByName<Item>
 //                      against hero.inventory to look up the item the
 //                      player typed.
 //
-//   F2 (sort)        — when the items menu is displayed, std::sort the
-//                      inventory FIRST with a comparator. Pick a
-//                      criterion (healing power, weight, value, …) and
-//                      document it in a comment.
+//   F2 (sort)        — when the items menu is displayed, sort the
+//                      inventory at display time with a comparator
+//                      (std::sort or your Floor 2 sortInventory). Pick
+//                      a criterion (value — the healing-power stand-in
+//                      — weight, or name) and document it in a comment.
 //
-//   F3 (templates +  — invalid menu input must `throw BagException`
-//      exceptions)     (or your own type derived from std::exception),
+//   F3 (templates +  — invalid menu input must `throw BattleException`
+//      exceptions)     (ready skeleton in Battle.h) — or BagException
+//                      where a genuinely bad index is the fault —
 //                      caught INSIDE the battle loop so the player gets
 //                      another prompt — not a crash, not an exit.
 //
@@ -94,7 +97,7 @@ BattleOutcome runWardenBattle(Hero& hero) {
     //       try {
     //           show menu (using your F0 container of actions).
     //           read input.
-    //           if invalid → throw BagException(...) [F3 — throw].
+    //           if invalid → throw BattleException(...) [F3 — throw].
     //           dispatch on the action:
     //               Attack:    wardenHP -= kPlayerAttackDmg;
     //                          if wardenHP > 0, playerHP -= kWardenAttackDmg.
@@ -104,13 +107,13 @@ BattleOutcome runWardenBattle(Hero& hero) {
     //                          show sorted menu, read item name.
     //                          const Item* it = findByName<Item>(
     //                              hero.inventory, name);             [F1]
-    //                          if (!it) throw BagException(...);      [F3]
+    //                          if (!it) throw BattleException(...);   [F3]
     //                          apply effect (heal? buff next attack? …).
     //                          end turn.
     //               Inspect:   print warden state. FREE — do NOT end turn.
     //               Flee:      return BattleOutcome::Fled.
     //       }
-    //       catch (const BagException& e) {                           [F3 — catch]
+    //       catch (const std::exception& e) {                        [F3 — catch]
     //           std::cout << "  " << e.what() << "  Try again.\n";
     //           continue;   // re-prompt; turn does NOT advance
     //       }

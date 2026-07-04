@@ -75,8 +75,8 @@ The Warden wants four short answers — one from each floor above, each one anch
 **Do.** Open `floor-03/warden-trials/trial-1-brief.md` and write **50–100 words per answer**:
 
 1. **(Floor 0 — ADT.)** Your battle's "Use item" menu shows the *currently usable* items in your hero's inventory on this turn. Name the right ADT for that menu. Defend the choice against its closest neighbour (e.g., why `bag` instead of `set`, or `list` instead of `bag`).
-2. **(Floor 1 — search & Big-O.)** Your inventory is kept sorted by healing power. The player types `use Healing potion`. Linear or binary search to find it by name? Justify, and give the Big-O for each.
-3. **(Floor 2 — sort & comparators.)** Your "Use item" menu must be displayable sorted *either* by healing power *or* by weight. Show a one-line comparator (lambda) for each. One sentence on what language feature makes one `std::sort` call serve both orders.
+2. **(Floor 1 — search & Big-O.)** Your inventory is kept sorted by healing power (in this codebase an item's `value` measures its potency, so `value` plays the healing-power role). The player types `use Healing potion`. Linear or binary search to find it by name? Justify, and give the Big-O for each.
+3. **(Floor 2 — sort & comparators.)** Your "Use item" menu must be displayable sorted *either* by healing power (meaning `value`) *or* by weight. Show a one-line comparator (lambda) for each. One sentence on what language feature makes one `std::sort` call serve both orders.
 4. **(Floor 3 — templates & exceptions.)** Why does `Bag<T>` live in `Bag.h` instead of `Bag.cpp`? And: when the player types `9` for a 4-option menu, where in your code should the validation **throw**, and where should it **catch**?
 
 **Submit.** `trial-1-brief.md`.
@@ -108,7 +108,7 @@ You will engage an LLM, save the conversation, and critique what it gave you. Th
 
 This is the trial. You will program the Warden of the Foundations into your dungeon app as a real, playable boss battle, and you will fight it.
 
-**Do.** In your floor-03 project (the one you've been building all term), add a **`battle warden`** command to `main.cpp` (factor it into a `Battle.h` / `Battle.cpp` if you like — encouraged but not required). When the player types it, the encounter begins.
+**Do.** The encounter lives in one fixed place: `runWardenBattle` in `battle/Battle.h` + `battle/Battle.cpp`. If you are continuing your own floor-03 project (the one you've been building all term), copy the starter's `battle/` folder in and add the one-line **`battle warden`** dispatch to your `main.cpp` — the starter README shows the exact snippets. If you are starting fresh from the warden starter drop, the dispatch is already pre-wired. Either way, how you decompose the code *inside* those two files — helpers, private types, the shape of the loop — is entirely yours. When the player types `battle warden`, the encounter begins.
 
 **Required mechanics — minimum viable:**
 
@@ -124,10 +124,10 @@ This is the trial. You will program the Warden of the Foundations into your dung
 
 **Required ties to Floors 0 – 3** — every one of these must be present in your battle code, real and load-bearing (not pasted in for show):
 
-- **Floor 0 (ADT):** the available menu actions for the current turn must be held in a container of your choice. In a comment above the declaration, name the ADT and defend it in one sentence — exactly the reasoning from Trial I.
+- **Floor 0 (ADT):** the available menu actions for the current turn must be held in a container of your choice. In a comment above the declaration, name the ADT and defend it in one sentence — the same kind of one-sentence defence Trial I practiced, but note this is a *different* collection than Q1's items menu, so the right ADT (and the defence) may differ.
 - **Floor 1 (search):** the "Use item" branch must call `findByName<Item>` (your Floor 3 function template) on the hero's inventory to look up the item the player typed.
-- **Floor 2 (sort):** when the "Use item" menu is displayed, the inventory must be sorted first using `std::sort` with a comparator — by healing power, weight, value, your call — and the choice documented in a comment.
-- **Floor 3 (templates + exceptions):** invalid menu input (out-of-range number, unknown item name) must `throw BagException` (or a `BattleException` you derive from `std::exception`). The throw must be caught **inside the battle loop** so the player gets a clean error and another menu prompt — not a crash, not an exit. The player's inventory must remain a `Bag<Item>`.
+- **Floor 2 (sort):** when the "Use item" menu is displayed, the inventory must be sorted at display time with a comparator (via `std::sort` or your Floor 2 `sortInventory`) — by `value` (the healing-power stand-in), `weight`, or `name`, your call — and the choice documented in a comment.
+- **Floor 3 (templates + exceptions):** invalid menu input (out-of-range number, unknown item name) must `throw BattleException` (a ready skeleton ships in `battle/Battle.h`) — or `BagException` where a bad index really is the fault; either way, a type derived from `std::exception`. The throw must be caught **inside the battle loop** so the player gets a clean error and another menu prompt — not a crash, not an exit. The player's inventory must remain a `Bag<Item>`.
 
 **Also required:**
 
@@ -137,7 +137,7 @@ This is the trial. You will program the Warden of the Foundations into your dung
   - One paragraph (≤ 200 words) reflecting on the integration: which Floor's tie was hardest to wire in, and why.
 - A working **build**. We will `cmake --build build` your project. If it does not compile, the Warden has won by default.
 
-**Submit.** Your modified `main.cpp` (and any `Battle.{h,cpp}` you added) + `encounter-notes.md`, all committed to your project repo.
+**Submit.** Your `battle/Battle.{h,cpp}`, your modified `main.cpp`, and `encounter-notes.md`, all committed to your project repo.
 
 **Full credit (rubric inside the 60 %):**
 
@@ -154,7 +154,7 @@ Twenty minutes. Closed everything — no books, no laptops, no phones, no AI. Yo
 
 - *"Modify your `attackWarden` function so the player's attack damage scales with their remaining HP. On paper, write the changed lines."*
 - *"In your battle's menu loop, add a 'Defend' option that halves the Warden's next attack. Sketch what changes."*
-- *"Your inventory comparator currently sorts by healing power. Rewrite it on paper to sort by healing-per-weight."*
+- *"Your inventory comparator currently sorts by `value`. Rewrite it on paper to sort by value-per-weight."*
 
 If you wrote your battle, this quiz takes ten minutes. If you didn't, it takes the full twenty and the gap is what we grade.
 
@@ -169,8 +169,9 @@ The quiz is the integrity seal. It is short by design and intentionally tied to 
 ```
 [your project repo]/
   floor-03/
-    main.cpp                       <-- new `battle warden` command lives here
-    Battle.h, Battle.cpp           <-- optional, encouraged
+    main.cpp                       <-- one-line `battle warden` dispatch lives here
+    battle/
+      Battle.h, Battle.cpp         <-- runWardenBattle lives here
     hero/Bag.h, BagException.h     <-- already there from Floor 3 starter
     warden-trials/
       AI-USE.md
@@ -178,6 +179,8 @@ The quiz is the integrity seal. It is short by design and intentionally tied to 
       trial-2-critique.md
       encounter-notes.md
 ```
+
+The `battle/` location is fixed — the grader, the starter's `CMakeLists.txt`, and the prompts in `encounter-notes.md` all point at `battle/Battle.cpp`. What's yours to decide is how you organise the code *inside* those two files.
 
 **Rubric — top-level.**
 

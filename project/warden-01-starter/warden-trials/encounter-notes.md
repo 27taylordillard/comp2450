@@ -35,13 +35,13 @@ Help the grader find each of the four required ties.
 
 - `battle/Battle.cpp:<line>` (Use-item branch)
 
-**Floor 2 (sort).** `std::sort` with a comparator is called at:
+**Floor 2 (sort).** The at-display sort (`std::sort` with a comparator, or your Floor 2 `sortInventory`) is called at:
 
 - `battle/Battle.cpp:<line>` (before displaying the items menu)
-- Sort criterion: `<...>` (e.g., descending healing power, ascending weight)
+- Sort criterion: `<...>` (e.g., descending value — the healing-power stand-in — or ascending weight)
 - One-sentence reason: (why this criterion?)
 
-**Floor 3 (templates + exceptions).** `BagException` (or your derived type) is:
+**Floor 3 (templates + exceptions).** `BattleException` (or `BagException` where a bad index is the fault) is:
 
 - Thrown at: `battle/Battle.cpp:<line>` on `<condition>`
 - Caught at: `battle/Battle.cpp:<line>` (must be **inside** the battle loop, not in main)

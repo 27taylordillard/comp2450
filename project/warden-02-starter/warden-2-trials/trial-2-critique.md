@@ -39,7 +39,7 @@ Address each of these:
 
 - **Compile.** Did you actually try to compile and run the code? On what types? What happened?
 - **Is it really O(1)?** The prompt asks for all eight operations to be O(1). Audit the implementation. Did the LLM rely on `std::list` (whose `back()` and `pop_back()` are O(1) thanks to a tail pointer), or did it hand-roll storage that walks from `head` for `back()` (silently O(n))? The prose claim is not the same as the code.
-- **Empty case.** What does `pop_front()` or `pop_back()` do on an empty deque? Is the LLM's choice reasonable? Compare to what your own `Queue<T>::dequeue` does in your Floor 7 code (it's a safe no-op via `Chain<T>::pop_front`).
+- **Empty case.** What does `pop_front()` or `pop_back()` do on an empty deque? Is the LLM's choice reasonable? Remember the ADT contract makes *no promise* about popping when empty — that call is undefined behaviour at the contract level. Audit what your own Floor 7 code *actually* does (your `Chain<T>::pop_front` guards the empty case, so your `Queue<T>::dequeue` happens to no-op) — then say which of the two you should judge the LLM's deque against: the contract, or your implementation's accident.
 - **Composition.** Did the LLM compose over your `Chain<T>` (the right move in your codebase), over `std::list` (also fine), or reimplement doubly-linked storage from scratch (duplication — mark down)?
 - **Const-correctness.** Did the LLM give you both `T& front()` and `const T& front() const`? Both `T& back()` and `const T& back() const`? Or only the mutable overloads?
 - **One concrete improvement.** Name one specific change you would make before merging this into a real project. Not "make it better" — a concrete code change.

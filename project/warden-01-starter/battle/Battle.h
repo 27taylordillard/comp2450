@@ -11,9 +11,25 @@
 
 #pragma once
 
+#include <exception>
+#include <string>
+
 #include "../hero/Hero.h"
 
 namespace dungeon {
+
+// Throw BattleException for any battle error that is not genuinely a bad
+// index — unknown item name, malformed command. (A genuinely bad index
+// still wants BagException, which carries the index and the size.)
+class BattleException : public std::exception {
+public:
+    explicit BattleException(const std::string& message) : msg_(message) {}
+
+    const char* what() const noexcept override { return msg_.c_str(); }
+
+private:
+    std::string msg_;
+};
 
 // What happened at the end of the encounter. main.cpp uses this to pick
 // the correct closing banner.

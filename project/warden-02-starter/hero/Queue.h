@@ -1,4 +1,4 @@
-// COMP 2450 — Floor 8 starter
+// COMP 2450 — Warden of the Middle Gates — Midterm 2 starter
 // hero/Queue.h — FIFO queue template, complete reference (your Floor 7 work).
 //
 // As-of state from Floor 7 onward: Queue<T> is a thin adapter over Chain<T>,
@@ -6,8 +6,9 @@
 // difference that makes it a QUEUE and not a stack: insert and remove happen
 // at OPPOSITE ends of the chain.
 //
-// You will not edit this file on later floors. It is here as working
-// reference — Floor 8's levelOrder (BFS) and this floor's demos reuse it.
+// You will not edit this file for this midterm or on later floors. It is
+// here as working reference — `provoke`/`simulate`, hotPotato, and your
+// Trial III queue tie all lean on it, and Floor 8's levelOrder (BFS) will.
 //
 // =====================================================================
 // Why this is FIFO:

@@ -18,7 +18,7 @@ AI is welcome to *check* your answers; it is not welcome to *write your sentence
 
 ## 2. Floor 1 — search & Big-O
 
-> Your inventory is kept sorted by healing power. The player types `use Healing potion`. Linear or binary search to find it by name? Justify, and give the Big-O for each.
+> Your inventory is kept sorted by healing power (in this codebase an item's `value` measures its potency, so `value` plays the healing-power role). The player types `use Healing potion`. Linear or binary search to find it by name? Justify, and give the Big-O for each.
 
 (your answer — 50–100 words)
 
@@ -26,11 +26,13 @@ AI is welcome to *check* your answers; it is not welcome to *write your sentence
 
 ## 3. Floor 2 — sort & comparators
 
-> Your "Use item" menu must be displayable sorted *either* by healing power *or* by weight. Show a one-line comparator (lambda) for each. One sentence on what language feature makes one `std::sort` call serve both orders.
+> Your "Use item" menu must be displayable sorted *either* by healing power (meaning `value`) *or* by weight. Show a one-line comparator (lambda) for each. One sentence on what language feature makes one `std::sort` call serve both orders.
+
+*Note: `Item` has no healing field — an item's `value` measures its potency, so `value` plays the healing-power role here and in your battle.*
 
 ```cpp
-// by healing power
-auto byHeal   = /* your lambda */;
+// by healing power — i.e. by value
+auto byValue  = /* your lambda */;
 
 // by weight
 auto byWeight = /* your lambda */;

@@ -1,42 +1,24 @@
 // COMP 2450 — The Descent
-// Floor 7 — The Cisterns — starter
+// Warden of the Middle Gates — Midterm 2 starter
 //
-// This is the post-Floor-6 reference codebase plus this week's Floor-7
-// stubs. Everything Floors 0–6 delivered is in place: Bag<T>,
-// BagException + at(), findByName<T>, mergeSort, quicksort, std::sort,
-// the boss battle, doubly-linked Chain<T> with the full Rule of Three,
-// working iterator + const_iterator, std::find_if-based search across
-// bestiary, inventory, AND event log, Stack<T> over Chain<T> (push,
-// pop, top, size, empty), isBalanced + the `lint` command, the `take`
-// and `undo` and `selftest stack` commands.
+// This is the post-Floor-7 reference baseline. Everything Floors 0–7
+// delivered ships COMPLETE and WORKING here: Bag<T>, BagException +
+// at(), findByName<T>, mergeSort, quicksort, std::sort, doubly-linked
+// Chain<T> with the full Rule of Three, working iterator +
+// const_iterator + reverse iterators, std::find_if-based search across
+// bestiary, inventory, AND event log, Stack<T> over Chain<T>, Queue<T>
+// over Chain<T> (filled — no TODOs left in hero/Queue.h), hotPotato,
+// the `take`/`undo`/`lint`/`provoke`/`simulate`/`potato` commands,
+// every `selftest`, and Warden 1's runWardenBattle.
 //
-// What is NEW for Floor 7:
-//   * hero/Queue.h         — Queue<T>, a FIFO adapter over Chain<T>.
-//                            Five one-line method bodies, all TODOs.
-//                            Mirrors Stack<T>; opposite end-pairing.
-//   * hero/Potato.h/.cpp   — std::string hotPotato(names, k) — classical
-//                            FIFO elimination algorithm over Queue<string>.
-//                            Body is Wednesday's TODO.
-//   * hero/QueueTests.*    — `selftest queue` exercises Queue<int>'s
-//                            enqueue/dequeue/front/size/empty in five phases.
-//   * `provoke <name>`     — enqueues an enemy action onto
-//                            hero.enemyActionQueue. Pre-wired here.
-//                            Becomes a no-op-then-useful once your
-//                            Queue::enqueue actually grows the queue.
-//   * `simulate`           — drains hero.enemyActionQueue in FIFO order,
-//                            printing each action. Dispatcher body is
-//                            Friday's TODO; placeholder works as a no-op
-//                            until Friday.
-//   * `potato <names...> <k>` — runs hotPotato; prints the survivor.
-//                            Starts working once you implement hotPotato.
-//   * `selftest queue`     — runs QueueTests.
+// The ONLY stub in this drop is runWaveSurvival in battle/Battle.cpp —
+// that is Trial III, the code you write for this midterm. The
+// `battle waves <N>` command below is already wired to call it.
 //
-// What you do this week (see the Floor 7 page):
-//   Mon — Queue<T>'s five method bodies; `selftest queue` passes.
-//   Wed — hotPotato in Potato.cpp; `potato <names...> <k>` works.
-//   Fri — the `simulate` dispatcher body in this file; `simulate`
-//         drains hero.enemyActionQueue in FIFO order. Also: live-rewrite
-//         a Queue<T> using two Stacks. (Demo, no checked-in code.)
+// Before you touch anything, read README.md in this folder: it walks
+// you through the Path A / Path B choice — extend your own Floor 7
+// project (preferred), or work from this starter if yours won't build.
+// Build & run instructions are there too (cmake -B build, etc.).
 
 #include <algorithm>
 #include <iostream>
@@ -280,9 +262,9 @@ int main() {
                     continue;
                 }
                 // Floor 7 wiring — enqueue a synthesized enemy action onto
-                // hero.enemyActionQueue. Until your Queue<T>::enqueue actually
-                // grows the queue (Monday), this is a no-op and `simulate`
-                // will find the line empty.
+                // hero.enemyActionQueue. Queue<T> ships complete in this
+                // drop, so the line really grows — `simulate` will drain
+                // it in FIFO order.
                 hero.enemyActionQueue.enqueue(rest + " stirs in the dark");
                 std::cout << "  " << rest << " takes a number and joins the line.\n";
                 hero.eventLog.push_front("provoke " + rest);
@@ -311,8 +293,8 @@ int main() {
             else if (cmd == "potato") {
                 // Parse "<name> <name> ... <k>" — the last token is k, the
                 // rest are names. The hotPotato body lives in Potato.cpp
-                // and is Wednesday's TODO; until then it returns the
-                // placeholder string.
+                // and ships filled in this drop — Floor 7's classical
+                // FIFO elimination, working as-is.
                 std::istringstream in(rest);
                 std::vector<std::string> tokens;
                 std::string tok;
