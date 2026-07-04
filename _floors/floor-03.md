@@ -165,9 +165,9 @@ Counter by:
 
 This floor ends the way every floor ends: with a short stack of paper questions in class — closed notes, closed laptop, answers in your own hand — drawn from everything this floor taught. If you did the reading, wrote the code, and can say *why* this week's work earns its place in the game, it takes ten minutes.
 
-But first, **Midterm 1** stands between you and Floor 4. The boss tests Floors 0 – 3 together. Prepare for it.
+But first, [**Midterm 1**]({{ site.baseurl }}/floors/warden-01/) stands between you and Floor 4. The **Warden of the Foundations** tests Floors 0 – 3 together. Prepare for it.
 </div>
 
 ---
 
-*The Forgemaster sets down his hammer. The mold cools. One forge has stamped two containers, and when the forge is asked for steel that isn't there, it cries out instead of cracking. Above the far door the first warden stirs — the **Boss of the Foundations** — where every lesson from the Antechamber through the Vault is put to the test. Pass, and the stair to Floor 4 — the **Chain Vault** — opens.*
+*The Forgemaster sets down his hammer. The mold cools. One forge has stamped two containers, and when the forge is asked for steel that isn't there, it cries out instead of cracking. Above the far door the first warden stirs — the **Warden of the Foundations** — where every lesson from the Antechamber through the Vault is put to the test. Pass, and the stair to Floor 4 — the **Chain Vault** — opens.*

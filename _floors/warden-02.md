@@ -357,7 +357,7 @@ Write your encounter the way you write the ledger: *one link at a time*. Wire th
 
 **The Warden of the Middle Gates** — *HP: not measured here; the Warden does not fight the hero directly. Strength: equal to whichever floor of 4, 4½, 5, 6, 7 the hero understands least. Weakness: a hero whose four containers compose cleanly.*
 
-The second of four wardens. Cataloguers caught its silhouette in the marshalling yard at the bottom of the Cisterns; the page they pinned to its entry shows armour, four sigils — chain link, lens, coiled echo, stamped ticket — and two ember points where eyes should be. The Warden does not strike; it *commands the yard*. Waves of small enemies arrive in arrival order, retaliate when struck, and only the hero whose inventory walks cleanly under an iterator and whose mistakes can be undone from a stack will see the inner gate open.
+The second of four wardens. Cataloguers caught its silhouette in the marshalling yard at the bottom of the Cisterns; the page they pinned to its entry shows armour, four sigils — chain link, lens, coiled echo, stamped ticket — and a single ember slit where eyes should be. The Warden does not strike; it *commands the yard*. Waves of small enemies arrive in arrival order, retaliate when struck, and only the hero whose inventory walks cleanly under an iterator and whose mistakes can be undone from a stack will see the inner gate open.
 
 The Warden does not punish you for choosing the wrong container; the *yard* does. Pick `Bag<Item>` for the inventory and the iterator question is still answerable but the *reason* you needed iterators evaporates. Pick a queue for the undo stack and the most-recent action is the *last* one available, not the first — your `undo` will reverse the wrong turn at the worst time. The Warden watches. The Warden does not explain.
 
@@ -385,4 +385,4 @@ Counter by:
 
 ---
 
-*The yard ends one way or the other — by Friday morning of Week 10. The Warden does not announce the result; the inner gate opens, or it does not. The judgement happens during Friday's class, in handwriting, on modifications the Warden asks you to make to your own code. Beyond the inner gate, the stair to Floor 8 — the **Branching Halls** — climbs back up. McCown is waiting at the top with his bestiary; this time, his entries have children.*
+*The yard ends one way or the other — by Friday morning of Week 10. The Warden does not announce the result; the inner gate opens, or it does not. The judgement happens during Friday's class, in handwriting, on modifications the Warden asks you to make to your own code. Beyond the inner gate, the stair to Floor 8 — the **Hall of Lineages** — climbs back up. McCown is waiting at the top with his bestiary; this time, his entries have children.*
