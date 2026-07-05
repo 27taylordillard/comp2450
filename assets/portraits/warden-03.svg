@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" role="img" aria-labelledby="warden03-title warden03-desc">
+  <title id="warden03-title">The Warden of the Trees</title>
+  <desc id="warden03-desc">A bust portrait. A hooded, faceless figure in dark iron plate. Where the first Warden showed two ember eye-points and the second a single horizontal ember slit, this one shows a forked ember — a stem of light splitting upward into two branches, like a small tree. The field is cold slate flecked with faint blue motes. Four sigils on the breastplate — a branching tree, a two-pronged search-fork, a key-and-value nameplate, and a honeycomb of niches — for the four floors above (trees, binary search trees, sets/maps, hash tables). The nameplate at the foot has no name; only the title WARDEN OF THE TREES.</desc>
+  <defs>
+    <pattern id="warden03-stipple" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#1a1c22"/>
+      <circle cx="3"  cy="3"  r="0.7" fill="#3a4a5e" opacity="0.5"/>
+      <circle cx="10" cy="11" r="0.5" fill="#3a4a5e" opacity="0.4"/>
+      <circle cx="11" cy="4"  r="0.4" fill="#5a6a7e" opacity="0.6"/>
+      <circle cx="4"  cy="10" r="0.3" fill="#5a6a7e" opacity="0.5"/>
+    </pattern>
+    <radialGradient id="warden03-eye" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%"   stop-color="#fff5c8"/>
+      <stop offset="40%"  stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#5e2a00"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .frame-outer { fill: #8b5a00; stroke: #3a2406; stroke-width: 1.6; }
+    .frame-mid   { fill: #c89860; stroke: #6b3018; stroke-width: 0.8; }
+    .frame-mat   { fill: #f2e4bc; stroke: #6b3018; stroke-width: 1.0; }
+    .bg-field    { fill: url(#warden03-stipple); stroke: #050608; stroke-width: 1.0; }
+    .plate       { fill: #2a2d36; stroke: #050608; stroke-width: 1.2; }
+    .plate-edge  { fill: #3e424c; stroke: #050608; stroke-width: 0.8; }
+    .rivet       { fill: #6b3a00; stroke: #050608; stroke-width: 0.4; }
+    .hood        { fill: #181a20; stroke: #050608; stroke-width: 1.2; }
+    .hood-fold   { fill: none;    stroke: #050608; stroke-width: 0.7; stroke-linecap: round; }
+    .face-shadow { fill: #050608; }
+    .eye-glow    { fill: url(#warden03-eye); }
+    .ember       { fill: none; stroke: url(#warden03-eye); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .ember-core  { fill: none; stroke: #fff5c8;           stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
+    .sigil-bg    { fill: #14161c; stroke: #6b3a00; stroke-width: 0.5; }
+    .sigil       { stroke: #c9a227; stroke-width: 0.9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .sigil-dot   { fill: #c9a227; stroke: none; }
+    .nameplate   { fill: #f6efd5; stroke: #6b3018; stroke-width: 1.0; }
+    .name-blank  { stroke: #6b0f0f; stroke-width: 1.4; fill: none; stroke-linecap: round; }
+    .title       { font-family: Georgia, serif; font-size: 9px;  fill: #6b0f0f; font-weight: 700; text-anchor: middle; letter-spacing: 0.05em; text-transform: uppercase; }
+    .stud        { fill: #c89860; stroke: #5e3c00; stroke-width: 0.6; }
+  </style>
+
+  <rect class="frame-outer" x="2"  y="2"  width="216" height="276" rx="6"/>
+  <rect class="frame-mid"   x="6"  y="6"  width="208" height="268" rx="4"/>
+  <rect class="frame-mat"   x="10" y="10" width="200" height="260" rx="3"/>
+  <rect class="bg-field"    x="18" y="18" width="184" height="210" rx="2"/>
+
+  <path class="plate"      d="M 18 228 L 18 218 Q 24 188, 60 178 L 90 174 Q 110 172, 130 174 L 160 178 Q 196 188, 202 218 L 202 228 Z"/>
+  <path class="plate-edge" d="M 30 200 Q 60 184, 100 180 L 120 180 Q 160 184, 190 200 L 188 208 Q 158 192, 120 188 L 100 188 Q 62 192, 32 208 Z"/>
+
+  <path class="hood"      d="M 56 178 Q 48 130, 58 86 Q 70 48, 110 44 Q 150 48, 162 86 Q 172 130, 164 178 Q 110 168, 56 178 Z"/>
+  <path class="hood-fold" d="M 72 90 Q 88 76, 110 74 Q 132 76, 148 90"/>
+  <path class="hood-fold" d="M 64 110 Q 60 140, 70 168"/>
+  <path class="hood-fold" d="M 156 110 Q 160 140, 150 168"/>
+
+  <ellipse class="face-shadow" cx="110" cy="116" rx="28" ry="38"/>
+  <path    class="face-shadow" d="M 82 118 Q 82 154, 96 168 L 124 168 Q 138 154, 138 118 Q 128 134, 110 134 Q 92 134, 82 118 Z"/>
+
+  <!-- Forked ember — a stem of light splitting upward into two branches (a small
+       tree), replacing Warden 1's two eye-points and Warden 2's single slit. -->
+  <ellipse class="eye-glow" cx="110" cy="112" rx="10" ry="11" opacity="0.35"/>
+  <path class="ember"      d="M 110 121 L 110 113 M 110 113 L 104 105 M 110 113 L 116 105"/>
+  <path class="ember-core" d="M 110 120 L 110 113.5 M 110 113.5 L 104.8 106 M 110 113.5 L 115.2 106"/>
+  <circle fill="#fff5c8" cx="104" cy="105"   r="1.1"/>
+  <circle fill="#fff5c8" cx="116" cy="105"   r="1.1"/>
+  <circle fill="#fff5c8" cx="110" cy="113"   r="1.0"/>
+
+  <path class="plate-edge" d="M 92 174 Q 110 168, 128 174 L 130 184 Q 110 180, 90 184 Z"/>
+
+  <path class="plate"      d="M 76 228 L 78 200 Q 110 196, 142 200 L 144 228 Z"/>
+  <path class="plate-edge" d="M 78 200 Q 110 196, 142 200 L 140 204 Q 110 200, 80 204 Z"/>
+
+  <!-- Sigil 1 (Floor 8 — trees): a branching tree, trunk splitting into two boughs -->
+  <circle class="sigil-bg" cx="88"  cy="214" r="6"/>
+  <path   class="sigil"    d="M 88 217.5 L 88 213 M 88 213 L 85 210.5 M 88 213 L 91 210.5 M 85 210.5 L 84 209 M 91 210.5 L 92 209"/>
+
+  <!-- Sigil 2 (Floor 9 — binary search tree): a two-pronged search-fork + a node -->
+  <circle class="sigil-bg" cx="102" cy="214" r="6"/>
+  <path   class="sigil"    d="M 102 211 L 99.5 216 M 102 211 L 104.5 216"/>
+  <circle class="sigil-dot" cx="102"  cy="211"   r="0.9"/>
+  <circle class="sigil-dot" cx="99.5" cy="216.4" r="0.7"/>
+  <circle class="sigil-dot" cx="104.5" cy="216.4" r="0.7"/>
+
+  <!-- Sigil 3 (Floor 10 — sets & maps): a key-and-value nameplate with a colon -->
+  <circle class="sigil-bg" cx="118" cy="214" r="6"/>
+  <rect   class="sigil"    x="114.3" y="211.4" width="7.4" height="5.2" rx="0.6"/>
+  <circle class="sigil-dot" cx="118" cy="213"   r="0.55"/>
+  <circle class="sigil-dot" cx="118" cy="215"   r="0.55"/>
+
+  <!-- Sigil 4 (Floor 11 — hash table): a honeycomb of niches (hash buckets) -->
+  <circle class="sigil-bg" cx="132" cy="214" r="6"/>
+  <path   class="sigil"    d="M 130.6 211.6 L 131.99 212.4 L 131.99 214 L 130.6 214.8 L 129.21 214 L 129.21 212.4 Z"/>
+  <path   class="sigil"    d="M 133.4 211.6 L 134.79 212.4 L 134.79 214 L 133.4 214.8 L 132.01 214 L 132.01 212.4 Z"/>
+  <path   class="sigil"    d="M 132.0 214.0 L 133.39 214.8 L 133.39 216.4 L 132.0 217.2 L 130.61 216.4 L 130.61 214.8 Z"/>
+
+  <circle class="rivet" cx="40"  cy="200" r="1.2"/>
+  <circle class="rivet" cx="180" cy="200" r="1.2"/>
+  <circle class="rivet" cx="50"  cy="218" r="1.2"/>
+  <circle class="rivet" cx="170" cy="218" r="1.2"/>
+  <circle class="rivet" cx="78"  cy="222" r="1.0"/>
+  <circle class="rivet" cx="142" cy="222" r="1.0"/>
+
+  <rect class="nameplate"  x="22" y="234" width="176" height="32" rx="2"/>
+  <line class="name-blank" x1="60" y1="248" x2="160" y2="248"/>
+  <text class="title"      x="110" y="262">Warden of the Trees</text>
+
+  <circle class="stud" cx="14"  cy="14"  r="2.5"/>
+  <circle class="stud" cx="206" cy="14"  r="2.5"/>
+  <circle class="stud" cx="14"  cy="266" r="2.5"/>
+  <circle class="stud" cx="206" cy="266" r="2.5"/>
+</svg>

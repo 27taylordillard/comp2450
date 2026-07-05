@@ -45,6 +45,7 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 | 12 | 9½ | [The Balanced Hall]({{ site.baseurl }}/floors/floor-09h/)     | Self-balancing trees — diagnose the lean, rotate, then reach for std::set |
 | 13 | 10 | [The Hall of Names]({{ site.baseurl }}/floors/floor-10/)         | Sets & maps |
 | 14 | 11 | [The Hall of Whispers]({{ site.baseurl }}/floors/floor-11/)     | Hash tables — O(1) lookup |
+| 15 | Warden III | [Warden of the Trees]({{ site.baseurl }}/floors/warden-03/) | Midterm 3 — Floors 8–11 take-home + Friday quiz |
 | 15 | 12 | [The Labyrinth]({{ site.baseurl }}/floors/floor-12/) / Final Descent | Graphs, project capstone, final prep |
 
 ## The Rules of the Dungeon
