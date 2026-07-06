@@ -16,6 +16,7 @@
 #include "../hero/HashTable.h"
 
 #include <algorithm>
+#include <atomic>
 #include <chrono>
 #include <iomanip>
 #include <iostream>
@@ -89,16 +90,24 @@ static volatile const void* g_benchSink = nullptr;
 
 // Force `value` to be materialized and treated as observable, so the optimizer
 // cannot delete the computation that produced it. This is the standard
-// benchmark "DoNotOptimize" barrier (the same trick Google Benchmark uses): the
-// inline-asm pretends to read `value` and to clobber memory, which is opaque to
-// the optimizer. We need it because a plain volatile store is NOT always enough:
-// on this toolchain GCC can fully inline a std::map / hash lookup and then prove
-// the whole timing loop is "pure," collapsing it to a hoisted 0.000 us even when
-// the queried key varies. The barrier makes every iteration's lookup genuinely
-// observable, so the timing reflects real work.
+// benchmark "DoNotOptimize" barrier (the same trick Google Benchmark uses).
+// On GCC/Clang the inline-asm pretends to read `value` and to clobber memory,
+// which is opaque to the optimizer. We need it because a plain volatile store
+// is NOT always enough: on this toolchain GCC can fully inline a std::map /
+// hash lookup and then prove the whole timing loop is "pure," collapsing it to
+// a hoisted 0.000 us even when the queried key varies. MSVC has no GCC-style
+// inline asm on x64, so there we force a volatile read of `value`'s first byte
+// (volatile accesses are never deleted) plus a compiler-level fence. Either
+// way, every iteration's lookup stays genuinely observable, so the timing
+// reflects real work.
 template <typename T>
 inline void doNotOptimize(const T& value) {
+#if defined(_MSC_VER) && !defined(__clang__)
+    (void)*reinterpret_cast<const volatile char*>(&value);
+    std::atomic_signal_fence(std::memory_order_seq_cst);
+#else
     asm volatile("" : : "r,m"(value) : "memory");
+#endif
 }
 
 // Time a lookup callable across `iterations` iterations and return the average
