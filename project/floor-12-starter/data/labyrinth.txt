@@ -26,8 +26,8 @@
 #
 # Edit freely: add a room by adding a passage to it; isolate a room by listing
 # it alone. The traversal ORDER depends on the order the passages are listed
-# (that is the neighbor insertion order), so re-capture the DEMO-TRANSCRIPT
-# after any edit here.
+# (that is the neighbor insertion order), so expect the `map`, `cross`, and
+# `descend` output to change after any edit here.
 
 # --- the way down: Entrance to the Lich's chamber and the Stair below ---
 Entrance | Goblin
