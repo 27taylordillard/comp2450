@@ -107,56 +107,56 @@
   <rect class="up-post" x="70"  y="196" width="22" height="392"/>
   <rect class="up-post" x="808" y="196" width="22" height="392"/>
   <g id="shelf-1">
-    <g class="spine" style="--dx: -30px; --nd: 0.15s">
+    <g class="spine" style="--dx: -30px; --nd: 1.1s">
       <rect class="spine-body sp-c" x="230" y="206" width="52" height="44" rx="2"/>
       <line class="spine-cap"  x1="232" y1="209" x2="280" y2="209"/>
       <line class="spine-band" x1="233" y1="216.6" x2="279" y2="216.6"/>
       <line class="spine-band" x1="233" y1="239.4" x2="279" y2="239.4"/>
       <text class="spine-name" x="256" y="228" textLength="32" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 256 228)" text-anchor="middle" dominant-baseline="central">The Well</text>
     </g>
-    <g class="spine" style="--dx: 40px; --nd: 0.45s">
+    <g class="spine" style="--dx: 40px; --nd: 0.3s">
       <rect class="spine-body sp-b" x="289" y="210" width="44" height="40" rx="2"/>
       <line class="spine-cap"  x1="291" y1="213" x2="331" y2="213"/>
       <line class="spine-band" x1="292" y1="219.6" x2="330" y2="219.6"/>
       <line class="spine-band" x1="292" y1="240.4" x2="330" y2="240.4"/>
       <text class="spine-name" x="311" y="230" textLength="28" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 311 230)" text-anchor="middle" dominant-baseline="central">Inorder</text>
     </g>
-    <g class="spine" style="--dx: -24px; --nd: 0.1s">
+    <g class="spine" style="--dx: -24px; --nd: 2.0s">
       <rect class="spine-body sp-a" x="340" y="204" width="58" height="46" rx="2"/>
       <line class="spine-cap"  x1="342" y1="207" x2="396" y2="207"/>
       <line class="spine-band" x1="343" y1="215" x2="395" y2="215"/>
       <line class="spine-band" x1="343" y1="239" x2="395" y2="239"/>
       <text class="spine-name" x="369" y="227" textLength="34" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 369 227)" text-anchor="middle" dominant-baseline="central">The Chart</text>
     </g>
-    <g class="spine" style="--dx: 48px; --nd: 0.6s">
+    <g class="spine" style="--dx: 48px; --nd: 0.8s">
       <rect class="spine-body sp-d" x="405" y="214" width="40" height="36" rx="2"/>
       <line class="spine-cap"  x1="407" y1="217" x2="443" y2="217"/>
       <line class="spine-band" x1="408" y1="222.6" x2="442" y2="222.6"/>
       <line class="spine-band" x1="408" y1="241.4" x2="442" y2="241.4"/>
       <text class="spine-name" x="425" y="232" textLength="24" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 425 232)" text-anchor="middle" dominant-baseline="central">Molds</text>
     </g>
-    <g class="spine" style="--dx: -38px; --nd: 0.35s">
+    <g class="spine" style="--dx: -38px; --nd: 1.6s">
       <rect class="spine-body sp-e" x="452" y="206" width="54" height="44" rx="2"/>
       <line class="spine-cap"  x1="454" y1="209" x2="504" y2="209"/>
       <line class="spine-band" x1="455" y1="216.6" x2="503" y2="216.6"/>
       <line class="spine-band" x1="455" y1="239.4" x2="503" y2="239.4"/>
       <text class="spine-name" x="479" y="228" textLength="32" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 479 228)" text-anchor="middle" dominant-baseline="central">Big-O</text>
     </g>
-    <g class="spine" style="--dx: 22px; --nd: 0.55s">
+    <g class="spine" style="--dx: 22px; --nd: 0.5s">
       <rect class="spine-body sp-g" x="513" y="210" width="46" height="40" rx="2"/>
       <line class="spine-cap"  x1="515" y1="213" x2="557" y2="213"/>
       <line class="spine-band" x1="516" y1="219.6" x2="556" y2="219.6"/>
       <line class="spine-band" x1="516" y1="240.4" x2="556" y2="240.4"/>
       <text class="spine-name" x="536" y="230" textLength="28" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 536 230)" text-anchor="middle" dominant-baseline="central">Sorted</text>
     </g>
-    <g class="spine" style="--dx: -34px; --nd: 0.25s">
+    <g class="spine" style="--dx: -34px; --nd: 2.3s">
       <rect class="spine-body sp-f" x="566" y="206" width="56" height="44" rx="2"/>
       <line class="spine-cap"  x1="568" y1="209" x2="620" y2="209"/>
       <line class="spine-band" x1="569" y1="216.6" x2="619" y2="216.6"/>
       <line class="spine-band" x1="569" y1="239.4" x2="619" y2="239.4"/>
       <text class="spine-name" x="594" y="228" textLength="32" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 594 228)" text-anchor="middle" dominant-baseline="central">The Song</text>
     </g>
-    <g class="spine" style="--dx: 30px; --nd: 0.65s">
+    <g class="spine" style="--dx: 30px; --nd: 1.3s">
       <rect class="spine-body sp-h" x="629" y="212" width="44" height="38" rx="2"/>
       <line class="spine-cap"  x1="631" y1="215" x2="671" y2="215"/>
       <line class="spine-band" x1="632" y1="221.1" x2="670" y2="221.1"/>
@@ -167,56 +167,56 @@
   <rect class="plank" x="214" y="248" width="476" height="10" rx="1.5"/>
   <line class="plank-edge" x1="217" y1="249.5" x2="687" y2="249.5"/>
   <g id="shelf-2">
-    <g class="spine" style="--dx: 44px; --nd: 0.2s">
+    <g class="spine" style="--dx: 44px; --nd: 0.6s">
       <rect class="spine-body sp-e" x="186" y="296" width="64" height="58" rx="2"/>
       <line class="spine-cap"  x1="188" y1="299" x2="248" y2="299"/>
       <line class="spine-band" x1="189" y1="309.9" x2="247" y2="309.9"/>
       <line class="spine-band" x1="189" y1="340.1" x2="247" y2="340.1"/>
       <text class="spine-name" x="218" y="325" textLength="46" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 218 325)" text-anchor="middle" dominant-baseline="central">Three Laws</text>
     </g>
-    <g class="spine" style="--dx: -36px; --nd: 0.5s">
+    <g class="spine" style="--dx: -36px; --nd: 1.8s">
       <rect class="spine-body sp-a" x="258" y="302" width="52" height="52" rx="2"/>
       <line class="spine-cap"  x1="260" y1="305" x2="308" y2="305"/>
       <line class="spine-band" x1="261" y1="314.5" x2="307" y2="314.5"/>
       <line class="spine-band" x1="261" y1="341.5" x2="307" y2="341.5"/>
       <text class="spine-name" x="284" y="328" textLength="40" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 284 328)" text-anchor="middle" dominant-baseline="central">The Copy</text>
     </g>
-    <g class="spine" style="--dx: 60px; --nd: 0.15s">
+    <g class="spine" style="--dx: 60px; --nd: 0.2s">
       <rect class="spine-body sp-d" x="318" y="294" width="70" height="60" rx="2"/>
       <line class="spine-cap"  x1="320" y1="297" x2="386" y2="297"/>
       <line class="spine-band" x1="321" y1="308.4" x2="385" y2="308.4"/>
       <line class="spine-band" x1="321" y1="339.6" x2="385" y2="339.6"/>
       <text class="spine-name" x="353" y="324" textLength="48" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 353 324)" text-anchor="middle" dominant-baseline="central">Named Pairs</text>
     </g>
-    <g class="spine" style="--dx: -52px; --nd: 0.7s">
+    <g class="spine" style="--dx: -52px; --nd: 1.4s">
       <rect class="spine-body sp-c" x="396" y="308" width="48" height="46" rx="2"/>
       <line class="spine-cap"  x1="398" y1="311" x2="442" y2="311"/>
       <line class="spine-band" x1="399" y1="319" x2="441" y2="319"/>
       <line class="spine-band" x1="399" y1="343" x2="441" y2="343"/>
       <text class="spine-name" x="420" y="331" textLength="34" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 420 331)" text-anchor="middle" dominant-baseline="central">Buckets</text>
     </g>
-    <g class="spine" style="--dx: 32px; --nd: 0.45s">
+    <g class="spine" style="--dx: 32px; --nd: 0.9s">
       <rect class="spine-body sp-b" x="452" y="298" width="66" height="56" rx="2"/>
       <line class="spine-cap"  x1="454" y1="301" x2="516" y2="301"/>
       <line class="spine-band" x1="455" y1="311.4" x2="515" y2="311.4"/>
       <line class="spine-band" x1="455" y1="340.6" x2="515" y2="340.6"/>
       <text class="spine-name" x="485" y="326" textLength="44" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 485 326)" text-anchor="middle" dominant-baseline="central">The Ledger</text>
     </g>
-    <g class="spine" style="--dx: -24px; --nd: 0.6s">
+    <g class="spine" style="--dx: -24px; --nd: 2.2s">
       <rect class="spine-body sp-f" x="526" y="302" width="56" height="52" rx="2"/>
       <line class="spine-cap"  x1="528" y1="305" x2="580" y2="305"/>
       <line class="spine-band" x1="529" y1="314.5" x2="579" y2="314.5"/>
       <line class="spine-band" x1="529" y1="341.5" x2="579" y2="341.5"/>
       <text class="spine-name" x="554" y="328" textLength="40" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 554 328)" text-anchor="middle" dominant-baseline="central">Cisterns</text>
     </g>
-    <g class="spine" style="--dx: 50px; --nd: 0.35s">
+    <g class="spine" style="--dx: 50px; --nd: 1.0s">
       <rect class="spine-body sp-g" x="590" y="296" width="68" height="58" rx="2"/>
       <line class="spine-cap"  x1="592" y1="299" x2="656" y2="299"/>
       <line class="spine-band" x1="593" y1="309.9" x2="655" y2="309.9"/>
       <line class="spine-band" x1="593" y1="340.1" x2="655" y2="340.1"/>
       <text class="spine-name" x="624" y="325" textLength="46" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 624 325)" text-anchor="middle" dominant-baseline="central">The Stack</text>
     </g>
-    <g class="spine" style="--dx: -40px; --nd: 0.75s">
+    <g class="spine" style="--dx: -40px; --nd: 0.4s">
       <rect class="spine-body sp-h" x="666" y="304" width="54" height="50" rx="2"/>
       <line class="spine-cap"  x1="668" y1="307" x2="718" y2="307"/>
       <line class="spine-band" x1="669" y1="316" x2="717" y2="316"/>
@@ -227,56 +227,56 @@
   <rect class="plank" x="168" y="352" width="566" height="13" rx="1.5"/>
   <line class="plank-edge" x1="171" y1="353.5" x2="731" y2="353.5"/>
   <g id="shelf-3">
-    <g class="spine" style="--dx: -40px; --nd: 0.25s">
+    <g class="spine" style="--dx: -40px; --nd: 2.1s">
       <rect class="spine-body sp-b" x="134" y="386" width="78" height="74" rx="2"/>
       <line class="spine-cap"  x1="136" y1="389" x2="210" y2="389"/>
       <line class="spine-band" x1="137" y1="403.8" x2="209" y2="403.8"/>
       <line class="spine-band" x1="137" y1="442.2" x2="209" y2="442.2"/>
       <text class="spine-name" x="173" y="423" textLength="62" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 173 423)" text-anchor="middle" dominant-baseline="central">Lineages</text>
     </g>
-    <g class="spine" style="--dx: 58px; --nd: 0.55s">
+    <g class="spine" style="--dx: 58px; --nd: 0.7s">
       <rect class="spine-body sp-c" x="221" y="394" width="62" height="66" rx="2"/>
       <line class="spine-cap"  x1="223" y1="397" x2="281" y2="397"/>
       <line class="spine-band" x1="224" y1="409.8" x2="280" y2="409.8"/>
       <line class="spine-band" x1="224" y1="444.2" x2="280" y2="444.2"/>
       <text class="spine-name" x="252" y="427" textLength="54" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 252 427)" text-anchor="middle" dominant-baseline="central">The Bough</text>
     </g>
-    <g class="spine" style="--dx: -30px; --nd: 0.1s">
+    <g class="spine" style="--dx: -30px; --nd: 1.2s">
       <rect class="spine-body sp-f" x="292" y="384" width="84" height="76" rx="2"/>
       <line class="spine-cap"  x1="294" y1="387" x2="374" y2="387"/>
       <line class="spine-band" x1="295" y1="402.2" x2="373" y2="402.2"/>
       <line class="spine-band" x1="295" y1="441.8" x2="373" y2="441.8"/>
       <text class="spine-name" x="334" y="422" textLength="64" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 334 422)" text-anchor="middle" dominant-baseline="central">A Kept Chain</text>
     </g>
-    <g class="spine" style="--dx: 64px; --nd: 0.75s">
+    <g class="spine" style="--dx: 64px; --nd: 0.1s">
       <rect class="spine-body sp-a" x="385" y="400" width="56" height="60" rx="2"/>
       <line class="spine-cap"  x1="387" y1="403" x2="439" y2="403"/>
       <line class="spine-band" x1="388" y1="414.4" x2="438" y2="414.4"/>
       <line class="spine-band" x1="388" y1="445.6" x2="438" y2="445.6"/>
       <text class="spine-name" x="413" y="430" textLength="48" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 413 430)" text-anchor="middle" dominant-baseline="central">The Lens</text>
     </g>
-    <g class="spine" style="--dx: -58px; --nd: 0.4s">
+    <g class="spine" style="--dx: -58px; --nd: 1.9s">
       <rect class="spine-body sp-d" x="450" y="388" width="76" height="72" rx="2"/>
       <line class="spine-cap"  x1="452" y1="391" x2="524" y2="391"/>
       <line class="spine-band" x1="453" y1="405.3" x2="523" y2="405.3"/>
       <line class="spine-band" x1="453" y1="442.7" x2="523" y2="442.7"/>
       <text class="spine-name" x="488" y="424" textLength="60" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 488 424)" text-anchor="middle" dominant-baseline="central">Deep Roots</text>
     </g>
-    <g class="spine" style="--dx: 26px; --nd: 0.65s">
+    <g class="spine" style="--dx: 26px; --nd: 0.6s">
       <rect class="spine-body sp-e" x="535" y="394" width="66" height="66" rx="2"/>
       <line class="spine-cap"  x1="537" y1="397" x2="599" y2="397"/>
       <line class="spine-band" x1="538" y1="409.8" x2="598" y2="409.8"/>
       <line class="spine-band" x1="538" y1="444.2" x2="598" y2="444.2"/>
       <text class="spine-name" x="568" y="427" textLength="54" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 568 427)" text-anchor="middle" dominant-baseline="central">Quicksort</text>
     </g>
-    <g class="spine" style="--dx: -48px; --nd: 0.3s">
+    <g class="spine" style="--dx: -48px; --nd: 1.5s">
       <rect class="spine-body sp-h" x="610" y="386" width="80" height="74" rx="2"/>
       <line class="spine-cap"  x1="612" y1="389" x2="688" y2="389"/>
       <line class="spine-band" x1="613" y1="403.8" x2="687" y2="403.8"/>
       <line class="spine-band" x1="613" y1="442.2" x2="687" y2="442.2"/>
       <text class="spine-name" x="650" y="423" textLength="62" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 650 423)" text-anchor="middle" dominant-baseline="central">Whispers</text>
     </g>
-    <g class="spine" style="--dx: 44px; --nd: 0.7s">
+    <g class="spine" style="--dx: 44px; --nd: 2.4s">
       <rect class="spine-body sp-g" x="699" y="396" width="68" height="64" rx="2"/>
       <line class="spine-cap"  x1="701" y1="399" x2="765" y2="399"/>
       <line class="spine-band" x1="702" y1="411.4" x2="764" y2="411.4"/>
@@ -287,56 +287,56 @@
   <rect class="plank" x="118" y="458" width="664" height="16" rx="1.5"/>
   <line class="plank-edge" x1="121" y1="459.5" x2="779" y2="459.5"/>
   <g id="shelf-4">
-    <g class="spine" style="--dx: 52px; --nd: 0s">
+    <g class="spine" style="--dx: 52px; --nd: 0.5s">
       <rect class="spine-body sp-a" x="112" y="478" width="84" height="88" rx="2"/>
       <line class="spine-cap"  x1="114" y1="481" x2="194" y2="481"/>
       <line class="spine-band" x1="115" y1="499.1" x2="193" y2="499.1"/>
       <line class="spine-band" x1="115" y1="544.9" x2="193" y2="544.9"/>
       <text class="spine-name" x="154" y="522" textLength="76" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 154 522)" text-anchor="middle" dominant-baseline="central">Of Chains</text>
     </g>
-    <g class="spine" style="--dx: -44px; --nd: 0.5s">
+    <g class="spine" style="--dx: -44px; --nd: 1.7s">
       <rect class="spine-body sp-d" x="206" y="486" width="66" height="80" rx="2"/>
       <line class="spine-cap"  x1="208" y1="489" x2="270" y2="489"/>
       <line class="spine-band" x1="209" y1="505.2" x2="269" y2="505.2"/>
       <line class="spine-band" x1="209" y1="546.8" x2="269" y2="546.8"/>
       <text class="spine-name" x="239" y="526" textLength="68" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 239 526)" text-anchor="middle" dominant-baseline="central">The Halving</text>
     </g>
-    <g class="spine" style="--dx: 30px; --nd: 0.2s">
+    <g class="spine" style="--dx: 30px; --nd: 2.2s">
       <rect class="spine-body sp-e" x="282" y="474" width="90" height="92" rx="2"/>
       <line class="spine-cap"  x1="284" y1="477" x2="370" y2="477"/>
       <line class="spine-band" x1="285" y1="496.1" x2="369" y2="496.1"/>
       <line class="spine-band" x1="285" y1="543.9" x2="369" y2="543.9"/>
       <text class="spine-name" x="327" y="520" textLength="80" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 327 520)" text-anchor="middle" dominant-baseline="central">One True Mold</text>
     </g>
-    <g class="spine" style="--dx: -66px; --nd: 0.8s">
+    <g class="spine" style="--dx: -66px; --nd: 0.9s">
       <rect class="spine-body sp-c" x="382" y="490" width="58" height="76" rx="2"/>
       <line class="spine-cap"  x1="384" y1="493" x2="438" y2="493"/>
       <line class="spine-band" x1="385" y1="508.2" x2="437" y2="508.2"/>
       <line class="spine-band" x1="385" y1="547.8" x2="437" y2="547.8"/>
       <text class="spine-name" x="411" y="528" textLength="64" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 411 528)" text-anchor="middle" dominant-baseline="central">Echoes</text>
     </g>
-    <g class="spine" style="--dx: 70px; --nd: 0.35s">
+    <g class="spine" style="--dx: 70px; --nd: 0.3s">
       <rect class="spine-body sp-f" x="450" y="480" width="82" height="86" rx="2"/>
       <line class="spine-cap"  x1="452" y1="483" x2="530" y2="483"/>
       <line class="spine-band" x1="453" y1="500.6" x2="529" y2="500.6"/>
       <line class="spine-band" x1="453" y1="545.4" x2="529" y2="545.4"/>
       <text class="spine-name" x="491" y="523" textLength="74" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 491 523)" text-anchor="middle" dominant-baseline="central">Two Halves</text>
     </g>
-    <g class="spine" style="--dx: -28px; --nd: 0.6s">
+    <g class="spine" style="--dx: -28px; --nd: 1.1s">
       <rect class="spine-body sp-g" x="542" y="484" width="70" height="82" rx="2"/>
       <line class="spine-cap"  x1="544" y1="487" x2="610" y2="487"/>
       <line class="spine-band" x1="545" y1="503.7" x2="609" y2="503.7"/>
       <line class="spine-band" x1="545" y1="546.3" x2="609" y2="546.3"/>
       <text class="spine-name" x="577" y="525" textLength="70" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 577 525)" text-anchor="middle" dominant-baseline="central">First In</text>
     </g>
-    <g class="spine" style="--dx: 40px; --nd: 0.15s">
+    <g class="spine" style="--dx: 40px; --nd: 0.0s">
       <rect class="spine-body sp-b" x="622" y="476" width="86" height="90" rx="2"/>
       <line class="spine-cap"  x1="624" y1="479" x2="706" y2="479"/>
       <line class="spine-band" x1="625" y1="497.6" x2="705" y2="497.6"/>
       <line class="spine-band" x1="625" y1="544.4" x2="705" y2="544.4"/>
       <text class="spine-name" x="665" y="521" textLength="78" lengthAdjust="spacingAndGlyphs" transform="rotate(-90 665 521)" text-anchor="middle" dominant-baseline="central">The Labyrinth</text>
     </g>
-    <g class="spine" style="--dx: -54px; --nd: 0.7s">
+    <g class="spine" style="--dx: -54px; --nd: 1.4s">
       <rect class="spine-body sp-d" x="718" y="488" width="72" height="78" rx="2"/>
       <line class="spine-cap"  x1="720" y1="491" x2="788" y2="491"/>
       <line class="spine-band" x1="721" y1="506.7" x2="787" y2="506.7"/>

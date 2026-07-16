@@ -193,6 +193,53 @@ html:not(.js) #fx-stage { display: none; }  /* no-JS: battle reads as prose (the
   box-shadow: 0 8px 14px -8px rgba(201, 162, 39, 0.6);
 }
 
+/* Beat 3 animated (Task 8): when the beat scrolls into view the pronouns
+   gutter — a slow dimming with a few flickers, the hollowed .gone letters
+   sinking to near-invisible, like wicks in a draft. The static look above is
+   the no-JS / reduced-motion baseline; this only adds guttering once JS marks
+   #beat-3.in-view. Keyed off the existing beat observer's .in-view — no new
+   observer. */
+html.js #beat-3.in-view .soul-fade {
+  animation: soul-gutter 4.6s ease-in-out 0.5s both;
+}
+html.js #beat-3.in-view .soul-fade .gone {
+  animation: gone-gutter 4.6s ease-in-out 0.5s both;
+}
+@keyframes soul-gutter {
+  0%   { opacity: 0.8; }
+  22%  { opacity: 0.58; }
+  32%  { opacity: 0.72; }
+  48%  { opacity: 0.4; }
+  60%  { opacity: 0.52; }
+  74%  { opacity: 0.3; }
+  86%  { opacity: 0.42; }
+  100% { opacity: 0.34; }
+}
+@keyframes gone-gutter {
+  0%   { opacity: 1;    text-shadow: 0 0 3px rgba(232, 216, 176, 0.45); }
+  55%  { opacity: 0.4; }
+  100% { opacity: 0.08; text-shadow: 0 0 1px rgba(232, 216, 176, 0.06); }
+}
+
+/* Beat 4 animated (Task 8): the spoken name's gold underline swells its glow
+   when the beat enters view, then holds. The static box-shadow above is the
+   baseline. */
+html.js #beat-4.in-view #the-name {
+  animation: name-illumine 2.6s ease-out 0.3s both;
+}
+@keyframes name-illumine {
+  0%   { box-shadow: 0 8px 14px -8px rgba(201, 162, 39, 0.6); }
+  100% { box-shadow: 0 10px 26px -6px rgba(201, 162, 39, 0.95),
+                     0 0 11px rgba(201, 162, 39, 0.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Instant state, no flicker/swell: fall back to the static baseline above. */
+  html.js #beat-3.in-view .soul-fade,
+  html.js #beat-3.in-view .soul-fade .gone,
+  html.js #beat-4.in-view #the-name { animation: none; }
+}
+
 /* Beat 5: the invocation couplets (plain prose without JS; revealed
    per-invocation with it — the gating rules live above). */
 #couplets { margin-top: 2.2rem; }
@@ -217,18 +264,117 @@ html:not(.js) #fx-stage { display: none; }  /* no-JS: battle reads as prose (the
 a { color: var(--gold); }
 a:hover { color: var(--ember); }
 
-/* Beat 8: the credits roll. */
+/* Beat 8: the credits roll (Task 8). Cinzel small-caps in a centered column,
+   generous spacing. Each line rises into place on a staggered upward fade once
+   #credits gains .in-view (one observer entry; the per-li delays are the
+   nth-child rules below). Warden lines carry an ember accent; the Architect —
+   gold, a touch larger, set apart — lands last. */
 #credits {
   list-style: none;
-  margin: 2rem 0;
+  margin: 2.6rem auto;
   padding: 0;
+  max-width: 34rem;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
 }
-#credits li { margin: 0.5rem 0; }
-#credits li.credit-warden,
-#credits li.credit-architect {
-  font-style: italic;
+#credits li {
+  margin: 1.15rem 0;
+  font-size: 0.82rem;
   color: var(--parchment-dark);
-  margin: 1.1rem 0;
+}
+#credits li strong {
+  display: block;
+  color: var(--parchment);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.15rem;
+}
+/* Wardens: ember accents. */
+#credits li.credit-warden { margin: 1.5rem 0; }
+#credits li.credit-warden strong {
+  color: var(--ember);
+  text-shadow: 0 0 9px rgba(217, 118, 6, 0.4);
+}
+/* The Architect of Errors: most distinct — gold, enlarged, set apart. */
+#credits li.credit-architect { margin: 1.9rem 0 0.5rem; color: var(--parchment); }
+#credits li.credit-architect strong {
+  color: var(--gold);
+  font-size: 1.18em;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 13px rgba(201, 162, 39, 0.5);
+}
+
+/* The roll: each line fades up when the list scrolls into view. With JS off the
+   whole roll is simply present (no .js gate, no transform, no stagger). */
+html.js #credits li {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+html.js #credits.in-view li { opacity: 1; transform: translateY(0); }
+/* The Architect settles a touch enlarged. */
+html.js #credits li.credit-architect { transform: translateY(16px) scale(1.05); }
+html.js #credits.in-view li.credit-architect { transform: scale(1.05); }
+/* Per-li stagger — the Architect (19th) lands last. */
+#credits li:nth-child(1)  { transition-delay: 0.06s; }
+#credits li:nth-child(2)  { transition-delay: 0.16s; }
+#credits li:nth-child(3)  { transition-delay: 0.26s; }
+#credits li:nth-child(4)  { transition-delay: 0.36s; }
+#credits li:nth-child(5)  { transition-delay: 0.46s; }
+#credits li:nth-child(6)  { transition-delay: 0.56s; }
+#credits li:nth-child(7)  { transition-delay: 0.66s; }
+#credits li:nth-child(8)  { transition-delay: 0.76s; }
+#credits li:nth-child(9)  { transition-delay: 0.86s; }
+#credits li:nth-child(10) { transition-delay: 0.96s; }
+#credits li:nth-child(11) { transition-delay: 1.06s; }
+#credits li:nth-child(12) { transition-delay: 1.16s; }
+#credits li:nth-child(13) { transition-delay: 1.26s; }
+#credits li:nth-child(14) { transition-delay: 1.36s; }
+#credits li:nth-child(15) { transition-delay: 1.46s; }
+#credits li:nth-child(16) { transition-delay: 1.56s; }
+#credits li:nth-child(17) { transition-delay: 1.66s; }
+#credits li:nth-child(18) { transition-delay: 1.76s; }
+#credits li:nth-child(19) { transition-delay: 1.86s; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* All lines present with a quick fade — no rise, no stagger. */
+  html.js #credits li,
+  html.js #credits li.credit-architect {
+    transform: none;
+    transition: opacity 0.3s ease-out;
+    transition-delay: 0s;
+  }
+  html.js #credits.in-view li.credit-architect { transform: none; }
+}
+
+/* The coda's exits — parchment-on-stone links (Task 8). "Descend again"
+   (href="") reloads; "back into the light" leaves for the site root. */
+.exit {
+  display: inline-block;
+  color: var(--gold);
+  background: rgba(42, 26, 26, 0.75);
+  border: 1px solid var(--stone-edge);
+  border-radius: 3px;
+  padding: 0.1em 0.6em;
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease,
+              box-shadow 0.3s ease, background 0.3s ease;
+}
+.exit:hover {
+  color: var(--ember);
+  border-color: var(--gold);
+  background: rgba(42, 26, 26, 0.95);
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.35);
+}
+.exit:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+@media (prefers-reduced-motion: reduce) {
+  .exit { transition: none; }
 }
 
 /* ---- Beat 2+ scene: the Archive stage (Task 4). The archive SVG is a
@@ -289,6 +435,28 @@ html.restored .spine-name {
   .spine { transition: none; }
   .spine-name { transition: opacity 0.3s ease; }
   html.restored .spine-name { transition-delay: 0s; }
+}
+
+/* Beat 7 restoration (Task 8): Faith slides the illuminated page home — told in
+   prose; this slow gold glow swells over ~3s and holds, marking the shelf where
+   it returns. Only the filter animates, so the page keeps its SVG-authored
+   transform. */
+html.restored #illuminated-page {
+  animation: page-illumine 3s ease-out 0.4s both;
+}
+@keyframes page-illumine {
+  0%   { filter: drop-shadow(0 0 0 rgba(201, 162, 39, 0))
+                 drop-shadow(0 0 0 rgba(224, 184, 78, 0)); }
+  100% { filter: drop-shadow(0 0 12px rgba(201, 162, 39, 0.9))
+                 drop-shadow(0 0 4px rgba(224, 184, 78, 0.7)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Glow appears instantly, no swell. */
+  html.restored #illuminated-page {
+    animation: none;
+    filter: drop-shadow(0 0 12px rgba(201, 162, 39, 0.9))
+            drop-shadow(0 0 4px rgba(224, 184, 78, 0.7));
+  }
 }
 
 /* ---- The Harvester (Task 5). The SVG carries the static art; everything
@@ -998,7 +1166,7 @@ html.js .couplet.revealed.current { animation: verse-in 0.7s ease-out; }
         <li class="credit-architect"><strong>The Architect of Errors</strong> — the fourth Warden — faced on paper</li>
       </ol>
 
-      <p>The Hold is quiet. The tea, at long last, is drunk. <a href="">Descend again</a>, if the stair calls you still — or climb, at last, <a href="{{ '/' | relative_url }}">back into the light</a>.</p>
+      <p>The Hold is quiet. The tea, at long last, is drunk. <a class="exit" href="">Descend again</a>, if the stair calls you still — or climb, at last, <a class="exit" href="{{ '/' | relative_url }}">back into the light</a>.</p>
     </div>
   </section>
 
@@ -1014,6 +1182,12 @@ document.documentElement.classList.add('js');
     });
   }, { threshold: 0.2 });
   document.querySelectorAll('.beat').forEach(function (el) { io.observe(el); });
+  /* Task 8: the credits roll gets its own .in-view through this same observer —
+     one entry for #credits drives every line's staggered rise (the per-li CSS
+     delays), so the roll waits until the coda is actually reached rather than
+     firing with beat 8's top. No per-li observer. */
+  var creditsList = document.getElementById('credits');
+  if (creditsList) io.observe(creditsList);
 })();
 
 /* Beat 1 stair (Task 3): a second, independent observer lights each engraved
