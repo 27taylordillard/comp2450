@@ -118,6 +118,44 @@ html:not(.js) #fx-stage { display: none; }  /* no-JS: battle reads as prose (the
   margin: 0 auto 2rem;
 }
 
+/* ---- Beat 1 scene: the floor-engraved stair (Task 3). The SVG carries its
+       own static stone/engraving art; these are the scroll-lit STATE rules —
+       the same static-in-SVG / state-in-page split all three finale scenes
+       use. Each .step is marked .lit by the step observer as it scrolls past,
+       and its engraving warms from dim brass to the gold token with a soft
+       glow. ---------------------------------------------------------------- */
+.scene {
+  max-width: 42rem;
+  margin: 2.6rem auto 0;
+}
+.scene svg { display: block; width: 100%; height: auto; }
+
+#stair-svg .engrave,
+#stair-svg .engrave-sub,
+#stair-svg .engrave-num {
+  transition: fill 0.8s ease, filter 0.8s ease;
+}
+#stair-svg .step.lit .engrave,
+#stair-svg .step.lit .engrave-sub,
+#stair-svg .step.lit .engrave-num {
+  fill: var(--gold);
+}
+#stair-svg .step.lit .engrave {
+  filter: drop-shadow(0 0 5px rgba(201, 162, 39, 0.75));
+}
+#stair-svg .step.lit .engrave-sub,
+#stair-svg .step.lit .engrave-num {
+  filter: drop-shadow(0 0 4px rgba(201, 162, 39, 0.55));
+}
+
+/* Reduced motion: the engraving still lights (it is a fill/glow change, not
+   movement), just instantly rather than over 0.8s. */
+@media (prefers-reduced-motion: reduce) {
+  #stair-svg .engrave,
+  #stair-svg .engrave-sub,
+  #stair-svg .engrave-num { transition: none; }
+}
+
 /* The Bard's epigraph — the floor pages' italic-epigraph convention. */
 .epigraph {
   font-style: italic;
@@ -204,6 +242,9 @@ a:hover { color: var(--ember); }
     <p>Grix stops pouring.</p>
     <p>Brother Faith looks down that corridor for a long and costly moment. Then he winds the stopwatch once more, and the ticking starts again, like a heart changing its mind.</p>
     <p>So the four of you go down — an Abbot, a goblin balancing a tea tray, a bard already humming the second half of something, and you. The steps are old, and they are engraved: one name to a stair, every floor of the descent cut into the stone, the Hold reading your own story back to you as you pass. The stair remembers.</p>
+    <div class="scene">
+      {% include finale/stair.svg %}
+    </div>
   </div>
 </section>
 
@@ -361,6 +402,20 @@ document.documentElement.classList.add('js');
     });
   }, { threshold: 0.2 });
   document.querySelectorAll('.beat').forEach(function (el) { io.observe(el); });
+})();
+
+/* Beat 1 stair (Task 3): a second, independent observer lights each engraved
+   tread as it scrolls past — one by one, not all at once. Separate from the
+   beat observer above so that reveal is untouched. */
+(function () {
+  var steps = document.querySelectorAll('#stair-svg .step');
+  if (!steps.length) return;
+  var so = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('lit'); so.unobserve(e.target); }
+    });
+  }, { threshold: 0.6 });
+  steps.forEach(function (el) { so.observe(el); });
 })();
 </script>
 </body>

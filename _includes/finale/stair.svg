@@ -1,0 +1,320 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="stair-svg" viewBox="0 0 900 2200"
+     role="img" aria-labelledby="stair-title stair-desc" preserveAspectRatio="xMidYMid meet">
+  <title id="stair-title">The Last Stair — the descent, engraved floor by floor.</title>
+  <desc id="stair-desc">A tall spiral stair switchbacking down into darkness. Two torches at the top throw a warm glow that thins to near-black at the bottom, where a pair of faint ember eyes waits far below. Fifteen stone treads descend, each cut with a floor's name in small-caps and its structure beneath, one to a stair: The Antechamber (ADTs), The Scrying Well (searching), The Sorting Crucible (sorting), The Forgemaster's Vault (templates), The Chain Vault (linked lists), The Chain Vault, Deeper (rule of three), The Eye of Scrying (iterators), The Hall of Echoes (stacks), The Cisterns (queues), The Hall of Lineages (trees), The Halving Hall (BSTs), The Balanced Hall (rotations), The Hall of Names (sets and maps), The Hall of Whispers (hash tables), and The Labyrinth (graphs). As you pass, each engraving lights gold in turn.</desc>
+
+  <defs>
+    <!-- Deep stairwell ground: warm-dark at the top, near-black at the foot. -->
+    <linearGradient id="stairBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#2a1616"/>
+      <stop offset="0.18" stop-color="#20120f"/>
+      <stop offset="0.55" stop-color="#130b09"/>
+      <stop offset="1"    stop-color="#050303"/>
+    </linearGradient>
+    <!-- Torch pool at the very top; fades to nothing well before the bottom. -->
+    <radialGradient id="torchGlow" cx="50%" cy="5%" r="62%">
+      <stop offset="0"   stop-color="#5a3a24" stop-opacity="0.60"/>
+      <stop offset="0.45" stop-color="#3a2418" stop-opacity="0.24"/>
+      <stop offset="1"   stop-color="#1a0e0e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="flame2" cx="50%" cy="70%" r="60%">
+      <stop offset="0"    stop-color="#fff2c8"/>
+      <stop offset="0.42" stop-color="#f9d77a"/>
+      <stop offset="0.76" stop-color="#d97706"/>
+      <stop offset="1"    stop-color="#8b4500"/>
+    </radialGradient>
+    <!-- Stone shading keyed to y (userSpaceOnUse): treads lighten near the
+         torch and darken as the stair goes down — the descent's fade, baked
+         into the fills so it needs no overlay above the engravings. -->
+    <linearGradient id="stoneTop" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="2200">
+      <stop offset="0"    stop-color="#4a3524"/>
+      <stop offset="0.32" stop-color="#39291d"/>
+      <stop offset="0.66" stop-color="#241813"/>
+      <stop offset="1"    stop-color="#120b08"/>
+    </linearGradient>
+    <linearGradient id="stoneRiser" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="2200">
+      <stop offset="0"    stop-color="#2c1f15"/>
+      <stop offset="0.32" stop-color="#221610"/>
+      <stop offset="0.66" stop-color="#150e09"/>
+      <stop offset="1"    stop-color="#090504"/>
+    </linearGradient>
+    <linearGradient id="wallShade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="2200">
+      <stop offset="0"    stop-color="#241616"/>
+      <stop offset="0.35" stop-color="#180f0d"/>
+      <stop offset="1"    stop-color="#060403"/>
+    </linearGradient>
+    <radialGradient id="emberDot" cx="50%" cy="50%" r="50%">
+      <stop offset="0"   stop-color="#ff6a2a"/>
+      <stop offset="0.6" stop-color="#8b0000" stop-opacity="0.6"/>
+      <stop offset="1"   stop-color="#8b0000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Hand stipple: transparent ground, only flecks — laid over a shaded
+         tread so texture and the y-fade coexist. -->
+    <pattern id="stoneDots" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="3"  cy="4"  r="0.8" fill="#6a5236" opacity="0.5"/>
+      <circle cx="11" cy="10" r="0.7" fill="#5a4530" opacity="0.45"/>
+      <circle cx="8"  cy="2"  r="0.5" fill="#7a6040" opacity="0.4"/>
+      <circle cx="14" cy="6"  r="0.5" fill="#4a3826" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <style>
+    /* Static art only. The scroll-lit STATE of the engravings (fill -&gt; gold
+       + glow on .step.lit) lives in the page's inline stylesheet, the same
+       static-in-SVG / state-in-page split the other finale scenes use. */
+    .wall      { fill: url(#wallShade); stroke: #0a0604; stroke-width: 1.5; }
+    .wall-line { stroke: #0a0604; stroke-width: 0.8; opacity: 0.5; }
+    .rune      { stroke: #8b5a00; stroke-width: 1.2; fill: none; stroke-linecap: round; opacity: 0.5; }
+    .lintel    { fill: url(#stoneTop); stroke: #0a0604; stroke-width: 1.5; }
+    .riser     { fill: url(#stoneRiser); stroke: #0a0604; stroke-width: 1.4; }
+    .tread     { fill: url(#stoneTop); stroke: #0a0604; stroke-width: 1.6; }
+    .tread-tex { fill: url(#stoneDots); stroke: none; }
+    .nosing    { stroke: #8b5a00; stroke-width: 2; opacity: 0.5; fill: none; stroke-linecap: round; }
+    .medallion { fill: #1c120c; stroke: #6b3a00; stroke-width: 1.2; }
+    .engrave     { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-weight: 600; font-size: 31px; letter-spacing: 0.05em; text-anchor: middle; }
+    .engrave-sub { fill: #6a5836; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-size: 22px; letter-spacing: 0.14em; text-anchor: middle; }
+    .engrave-num { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-weight: 700; font-size: 24px; text-anchor: middle; }
+    .frame-in  { fill: none; stroke: #c9a227; stroke-width: 2;   opacity: 0.55; }
+    .frame-out { fill: none; stroke: #8b5a00; stroke-width: 1.2; opacity: 0.5; }
+  </style>
+
+  <!-- ===== ground + torch pool ===== -->
+  <rect x="0" y="0" width="900" height="2200" fill="url(#stairBg)"/>
+  <rect x="0" y="0" width="900" height="820"  fill="url(#torchGlow)"/>
+
+  <!-- ===== stairwell walls ===== -->
+  <rect class="wall" x="0"   y="0" width="140" height="2200"/>
+  <rect class="wall" x="760" y="0" width="140" height="2200"/>
+  <g class="wall-line">
+    <line x1="0" y1="360"  x2="140" y2="360"/>  <line x1="760" y1="360"  x2="900" y2="360"/>
+    <line x1="0" y1="720"  x2="140" y2="720"/>  <line x1="760" y1="720"  x2="900" y2="720"/>
+    <line x1="0" y1="1080" x2="140" y2="1080"/> <line x1="760" y1="1080" x2="900" y2="1080"/>
+    <line x1="0" y1="1440" x2="140" y2="1440"/> <line x1="760" y1="1440" x2="900" y2="1440"/>
+    <line x1="0" y1="1800" x2="140" y2="1800"/> <line x1="760" y1="1800" x2="900" y2="1800"/>
+  </g>
+
+  <!-- ===== top lintel (the doorway you came down through) ===== -->
+  <rect class="lintel" x="140" y="0" width="620" height="96"/>
+  <line x1="140" y1="96" x2="760" y2="96" stroke="#8b5a00" stroke-width="1.4" opacity="0.6"/>
+  <line x1="140" y1="99" x2="760" y2="99" stroke="#c9a227" stroke-width="0.6" opacity="0.35"/>
+  <g class="rune" transform="translate(410, 40)">
+    <path d="M 0 20 L 6 0 L 12 20 M 3 10 L 9 10"/>
+    <path d="M 24 0 L 24 20 M 24 0 L 32 8 M 24 0 L 16 8"/>
+    <path d="M 44 0 L 44 20 M 44 0 L 52 0 L 54 4 L 52 8 L 44 8"/>
+    <path d="M 66 0 L 74 20 M 74 0 L 66 20"/>
+  </g>
+
+  <!-- ===== two torches flanking the entrance ===== -->
+  <g transform="translate(110, 150)">
+    <circle cx="0" cy="-4" r="72" fill="url(#torchGlow)"/>
+    <rect x="-3" y="0" width="6" height="34" fill="#20140a"/>
+    <rect x="-10" y="30" width="20" height="6" fill="#3a2a20"/>
+    <ellipse cx="0" cy="-6"  rx="11" ry="20" fill="url(#flame2)"/>
+    <ellipse cx="0" cy="-12" rx="5"  ry="11" fill="#fff2c8" opacity="0.85"/>
+  </g>
+  <g transform="translate(790, 150)">
+    <circle cx="0" cy="-4" r="72" fill="url(#torchGlow)"/>
+    <rect x="-3" y="0" width="6" height="34" fill="#20140a"/>
+    <rect x="-10" y="30" width="20" height="6" fill="#3a2a20"/>
+    <ellipse cx="0" cy="-6"  rx="11" ry="20" fill="url(#flame2)"/>
+    <ellipse cx="0" cy="-12" rx="5"  ry="11" fill="#fff2c8" opacity="0.85"/>
+  </g>
+
+  <!-- ============================================================
+       Fifteen treads. Successive treads alternate their tilt — the
+       switchback of a spiral stair — with the floor-numeral medallion
+       riding the raised corner (right on the down-right treads, left on
+       the down-left ones). Each <g class="step"> holds its tread and its
+       engraving; ids follow the floor file-name convention (04h, 09h).
+       ============================================================ -->
+
+  <!-- Floor 0 -->
+  <g class="step" id="step-00">
+    <path class="riser"     d="M150,240 L750,210 L750,250 L150,280 Z"/>
+    <path class="tread"     d="M150,195 L750,165 L750,210 L150,240 Z"/>
+    <path class="tread-tex" d="M150,195 L750,165 L750,210 L150,240 Z"/>
+    <line class="nosing" x1="150" y1="240" x2="750" y2="210"/>
+    <circle class="medallion" cx="700" cy="178" r="22"/>
+    <text class="engrave-num" x="700" y="185">0</text>
+    <text class="engrave"     x="450" y="198">The Antechamber</text>
+    <text class="engrave-sub" x="450" y="220">ADTs</text>
+  </g>
+
+  <!-- Floor 1 -->
+  <g class="step" id="step-01">
+    <path class="riser"     d="M150,338 L750,368 L750,408 L150,378 Z"/>
+    <path class="tread"     d="M150,293 L750,323 L750,368 L150,338 Z"/>
+    <path class="tread-tex" d="M150,293 L750,323 L750,368 L150,338 Z"/>
+    <line class="nosing" x1="150" y1="338" x2="750" y2="368"/>
+    <circle class="medallion" cx="200" cy="306" r="22"/>
+    <text class="engrave-num" x="200" y="313">1</text>
+    <text class="engrave"     x="450" y="326">The Scrying Well</text>
+    <text class="engrave-sub" x="450" y="348">searching</text>
+  </g>
+
+  <!-- Floor 2 -->
+  <g class="step" id="step-02">
+    <path class="riser"     d="M150,496 L750,466 L750,506 L150,536 Z"/>
+    <path class="tread"     d="M150,451 L750,421 L750,466 L150,496 Z"/>
+    <path class="tread-tex" d="M150,451 L750,421 L750,466 L150,496 Z"/>
+    <line class="nosing" x1="150" y1="496" x2="750" y2="466"/>
+    <circle class="medallion" cx="700" cy="434" r="22"/>
+    <text class="engrave-num" x="700" y="441">2</text>
+    <text class="engrave"     x="450" y="454">The Sorting Crucible</text>
+    <text class="engrave-sub" x="450" y="476">sorting</text>
+  </g>
+
+  <!-- Floor 3 -->
+  <g class="step" id="step-03">
+    <path class="riser"     d="M150,594 L750,624 L750,664 L150,634 Z"/>
+    <path class="tread"     d="M150,549 L750,579 L750,624 L150,594 Z"/>
+    <path class="tread-tex" d="M150,549 L750,579 L750,624 L150,594 Z"/>
+    <line class="nosing" x1="150" y1="594" x2="750" y2="624"/>
+    <circle class="medallion" cx="200" cy="562" r="22"/>
+    <text class="engrave-num" x="200" y="569">3</text>
+    <text class="engrave"     x="450" y="582">The Forgemaster's Vault</text>
+    <text class="engrave-sub" x="450" y="604">templates</text>
+  </g>
+
+  <!-- Floor 4 -->
+  <g class="step" id="step-04">
+    <path class="riser"     d="M150,752 L750,722 L750,762 L150,792 Z"/>
+    <path class="tread"     d="M150,707 L750,677 L750,722 L150,752 Z"/>
+    <path class="tread-tex" d="M150,707 L750,677 L750,722 L150,752 Z"/>
+    <line class="nosing" x1="150" y1="752" x2="750" y2="722"/>
+    <circle class="medallion" cx="700" cy="690" r="22"/>
+    <text class="engrave-num" x="700" y="697">4</text>
+    <text class="engrave"     x="450" y="710">The Chain Vault</text>
+    <text class="engrave-sub" x="450" y="732">linked lists</text>
+  </g>
+
+  <!-- Floor 4&#189; -->
+  <g class="step" id="step-04h">
+    <path class="riser"     d="M150,850 L750,880 L750,920 L150,890 Z"/>
+    <path class="tread"     d="M150,805 L750,835 L750,880 L150,850 Z"/>
+    <path class="tread-tex" d="M150,805 L750,835 L750,880 L150,850 Z"/>
+    <line class="nosing" x1="150" y1="850" x2="750" y2="880"/>
+    <circle class="medallion" cx="200" cy="818" r="22"/>
+    <text class="engrave-num" x="200" y="825">4&#189;</text>
+    <text class="engrave"     x="450" y="838">The Chain Vault, Deeper</text>
+    <text class="engrave-sub" x="450" y="860">rule of three</text>
+  </g>
+
+  <!-- Floor 5 -->
+  <g class="step" id="step-05">
+    <path class="riser"     d="M150,1008 L750,978 L750,1018 L150,1048 Z"/>
+    <path class="tread"     d="M150,963 L750,933 L750,978 L150,1008 Z"/>
+    <path class="tread-tex" d="M150,963 L750,933 L750,978 L150,1008 Z"/>
+    <line class="nosing" x1="150" y1="1008" x2="750" y2="978"/>
+    <circle class="medallion" cx="700" cy="946" r="22"/>
+    <text class="engrave-num" x="700" y="953">5</text>
+    <text class="engrave"     x="450" y="966">The Eye of Scrying</text>
+    <text class="engrave-sub" x="450" y="988">iterators</text>
+  </g>
+
+  <!-- Floor 6 -->
+  <g class="step" id="step-06">
+    <path class="riser"     d="M150,1106 L750,1136 L750,1176 L150,1146 Z"/>
+    <path class="tread"     d="M150,1061 L750,1091 L750,1136 L150,1106 Z"/>
+    <path class="tread-tex" d="M150,1061 L750,1091 L750,1136 L150,1106 Z"/>
+    <line class="nosing" x1="150" y1="1106" x2="750" y2="1136"/>
+    <circle class="medallion" cx="200" cy="1074" r="22"/>
+    <text class="engrave-num" x="200" y="1081">6</text>
+    <text class="engrave"     x="450" y="1094">The Hall of Echoes</text>
+    <text class="engrave-sub" x="450" y="1116">stacks</text>
+  </g>
+
+  <!-- Floor 7 -->
+  <g class="step" id="step-07">
+    <path class="riser"     d="M150,1264 L750,1234 L750,1274 L150,1304 Z"/>
+    <path class="tread"     d="M150,1219 L750,1189 L750,1234 L150,1264 Z"/>
+    <path class="tread-tex" d="M150,1219 L750,1189 L750,1234 L150,1264 Z"/>
+    <line class="nosing" x1="150" y1="1264" x2="750" y2="1234"/>
+    <circle class="medallion" cx="700" cy="1202" r="22"/>
+    <text class="engrave-num" x="700" y="1209">7</text>
+    <text class="engrave"     x="450" y="1222">The Cisterns</text>
+    <text class="engrave-sub" x="450" y="1244">queues</text>
+  </g>
+
+  <!-- Floor 8 -->
+  <g class="step" id="step-08">
+    <path class="riser"     d="M150,1362 L750,1392 L750,1432 L150,1402 Z"/>
+    <path class="tread"     d="M150,1317 L750,1347 L750,1392 L150,1362 Z"/>
+    <path class="tread-tex" d="M150,1317 L750,1347 L750,1392 L150,1362 Z"/>
+    <line class="nosing" x1="150" y1="1362" x2="750" y2="1392"/>
+    <circle class="medallion" cx="200" cy="1330" r="22"/>
+    <text class="engrave-num" x="200" y="1337">8</text>
+    <text class="engrave"     x="450" y="1350">The Hall of Lineages</text>
+    <text class="engrave-sub" x="450" y="1372">trees</text>
+  </g>
+
+  <!-- Floor 9 -->
+  <g class="step" id="step-09">
+    <path class="riser"     d="M150,1520 L750,1490 L750,1530 L150,1560 Z"/>
+    <path class="tread"     d="M150,1475 L750,1445 L750,1490 L150,1520 Z"/>
+    <path class="tread-tex" d="M150,1475 L750,1445 L750,1490 L150,1520 Z"/>
+    <line class="nosing" x1="150" y1="1520" x2="750" y2="1490"/>
+    <circle class="medallion" cx="700" cy="1458" r="22"/>
+    <text class="engrave-num" x="700" y="1465">9</text>
+    <text class="engrave"     x="450" y="1478">The Halving Hall</text>
+    <text class="engrave-sub" x="450" y="1500">BSTs</text>
+  </g>
+
+  <!-- Floor 9&#189; -->
+  <g class="step" id="step-09h">
+    <path class="riser"     d="M150,1618 L750,1648 L750,1688 L150,1658 Z"/>
+    <path class="tread"     d="M150,1573 L750,1603 L750,1648 L150,1618 Z"/>
+    <path class="tread-tex" d="M150,1573 L750,1603 L750,1648 L150,1618 Z"/>
+    <line class="nosing" x1="150" y1="1618" x2="750" y2="1648"/>
+    <circle class="medallion" cx="200" cy="1586" r="22"/>
+    <text class="engrave-num" x="200" y="1593">9&#189;</text>
+    <text class="engrave"     x="450" y="1606">The Balanced Hall</text>
+    <text class="engrave-sub" x="450" y="1628">rotations</text>
+  </g>
+
+  <!-- Floor 10 -->
+  <g class="step" id="step-10">
+    <path class="riser"     d="M150,1776 L750,1746 L750,1786 L150,1816 Z"/>
+    <path class="tread"     d="M150,1731 L750,1701 L750,1746 L150,1776 Z"/>
+    <path class="tread-tex" d="M150,1731 L750,1701 L750,1746 L150,1776 Z"/>
+    <line class="nosing" x1="150" y1="1776" x2="750" y2="1746"/>
+    <circle class="medallion" cx="700" cy="1714" r="22"/>
+    <text class="engrave-num" x="700" y="1721">10</text>
+    <text class="engrave"     x="450" y="1734">The Hall of Names</text>
+    <text class="engrave-sub" x="450" y="1756">sets &amp; maps</text>
+  </g>
+
+  <!-- Floor 11 -->
+  <g class="step" id="step-11">
+    <path class="riser"     d="M150,1874 L750,1904 L750,1944 L150,1914 Z"/>
+    <path class="tread"     d="M150,1829 L750,1859 L750,1904 L150,1874 Z"/>
+    <path class="tread-tex" d="M150,1829 L750,1859 L750,1904 L150,1874 Z"/>
+    <line class="nosing" x1="150" y1="1874" x2="750" y2="1904"/>
+    <circle class="medallion" cx="200" cy="1842" r="22"/>
+    <text class="engrave-num" x="200" y="1849">11</text>
+    <text class="engrave"     x="450" y="1862">The Hall of Whispers</text>
+    <text class="engrave-sub" x="450" y="1884">hash tables</text>
+  </g>
+
+  <!-- Floor 12 -->
+  <g class="step" id="step-12">
+    <path class="riser"     d="M150,2032 L750,2002 L750,2042 L150,2072 Z"/>
+    <path class="tread"     d="M150,1987 L750,1957 L750,2002 L150,2032 Z"/>
+    <path class="tread-tex" d="M150,1987 L750,1957 L750,2002 L150,2032 Z"/>
+    <line class="nosing" x1="150" y1="2032" x2="750" y2="2002"/>
+    <circle class="medallion" cx="700" cy="1970" r="22"/>
+    <text class="engrave-num" x="700" y="1977">12</text>
+    <text class="engrave"     x="450" y="1990">The Labyrinth</text>
+    <text class="engrave-sub" x="450" y="2012">graphs</text>
+  </g>
+
+  <!-- ===== the dark keeps going: two ember eyes far below ===== -->
+  <circle cx="436" cy="2140" r="9" fill="url(#emberDot)"/>
+  <circle cx="464" cy="2140" r="9" fill="url(#emberDot)"/>
+  <circle cx="436" cy="2140" r="1.4" fill="#ffd28a"/>
+  <circle cx="464" cy="2140" r="1.4" fill="#ffd28a"/>
+
+  <!-- ===== gold double frame ===== -->
+  <rect class="frame-in"  x="6"  y="6"  width="888" height="2188"/>
+  <rect class="frame-out" x="12" y="12" width="876" height="2176"/>
+</svg>
