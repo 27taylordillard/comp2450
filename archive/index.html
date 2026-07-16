@@ -286,6 +286,130 @@ html.restored .spine-name {
   .spine-name { transition: opacity 0.3s ease; }
   html.restored .spine-name { transition-delay: 0s; }
 }
+
+/* ---- The Harvester (Task 5). The SVG carries the static art; everything
+       here is STATE — entrance, idle loops, lantern .out, sigil .lit, and
+       the battle states Tasks 6-7 toggle on #harvester-svg — the same
+       static-in-SVG / state-in-page split the other scenes use. It layers
+       above the archive backdrop inside the sticky stage; beats 3-5 scroll
+       over it on their stone panels. ---------------------------------- */
+#stage #harvester-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Entrance: absent through beat 2's reveal, fading up over ~2s when beat 3
+   first comes into view (#stage gains .hv-present). Gated on html.js so
+   with JS off the Harvester simply shows — it hides nothing either way. */
+html.js #stage #harvester-svg {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 2s ease-out, transform 2s ease-out;
+}
+html.js #stage.hv-present #harvester-svg {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Idle loops: the cloak breathes ±1.5°, the lantern-chain answers a beat
+   behind, and each flame flickers on its own desynced delay (--fd is set
+   per-lantern in the SVG). Subtle by design — it plays behind prose. */
+#hv-cloak {
+  transform-origin: 575px 252px;
+  animation: hv-sway 6s ease-in-out infinite alternate;
+}
+#hv-lanterns {
+  transform-origin: 578px 428px;
+  animation: hv-chain-sway 7.3s ease-in-out infinite alternate;
+  animation-delay: -2.1s;
+}
+@keyframes hv-sway {
+  from { transform: rotate(-1.5deg); }
+  to   { transform: rotate(1.5deg); }
+}
+@keyframes hv-chain-sway {
+  from { transform: rotate(-1.2deg); }
+  to   { transform: rotate(1.2deg); }
+}
+#harvester-svg .flame {
+  transform-box: fill-box;
+  transform-origin: 50% 88%;
+  animation: hv-flicker 2.6s ease-in-out infinite alternate;
+  animation-delay: var(--fd, 0s);
+}
+@keyframes hv-flicker {
+  from { transform: scale(1);          opacity: 1; }
+  55%  { transform: scale(0.92, 0.86); opacity: 0.82; }
+  to   { transform: scale(1.05, 1.1);  opacity: 0.95; }
+}
+
+/* A lantern marked .out (Tasks 6-7): its flame gutters — a brief panic of
+   flickers — then holds dark. */
+#harvester-svg g[id^=hv-lantern].out .flame {
+  animation: hv-gutter 0.9s ease-out forwards;
+}
+@keyframes hv-gutter {
+  0%   { opacity: 1; }
+  20%  { opacity: 0.15; }
+  35%  { opacity: 0.85; }
+  55%  { opacity: 0.1; }
+  70%  { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+
+/* The sigil ring: engraved circles stay faint until an invocation marks
+   one .lit — then gold fill and a gold glow. */
+#hv-sigil-ring .sigil { transition: opacity 0.8s ease; }
+#hv-sigil-ring .sg-ring,
+#hv-sigil-ring .sg-mark { transition: stroke 0.8s ease, fill 0.8s ease, filter 0.8s ease; }
+#hv-sigil-ring g.lit { opacity: 1; }
+#hv-sigil-ring g.lit .sg-ring {
+  fill: rgba(201, 162, 39, 0.16);
+  stroke: var(--gold);
+  filter: drop-shadow(0 0 7px rgba(201, 162, 39, 0.8));
+}
+#hv-sigil-ring g.lit .sg-mark { stroke: var(--gold); }
+#hv-sigil-ring g.lit .sg-dot  { fill: var(--gold); }
+
+/* Battle states (Tasks 6-7 toggle these on #harvester-svg). */
+#harvester-svg.recoil #hv-root { animation: hv-recoil 0.4s ease-out; }
+@keyframes hv-recoil {
+  0%   { transform: translate(0, 0); }
+  35%  { transform: translate(12px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+
+#hv-glow { transition: opacity 1.6s ease; }
+#harvester-svg.starving #hv-glow { opacity: 0.25; }
+#harvester-svg.starving #hv-cloak    { animation-duration: 13s; }
+#harvester-svg.starving #hv-lanterns { animation-duration: 15.5s; }
+
+#harvester-svg.dissolved #hv-root {
+  opacity: 0.06;
+  transition: opacity 2.5s ease-in;
+}
+#harvester-svg.dissolved #hv-scythe {
+  transform-origin: 652px 616px;
+  transform: translate(-6px, 96px) rotate(9deg);
+  transition: transform 1.6s cubic-bezier(0.45, 0, 0.8, 0.6);
+}
+#harvester-svg.dissolved #hv-cloak,
+#harvester-svg.dissolved #hv-lanterns { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* All idle loops off; the entrance and every state change become quick
+     fades or instant states. The .lit gold and .out dark still apply. */
+  html.js #stage #harvester-svg { transform: none; transition: opacity 0.3s ease-out; }
+  #hv-cloak, #hv-lanterns, #harvester-svg .flame { animation: none; }
+  #harvester-svg g[id^=hv-lantern].out .flame { animation: none; opacity: 0; }
+  #harvester-svg.recoil #hv-root { animation: none; }
+  #hv-sigil-ring .sigil, #hv-sigil-ring .sg-ring, #hv-sigil-ring .sg-mark { transition: none; }
+  #hv-glow { transition: none; }
+  #harvester-svg.dissolved #hv-root { transition: none; }
+  #harvester-svg.dissolved #hv-scythe { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -311,7 +435,7 @@ html.restored .spine-name {
 <div id="stage-wrap">
   <div id="stage">
     {% include finale/archive.svg %}
-    <!-- Task 5 adds the harvester include here -->
+    {% include finale/harvester.svg %}
     <!-- Task 6 adds the fx overlay svg here -->
   </div>
 
@@ -484,6 +608,22 @@ document.documentElement.classList.add('js');
     });
   }, { threshold: 0.6 });
   steps.forEach(function (el) { so.observe(el); });
+})();
+
+/* Beat 3 reveals the Harvester (Task 5): a third, independent observer with
+   the beat observer's threshold, so the stage gains .hv-present at the same
+   moment beat 3 first gains .in-view — and only once. The beat and step
+   observers above are untouched. */
+(function () {
+  var beat3 = document.getElementById('beat-3');
+  var stage = document.getElementById('stage');
+  if (!beat3 || !stage) return;
+  var ho = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { stage.classList.add('hv-present'); ho.unobserve(beat3); }
+    });
+  }, { threshold: 0.2 });
+  ho.observe(beat3);
 })();
 </script>
 </body>
