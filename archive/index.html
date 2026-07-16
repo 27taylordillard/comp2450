@@ -107,42 +107,191 @@ html.js .couplet { display: none; }         /* couplets revealed per-invocation 
 html.js .couplet.revealed { display: block; }
 html:not(.js) #rank,
 html:not(.js) #fx-stage { display: none; }  /* no-JS: battle reads as prose (the couplets) */
+
+/* ---- Story prose presentation (Task 2). Static looks only — animation
+       belongs to later tasks. ---------------------------------------- */
+
+.prose img.banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 2rem;
+}
+
+/* The Bard's epigraph — the floor pages' italic-epigraph convention. */
+.epigraph {
+  font-style: italic;
+  color: var(--parchment-dark);
+  text-align: center;
+  margin: 0 0 2.4rem;
+}
+.epigraph .attribution {
+  display: block;
+  font-style: normal;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78em;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-top: 0.6em;
+}
+
+/* Beat 3: the fading of the name. Static look — slightly dimmed, the
+   hollowed letters ghosted — even before Task 9 animates them. */
+.soul-fade { opacity: 0.8; }
+.soul-fade .gone {
+  color: transparent;
+  text-shadow: 0 0 3px rgba(232, 216, 176, 0.45);
+}
+
+/* Beat 4: the name the page cannot know — a gold-lit blank. */
+#the-name {
+  display: inline-block;
+  width: 7ch;
+  border-bottom: 1px solid var(--gold);
+  box-shadow: 0 8px 14px -8px rgba(201, 162, 39, 0.6);
+}
+
+/* Beat 5: the invocation couplets (plain prose without JS; revealed
+   per-invocation with it — the gating rules live above). */
+#couplets { margin-top: 2.2rem; }
+.couplet { margin: 1.8rem 0; }
+.couplet .bard-line {
+  font-style: italic;
+  color: var(--parchment-dark);
+  margin: 0 0 0.35rem;
+}
+.couplet .ally-quote { margin: 0; }
+.speaker {
+  display: block;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  color: var(--gold);
+  margin-bottom: 0.25em;
+}
+
+/* Links (the coda's "Descend again" / home link — the page's only anchors). */
+a { color: var(--gold); }
+a:hover { color: var(--ember); }
+
+/* Beat 8: the credits roll. */
+#credits {
+  list-style: none;
+  margin: 2rem 0;
+  padding: 0;
+}
+#credits li { margin: 0.5rem 0; }
+#credits li.credit-warden,
+#credits li.credit-architect {
+  font-style: italic;
+  color: var(--parchment-dark);
+  margin: 1.1rem 0;
+}
 </style>
 </head>
 <body>
 
 <section class="beat" id="beat-1">
   <div class="prose">
+    <img class="banner" src="{{ '/assets/diagrams/descent-banner.svg' | relative_url }}" alt="A stone archway lit by a single torch opens onto a dark staircase descending toward distant glowing eyes. A skeleton hangs in chains from the right column. Title: COMP 2450 — Data Structures &amp; Algorithms — The Descent."/>
+    <p class="epigraph">&ldquo;Every song I have sung you was the first half of one song. Come — the stair remembers, even now. Let us go down and finish it.&rdquo;<span class="attribution">— the Nameless Bard</span></p>
     <h2>1. The Last Stair</h2>
-    <p><em>Prose arrives in Task 2.</em></p>
+    <p>The stopwatch is stopped. That was to be the end of it — the Abbot's thumb on the crown, tea going round in mismatched cups, eleven halls of beasts locked each in its place behind you, and ahead, the long climb back into the light. Grix pours. Brother Faith stands the way he has stood at every gate, spending nothing.</p>
+    <p>But the Bard has not put up his lute.</p>
+    <p>&ldquo;The song is not finished,&rdquo; he says, to nobody who asked. &ldquo;The bottom of the Labyrinth is not the bottom of the Hold. Abbot — you of all souls know it.&rdquo;</p>
+    <p>And he points: past the loop, past Entrance and Goblin and Skeleton, the circle of doors Grix rode for an hour and called <em>forward</em> — to the corridor two steps past the loop, the one with the stair down.</p>
+    <p>Grix stops pouring.</p>
+    <p>Brother Faith looks down that corridor for a long and costly moment. Then he winds the stopwatch once more, and the ticking starts again, like a heart changing its mind.</p>
+    <p>So the four of you go down — an Abbot, a goblin balancing a tea tray, a bard already humming the second half of something, and you. The steps are old, and they are engraved: one name to a stair, every floor of the descent cut into the stone, the Hold reading your own story back to you as you pass. The stair remembers.</p>
   </div>
 </section>
 
 <section class="beat" id="beat-2">
   <div class="prose">
     <h2>2. The Archive</h2>
-    <p><em>Prose arrives in Task 2.</em></p>
+    <p>The stair lets you out into a room with no far wall. Shelves rise toward a ceiling that is only a rumor, rank behind rank, and every shelf is full. Nothing here was burned. Nothing here was taken. You pull a volume down at random and the words are all present — every word the Library ever kept — in no order at all: sentences folded into other sentences, indexes pointing at nothing, page numbers arguing among themselves. This is the secret the Order was built over and could never bear to say aloud: the Unsorted Plague destroyed nothing. It shuffled. <em>Unsorted, not destroyed.</em> All of it is here. None of it can be found — and a library that cannot be searched is only a room where paper is kept.</p>
+    <p>Then you see the readers.</p>
+    <p>Initiates of other years, in what the years have left of their robes, fallen among the shelves they came down to save: one mid-reach, one curled around a satchel of careful, useless notes. And one sitting against a shelf as if it had only stopped to rest, holding a page that still burns with color — gold leaf, blue ink, a margin full of light. You have seen its twin every day since you first entered the monastery. It hangs in the antechamber. It is the only thing <strong>Brother Faith</strong> ever brought back up.</p>
+    <p>He reached this room, and fled.</p>
+    <p>The Abbot looks at the page in the dead initiate's hands and says nothing. It is a different nothing than the one you know. Somewhere behind you, Grix sets the tray down without a sound.</p>
   </div>
 </section>
 
 <section class="beat" id="beat-3">
   <div class="prose">
     <h2>3. The Harvester</h2>
-    <p><em>Prose arrives in Task 2.</em></p>
+    <p>It was waiting between the shelf-ranks, where the lantern light should have gone and did not. It has always been waiting. A shape like a gap in the room. A scythe of some metal that has forgotten its own name. And at its belt a ring of small lanterns, dozens of them, each burning with a little patient flame — and not a name on any of them.</p>
+    <p>The Bard's voice, when it comes, is the smallest you have ever heard it. &ldquo;<strong>The Harvester.</strong> It reaps the <em>unindexed</em>. The Plague cannot corrupt what is already indexed — and this thing cannot touch it either. But whatever goes unnamed, unfiled, unsung —&rdquo; his hands go still on the strings &ldquo;— I have sung the ending of every soul that ever went down this Hold. Every soul but the ones on that belt. There was nothing left of them to sing.&rdquo;</p>
+    <p><span class="soul-fade">You</span> do the thing eleven floors taught <span class="soul-fade">you</span> and no floor thought to unteach: <span class="soul-fade">you</span> step out alone, and <span class="soul-fade">you</span> strike. The blade goes through it and finds nothing. There is nothing to cut — it has no name to cut. It turns, unhurried. It does not raise the scythe. It only looks at <span class="soul-fade">you</span>. And the look begins to take.</p>
+    <p>The room goes quiet the way a page goes blank. Something is coming loose that <span class="soul-fade">you</span> did not know was fastened: the name <span class="soul-fade">y<span class="gone">o</span>u</span> answered to on every floor above is guttering, letter by letter, like a row of wicks in a draft. The Bard plays with both hands now, loud and desperate, and a hole is opening in the verse where <span class="soul-fade">y<span class="gone">o</span><span class="gone">u</span>r</span> name will not stay. At the Harvester's belt the newest lantern — the empty one — swings open its little door. It is exactly the size of <span class="soul-fade"><span class="gone">y</span><span class="gone">o</span><span class="gone">u</span></span>.</p>
   </div>
 </section>
 
 <section class="beat" id="beat-4">
   <div class="prose">
     <h2>4. The Word</h2>
-    <p><em>Prose arrives in Task 2.</em></p>
+    <p>A stopwatch clicks. <strong>Brother Faith</strong>, whose every word has a price, pays the highest one he knows: he says your name. All of it. Every letter.</p>
+    <p>The Archive cannot spell it — no page down here ever held it — so the song keeps only the lit and empty place where it rang: <span id="the-name" aria-label="your name, spoken">&#8203;</span>. But the shelves heard it. The dead heard it. It goes off the stone like a bell of gold, and every guttering letter of you turns at the sound and comes back, wick by wick, relit — because a name spoken at that price is not a word at all. It is a <em>filing</em>. And the Harvester cannot reap what has just been filed.</p>
+    <p>Then the stair gives up the sound it has been holding: boots.</p>
+    <p>Down they come, six of them, keepers all: <strong>Forgemaster Steil</strong>, forge-light still on his arms; <strong>Quartermistress Mavren</strong>, link-ledger at her belt; <strong>Sister Vael</strong>, lens already lifted; <strong>Cantor Resh</strong>, saying the last thing he heard — which was your name; <strong>Steward Quill</strong>, cistern-water dripping from his hem, stamp in hand; <strong>Scrivener McCown</strong>, Bestiary open to a blank page. And behind them, wheels arguing with every stair, comes <strong>Foust</strong> — cart and all.</p>
+    <p>Grix is already there. The tea has not spilled.</p>
   </div>
 </section>
 
 <section class="beat" id="beat-5">
   <div class="prose">
     <h2>5. The Invocation</h2>
-    <p><em>Prose and the interactive battle arrive in later tasks.</em></p>
+    <p>They spread out among the shelf-ranks without one word passing between them, and they make a ring around the thing that reaps. Not one of them draws a weapon. Not one of them ever taught you a weapon. What they raise instead are the things they did teach: a mold, a chain, a lens, an echo, a ticket, a page, a map — and, at the far edge of the circle, steaming faintly, a cup of tea.</p>
+    <p>The Harvester turns its hood from one keeper to the next, and for the first time in the long age of its patience it cannot find the one it is allowed to ignore.</p>
+    <p>The Bard steps to your shoulder and brings the lute up, and the low string — the one he has carried unplayed through every floor — finally sounds. &ldquo;Call them,&rdquo; he says. &ldquo;Any order you please. The order was always yours to choose.&rdquo;</p>
+    <p>And this is how the binding went, verse by verse, one friend at a time:</p>
+
+    <!-- Task 6 inserts the interactive battle stage (#fx-stage, #rank) here, above the couplets. -->
+
+    <div id="couplets">
+
+      <figure class="couplet" data-ally="steil">
+        <p class="bard-line">The Forgemaster casts no new weapon; he has never needed one. One shape, any metal: the binding pours molten and sets around the Harvester's wrist.</p>
+        <p class="ally-quote"><span class="speaker">Forgemaster Steil</span> &ldquo;One mold,&rdquo; says Steil. &ldquo;Any metal. Hold still.&rdquo;</p>
+      </figure>
+
+      <figure class="couplet" data-ally="mavren">
+        <p class="bard-line">The Quartermistress does not throw the chain; she files it. Link cuffed to link, each sworn to its predecessor, and the arm that reaps is entered into the record.</p>
+        <p class="ally-quote"><span class="speaker">Quartermistress Mavren</span> &ldquo;I never re-cast the chain,&rdquo; says Mavren. &ldquo;I only add to it. You are added.&rdquo;</p>
+      </figure>
+
+      <figure class="couplet" data-ally="vael">
+        <p class="bard-line">Sister Vael lifts the lens. She does not see the Harvester — she sees its shape: where it advances, where it must stop. She marks the place where it ends.</p>
+        <p class="ally-quote"><span class="speaker">Sister Vael</span> &ldquo;There,&rdquo; says Vael. &ldquo;It ends <em>there</em>.&rdquo;</p>
+      </figure>
+
+      <figure class="couplet" data-ally="resh">
+        <p class="bard-line">The Harvester speaks a claiming-word, and Cantor Resh — who cannot help it — gives it back. Last in, first out. It hears its own voice for the first time in an age, and flinches.</p>
+        <p class="ally-quote"><span class="speaker">Cantor Resh</span> says the Harvester's own words back to it — exactly, and nothing else.</p>
+      </figure>
+
+      <figure class="couplet" data-ally="quill">
+        <p class="bard-line">Steward Quill wades out of the dark, ledger open, and stamps a ticket to the Harvester's cloak. There is a line, and the Harvester is at the back of it.</p>
+        <p class="ally-quote"><span class="speaker">Steward Quill</span> &ldquo;You are next,&rdquo; says Quill, &ldquo;and the one behind you is next after that. Always.&rdquo;</p>
+      </figure>
+
+      <figure class="couplet" data-ally="mccown">
+        <p class="bard-line">The Scrivener opens the Bestiary to a page that has waited fifteen weeks. Entry by entry, the Harvester becomes known — and what is indexed cannot reap.</p>
+        <p class="ally-quote"><span class="speaker">Scrivener McCown</span> &ldquo;Hold still,&rdquo; McCown says, delighted. &ldquo;You're new.&rdquo;</p>
+      </figure>
+
+      <figure class="couplet" data-ally="foust">
+        <p class="bard-line">Foust unrolls the one map he never sold — the Archive entire, margin to margin — and lets it fall open at your feet. Free of charge. For the first time in his life, free of charge.</p>
+        <p class="ally-quote"><span class="speaker">Foust of the Margin-Road</span> &ldquo;A gift, between friends,&rdquo; says Foust. &ldquo;I mean it, this once.&rdquo;</p>
+      </figure>
+
+      <figure class="couplet" data-ally="grix">
+        <p class="bard-line">The Harvester turns at last on the most foolhardy soul in the room — and passes through him like a hand through smoke. Grix was in a pantry, counting trinkets, the day the Plague drew up its ledger. Grix was never counted.</p>
+        <p class="ally-quote"><span class="speaker">Grix the Opportunist</span> &ldquo;Tea?&rdquo; says Grix.</p>
+      </figure>
+
+    </div>
   </div>
 </section>
 
@@ -151,21 +300,53 @@ html:not(.js) #fx-stage { display: none; }  /* no-JS: battle reads as prose (the
   <section class="beat" id="beat-6">
     <div class="prose">
       <h2>6. The Final Blow</h2>
-      <p><em>Prose arrives in Task 2.</em></p>
+      <p>Molded, chained, ended at the marked place, echoed, ticketed, indexed, mapped — and refused, flatly and forever, by a goblin with a teacup. The Harvester stands in the middle of eight true things, and there is nothing left in the room for it to reap.</p>
+      <p>You do not swing a sword. There was never going to be a sword. You give the room the one word the whole descent was teaching you to say, and you say it to the shelves themselves: <code>sort</code>.</p>
+      <p>The Archive answers. Shelf by shelf the halves slide together — two sorted halves into one sorted whole, a <strong>merge</strong>, the Crucible's oldest lesson. The little flames at the Harvester's belt go out all together, gently, like a breath let go. And what is left of the reaper thins to a shadow between the shelf-ranks, and then to the place where a shadow used to be. Starved. Nothing in this room is unknown any more.</p>
     </div>
   </section>
 
   <section class="beat" id="beat-7">
     <div class="prose">
       <h2>7. The Restoration</h2>
-      <p><em>Prose arrives in Task 2.</em></p>
+      <p>Then the names come back.</p>
+      <p>Along ten thousand spines at once, gold rises through the leather like warmth returning to a body — title after title, the shelves remembering out loud. Indexes wake and point true. Page numbers fall into line. Far overhead, something vast settles into place with the sound of a chord resolving. The Library is not being repaired. Nothing here was ever broken. It is being <em>found</em>.</p>
+      <p><strong>Quartermistress Mavren</strong> walks out among the fallen and opens the ledger that has logged every initiate who ever passed through her vault, win or lose. She reads. She reads <em>names</em> — one for each of the dead among the shelves, whole and unhurried, in the plain voice of a keeper entering a record — and at every name one of the dark lanterns unlatches, and something brighter than flame steps out of it and goes up, past the shelves, past the rumor of a ceiling.</p>
+      <p>And for every name the Bard sings the ending he could not sing before there was a name to hang it on — short verses, true ones: how deep they went, what they built, where they fell. No soul in his keeping goes unsung again.</p>
+      <p>Last of all, <strong>Brother Faith</strong> crosses to a shelf near the heart of the room, where a page-shaped gap has stood open since the year he fled it. He takes the illuminated page from his robe — the antechamber's one treasure, carried down the whole way against this exact moment — and slides it home. It fits the way an ending fits. Beside it he lays its twin, lifted gently from the hands of the initiate who reached this room and stayed. The Abbot stands there a moment, thumb on the stopwatch. He does not stop it.</p>
     </div>
   </section>
 
   <section class="beat" id="beat-8">
     <div class="prose">
       <h2>8. The Coda</h2>
-      <p><em>Prose arrives in Task 2.</em></p>
+      <p>&ldquo;Your ending is already sung,&rdquo; says the Bard, and for once he is not smiling when he says it. &ldquo;I told you so at the top of the stair, and it was true the whole way down. But an ending is not the last verse.&rdquo;</p>
+      <p>&ldquo;One Warden remains — and it has never stood in the Hold. No floor holds it. No stair reaches it. No door has ever opened on it. <strong>The Architect of Errors</strong> waits on paper, where it has always waited, wearing every mistake you survived on the way down. You have been meeting its work since the Scrying Well. Now you meet the maker. Bring a pencil. Bring all fifteen floors of you.&rdquo;</p>
+      <p>He brings the lute up one last time. &ldquo;But that is tomorrow's verse. Tonight: the song entire — first half and second, sung through at last. Every floor. Every keeper. Every craft. Listen to what you carried out of the dark.&rdquo;</p>
+
+      <ol id="credits">
+        <li><strong>Floor 0 · The Antechamber</strong> — Brother Faith, Abbot of the Sorted Tome — ADTs &amp; abstraction</li>
+        <li><strong>Floor 1 · The Scrying Well</strong> — Scrivener McCown, Keeper of the Bestiary — searching &amp; Big-O</li>
+        <li><strong>Floor 2 · The Sorting Crucible</strong> — Master Foust, met on the landing — merge sort &amp; quicksort</li>
+        <li><strong>Floor 3 · The Forgemaster's Vault</strong> — Forgemaster Steil, Master of the Cold Forge — templates &amp; exceptions</li>
+        <li class="credit-warden"><strong>Warden I · The Warden of the Foundations</strong> — faced at the first gate — Midterm 1, Floors 0–3</li>
+        <li><strong>Floor 4 · The Chain Vault</strong> — Quartermistress Mavren, Keeper of the Chain Vault — singly-linked lists</li>
+        <li><strong>Floor 4½ · The Chain Vault, Deeper</strong> — Quartermistress Mavren, Keeper of the Chain Vault — doubly-linked lists &amp; the Rule of Three</li>
+        <li><strong>Floor 5 · The Eye of Scrying</strong> — Sister Vael, the Lensbearer — iterators</li>
+        <li><strong>Floor 6 · The Hall of Echoes</strong> — Cantor Resh, Keeper of the Hall of Echoes — stacks</li>
+        <li><strong>Floor 7 · The Cisterns</strong> — Steward Quill, Keeper of the Cisterns — queues</li>
+        <li class="credit-warden"><strong>Warden II · The Warden of the Middle Gates</strong> — faced at the second gate — Midterm 2, Floors 4–7</li>
+        <li><strong>Floor 8 · The Hall of Lineages</strong> — Scrivener McCown, Keeper of the Bestiary — general trees</li>
+        <li><strong>Floor 9 · The Halving Hall</strong> — Scrivener McCown, Keeper of the Bestiary — binary search trees</li>
+        <li><strong>Floor 9½ · The Balanced Hall</strong> — Scrivener McCown, Keeper of the Bestiary — self-balancing trees</li>
+        <li><strong>Floor 10 · The Hall of Names</strong> — Scrivener McCown, Keeper of the Bestiary — sets &amp; maps</li>
+        <li><strong>Floor 11 · The Hall of Whispers</strong> — Scrivener McCown, Keeper of the Bestiary — hash tables</li>
+        <li class="credit-warden"><strong>Warden III · The Warden of the Trees</strong> — faced at the third gate — Midterm 3, Floors 8–11</li>
+        <li><strong>Floor 12 · The Labyrinth</strong> — the Nameless Bard, who has your ending already — graphs</li>
+        <li class="credit-architect"><strong>The Architect of Errors</strong> — the fourth Warden — faced on paper</li>
+      </ol>
+
+      <p>The Hold is quiet. The tea, at long last, is drunk. <a href="">Descend again</a>, if the stair calls you still — or climb, at last, <a href="{{ '/' | relative_url }}">back into the light</a>.</p>
     </div>
   </section>
 
