@@ -703,6 +703,86 @@ html.js .couplet.revealed.current { animation: verse-in 0.7s ease-out; }
   .ally.invoking, .ally.spent { transform: none; }
   html.js .couplet.revealed.current { animation: none; }
 }
+
+/* ---- The rite (Task 7). When the eighth binding lands the prompt unhides at
+       the bottom of the battle panel — the descent's one command line, styled
+       like the floor pages' code transcripts (Fira Code, stone-mid ground,
+       gold rule, a `>` glyph). The student types `sort`; resolveBattle drives
+       the ending. With JS off the form keeps its `hidden` attribute and never
+       shows — the coda already reads straight through as prose. */
+#rite { margin: 0.95rem 0 0; }
+#rite .bard-line {
+  display: block;
+  font-style: italic;
+  color: var(--parchment-dark);
+  margin: 0 0 0.55rem;
+}
+.rite-line {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.92em;
+  background: var(--stone-mid);
+  color: var(--parchment-dark);
+  border-left: 3px solid var(--gold);
+  border-radius: 2px;
+  padding: 0.7rem 0.9rem;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.rite-line > span[aria-hidden] { color: var(--gold); }   /* the prompt glyph */
+#rite-word {
+  flex: 1 1 8rem;
+  min-width: 6rem;
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--ink-soft);
+  color: var(--parchment);
+  caret-color: var(--gold);
+  padding: 0.1em 0.15em;
+}
+#rite-word:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+#rite-word:disabled { color: var(--gold); opacity: 0.9; }  /* the word, spoken */
+#rite .rune {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--parchment-dark);
+  background: rgba(42, 26, 26, 0.9);
+  border: 1px solid var(--stone-edge);
+  border-radius: 3px;
+  padding: 0.3em 0.7em;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+#rite .rune:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+}
+#rite .rune:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+/* The wrong-word line is the Bard's, not a scold: his italic-narration voice. */
+#rite-hint {
+  font-style: italic;
+  color: var(--parchment-dark);
+  margin: 0.55rem 0 0;
+  min-height: 1.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #rite .rune { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -857,6 +937,12 @@ html.js .couplet.revealed.current { animation: verse-in 0.7s ease-out; }
       </figure>
 
     </div>
+
+    <form id="rite" hidden>
+      <label for="rite-word" class="bard-line">The Harvester is bound, seen, echoed, ticketed, and indexed. One word remains — the one the Crucible taught you.</label>
+      <p class="rite-line"><span aria-hidden="true">&gt; </span><input id="rite-word" autocomplete="off" spellcheck="false" aria-label="the word"> <button type="button" class="rune">or press the rune</button></p>
+      <p id="rite-hint" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -1002,8 +1088,43 @@ function invoke(btn) {
   }, FX_MS);
 }
 
-// Task 7 replaces this stub
-function unlockRite(){ console.log('rite unlocked'); }
+/* The rite (Task 7). The eighth binding unhides the prompt; the student types
+   the descent's one word — `sort` — and the Archive merges, the Harvester
+   starves and dissolves, and the coda unlocks. Reuses the battle's `motionOK`,
+   `hv`, and `lanterns` (all 12 gutter here, not just the eight the fight put
+   out). A `resolved` guard makes a second submit or rune-click a no-op. */
+function unlockRite() {
+  var rite = document.getElementById('rite');
+  rite.hidden = false;
+  document.getElementById('rite-word').focus();
+}
+document.querySelector('#rite .rune').addEventListener('click', function () {
+  document.getElementById('rite-word').value = 'sort';   // the click fallback types it for you
+  resolveBattle();
+});
+document.getElementById('rite').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var v = document.getElementById('rite-word').value.trim().toLowerCase();
+  if (v === 'sort') { resolveBattle(); }
+  else { document.getElementById('rite-hint').textContent =
+         'That is not the word. The shelves are waiting to be sorted.'; }
+});
+var resolved = false;
+function resolveBattle() {
+  if (resolved) return;
+  resolved = true;
+  document.getElementById('rite-word').disabled = true;
+  hv.classList.add('starving');
+  lanterns.forEach(function (g) { g.classList.add('out'); });
+  document.getElementById('archive-svg').classList.add('merged');
+  setTimeout(function () {
+    hv.classList.add('dissolved');
+    document.documentElement.classList.add('restored');
+    var after = document.getElementById('after-battle');
+    after.classList.remove('locked');
+    after.scrollIntoView({ behavior: motionOK ? 'smooth' : 'auto' });
+  }, motionOK ? 1800 : 200);
+}
 </script>
 </body>
 </html>
