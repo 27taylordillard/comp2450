@@ -1,0 +1,186 @@
+---
+layout: null
+permalink: /archive/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Archive: The Restoration — COMP 2450</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Fira+Code&display=swap');
+
+/* Palette tokens copied verbatim from assets/css/diablo.css — that file is the
+   source of truth for the palette. Copied here (rather than linked) so this
+   page keeps full control of a dark, full-viewport layout diablo.css doesn't
+   provide. */
+:root {
+  --stone-dark: #1a0e0e;
+  --stone-mid:  #2a1a1a;
+  --stone-edge: #3a2a20;
+  --parchment:  #e8d8b0;
+  --parchment-dark: #d4b98c;
+  --ink:        #2a1a0a;
+  --ink-soft:   #4a3a2a;
+  --blood:      #6b0f0f;
+  --blood-bright: #8b0000;
+  --gold:       #c9a227;
+  --gold-dark:  #8b5a00;
+  --ember:      #d97706;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top, #2a1515 0%, var(--stone-dark) 60%),
+    var(--stone-dark);
+  color: var(--parchment);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 10px rgba(201, 162, 39, 0.25);
+}
+
+em { color: var(--parchment-dark); }
+
+code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+/* Full-viewport scroll beats. Each is a centered ~46rem prose column. */
+.beat {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  border-bottom: 1px solid var(--stone-edge);
+}
+
+.beat .prose {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* Scroll-reveal is JS-only: with no html.js class (JS disabled or not yet
+   run), beats simply render at full opacity in document order — the whole
+   story is readable without JS. When JS is present, beats start hidden and
+   fade/rise into place as the IntersectionObserver marks them .in-view. */
+html.js .beat {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+html.js .beat.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .beat {
+    transform: none;
+    transition: opacity 0.3s ease-out;
+  }
+}
+
+/* The coda (beats 6-8) stays behind the battle until Task 7's resolution
+   clears .locked. Couplets (Task 6) reveal one at a time during the battle.
+   With no html.js (JS disabled), none of this gating applies and everything
+   is simply visible/readable as prose. */
+html.js .locked { display: none; }          /* coda gated behind the battle   */
+html.js .couplet { display: none; }         /* couplets revealed per-invocation */
+html.js .couplet.revealed { display: block; }
+html:not(.js) #rank,
+html:not(.js) #fx-stage { display: none; }  /* no-JS: battle reads as prose (the couplets) */
+</style>
+</head>
+<body>
+
+<section class="beat" id="beat-1">
+  <div class="prose">
+    <h2>1. The Last Stair</h2>
+    <p><em>Prose arrives in Task 2.</em></p>
+  </div>
+</section>
+
+<section class="beat" id="beat-2">
+  <div class="prose">
+    <h2>2. The Archive</h2>
+    <p><em>Prose arrives in Task 2.</em></p>
+  </div>
+</section>
+
+<section class="beat" id="beat-3">
+  <div class="prose">
+    <h2>3. The Harvester</h2>
+    <p><em>Prose arrives in Task 2.</em></p>
+  </div>
+</section>
+
+<section class="beat" id="beat-4">
+  <div class="prose">
+    <h2>4. The Word</h2>
+    <p><em>Prose arrives in Task 2.</em></p>
+  </div>
+</section>
+
+<section class="beat" id="beat-5">
+  <div class="prose">
+    <h2>5. The Invocation</h2>
+    <p><em>Prose and the interactive battle arrive in later tasks.</em></p>
+  </div>
+</section>
+
+<div id="after-battle" class="locked">
+
+  <section class="beat" id="beat-6">
+    <div class="prose">
+      <h2>6. The Sorting</h2>
+      <p><em>Prose arrives in Task 2.</em></p>
+    </div>
+  </section>
+
+  <section class="beat" id="beat-7">
+    <div class="prose">
+      <h2>7. The Restoration</h2>
+      <p><em>Prose arrives in Task 2.</em></p>
+    </div>
+  </section>
+
+  <section class="beat" id="beat-8">
+    <div class="prose">
+      <h2>8. The Last Verse</h2>
+      <p><em>Prose arrives in Task 2.</em></p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.beat').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
