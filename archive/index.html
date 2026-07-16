@@ -226,6 +226,66 @@ a:hover { color: var(--ember); }
   color: var(--parchment-dark);
   margin: 1.1rem 0;
 }
+
+/* ---- Beat 2+ scene: the Archive stage (Task 4). The archive SVG is a
+       sticky, full-viewport backdrop; beats 2-8 scroll over it in translucent
+       stone panels. The SVG carries the static art; the merge/naming STATE
+       lives here (#archive-svg.merged .spine / html.restored .spine-name) —
+       the same static-in-SVG / state-in-page split the other scenes use. The
+       stage is purely presentational: with JS off the beats still read 1->8
+       straight down, the stage riding behind as a fixed backdrop. -------- */
+#stage-wrap { position: relative; }
+
+#stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  margin-bottom: -100vh;   /* backdrop: contribute no flow height so beats 2-8 overlay it */
+  z-index: 0;
+  overflow: hidden;
+  background: var(--stone-dark);
+}
+#stage #archive-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Beats ride above the stage; each prose column sits on a translucent stone
+   panel dark enough to hold the text readable over the art. */
+#stage-wrap .beat { position: relative; z-index: 1; }
+#stage-wrap .beat .prose {
+  background: rgba(18, 11, 9, 0.82);
+  padding: 2.2rem 2.4rem;
+  border: 1px solid var(--stone-edge);
+  border-radius: 3px;
+  box-shadow: 0 0 46px 8px rgba(0, 0, 0, 0.55);
+}
+
+/* The scrambled shelves. Each spine is authored at its SORTED home x; the
+   inline --dx displaces it into the Plague's disorder. Adding .merged to the
+   svg (Task 7's `sort`) drives every spine home — the Crucible's merge made
+   literal, the two halves of each rank sliding into one sorted whole. */
+.spine {
+  transform: translateX(var(--dx));
+  transition: transform 1.6s ease-in-out;
+}
+#archive-svg.merged .spine { transform: translateX(0); }
+
+/* The naming: gilt titles bloom back along the spines, staggered by each
+   spine's --nd so the restoration ripples across the shelves. */
+.spine-name { transition: opacity 0.9s ease; }
+html.restored .spine-name {
+  opacity: 1;
+  transition-delay: var(--nd, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Merge becomes an instant state change; naming appears without the stagger. */
+  .spine { transition: none; }
+  .spine-name { transition: opacity 0.3s ease; }
+  html.restored .spine-name { transition-delay: 0s; }
+}
 </style>
 </head>
 <body>
@@ -247,6 +307,13 @@ a:hover { color: var(--ember); }
     </div>
   </div>
 </section>
+
+<div id="stage-wrap">
+  <div id="stage">
+    {% include finale/archive.svg %}
+    <!-- Task 5 adds the harvester include here -->
+    <!-- Task 6 adds the fx overlay svg here -->
+  </div>
 
 <section class="beat" id="beat-2">
   <div class="prose">
@@ -391,6 +458,7 @@ a:hover { color: var(--ember); }
     </div>
   </section>
 
+</div>
 </div>
 
 <script>
