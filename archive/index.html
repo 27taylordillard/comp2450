@@ -99,12 +99,16 @@ html.js .beat.in-view {
 }
 
 /* The coda (beats 6-8) stays behind the battle until Task 7's resolution
-   clears .locked. Couplets (Task 6) reveal one at a time during the battle.
-   With no html.js (JS disabled), none of this gating applies and everything
-   is simply visible/readable as prose. */
+   clears .locked. Couplets reveal one at a time during the battle: the
+   battle JS keeps `revealed` on every couplet that has sounded and moves
+   `current` to the newest, so only the latest verse shows while the fight
+   is on; once Task 7 marks html.restored, the whole ballad reads in the
+   coda flow. With no html.js (JS disabled), none of this gating applies
+   and everything is simply visible/readable as prose. */
 html.js .locked { display: none; }          /* coda gated behind the battle   */
 html.js .couplet { display: none; }         /* couplets revealed per-invocation */
-html.js .couplet.revealed { display: block; }
+html.js .couplet.revealed.current { display: block; }  /* battle: latest verse only */
+html.restored .couplet.revealed { display: block; }    /* after: the whole ballad   */
 html:not(.js) #rank,
 html:not(.js) #fx-stage { display: none; }  /* no-JS: battle reads as prose (the couplets) */
 
@@ -347,7 +351,7 @@ html.js #stage.hv-present #harvester-svg {
 
 /* A lantern marked .out (Tasks 6-7): its flame gutters — a brief panic of
    flickers — then holds dark. */
-#harvester-svg g[id^=hv-lantern].out .flame {
+#harvester-svg g[id^=hv-lantern-].out .flame {
   animation: hv-gutter 0.9s ease-out forwards;
 }
 @keyframes hv-gutter {
@@ -403,12 +407,301 @@ html.js #stage.hv-present #harvester-svg {
      fades or instant states. The .lit gold and .out dark still apply. */
   html.js #stage #harvester-svg { transform: none; transition: opacity 0.3s ease-out; }
   #hv-cloak, #hv-lanterns, #harvester-svg .flame { animation: none; }
-  #harvester-svg g[id^=hv-lantern].out .flame { animation: none; opacity: 0; }
+  #harvester-svg g[id^=hv-lantern-].out .flame { animation: none; opacity: 0; }
   #harvester-svg.recoil #hv-root { animation: none; }
   #hv-sigil-ring .sigil, #hv-sigil-ring .sg-ring, #hv-sigil-ring .sg-mark { transition: none; }
   #hv-glow { transition: none; }
   #harvester-svg.dissolved #hv-root { transition: none; }
   #harvester-svg.dissolved #hv-scythe { transition: none; }
+}
+
+/* ---- The invocation battle (Task 6). The rank of keepers, the fx overlay,
+       and the battle states. The fx SVG carries the static art; every
+       .active play and .done binding lives here — the same static-in-SVG /
+       state-in-page split the other scenes use. ------------------------- */
+
+/* Beat 5 becomes the battlefield. The prose intro scrolls in like any beat;
+   below it, a tall clear window keeps the Harvester in view; and the compact
+   battle panel (the rally line, the rank, the sounding verse) rides at the
+   bottom. While beats 6-8 are .locked the page ends here, so at full scroll
+   the panel sits bottom-left and the Harvester reacts in the clear to its
+   right and above. */
+#beat-5 {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 1.25rem;
+}
+#beat-5 .prose { width: 100%; }
+html.js #beat-5 .prose:first-child { margin-bottom: 38vh; }  /* the Harvester's window */
+
+#stage-wrap #battle {
+  max-width: 40rem;
+  align-self: flex-start;
+  margin-left: clamp(0.75rem, 3vw, 3rem);
+  padding: 1rem 1.4rem 1.05rem;
+  background: rgba(18, 11, 9, 0.72);
+}
+#battle > p { margin: 0 0 0.8rem; }
+
+/* The rank: eight keepers, 4x2 (2x4 under 900px). */
+#rank {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+@media (max-width: 900px) {
+  #rank { grid-template-columns: repeat(2, 1fr); }
+}
+.ally {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.4rem 0.45rem;
+  background: rgba(42, 26, 26, 0.9);
+  border: 1px solid var(--stone-edge);
+  border-radius: 3px;
+  font: inherit;
+  color: var(--parchment);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+              filter 0.45s ease, border-color 0.3s ease;
+}
+.ally img { display: block; width: 100%; max-width: 86px; height: auto; }
+.ally .ally-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--parchment-dark);
+}
+.ally:hover:not(.spent) {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), 0 0 10px rgba(201, 162, 39, 0.45);
+}
+.ally:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+.ally.invoking {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.7));
+}
+.ally.spent {
+  filter: grayscale(0.9) brightness(0.75);
+  transform: translateY(4px);
+  cursor: default;
+}
+
+/* The verse display: compact inside the battle panel; announced politely. */
+#battle #couplets { margin-top: 0.85rem; min-height: 9.25rem; }  /* fits the tallest verse: no panel-jump mid-battle */
+#battle .couplet { margin: 0; font-size: 0.95em; }
+html.js .couplet.revealed.current { animation: verse-in 0.7s ease-out; }
+@keyframes verse-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* The fx overlay: positioned and sized identically to #harvester-svg (same
+   viewBox, same preserveAspectRatio) so its coordinates land on the
+   Harvester. Pieces (.fx-p) are invisible until their group goes .active;
+   when the group settles to .done, only the persistent binding (.fx-mark)
+   remains, faint — the Harvester accumulates its bindings while the sigil
+   ring carries the real score. */
+#stage #fx-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#fx-stage .fx-p { opacity: 0; }
+#fx-stage .fx-mark { transition: opacity 0.7s ease; }
+#fx-stage g.done .fx-mark { opacity: 0.5; }
+
+/* CSS transforms on SVG default their origin to the viewBox center, so every
+   keyframed piece anchors to its own box instead. */
+#fx-stage .fxs-flash, #fx-stage .fxs-sparks, #fx-stage .fxs-band,
+#fx-stage .fxm-link, #fx-stage .fxr-glyph, #fx-stage .fxq-ticket,
+#fx-stage .fxq-pulse, #fx-stage .fxv-point, #fx-stage .fxg-cup,
+#fx-stage .fxg-smoke {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+#fx-stage .fxv-cone { transform-box: fill-box; transform-origin: 0% 50%; }
+#fx-stage .fxc-page { transform-box: fill-box; transform-origin: 50% 0%; }
+#fx-stage .fxf-map  { transform-box: fill-box; transform-origin: 0% 50%; }
+
+/* Steil — the Cold Forge: a flash at the wrist, sparks, and the cast band
+   stamping on and setting. One mold, any metal. */
+#fx-stage g.active .fxs-flash  { animation: fx6-flash 0.8s ease-out both; }
+#fx-stage g.active .fxs-sparks { animation: fx6-sparks 0.75s ease-out 0.1s both; }
+#fx-stage g.active .fxs-band   { animation: fx6-stamp 0.65s cubic-bezier(0.2, 1.35, 0.4, 1) 0.6s both; }
+@keyframes fx6-flash {
+  0%   { opacity: 0; transform: scale(0.15); }
+  20%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2); }
+}
+@keyframes fx6-sparks {
+  0%   { opacity: 0; transform: scale(0.2); }
+  25%  { opacity: 0.95; }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+@keyframes fx6-stamp {
+  0%   { opacity: 0; transform: translate(-150px, -70px) scale(1.7); }
+  55%  { opacity: 1; transform: translate(0, 0) scale(0.92); }
+  100% { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+
+/* Mavren — the file of links, each sworn to its predecessor, wrapping the
+   scythe arm in document order. */
+#fx-stage g.active .fxm-link { animation: fx6-link 0.5s cubic-bezier(0.3, 0.1, 0.3, 1) both; }
+#fx-stage g.active .fxm-l1 { animation-delay: 0.05s; }
+#fx-stage g.active .fxm-l2 { animation-delay: 0.32s; }
+#fx-stage g.active .fxm-l3 { animation-delay: 0.59s; }
+#fx-stage g.active .fxm-l4 { animation-delay: 0.86s; }
+@keyframes fx6-link {
+  0%   { opacity: 0; transform: translate(-330px, -60px) rotate(-150deg); }
+  100% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Vael — the lens-cone sweeps the Harvester's length, then fixes: it ends
+   THERE. The beam fades; the marked point stays. */
+#fx-stage g.active .fxv-cone  { animation: fx6-sweep 1.7s ease-in-out both; }
+#fx-stage g.active .fxv-lens  { animation: fx6-lens 1.7s ease-in-out both; }
+#fx-stage g.active .fxv-point { animation: fx6-fix 0.45s ease-out 1.15s both; }
+@keyframes fx6-sweep {
+  0%   { opacity: 0; transform: rotate(-8deg); }
+  12%  { opacity: 0.8; }
+  55%  { transform: rotate(46deg); }
+  72%  { opacity: 0.8; transform: rotate(41deg); }
+  88%  { opacity: 0.8; }
+  100% { opacity: 0; transform: rotate(41deg); }
+}
+@keyframes fx6-lens {
+  0%   { opacity: 0; }
+  12%  { opacity: 0.9; }
+  88%  { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+@keyframes fx6-fix {
+  0%   { opacity: 0; transform: scale(2.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Resh — the Harvester's own claiming-word, returned to it a fragment at a
+   time. Last in, first out. */
+#fx-stage g.active .fxr-glyph { animation: fx6-echo 0.85s cubic-bezier(0.2, 0.6, 0.3, 1) both; }
+#fx-stage g.active .fxr-g1 { animation-delay: 0.05s; }
+#fx-stage g.active .fxr-g2 { animation-delay: 0.25s; }
+#fx-stage g.active .fxr-g3 { animation-delay: 0.45s; }
+#fx-stage g.active .fxr-g4 { animation-delay: 0.65s; }
+#fx-stage g.active .fxr-g5 { animation-delay: 0.85s; }
+@keyframes fx6-echo {
+  0%   { opacity: 0; transform: translate(-250px, 160px) rotate(-50deg) scale(0.5); }
+  45%  { opacity: 1; transform: translate(-95px, -35px) rotate(14deg) scale(1.15); }
+  100% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+/* Quill — the ticket spins in and pins to the cloak. There is a line. */
+#fx-stage g.active .fxq-ticket { animation: fx6-ticket 1s cubic-bezier(0.25, 0.75, 0.35, 1) both; }
+#fx-stage g.active .fxq-pulse  { animation: fx6-pin 0.5s ease-out 1.05s both; }
+@keyframes fx6-ticket {
+  0%   { opacity: 0; transform: translate(-310px, -190px) rotate(-560deg) scale(1.5); }
+  15%  { opacity: 1; }
+  70%  { transform: translate(5px, 3px) rotate(9deg) scale(1.03); }
+  100% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+@keyframes fx6-pin {
+  0%   { opacity: 0.9; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+/* McCown — the Bestiary page unfurls, and the entry writes itself. What is
+   indexed cannot reap. */
+#fx-stage g.active .fxc-page { animation: fx6-unfurl 0.55s ease-out both; }
+#fx-stage g.active .fxc-line { animation: fx6-scribe 0.4s ease-out both; }
+#fx-stage g.active .fxc-i1 { animation-delay: 0.6s; }
+#fx-stage g.active .fxc-i2 { animation-delay: 0.75s; }
+#fx-stage g.active .fxc-i3 { animation-delay: 0.9s; }
+#fx-stage g.active .fxc-i4 { animation-delay: 1.05s; }
+#fx-stage g.active .fxc-i5 { animation-delay: 1.2s; }
+#fx-stage g.active .fxc-i6 { animation-delay: 1.35s; }
+@keyframes fx6-unfurl {
+  0%   { opacity: 0; transform: scaleY(0.05); }
+  30%  { opacity: 1; }
+  100% { opacity: 1; transform: scaleY(1); }
+}
+@keyframes fx6-scribe {
+  from { stroke-dashoffset: 60; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Foust — the one map he never sold unrolls across the floor; the route
+   inscribes; the X is where the Harvester stands. Free of charge. */
+#fx-stage g.active .fxf-map   { animation: fx6-unroll 0.85s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+#fx-stage g.active .fxf-tube  { animation: fx6-tube 0.85s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+#fx-stage g.active .fxf-route { animation: fx6-route 0.7s ease-out 0.85s both; }
+#fx-stage g.active .fxf-xmark { animation: fx6-appear 0.3s ease-out 1.55s both; }
+@keyframes fx6-unroll {
+  0%   { opacity: 0; transform: scaleX(0.05); }
+  20%  { opacity: 1; }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+@keyframes fx6-tube {
+  0%   { opacity: 1; transform: translate(0, 0); }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(430px, -6px); }
+}
+@keyframes fx6-route {
+  from { stroke-dashoffset: 480; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes fx6-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Grix — the cup crosses the room and sets down steaming; the swipe finds
+   only smoke. Grix was never counted. */
+#fx-stage g.active .fxg-cup   { animation: fx6-teacup 1.05s cubic-bezier(0.35, 0, 0.4, 1) both; }
+#fx-stage g.active .fxg-swipe { animation: fx6-swipe 0.4s ease-in 1.15s both; }
+#fx-stage g.active .fxg-smoke { animation: fx6-smoke 0.8s ease-out 1.05s both; }
+@keyframes fx6-teacup {
+  0%   { opacity: 0; transform: translate(-520px, -70px) rotate(-35deg); }
+  8%   { opacity: 1; }
+  45%  { transform: translate(-270px, -210px) rotate(16deg); }
+  78%  { transform: translate(-70px, -45px) rotate(-8deg); }
+  100% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+}
+@keyframes fx6-swipe {
+  0%   { opacity: 0; stroke-dashoffset: 400; }
+  25%  { opacity: 0.85; }
+  100% { opacity: 0; stroke-dashoffset: 0; }
+}
+@keyframes fx6-smoke {
+  0%   { opacity: 0; transform: scale(0.3); }
+  35%  { opacity: 0.5; }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Every fx keyframe above is overridden: no travel, spin, sweep, unroll
+     or flash — the binding simply appears while .active (the battle JS
+     shortens the beat to 250ms on this branch) and holds faint once .done.
+     Card states keep their looks but stop moving; the verse appears without
+     its fade. */
+  #stage #fx-stage g.active * { animation: none; }
+  #stage #fx-stage g.active .fx-mark { opacity: 1; }
+  #stage #fx-stage .fx-mark { transition: none; }
+  .ally { transition: none; }
+  .ally.invoking, .ally.spent { transform: none; }
+  html.js .couplet.revealed.current { animation: none; }
 }
 </style>
 </head>
@@ -436,7 +729,7 @@ html.js #stage.hv-present #harvester-svg {
   <div id="stage">
     {% include finale/archive.svg %}
     {% include finale/harvester.svg %}
-    <!-- Task 6 adds the fx overlay svg here -->
+    {% include finale/fx.svg %}
   </div>
 
 <section class="beat" id="beat-2">
@@ -477,11 +770,51 @@ html.js #stage.hv-present #harvester-svg {
     <p>They spread out among the shelf-ranks without one word passing between them, and they make a ring around the thing that reaps. Not one of them draws a weapon. Not one of them ever taught you a weapon. What they raise instead are the things they did teach: a mold, a chain, a lens, an echo, a ticket, a page, a map — and, at the far edge of the circle, steaming faintly, a cup of tea.</p>
     <p>The Harvester turns its hood from one keeper to the next, and for the first time in the long age of its patience it cannot find the one it is allowed to ignore.</p>
     <p>The Bard steps to your shoulder and brings the lute up, and the low string — the one he has carried unplayed through every floor — finally sounds. &ldquo;Call them,&rdquo; he says. &ldquo;Any order you please. The order was always yours to choose.&rdquo;</p>
+  </div>
+
+  <!-- The battle panel (Task 6): compact and bottom-left so the Harvester
+       stays visible, reacting, above and beside it. The rally line, the rank
+       of keepers, and the verse display. With JS off the rank is hidden and
+       this reads straight through as prose. -->
+  <div class="prose" id="battle">
     <p>And this is how the binding went, verse by verse, one friend at a time:</p>
 
-    <!-- Task 6 inserts the interactive battle stage (#fx-stage, #rank) here, above the couplets. -->
+    <div id="rank" role="group" aria-label="The keepers of the Hold">
+      <button class="ally" data-ally="steil" aria-pressed="false">
+        <img src="{{ '/assets/portraits/steil.svg' | relative_url }}" alt="">
+        <span class="ally-name">Forgemaster Steil</span>
+      </button>
+      <button class="ally" data-ally="mavren" aria-pressed="false">
+        <img src="{{ '/assets/portraits/mavren.svg' | relative_url }}" alt="">
+        <span class="ally-name">Quartermistress Mavren</span>
+      </button>
+      <button class="ally" data-ally="vael" aria-pressed="false">
+        <img src="{{ '/assets/portraits/vael.svg' | relative_url }}" alt="">
+        <span class="ally-name">Sister Vael</span>
+      </button>
+      <button class="ally" data-ally="resh" aria-pressed="false">
+        <img src="{{ '/assets/portraits/resh.svg' | relative_url }}" alt="">
+        <span class="ally-name">Cantor Resh</span>
+      </button>
+      <button class="ally" data-ally="quill" aria-pressed="false">
+        <img src="{{ '/assets/portraits/quill.svg' | relative_url }}" alt="">
+        <span class="ally-name">Steward Quill</span>
+      </button>
+      <button class="ally" data-ally="mccown" aria-pressed="false">
+        <img src="{{ '/assets/portraits/mccown.svg' | relative_url }}" alt="">
+        <span class="ally-name">Scrivener McCown</span>
+      </button>
+      <button class="ally" data-ally="foust" aria-pressed="false">
+        <img src="{{ '/assets/portraits/foust.svg' | relative_url }}" alt="">
+        <span class="ally-name">Foust of the Margin-Road</span>
+      </button>
+      <button class="ally" data-ally="grix" aria-pressed="false">
+        <img src="{{ '/assets/portraits/grix.svg' | relative_url }}" alt="">
+        <span class="ally-name">Grix the Opportunist</span>
+      </button>
+    </div>
 
-    <div id="couplets">
+    <div id="couplets" aria-live="polite">
 
       <figure class="couplet" data-ally="steil">
         <p class="bard-line">The Forgemaster casts no new weapon; he has never needed one. One shape, any metal: the binding pours molten and sets around the Harvester's wrist.</p>
@@ -625,6 +958,52 @@ document.documentElement.classList.add('js');
   }, { threshold: 0.2 });
   ho.observe(beat3);
 })();
+
+/* The invocation battle (Task 6). Eight keepers, any order — the order was
+   always yours to choose. Each invocation plays its keeper's effect against
+   the Harvester, extinguishes the next soul-lantern in document order,
+   lights that keeper's sigil, and sounds their verse. One beat at a time
+   (busy), each keeper once (spent). */
+var SIGIL = { steil:'sg-anvil', mavren:'sg-chain', vael:'sg-lens', resh:'sg-echo',
+              quill:'sg-ticket', mccown:'sg-tree', foust:'sg-map', grix:'sg-teacup' };
+var motionOK = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+var FX_MS = motionOK ? 1900 : 250;
+var spent = new Set(), busy = false;
+var hv = document.getElementById('harvester-svg');
+var lanterns = document.querySelectorAll('#hv-lanterns > g');
+
+document.querySelectorAll('#rank .ally').forEach(function (btn) {
+  btn.addEventListener('click', function () { invoke(btn); });
+});
+
+function invoke(btn) {
+  var ally = btn.dataset.ally;
+  if (busy || spent.has(ally)) return;
+  busy = true;
+  btn.classList.add('invoking');
+  document.getElementById('fx-' + ally).classList.add('active');
+  hv.classList.add('recoil');
+  setTimeout(function () {
+    btn.classList.remove('invoking');
+    btn.classList.add('spent');
+    btn.setAttribute('aria-pressed', 'true');
+    document.getElementById('fx-' + ally).classList.remove('active');
+    document.getElementById('fx-' + ally).classList.add('done'); /* sanctioned amendment: the binding remains */
+    hv.classList.remove('recoil');
+    document.getElementById(SIGIL[ally]).classList.add('lit');
+    lanterns[spent.size].classList.add('out');
+    var c = document.querySelector('.couplet[data-ally="' + ally + '"]');
+    var prev = document.querySelector('.couplet.current');          /* sanctioned amendment: only the */
+    if (prev) prev.classList.remove('current');                     /* newest verse shows mid-battle  */
+    c.classList.add('revealed', 'in-view', 'current');
+    spent.add(ally);
+    busy = false;
+    if (spent.size === 8) unlockRite();
+  }, FX_MS);
+}
+
+// Task 7 replaces this stub
+function unlockRite(){ console.log('rite unlocked'); }
 </script>
 </body>
 </html>

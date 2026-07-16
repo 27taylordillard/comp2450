@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="fx-stage" viewBox="0 0 900 640"
+     role="img" aria-hidden="true" focusable="false"
+     aria-labelledby="fx-title fx-desc"
+     preserveAspectRatio="xMidYMax slice">
+  <title id="fx-title">The keepers' invocations, landing on the Harvester.</title>
+  <desc id="fx-desc">Eight bindings, one per keeper, played over the Harvester as each is called: a forge-flash setting a cast band on its wrist; a file of chain links wrapping the scythe arm; a lens-cone of pale light fixing on the place where it ends; its own claiming-word returned in serif fragments against the hood; a stamped ticket pinned to the cloak; a Bestiary page unfurling as the entry writes itself; a map unrolling across the floor beneath it; and a teacup arcing across the room while its swipe finds only smoke. Each binding remains, faint, once its keeper is spent.</desc>
+
+  <defs>
+    <!-- Forge-flash: the one warm burst in the fight, in the stair-torch
+         golds of diablo.css (source of truth for the palette). -->
+    <radialGradient id="fxForgeGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0"    stop-color="#fff2c8"/>
+      <stop offset="0.35" stop-color="#f9d77a" stop-opacity="0.85"/>
+      <stop offset="0.75" stop-color="#d97706" stop-opacity="0.40"/>
+      <stop offset="1"    stop-color="#d97706" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Vael's lens-light: the pale cold end of the palette, brightest at
+         the lens and thinning along the throw. -->
+    <linearGradient id="fxLensBeam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"    stop-color="#dfeef2" stop-opacity="0.50"/>
+      <stop offset="0.55" stop-color="#cfe4ea" stop-opacity="0.20"/>
+      <stop offset="1"    stop-color="#cfe4ea" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="fxSmoke" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0"    stop-color="#8a949b" stop-opacity="0.55"/>
+      <stop offset="0.7"  stop-color="#6a737a" stop-opacity="0.30"/>
+      <stop offset="1"    stop-color="#6a737a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <style>
+    /* Static looks only. Every play (.active) and every persistent binding
+       (.done) is STATE and lives in the page's inline stylesheet — the same
+       static-in-SVG / state-in-page split the other finale scenes use.
+       Colors derive from the diablo.css tokens copied into the page's :root
+       plus the harvester's cold slate/pale range. */
+    .fxs-glow   { fill: url(#fxForgeGlow); }
+    .fxs-core   { fill: #fff2c8; }
+    .fxs-spark  { stroke: #f9d77a; stroke-width: 1.6; stroke-linecap: round; }
+    .fxs-metal  { fill: #7d8a92; stroke: #10161a; stroke-width: 1.1; }
+    .fxs-seam   { stroke: #39444b; stroke-width: 0.8; }
+    .fxs-rivet  { fill: #c6d4da; }
+
+    .fxm-outer  { fill: none; stroke: #97a5ab; stroke-width: 1.8; }
+    .fxm-inner  { fill: none; stroke: #4e565c; stroke-width: 0.9; }
+
+    .fxv-beam   { fill: url(#fxLensBeam); }
+    .fxv-glass  { fill: rgba(207, 228, 234, 0.14); stroke: #cfe4ea; stroke-width: 1.4; }
+    .fxv-line   { fill: none; stroke: #cfe4ea; stroke-width: 1.3; stroke-linecap: round; }
+    .fxv-dot    { fill: #f2fafc; }
+
+    .fxr-text   { font-family: 'EB Garamond', Georgia, serif; font-style: italic;
+                  fill: #b9d4dd; text-anchor: middle; }
+
+    .fxq-paper  { fill: #e8d8b0; stroke: #2a1a0a; stroke-width: 1; }
+    .fxq-ink    { fill: none; stroke: #2a1a0a; stroke-width: 0.9; stroke-linecap: round; }
+    .fxq-stamp  { fill: none; stroke: #6b0f0f; stroke-width: 1.2; }
+    .fxq-pin    { fill: #8a999f; stroke: #10161a; stroke-width: 0.7; }
+    .fxq-ring   { fill: none; stroke: #c9a227; stroke-width: 1.4; }
+
+    .fxc-paper  { fill: #e8d8b0; stroke: #2a1a0a; stroke-width: 1.1; }
+    .fxc-curl   { fill: #d4b98c; stroke: #2a1a0a; stroke-width: 0.9; }
+    .fxc-line   { fill: none; stroke: #2a1a0a; stroke-width: 1.1; stroke-linecap: round;
+                  stroke-dasharray: 60; }
+
+    .fxf-paper  { fill: #d4b98c; stroke: #2a1a0a; stroke-width: 1.2; }
+    .fxf-fold   { stroke: #a8895c; stroke-width: 0.8; }
+    .fxf-ink    { fill: none; stroke: #4a3a2a; stroke-width: 1; stroke-linecap: round; }
+    .fxf-route  { fill: none; stroke: #6b0f0f; stroke-width: 1.4; stroke-linecap: round;
+                  stroke-dasharray: 480; }
+    .fxf-x      { fill: none; stroke: #6b0f0f; stroke-width: 1.6; stroke-linecap: round; }
+    .fxf-tube-f { fill: #c9ab7e; stroke: #2a1a0a; stroke-width: 1.1; }
+
+    .fxg-china  { fill: #f2e4bc; stroke: #2a1a0a; stroke-width: 1.1; }
+    .fxg-handle { fill: none; stroke: #2a1a0a; stroke-width: 1.1; }
+    .fxg-tea    { fill: #8b5a00; }
+    .fxg-steam  { fill: none; stroke: #b9c4c9; stroke-width: 1.1; stroke-linecap: round; opacity: 0.75; }
+    .fxg-smoke-c{ fill: url(#fxSmoke); }
+    .fxg-swipe  { fill: none; stroke: #c6d4da; stroke-width: 1.8; stroke-linecap: round;
+                  stroke-dasharray: 400; }
+  </style>
+
+  <!-- ===== Steil: forge-flash at the wrist, sparks, and the cast band
+           stamping on. The band (.fx-mark) remains — one mold, any metal. -->
+  <g id="fx-steil">
+    <g transform="translate(665 349)">
+      <g class="fx-p fxs-flash">
+        <circle class="fxs-glow" r="34"/>
+        <circle class="fxs-core" r="8"/>
+      </g>
+      <g class="fx-p fxs-sparks">
+        <line class="fxs-spark" x1="6"  y1="-4" x2="27"  y2="-19"/>
+        <line class="fxs-spark" x1="-6" y1="-5" x2="-25" y2="-21"/>
+        <line class="fxs-spark" x1="7"  y1="3"  x2="30"  y2="10"/>
+        <line class="fxs-spark" x1="-5" y1="6"  x2="-19" y2="21"/>
+        <line class="fxs-spark" x1="1"  y1="-8" x2="5"   y2="-31"/>
+      </g>
+      <g transform="rotate(-45)">
+        <g class="fx-p fx-mark fxs-band">
+          <rect class="fxs-metal" x="-10.5" y="-6" width="21" height="12" rx="5"/>
+          <line class="fxs-seam" x1="-10.5" y1="0" x2="10.5" y2="0"/>
+          <circle class="fxs-rivet" cx="-5.5" cy="0" r="1.1"/>
+          <circle class="fxs-rivet" cx="5.5"  cy="0" r="1.1"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== Mavren: a file of links flying in, each sworn to its
+           predecessor, wrapping the scythe arm. All four remain. -->
+  <g id="fx-mavren">
+    <g transform="translate(663.6 362) rotate(6)">
+      <g class="fx-p fx-mark fxm-link fxm-l1">
+        <ellipse class="fxm-outer" rx="7"   ry="10.5"/>
+        <ellipse class="fxm-inner" rx="4.2" ry="7.6"/>
+      </g>
+    </g>
+    <g transform="translate(662.4 382)">
+      <g class="fx-p fx-mark fxm-link fxm-l2">
+        <ellipse class="fxm-outer" rx="8" ry="3.6"/>
+        <ellipse class="fxm-inner" rx="5" ry="1.8"/>
+      </g>
+    </g>
+    <g transform="translate(661.2 402) rotate(-5)">
+      <g class="fx-p fx-mark fxm-link fxm-l3">
+        <ellipse class="fxm-outer" rx="7"   ry="10.5"/>
+        <ellipse class="fxm-inner" rx="4.2" ry="7.6"/>
+      </g>
+    </g>
+    <g transform="translate(660 422)">
+      <g class="fx-p fx-mark fxm-link fxm-l4">
+        <ellipse class="fxm-outer" rx="8" ry="3.6"/>
+        <ellipse class="fxm-inner" rx="5" ry="1.8"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== Vael: the lens-cone sweeps down the Harvester's length and
+           fixes; the marked point (.fx-mark) remains — it ends THERE. -->
+  <g id="fx-vael">
+    <g transform="translate(150 262)">
+      <g class="fx-p fxv-cone">
+        <path class="fxv-beam" d="M 0 0 L 436 -56 L 436 56 Z"/>
+      </g>
+      <g class="fx-p fxv-lens">
+        <circle class="fxv-glass" r="11"/>
+        <line class="fxv-line" x1="8" y1="8" x2="16" y2="16"/>
+      </g>
+    </g>
+    <g transform="translate(480 548)">
+      <g class="fx-p fx-mark fxv-point">
+        <circle class="fxv-line" r="7.5"/>
+        <circle class="fxv-dot" r="2.3"/>
+        <line class="fxv-line" x1="0"   y1="-13" x2="0"  y2="-9"/>
+        <line class="fxv-line" x1="0"   y1="9"   x2="0"  y2="13"/>
+        <line class="fxv-line" x1="-13" y1="0"   x2="-9" y2="0"/>
+        <line class="fxv-line" x1="9"   y1="0"   x2="13" y2="0"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== Resh: the Harvester's own claiming-word, returned at the hood
+           a fragment at a time. Two fragments cling on (.fx-mark). -->
+  <g id="fx-resh">
+    <g transform="translate(552 296)">
+      <g class="fx-p fxr-glyph fxr-g1"><text class="fxr-text" font-size="20">n</text></g>
+    </g>
+    <g transform="translate(592 278)">
+      <g class="fx-p fx-mark fxr-glyph fxr-g2"><text class="fxr-text" font-size="24">&#230;</text></g>
+    </g>
+    <g transform="translate(574 318)">
+      <g class="fx-p fx-mark fxr-glyph fxr-g3"><text class="fxr-text" font-size="17">m</text></g>
+    </g>
+    <g transform="translate(604 304)">
+      <g class="fx-p fxr-glyph fxr-g4"><text class="fxr-text" font-size="15">u</text></g>
+    </g>
+    <g transform="translate(558 262)">
+      <g class="fx-p fxr-glyph fxr-g5"><text class="fxr-text" font-size="14">s</text></g>
+    </g>
+  </g>
+
+  <!-- ===== Quill: a small ticket spinning in and pinning to the cloak
+           (.fx-mark). There is a line, and the Harvester is at the back. -->
+  <g id="fx-quill">
+    <g transform="translate(556 388) rotate(-9)">
+      <g class="fx-p fx-mark fxq-ticket">
+        <rect class="fxq-paper" x="-16" y="-9" width="32" height="18" rx="1.5"/>
+        <line class="fxq-ink" x1="-5" y1="-8" x2="-5" y2="8" stroke-dasharray="2.2 2"/>
+        <path class="fxq-ink" d="M -13 -4 L -8 -4 M -13 0 L -8 0 M -13 4 L -10 4" stroke-width="0.8"/>
+        <circle class="fxq-stamp" cx="5.5" cy="0" r="5"/>
+        <circle class="fxq-pin" cx="-14" cy="-7" r="2"/>
+      </g>
+      <circle class="fx-p fxq-pulse fxq-ring" cx="-14" cy="-7" r="6"/>
+    </g>
+  </g>
+
+  <!-- ===== McCown: the Bestiary page that waited fifteen weeks unfurls
+           beside the hood, and the entry writes itself (.fx-mark). -->
+  <g id="fx-mccown">
+    <g transform="translate(446 292) rotate(-5)">
+      <g class="fx-p fx-mark fxc-page">
+        <rect class="fxc-paper" x="-40" y="-52" width="80" height="104" rx="2"/>
+        <path class="fxc-curl" d="M 40 36 L 40 52 L 24 52 Q 36 46, 40 36 Z"/>
+        <line class="fxc-line fxc-i1" x1="-28" y1="-38" x2="24" y2="-38"/>
+        <path class="fxc-line fxc-i2" stroke-width="1"
+              d="M -18 -16 Q -18 -30, -8 -32 Q 2 -30, 2 -16 Q 2 -10, -8 -10 Q -18 -10, -18 -16 Z"/>
+        <path class="fxc-line fxc-i3" stroke-width="1" d="M 8 -30 L 20 -12"/>
+        <line class="fxc-line fxc-i4" x1="-28" y1="2"  x2="26" y2="2"/>
+        <line class="fxc-line fxc-i5" x1="-28" y1="14" x2="22" y2="14"/>
+        <line class="fxc-line fxc-i6" x1="-28" y1="26" x2="10" y2="26"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== Foust: the one map he never sold, unrolling across the floor
+           beneath the Harvester (.fx-mark). The X is where it stands. -->
+  <g id="fx-foust">
+    <g transform="translate(336 574)">
+      <g class="fx-p fx-mark fxf-map">
+        <path class="fxf-paper" d="M 0 6 L 430 0 L 442 32 L 8 40 Z"/>
+        <line class="fxf-fold" x1="96"  y1="10" x2="102" y2="37"/>
+        <line class="fxf-fold" x1="196" y1="8"  x2="203" y2="35"/>
+        <line class="fxf-fold" x1="306" y1="6"  x2="314" y2="33"/>
+        <path class="fxf-route" d="M 26 30 Q 90 14, 150 24 Q 205 32, 242 18"/>
+        <path class="fxf-x fxf-xmark" d="M 236 12 L 248 24 M 248 12 L 236 24"/>
+        <circle class="fxf-ink" cx="386" cy="18" r="7"/>
+        <path class="fxf-ink" d="M 386 11 L 386 5 M 383 8 L 386 5 L 389 8"/>
+      </g>
+      <g class="fx-p fxf-tube">
+        <ellipse class="fxf-tube-f" cx="0" cy="21" rx="7" ry="15"/>
+        <path class="fxf-ink" d="M 0 9 Q 4 14, 0 21 Q -3 26, 0 33" stroke-width="0.8"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== Grix: the teacup crosses the room and sets down, steaming
+           (.fx-mark); the Harvester's swipe passes through empty smoke. -->
+  <g id="fx-grix">
+    <g transform="translate(700 583)">
+      <g class="fx-p fx-mark fxg-cup">
+        <ellipse class="fxg-china" cx="0" cy="2.5" rx="12" ry="2.8"/>
+        <path class="fxg-china" d="M -8.5 -9 Q -8 2, 0 2 Q 8 2, 8.5 -9 Z"/>
+        <ellipse class="fxg-tea" cx="0" cy="-9" rx="7.2" ry="1.6"/>
+        <path class="fxg-handle" d="M 8.5 -7 Q 13.5 -7, 13 -3.5 Q 12.6 -0.8, 8 -1.6"/>
+        <path class="fxg-steam" d="M -3 -13 Q -5 -17, -3 -20 Q -1 -23, -3 -26"/>
+        <path class="fxg-steam" d="M 3 -14 Q 1 -18, 3 -21 Q 5 -24, 3 -27"/>
+      </g>
+    </g>
+    <path class="fx-p fxg-swipe" d="M 656 302 Q 812 372, 752 556"/>
+    <g transform="translate(745 532)">
+      <g class="fx-p fxg-smoke">
+        <circle class="fxg-smoke-c" cx="-8" cy="6"  r="13"/>
+        <circle class="fxg-smoke-c" cx="6"  cy="-2" r="16"/>
+        <circle class="fxg-smoke-c" cx="14" cy="12" r="11"/>
+      </g>
+    </g>
+  </g>
+</svg>
