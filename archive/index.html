@@ -927,7 +927,14 @@ html.js .couplet.revealed.current { animation: verse-in 0.7s ease-out; }
   background: rgba(42, 26, 26, 0.9);
   border: 1px solid var(--stone-edge);
   border-radius: 3px;
-  padding: 0.3em 0.7em;
+  /* The rune is the primary finishing tap for phone users who won't type the
+     word, so give it a comfortable >=44px hit area (inline-flex centers the
+     label within the taller box). box-sizing:border-box makes min-height the
+     full box height. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.3em 0.9em;
   cursor: pointer;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
