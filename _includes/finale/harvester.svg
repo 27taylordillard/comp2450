@@ -429,19 +429,19 @@
            thing it binds. ===== -->
   <g id="hv-sigil-ring">
 
-    <g id="sg-anvil" class="sigil" transform="translate(341 529)">
+    <g id="sg-anvil" class="sigil" transform="translate(780 500)">
       <circle class="sg-ring" r="22"/>
       <path class="sg-mark" d="M 0 -3 Q -6 -8, -3 -14 Q -1.5 -11, 0 -14 Q 1.5 -11, 3 -14 Q 6 -8, 0 -3 Z"/>
       <path class="sg-mark" d="M -13 1 L 13 1 M -7 1 L -7 9 L 7 9 L 7 1 M -4 9 L -4 14 L 4 14 L 4 9"/>
     </g>
 
-    <g id="sg-chain" class="sigil" transform="translate(301 415)">
+    <g id="sg-chain" class="sigil" transform="translate(820 400)">
       <circle class="sg-ring" r="22"/>
       <ellipse class="sg-mark" cx="-6.5" cy="0" rx="6" ry="9.5"/>
       <ellipse class="sg-mark" cx="6.5" cy="0" rx="6" ry="9.5"/>
     </g>
 
-    <g id="sg-lens" class="sigil" transform="translate(309 300)">
+    <g id="sg-lens" class="sigil" transform="translate(280 214)">
       <circle class="sg-ring" r="22"/>
       <circle class="sg-mark" cx="-3" cy="-3" r="8"/>
       <circle class="sg-dot" cx="-3" cy="-3" r="2.2"/>

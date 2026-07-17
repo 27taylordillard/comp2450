@@ -71,9 +71,12 @@
     .tread-tex { fill: url(#stoneDots); stroke: none; }
     .nosing    { stroke: #8b5a00; stroke-width: 2; opacity: 0.5; fill: none; stroke-linecap: round; }
     .medallion { fill: #1c120c; stroke: #6b3a00; stroke-width: 1.2; }
-    .engrave     { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-weight: 600; font-size: 31px; letter-spacing: 0.05em; text-anchor: middle; }
-    .engrave-sub { fill: #6a5836; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-size: 22px; letter-spacing: 0.14em; text-anchor: middle; }
-    .engrave-num { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-weight: 700; font-size: 24px; text-anchor: middle; }
+    /* Font sizes raised (names 31->39, sub 22->27, num 24->27) so the engraved
+       floor names clear ~14px effective at phone widths, where the tall stair
+       SVG scales down hardest. Names still fit within the tread walls. */
+    .engrave     { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-weight: 600; font-size: 39px; letter-spacing: 0.05em; text-anchor: middle; }
+    .engrave-sub { fill: #6a5836; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-size: 27px; letter-spacing: 0.14em; text-anchor: middle; }
+    .engrave-num { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-weight: 700; font-size: 27px; text-anchor: middle; }
     .frame-in  { fill: none; stroke: #c9a227; stroke-width: 2;   opacity: 0.55; }
     .frame-out { fill: none; stroke: #8b5a00; stroke-width: 1.2; opacity: 0.5; }
   </style>
