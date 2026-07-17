@@ -47,6 +47,7 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 | 14 | 11 | [The Hall of Whispers]({{ site.baseurl }}/floors/floor-11/)     | Hash tables — O(1) lookup |
 | 15 | Warden III | [Warden of the Trees]({{ site.baseurl }}/floors/warden-03/) | Midterm 3 — Floors 8–11 take-home + Friday quiz |
 | 15 | 12 | [The Labyrinth]({{ site.baseurl }}/floors/floor-12/) / Final Descent | Graphs, project capstone, final prep |
+| 15 | ↓ | [The Archive: The Restoration]({{ site.baseurl }}/archive/) | The end of the story — for those who reach the bottom |
 
 ## The Rules of the Dungeon
 
