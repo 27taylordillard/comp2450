@@ -64,7 +64,7 @@
        static-in-SVG / state-in-page split the other finale scenes use. */
     .wall      { fill: url(#wallShade); stroke: #0a0604; stroke-width: 1.5; }
     .wall-line { stroke: #0a0604; stroke-width: 0.8; opacity: 0.5; }
-    .rune      { stroke: #8b5a00; stroke-width: 1.2; fill: none; stroke-linecap: round; opacity: 0.5; }
+    .lintel-rune { stroke: #8b5a00; stroke-width: 1.2; fill: none; stroke-linecap: round; opacity: 0.5; }
     .lintel    { fill: url(#stoneTop); stroke: #0a0604; stroke-width: 1.5; }
     .riser     { fill: url(#stoneRiser); stroke: #0a0604; stroke-width: 1.4; }
     .tread     { fill: url(#stoneTop); stroke: #0a0604; stroke-width: 1.6; }
@@ -78,7 +78,7 @@
        that, at any width, they still clear the floor-numeral medallion on their
        tread; num stays 24px so the two-glyph 4-and-9-and-a-half medallions fit.
        NOTE: no literal angle brackets in this style block (see the &gt; entity
-       above) — inline SVG style in HTML breaks on a raw '<'. */
+       above) — inline SVG style in HTML breaks on a raw less-than sign. */
     .engrave     { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-weight: 600; font-size: 38px; letter-spacing: 0.05em; text-anchor: middle; }
     .engrave-sub { fill: #6a5836; font-family: Georgia, 'EB Garamond', serif; font-variant: small-caps; font-size: 27px; letter-spacing: 0.14em; text-anchor: middle; }
     .engrave-num { fill: #7c6a44; font-family: Georgia, 'EB Garamond', serif; font-weight: 700; font-size: 24px; text-anchor: middle; }
@@ -110,7 +110,7 @@
   <rect class="lintel" x="140" y="0" width="620" height="96"/>
   <line x1="140" y1="96" x2="760" y2="96" stroke="#8b5a00" stroke-width="1.4" opacity="0.6"/>
   <line x1="140" y1="99" x2="760" y2="99" stroke="#c9a227" stroke-width="0.6" opacity="0.35"/>
-  <g class="rune" transform="translate(410, 40)">
+  <g class="lintel-rune" transform="translate(410, 40)">
     <path d="M 0 20 L 6 0 L 12 20 M 3 10 L 9 10"/>
     <path d="M 24 0 L 24 20 M 24 0 L 32 8 M 24 0 L 16 8"/>
     <path d="M 44 0 L 44 20 M 44 0 L 52 0 L 54 4 L 52 8 L 44 8"/>
