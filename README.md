@@ -9,7 +9,7 @@ This repo is both the **course website** (served via GitHub Pages) and the sourc
 ```
 comp2450/
 ├── index.md                  student-facing homepage (the Dungeon Entrance)
-├── syllabus.md               student syllabus
+├── comp2450_syllabus_fall2026.html   interactive student syllabus, served at /syllabus/
 ├── _config.yml               Jekyll / GitHub Pages config
 ├── _layouts/                 page templates (HTML)
 ├── assets/css/               visual identity (Diablo-style stylesheet)
