@@ -767,15 +767,17 @@ main{ position:relative; z-index:1; }
       // Office-hours grid. "slots" are the row labels (time blocks). "byDay"
       // lists, for each weekday, which slots are lit. Keep labels identical.
       officeHours: {
-        slots: ["8–9a","9–10a","10–11a","11–12p","12–1p","1–2p","2–3p"],
+        // Rows run 7a–3p unbroken on purpose: the empty rows are honest — they
+        // show when I'm not available rather than collapsing the time axis.
+        slots: ["7–8a","8–9a","9–10a","10–11a","11–12p","12–1p","1–2p","2–3p"],
         byDay: {
-          Mon: ["9–10a","12–1p","2–3p"],
+          Mon: ["7–8a","9–10a","2–3p"],
           Tue: ["9–10a","10–11a","11–12p"],
-          Wed: ["9–10a","12–1p","2–3p"],
-          Thu: ["8–9a"],
-          Fri: ["9–10a","12–1p","2–3p"]
+          Wed: ["7–8a","9–10a","2–3p"],
+          Thu: [],
+          Fri: ["9–10a","2–3p"]
         },
-        note: "Thursday hours run 8–9:30a."
+        note: "No Thursday hours — Tuesday morning is the long block, 9 a.m. straight through to noon. The 10 o'clock gap on Monday, Wednesday, and Friday is this class."
       },
       closer: "Email is the best way to reach me, and I promise a reply within 48 hours — usually much sooner. Can't make any of these hours? Email me; other times are available by appointment. Stuck at a weird hour? Send the error message and we'll untangle it."
     },
