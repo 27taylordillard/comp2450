@@ -347,7 +347,8 @@ main{ position:relative; z-index:1; }
 /* =====================================================================
    12. BOSS FIGHTS (exams)
    ===================================================================== */
-.boss-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+/* three wardens across the top, the final descent spanning beneath them */
+.boss-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
 .boss{ padding:22px 22px 20px; transition:.22s; }
 .boss:hover{ transform:translateY(-3px); border-color:var(--ember); }
 .boss-top{ display:flex; align-items:center; gap:13px; margin-bottom:14px; }
@@ -384,6 +385,9 @@ main{ position:relative; z-index:1; }
 .inv-tile .slot .ic{ width:26px; height:26px; color:var(--gold); }
 .inv-tile .nm{ font-family:var(--body); font-weight:600; font-size:.96rem; color:var(--ink); line-height:1.2; }
 .inv-stl .slot .ic{ color:var(--ink-dim); }
+/* "surveyed" gear — named in the course but never built; dimmest of the three tiers */
+.inv-surveyed .slot .ic{ color:var(--ink-faint); }
+.inv-surveyed .nm{ color:var(--ink-dim); }
 /* the "examine" readout panel */
 .examine{ padding:18px 22px; display:flex; gap:16px; align-items:center; min-height:74px; }
 .examine .slot{ width:48px; height:48px; flex:none; display:grid; place-items:center; border-radius:10px; background:var(--bg-2); border:1px solid var(--line); }
@@ -461,6 +465,11 @@ main{ position:relative; z-index:1; }
 .scroll summary .chev{ margin-left:auto; color:var(--gold); transition:transform .25s; font-family:var(--mono); }
 .scroll[open] summary .chev{ transform:rotate(90deg); }
 .scroll .scroll-body{ padding:0 20px 20px 52px; color:var(--ink-dim); font-size:1.04rem; }
+.scroll .scroll-body p{ margin:0 0 .8em; }
+.scroll .scroll-body p:last-child{ margin-bottom:0; }
+.scroll .scroll-body ul{ margin:.2em 0 .8em; padding-left:1.1em; }
+.scroll .scroll-body li{ margin-bottom:.3em; }
+.scroll .scroll-body b{ color:var(--ink); }
 .scroll[open] summary .ttl{ color:var(--gold-br); }
 
 /* =====================================================================
@@ -491,7 +500,8 @@ main{ position:relative; z-index:1; }
    ===================================================================== */
 @media (max-width:880px){
   .prov-grid,.loot-grid,.map-card,.npc{ grid-template-columns:1fr; }
-  .boss-grid,.inv-grid{ grid-template-columns:repeat(2,1fr); }
+  .inv-grid{ grid-template-columns:repeat(2,1fr); }
+  .boss-grid{ grid-template-columns:1fr; }
   .donut-wrap{ width:260px; height:260px; }
   .npc .portrait{ width:200px; margin-inline:auto; }
   .map-svg{ margin-inline:auto; }
@@ -531,7 +541,7 @@ main{ position:relative; z-index:1; }
       <a href="#provisions">Provisions</a>
       <a href="#skills">Skill Tree</a>
       <a href="#loot">Loot</a>
-      <a href="#bosses">Bosses</a>
+      <a href="#bosses">Wardens</a>
       <a href="#armory">Armory</a>
       <a href="#map">Floor Plan</a>
       <a href="#guide">Guide</a>
@@ -618,9 +628,9 @@ main{ position:relative; z-index:1; }
     hero: {
       kicker:   "COMP-2450 · C++",
       title:    "Data Structures &amp; Algorithms",
-      courseCode: "A semester-long descent · Harding University",
+      courseCode: "Fall 2026 · Harding University",
       subtitle: "Build the data structures. Tame the Big-O. Survive the boss fights.",
-      chips:    ["C++", "MWF · 50 min", "ZyBook required"],
+      chips:    ["C++", "MWF · 10:00–10:50 a.m.", "Science 200", "3 credit hours", "ZyBook required"],
       enter:    "Begin the descent"
     },
 
@@ -628,7 +638,7 @@ main{ position:relative; z-index:1; }
     quest: {
       eyebrow: "The Quest", icon: "ic-sword", title: "Your Charge",
       // The course description. The first letter gets an illuminated drop-cap.
-      body: "You will descend through Data Structures &amp; Algorithms in C++ — implementing and using abstract data types (lists, stacks, queues, trees, heaps, hash tables), analyzing algorithmic efficiency with Big-O, and developing both recursive and iterative algorithms. Every concept is forged in service of one thing: a semester-long, text-based dungeon crawler that you build, module by module, from the ground up."
+      body: "You will descend through Data Structures &amp; Algorithms in C++ — implementing and using abstract data types (lists, stacks, queues, trees, hash tables, graphs), analyzing algorithmic efficiency with Big-O, and developing both recursive and iterative algorithms. Every concept is forged in service of one thing: a semester-long, text-based dungeon crawler that you build, module by module, from the ground up."
     },
 
     /* --- PROVISIONS (required materials + prerequisites) --- */
@@ -636,13 +646,13 @@ main{ position:relative; z-index:1; }
       eyebrow: "Provisions", icon: "ic-key", title: "What You Carry In",
       intro: "Required gear for the expedition — and the skills you bring from your last one.",
       materials: [
-        { icon:"ic-book", name:"ZyBook — HARDING COMP 2450", desc:"Required. Assigned readings plus participation &amp; challenge activities." },
-        { icon:"ic-gear", name:"A C++ compiler (g++)", desc:"MinGW or WSL on Windows; native on macOS/Linux. Microsoft Visual C++ also works." },
-        { icon:"ic-scroll", name:"VS Code + C/C++ extension", desc:"Recommended editor for the descent." }
+        { icon:"ic-book", name:"ZyBook — HARDING COMP 2450", desc:"Required. Weekly readings plus the participation &amp; challenge activities that carry 10% of your grade — and the key to the ZyBook Pact. Registration instructions and all due dates are in Canvas." },
+        { icon:"ic-gear", name:"Visual Studio (Community edition)", desc:"Free. Install the <b>Desktop development with C++</b> workload — its compiler is what we build every floor with in class. g++ (MinGW or WSL) works too if you prefer it, but demos follow Visual Studio." },
+        { icon:"ic-scroll", name:"Canvas", desc:"Every lab, project milestone, and take-home warden is submitted through Canvas." }
       ],
       // The C++ topics students should already know.
       prereqs: ["Data types","Conditions &amp; loops","Functions","Vectors","Multi-dimensional arrays","Classes","Pointers","Dynamic memory","Files"],
-      note: "Prerequisite: prior C++ experience covering the topics above."
+      note: "Prerequisite: COMP 1700 or COMP 1500/COMP 1510 — prior C++ experience covering the topics above."
     },
 
     /* --- SKILL TREE (the 6 learning outcomes) ---
@@ -653,7 +663,7 @@ main{ position:relative; z-index:1; }
       nodes: [
         { title:"Think in Abstractions", full:"Reason about abstract data types independently of their implementation." },
         { title:"Measure the Cost",      full:"Analyze the time and space complexity of algorithms using Big-O, Ω, and Θ notation." },
-        { title:"Forge from Scratch",    full:"Implement common data structures from scratch: arrays, linked lists, stacks, queues, trees, BSTs, heaps, and hash tables." },
+        { title:"Forge from Scratch",    full:"Implement common data structures from scratch: arrays, linked lists, stacks, queues, trees, BSTs, hash tables, and graphs." },
         { title:"Wield the STL",         full:"Use the C++ Standard Library's containers, iterators, and algorithms effectively." },
         { title:"Master Recursion",      full:"Apply recursion, divide-and-conquer, and iteration to problem-solving." },
         { title:"Build the Engine",      full:"Design and build a multi-module C++ program using templates, memory management, and exceptions." }
@@ -667,33 +677,38 @@ main{ position:relative; z-index:1; }
       intro: "Your final grade, by the numbers. Tap a wedge to inspect it.",
       // color keys map to CSS variables defined at the top of the file
       items: [
-        { name:"Labs &amp; Semester Project", sub:"The Dungeon Crawler",   weight:45, color:"--gold",    desc:"Hands-on labs plus the semester-long text-based dungeon crawler you build module by module." },
-        { name:"Boss Fights",               sub:"Four Midterm Exams",     weight:30, color:"--ember",   desc:"Four periodic midterm exams guarding the depths of the dungeon." },
-        { name:"Final Exam",                sub:"The Final Boss",         weight:15, color:"--crimson", desc:"One last encounter covering the full journey." },
-        { name:"ZyBook Activities",         sub:"Participation &amp; Challenge", weight:10, color:"--moss", desc:"Participation and challenge activities completed in the ZyBook." }
+        { name:"Labs &amp; Semester Project", sub:"The Dungeon Crawler",   weight:40, color:"--gold",    desc:"Hands-on labs plus the semester-long text-based dungeon crawler you build module by module. Labs and project work may be done in pairs." },
+        { name:"Warden Fights",             sub:"Three Midterm Exams",    weight:30, color:"--ember",   desc:"Three wardens guard the depths — each a take-home portion plus an in-class Friday quiz." },
+        { name:"Final Descent",             sub:"The Cumulative Final",   weight:15, color:"--crimson", desc:"One last encounter covering the full journey — and the one grade you can earn outright before you ever sit it. See <b>The ZyBook Pact</b> in the Code of the Dungeon." },
+        { name:"ZyBook Activities",         sub:"Participation &amp; Challenge", weight:10, color:"--moss", desc:"Weekly participation and challenge activities completed in the ZyBook, due on the dates posted in Canvas. Scored on completion — <b>both</b> kinds must reach 100%, and whatever you leave unfinished comes out of this 10%." },
+        { name:"Professionalism",           sub:"Attendance &amp; Engagement",   weight:5,  color:"--gold-deep", desc:"Showing up, on time, ready to write code with the rest of us — attendance, participation in the in-class programming, and carrying your share of pair and group work." }
       ]
     },
 
-    /* --- BOSS FIGHTS (exams). Coverage below is thematic; official dates
-           and coverage live on the Floor Plan. --- */
+    /* --- WARDEN FIGHTS (exams). Names and coverage MUST match the wardens
+           on the course site (_floors/warden-0N.md); exact dates live on the
+           Floor Plan so there is only one place to keep a calendar current. --- */
     bosses: {
-      eyebrow: "Boss Fights", icon: "ic-skull", title: "What Guards the Depths",
-      intro: "Four bosses and a final encounter stand between you and victory.",
+      eyebrow: "Warden Fights", icon: "ic-skull", title: "What Guards the Depths",
+      intro: "Three wardens and a final descent stand between you and victory.",
       list: [
-        { numeral:"Boss I",   name:"The Complexity Wraith", tests:"Big-O, Ω, Θ — algorithmic efficiency &amp; foundations", hp:60 },
-        { numeral:"Boss II",  name:"The Linked Labyrinth",  tests:"Lists, stacks &amp; queues",                            hp:72 },
-        { numeral:"Boss III", name:"The Branching Horror",  tests:"Trees, BSTs &amp; heaps",                               hp:84 },
-        { numeral:"Boss IV",  name:"The Hash Golem",        tests:"Hash tables &amp; advanced structures",                 hp:90 }
+        { numeral:"Warden I",   name:"Warden of the Foundations",  tests:"Floors 0–3 — ADTs, searching &amp; Big-O, sorting, templates &amp; exceptions", hp:60 },
+        { numeral:"Warden II",  name:"Warden of the Middle Gates", tests:"Floors 4–7 — linked lists, iterators, stacks &amp; queues",                    hp:78 },
+        { numeral:"Warden III", name:"Warden of the Trees",        tests:"Floors 8–11 — trees, BSTs, balancing, sets &amp; maps, hash tables",           hp:90 }
       ],
-      final: { numeral:"Final Boss", name:"The Architect of Errors", tests:"Everything — the full dungeon, end to end", hp:100 },
-      note: "The four boss fights are worth 30% combined; the Final Boss is worth 15%. Exact dates and coverage are posted on the Floor Plan."
+      final: { numeral:"The Final Descent", name:"The Final Descent", tests:"Everything — the full dungeon, Floor 0 through Floor 12", hp:100 },
+      note: "Each warden is a take-home portion plus an in-class Friday quiz. The three wardens are worth 30% combined; the Final Descent is worth 15% — and can be earned outright under the ZyBook Pact. Warden dates and coverage are posted on the Floor Plan; the date and time of the Final Descent will be announced in class."
     },
 
-    /* --- THE ARMORY (data structures). "forged" = built from scratch;
-           "stl" = standard-issue library gear. --- */
+    /* --- THE ARMORY (data structures). Three tiers, and the distinction is
+           a promise to students:
+             "forged"   = built by hand from scratch on some floor
+             "stl"      = standard-issue library gear they're handed
+             "surveyed" = named and understood, but never implemented
+           Nothing belongs in "forged" that no floor actually builds. --- */
     armory: {
       eyebrow: "The Armory", icon: "ic-sword", title: "Gear You'll Forge &amp; Wield",
-      intro: "You forge the core structures by hand before you're handed the standard-issue STL. Tap an item to inspect it.",
+      intro: "You forge the core structures by hand before you're handed the standard-issue STL. A few you'll only meet by name — those are listed too, honestly. Tap an item to inspect it.",
       forged: [
         { icon:"ic-grid",    name:"Arrays",              desc:"Contiguous memory, O(1) indexing — the bedrock of everything." },
         { icon:"ic-link",    name:"Linked Lists",        desc:"Nodes chained by pointers — flexible insertion and deletion." },
@@ -701,15 +716,24 @@ main{ position:relative; z-index:1; }
         { icon:"ic-arrow",   name:"Queues",              desc:"First in, first out. Scheduling and breadth-first traversal." },
         { icon:"ic-tree",    name:"Trees",               desc:"Hierarchies of nodes — the natural shape of structured data." },
         { icon:"ic-tree",    name:"Binary Search Trees", desc:"Ordered trees for fast search, insert, and delete." },
-        { icon:"ic-pyramid", name:"Heaps",               desc:"Priority structures — always surface the min or the max." },
-        { icon:"ic-hash",    name:"Hash Tables",         desc:"Near O(1) lookup by key — the treasure vault." }
+        { icon:"ic-hash",    name:"Hash Tables",         desc:"Near O(1) lookup by key — the treasure vault." },
+        { icon:"ic-map",     name:"Graphs",              desc:"Rooms and the doors between them — an adjacency list walked by breadth-first and depth-first search." }
       ],
       stl: [
         { icon:"ic-box",   name:"STL Containers", desc:"vector, map, set, and friends — battle-tested gear." },
         { icon:"ic-cycle", name:"Iterators",      desc:"A uniform way to traverse any container." },
-        { icon:"ic-gear",  name:"STL Algorithms", desc:"sort, find, accumulate — power tools from <algorithm>." }
+        // NOTE: escape the angle brackets — these strings are injected with
+        // innerHTML, so a raw <algorithm> is parsed as a tag and vanishes.
+        { icon:"ic-gear",  name:"STL Algorithms", desc:"sort, find, accumulate — power tools from &lt;algorithm&gt;." }
       ],
-      techniques: "Your combat techniques throughout: <b>recursion</b>, <b>divide-and-conquer</b>, and <b>iteration</b>."
+      // Named in the course but never implemented — listed so the promise the
+      // syllabus makes matches what the floors actually deliver.
+      surveyed: [
+        { icon:"ic-pyramid", name:"Heaps &amp; Priority Queues", desc:"You will name the priority-queue ADT on Floor 0 and know what it is for — always surface the min or the max. Building the heap underneath it is ZyBook Chapter 9, which this descent does not open." },
+        { icon:"ic-tree",    name:"Balanced Trees",             desc:"On Floor 9½ you diagnose a leaning binary search tree and rotate it by hand — then reach for std::set rather than implement a full AVL tree." },
+        { icon:"ic-link",    name:"Tries",                      desc:"Prefix trees — part of the Chapter 8 reading, and worth knowing they exist, but not built in class." }
+      ],
+      techniques: "Your combat techniques throughout: <b>recursion</b>, <b>divide-and-conquer</b>, and <b>iteration</b> — sharpened on Floor 2, where you write <b>merge sort</b> and <b>quicksort</b> by hand before you are allowed to type <b>std::sort</b>."
     },
 
     /* --- FLOOR PLAN (schedule) --- */
@@ -720,8 +744,9 @@ main{ position:relative; z-index:1; }
       url: "https://hogred.github.io/comp2450/",
       urlLabel: "Open the floor plan",
       meeting: [
-        { icon:"ic-clock", text:"MWF · 50 minutes per session" },
-        { icon:"ic-book",  text:"ZyBook readings track the map" }
+        { icon:"ic-clock",  text:"MWF · 10:00–10:50 a.m. · Science 200" },
+        { icon:"ic-book",   text:"ZyBook readings track the map" },
+        { icon:"ic-scroll", text:"All work submitted through Canvas" }
       ]
     },
 
@@ -752,7 +777,7 @@ main{ position:relative; z-index:1; }
         },
         note: "Thursday hours run 8–9:30a."
       },
-      closer: "Can't make any of these? Email me — other times are available by appointment. Stuck at a weird hour? Send the error message; we'll untangle it."
+      closer: "Email is the best way to reach me, and I promise a reply within 48 hours — usually much sooner. Can't make any of these hours? Email me; other times are available by appointment. Stuck at a weird hour? Send the error message and we'll untangle it."
     },
 
     /* --- THE CODE OF THE DUNGEON (policies as unrollable scrolls) --- */
@@ -760,14 +785,21 @@ main{ position:relative; z-index:1; }
       eyebrow: "The Code of the Dungeon", icon: "ic-scroll", title: "Rules of the Realm",
       intro: "The fine print — attendance, integrity, accommodations, and more. Tap a scroll to unroll it.",
       policies: [
-        { title:"Attendance", body:"Attendance is required. Students are allowed three unexcused absences in this 3-credit-hour class; additional unexcused absences may affect the final grade." },
-        { title:"Late Work", body:"Late work is accepted up to two days past the deadline. The default penalty is 20% off the assignment grade. Work submitted more than two days late will not be accepted without prior arrangement." },
+        { title:"How Class Runs", body:"Each floor's lecture is <b>pre-recorded</b>. Watch it and do the assigned ZyBook reading <em>before</em> you arrive. Class time is not for re-reading the textbook to you — it is for writing code together, sometimes as a whole room, sometimes in pairs or small groups. Come having met the material once, and you will leave having used it." },
+        { title:"Grading Scale", body:"Your final grade is the weighted total shown in <b>Loot &amp; XP</b>, on the standard letter scale: <b>A</b> 90–100, <b>B</b> 80–89, <b>C</b> 70–79, <b>D</b> 60–69, <b>F</b> below 60. Grades are straight letters — there is no plus or minus. There is no extra credit — the points on that table are all the points there are. The one exception runs the other way: see <b>The ZyBook Pact</b> below." },
+        { title:"Attendance &amp; Professionalism", body:"Attendance is required, and it is graded — it is the largest part of the 5% <b>Professionalism</b> component, along with arriving on time, taking part in the in-class programming, and carrying your share of pair and group work. You are allowed <b>three unexcused absences</b> in this 3-credit-hour class; each additional unexcused absence reduces your professionalism grade. If you have to miss for illness, a university-sponsored activity, or an emergency, email me — ahead of time when you can." },
+        { title:"Late Work", body:"<p><b>Assignments</b> are accepted up to two days past the deadline at a 20% penalty. Work submitted more than two days late is not accepted without prior arrangement.</p><p><b>ZyBook activities and exams are different</b> — the two-day window does not apply to them. ZyBook due dates are posted in Canvas. If something is going to keep you from a ZyBook deadline or an exam, email me and we will see what can be extended. Ask before the deadline, not after.</p>" },
+        { title:"Missed Exams", body:"If you miss a warden fight or the Final Descent, email me to schedule a makeup. Do it as early as you can — and if you already know you will be away, email me <em>before</em> the exam rather than after it." },
+        { title:"Submitting Work", body:"All labs, project milestones, and take-home warden work are submitted through <b>Canvas</b>. ZyBook activities are completed and graded inside the ZyBook itself — there is nothing to submit for those." },
+        { title:"Collaboration &amp; Pair Work", body:"<p><b>Labs and the semester project may be done in pairs.</b> If you pair up, put both names on the submission, and be sure both of you can explain every line you turn in.</p><p><b>ZyBook activities are individual work, always</b> — that is the condition of the ZyBook Pact below. <b>Warden fights and the Final Descent are individual work.</b></p><p>When you are not sure whether a particular collaboration is allowed, ask me before you do it rather than after.</p>" },
+        { title:"The ZyBook Pact", body:"<p>Finish the ZyBook completely and on your own, and you do not have to sit the final.</p><p>Precisely: reach <b>100% on the participation activities</b> and <b>100% on the challenge activities</b> in <b>every assigned chapter</b>, by the due dates posted in Canvas, working individually. Do that and your <b>Final Descent is recorded as 100%</b>, and sitting the exam becomes optional.</p><p>Both kinds of activity allow unlimited attempts, so 100% asks for persistence, not brilliance. ZyLabs, if any are assigned, are <em>not</em> part of the Pact — they are graded as ordinary lab work.</p><p>Completion is read straight from the ZyBook report, so there is nothing to submit and nothing to ask me for.</p><p><b>Falling short costs you twice.</b> If you miss activities, finish them after their deadline, or finish them with someone else's help, you sit the Final Descent like everyone else — <em>and</em> the unfinished activities come straight out of the 10% ZyBook category. Leaving ZyBook work undone is never a neutral choice: it lowers your grade on its own, and it forfeits the Pact on top of that.</p><p>The offer is deliberately generous, and the reasoning is simple: a student who has worked every ZyBook activity on time and alone has already demonstrated what the final was going to ask.</p>" },
         { title:"Academic Integrity", body:"Cheating in all its forms is inconsistent with Christian faith and practice and will result in sanctions up to and including dismissal from the class with a failing grade." },
         { title:"Generative AI", body:"In this course, generative AI tools may be used for background reading and concept research with appropriate acknowledgment and citation, but not for any graded code. Contact your instructor if you are in doubt as to whether you are using generative AI tools appropriately in this course. You are responsible for checking facts, finding reliable sources, citing appropriately, and making a careful, critical examination of any work that you submit. Failure to acknowledge and cite the generative AI or using generative AI on assignments not approved for AI use is academically dishonest and constitutes a violation of Harding's Academic Integrity Policy." },
+        { title:"Student Privacy &amp; Class Recordings", body:"<p>This course may involve audio/video recording of class sessions for educational purposes. By enrolling in this course, students consent to being recorded during class sessions, including their voice and image, when participating in class discussions or activities.</p><p><b>Student rights regarding recordings:</b></p><ul><li>Students have the right to review recordings in which they appear.</li><li>Recordings are considered educational records protected under FERPA.</li><li>Students may request accommodation if they have concerns about being recorded.</li><li>Recordings may not be shared, distributed, or posted by students without explicit written permission.</li></ul><p><b>Use of recordings.</b> Class recordings are for educational use only and may be used for students who missed class due to illness or emergency; student review of course material; accommodation purposes for students with documented disabilities; instructor review and course improvement; and, with student consent, in other sections or future offerings of the course.</p><p><b>Retention.</b> Recordings will be retained for 7 years and then permanently deleted unless required for disciplinary or legal proceedings.</p><p><b>Student-initiated recordings.</b> Students may not record class sessions without prior written consent from the instructor and all participants. Unauthorized recording may result in disciplinary action.</p>" },
         { title:"Students with Disabilities", body:"It is the policy for Harding University to accommodate students with disabilities, pursuant to federal and state law. Therefore, any student with a documented disability condition (e.g. physical, learning, or psychological) who needs to arrange reasonable accommodations must contact the instructor and the Office of Disability Services and Educational Access at the beginning of each semester. If the diagnosis of the disability occurs during the academic year, the student must self-identify with the Office of Disability Services and Educational Access as soon as possible in order to get academic accommodations in place for the remainder of the semester. The Office of Disability Services and Educational Access is located in Room 239 in the Student Center, telephone (501) 279-4019." },
         { title:"Time Expectations", body:"For every hour in class, the typical student should expect to spend at least two clock hours on course-related work, including but not limited to out-of-class time spent reading, problem solving, reviewing, organizing notes, preparing for upcoming quizzes/exams and other activities that enhance learning." },
         { title:"Dress Code", body:"All students must abide by the Student Handbook. A student may be asked to leave class or other activities if they are not in keeping with these standards." },
-        { title:"Assessment", body:"Harding University, since its charter in 1924, has been strongly committed to providing the best resources and environment for the teaching-learning process. The board, administration, faculty, and staff are wholeheartedly committed to full compliance with all Criteria of Accreditation of the Higher Learning Commission as well as the standards of many discipline-specific specialty accrediting agencies. The university values continuous, rigorous assessment at every level for its potential to improve student learning and achievement and for its centrality in fulfilling the stated mission of Harding. Course-specific student learning outcomes contribute to student achievement of program-specific learning outcomes that support student achievement of holistic university learning outcomes. All academic units design annual assessment plans centered on measuring student achievement of program learning outcomes used to sequentially improve teaching and learning processes. Additionally, a holistic assessment of student achievement of university learning outcomes is coordinated by the university Director of Assessment and Testing used to spur continuous improvement of teaching and learning." }
+        { title:"Assessment", body:"Harding University, since its charter in 1924, has been strongly committed to providing the best resources and environment for the teaching-learning process. The board, administration, faculty, and staff are wholeheartedly committed to full compliance with all Criteria of Accreditation of the Higher Learning Commission as well as the standards of many discipline-specific specialty accrediting agencies. The university values continuous, rigorous assessment at every level for its potential to improve student learning and achievement and for its centrality in fulfilling the stated mission of Harding. Thus, a comprehensive assessment program has been developed that includes both the academic units and the administrative and educational support units. Course-specific student learning outcomes contribute to student achievement of program-specific learning outcomes that support student achievement of holistic university learning outcomes. All academic units design annual assessment plans centered on measuring student achievement of program learning outcomes used to sequentially improve teaching and learning processes. Additionally, a holistic assessment of student achievement of university learning outcomes is coordinated by the university Director of Assessment and Testing used to spur continuous improvement of teaching and learning." }
       ]
     },
 
@@ -1035,6 +1067,9 @@ main{ position:relative; z-index:1; }
 
       <div class="armory-label">${icon("ic-box")} Standard-issue gear · the C++ STL</div>
       <div class="inv-grid inv-stl">${a.stl.map(it => tile(it,"inv-stl")).join("")}</div>
+
+      <div class="armory-label">${icon("ic-torch")} Surveyed, not forged · named but never built</div>
+      <div class="inv-grid inv-surveyed">${a.surveyed.map(it => tile(it,"inv-surveyed")).join("")}</div>
 
       <div class="panel examine empty" id="examine">
         <span class="slot">${icon("ic-key")}</span>
