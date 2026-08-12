@@ -122,6 +122,16 @@ Demo target (Friday):
   N=  10000  mergeSort=  1.20 ms  quicksort=  0.95 ms  std::sort=  0.62 ms
 ```
 
+<div class="callout lore" markdown="1">
+<p class="callout-title">Your numbers will differ — read the shape, not the magnitude</p>
+
+These came from one machine in a **Release** build. Visual Studio defaults to **Debug**,
+which runs roughly 40× slower, so expect much bigger figures. What must hold is the
+*shape*: `std::sort` should edge out your quicksort, and both should beat your mergeSort.
+If that's the order you get, your code is right.
+[More on Debug vs Release]({{ site.baseurl }}/setup/visual-studio/#debug-and-release).
+</div>
+
 Try `sort inventory by weight` *twice in a row* and notice nothing visibly changes — that's correct. A sort is **idempotent** on already-sorted data. (Not free, though — that's a Friday discussion.)
 
 ### Lab 2 — *Race the Sorts* (folded into the project)

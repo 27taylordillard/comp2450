@@ -110,6 +110,16 @@ No such creature stalks this Keep.
   N=  10000  query=absent  linear=   45.3 us  binary=  0.10 us  recursive=  0.13 us
 ```
 
+<div class="callout lore" markdown="1">
+<p class="callout-title">Your numbers will differ — read the shape, not the magnitude</p>
+
+These came from one machine in a **Release** build. Visual Studio defaults to **Debug**,
+which runs roughly 40× slower, so expect much bigger figures. What must hold is the
+*shape*: `binary` and `recursive` should be hundreds of times faster than `linear`, and
+should barely grow as N grows. If that's what you see, your code is right.
+[More on Debug vs Release]({{ site.baseurl }}/setup/visual-studio/#debug-and-release).
+</div>
+
 (Search is case-sensitive this week. Try `search goblin` lowercase and notice it fails — we will handle case in a later floor.)
 
 ### Lab 1 — *Race the Bestiary* (folded into the project)

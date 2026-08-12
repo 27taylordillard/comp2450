@@ -139,7 +139,7 @@ If all three are true, stop here. You're done. Go do
 [The Chronicle]({{ site.baseurl }}/setup/git/) next.
 </div>
 
-## 7 · Debug and Release
+## 7 · Debug and Release {#debug-and-release}
 
 There's a dropdown in the toolbar reading **x64-Debug**. Leave it there.
 
@@ -152,6 +152,47 @@ reason: on Friday we run a program that measures how long two algorithms take, a
 optimiser is clever enough to notice the slow one is computing something predictable and
 skip the work entirely — which makes the slow algorithm look instant and ruins the
 demonstration. Debug builds run what you wrote.
+
+### Why your benchmark numbers won't match the floor pages
+
+From Floor 1 onward, most floors have a `benchmark` command, and the floor page shows a
+sample of what it printed on *one* machine in a **Release** build. Yours will not match,
+and that is not a bug. Debug builds carry extra safety checks on every container and
+iterator operation, and they are **much** slower — measured on Floor 2's sorts at
+N = 100,000:
+
+| | mergeSort | quicksort | `std::sort` |
+|---|---|---|---|
+| Release | 36.7 ms | 15.9 ms | 15.5 ms |
+| Debug | 1170.7 ms | 751.3 ms | 632.5 ms |
+
+Roughly forty times slower across the board. **Read the shape, not the magnitude.** The
+ordering is what the floor is teaching, and the ordering survives — in both builds above,
+`std::sort` wins and mergeSort trails. If your ordering matches the page, your code is
+behaving correctly, however different your milliseconds look.
+
+If you ever want numbers closer to the page's, switch the toolbar dropdown to
+**x64-Release**, run the benchmark, then switch back to Debug for normal work.
+
+### Two things that will bite you when you switch
+
+**Both configurations write to the same file.** Debug and Release both produce
+`build\antechamber.exe` (or whichever floor's program), at the same path, on purpose — so
+you always know where the program is. The side effect is that building Release silently
+overwrites your Debug binary and vice versa. There's no warning. If you're ever unsure
+which one you're running, rebuild the config you actually want.
+
+**After switching configurations, do a clean rebuild.** An ordinary rebuild can reuse
+pieces from the previous configuration and hand you a binary that is part Debug and part
+Release — which behaves oddly and benchmarks meaninglessly. Use **Build → Rebuild All**,
+or from a terminal:
+
+```
+cmake --build build --config Debug --clean-first
+```
+
+This costs you thirty seconds and saves genuine confusion. It matters most right after a
+config switch; day to day, an ordinary build is fine.
 
 ---
 
