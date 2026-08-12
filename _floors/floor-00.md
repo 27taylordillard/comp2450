@@ -42,6 +42,18 @@ By the end of Floor 0 you will be able to:
 
 ## Pre-class
 
+### Before the first class: arm yourself
+
+Three tools, one afternoon. Do this before Monday if you possibly can — everything else
+this semester assumes it.
+
+- **[Arming the Adventurer]({{ site.baseurl }}/setup/visual-studio/)** — install Visual Studio and the C++ compiler, and find the one checkbox everybody misses.
+- **[The Chronicle]({{ site.baseurl }}/setup/git/)** — fork the course repository, install GitHub Desktop, and learn the commit-and-push rhythm you'll use every week.
+- **[Why the Forge Needs a Blueprint]({{ site.baseurl }}/setup/cmake/)** — what CMake is and why we build every floor with it. Read this one for understanding, not for steps.
+
+If the Compile Demon defeats you, come to Monday's class anyway. There is time set aside
+for exactly that fight — but arrive having *tried*.
+
 ### Reading (ZyBook Ch. 1 — the whole chapter)
 
 **Read all of Chapter 1.** The reading assignment is the entire chapter, even the parts class doesn't cover directly. The day-by-day pointers below are the sections *class time* leans on — not the boundary of what you're responsible for.
@@ -52,11 +64,21 @@ Before **Friday**: §1.6 Algorithm efficiency
 
 Work the Question Sets and Animations inside the ZyBook — they count toward your participation grade.
 
+### Field Notes — the companion to the reading
+
+**[The Antechamber · Field Notes]({{ site.baseurl }}/companion/floor-00/)** goes deeper than
+class will on the vocabulary: the three terms, the eight ADTs, abstraction versus
+encapsulation, growth rates in plain English, and a Python-to-C++ translation table. Read
+it *alongside* Chapter 1 — it explains why the chapter's contents matter to the game you're
+building, which is not the textbook's job.
+
+Monday's class is deliberately brief on this material because it's written down there.
+
 ## In-class (MWF)
 
 | Day | Focus | Activity |
 |-----|-------|----------|
-| **M** | Course entry, what is a DS?     | Syllabus & dungeon tour; *Unplugged ADT* card activity; **start dev environment setup** (g++, editor, git) — finish before Wednesday |
+| **M** | Course entry, what is a DS?     | Syllabus & dungeon tour; *Unplugged ADT* card activity; **dev environment triage** (Visual Studio, CMake, git) — anything unfinished must be done before Wednesday |
 | **W** | Common ADTs; first C++ syntax   | *ADT Triage* — match scenarios to ADTs in pairs; live-code two tiny C++ scripts together (`hello.cpp`, `vector_demo.cpp`) so everyone has touched the compiler at least once |
 | **F** | Algorithm efficiency, intuition | *Race the dungeon* — hand-trace two algorithms on inputs of size 10, 100, 1000; predict; then run a small `growth.cpp` sample together to see the numbers |
 
@@ -64,19 +86,19 @@ There are no pre-class videos this week. Class time is for setup, discussion, an
 
 ## Lab — folded into the project
 
-**Lab 0 — "First light."** No separate handout. The project task below *is* the lab: build, run, change one string, commit. By Friday you should have a working compiler, a clean clone, and one commit pushed.
+**Lab 0 — "First light."** No separate handout. The project task below *is* the lab: fork, build, run, change one string, commit. By Friday you should have a working compiler, your own fork cloned, and one commit pushed.
 
-Deliverable: a commit pushed to your project repo with your hero's name set in `main.cpp`.
+Deliverable: a commit pushed to **your fork**, with your own flavor line set in `main.cpp` and a commit message beginning `Floor 0: `.
 
 ## The project — Floor 0
 
 This week's project increment is **environment-only**. You will not implement any data structures yet. What you will do:
 
-1. Clone the starter.
-2. Build it with CMake (`cmake -B build && cmake --build build`).
-3. Run it. It prompts for your hero's name and echoes a single line of dungeon flavor text.
-4. Change one string constant so the flavor text is yours.
-5. Commit and push.
+1. **Fork** `HogRed/comp2450` to your own GitHub account, then clone *your fork* — see [The Chronicle]({{ site.baseurl }}/setup/git/). Cloning mine instead of your own is the classic week-1 mistake; you'll only find out when the push is refused.
+2. Open `project/floor-00-starter` in Visual Studio (**File → Open → Folder**) and let CMake configure.
+3. Run it with **Ctrl+F5**. It prompts for your hero's name and echoes a single line of dungeon flavor text.
+4. Find the line marked `// TODO Floor 0:` in `main.cpp` and change the string constant so the flavor text is yours.
+5. Commit with a message starting `Floor 0: `, then **push** — and check your GitHub page to confirm it arrived.
 
 Why so little? Because environment setup — compilers, paths, build tools — is the single most common reason students fall behind in week 1. We flush out those gremlins before we need to fight real ones.
 
@@ -84,11 +106,15 @@ Why so little? Because environment setup — compilers, paths, build tools — i
 <p class="callout-title">Bestiary · Floor 0</p>
 
 **The Compile Demon** — *HP: your patience.*
-Strikes when your code is fine but your *environment* isn't. Symptoms: `g++: command not found`, `'cout' was not declared`, linker errors with no line number. Counter by:
+Strikes when your code is fine but your *environment* isn't. Symptoms: opening the folder produces no CMake output at all, `No CMAKE_CXX_COMPILER could be found`, `'cout' was not declared`, a console window that flashes and vanishes, or linker errors with no line number. Counter by:
 
-- Confirming your compiler is on your `PATH`.
-- `#include <iostream>` and `using namespace std;` (or `std::cout`).
-- Rebuilding from a clean state when mystery errors persist.
+- Confirming **C++ CMake tools for Windows** is installed — the usual culprit.
+- Opening the *starter folder*, not the repository root and not a single file.
+- `#include <iostream>`, and `std::cout` (or `using namespace std;`).
+- **Ctrl+F5**, never plain F5, or the window closes before you can read it.
+- **Project → Delete Cache and Reconfigure** when mystery errors survive a rebuild.
+
+The full field guide is in [Arming the Adventurer]({{ site.baseurl }}/setup/visual-studio/).
 </div>
 
 <div class="callout check" markdown="1">

@@ -60,9 +60,12 @@ Welcome, adventurer, to **COMP 2450 — Data Structures & Algorithms**. This sem
 
 ## Before Floor 0
 
-1. Install a C++ compiler (`g++` or MSVC). See the syllabus for platform notes.
-2. Install a text editor or IDE. VS Code with the C/C++ extension is a good default.
+1. **[Arm yourself]({{ site.baseurl }}/setup/visual-studio/)** — install Visual Studio with the C++ compiler and CMake. One afternoon, and the one checkbox everybody misses.
+2. **[Start your Chronicle]({{ site.baseurl }}/setup/git/)** — fork this course's repository to your own GitHub account and install GitHub Desktop.
 3. Read [the syllabus]({{ site.baseurl }}/syllabus/).
-4. Arrive to the first class ready to discuss: *what is a data structure, and why should you care?*
+4. Read **ZyBook Chapter 1**, alongside the **[Floor 0 Field Notes]({{ site.baseurl }}/companion/floor-00/)**.
+5. Arrive to the first class ready to discuss: *what is a data structure, and why should you care?*
+
+*(Curious what CMake even is? [Why the Forge Needs a Blueprint]({{ site.baseurl }}/setup/cmake/).)*
 
 *The gate creaks open. Floor 0 awaits.*
