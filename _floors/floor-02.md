@@ -143,7 +143,15 @@ Commit `floor-02/lab-notes.md` to your project repo with:
 1. The full `benchmark sort` output (paste from your terminal).
 2. **At what inventory size does `std::sort` clearly pull ahead** of your hand-rolled sorts? Read your table; pick a row.
 3. **Run the benchmark with a *pre-sorted* input** (the harness has a `--sorted` flag). Which sort gets faster? Which gets slower? *Why?*
-4. **Quicksort with a first-element pivot on a sorted input** — try it. (The harness has a `--bad-pivot` flag.) Time it on N=10,000. What does the curve look like? Show your work.
+4. **Quicksort with a first-element pivot on a sorted input.** The harness has a `--bad-pivot` flag. Run these six commands and build a small table of the `quicksort` column:
+
+   ```
+   benchmark sort --sorted  2500      benchmark sort --sorted --bad-pivot  2500
+   benchmark sort --sorted  5000      benchmark sort --sorted --bad-pivot  5000
+   benchmark sort --sorted 10000      benchmark sort --sorted --bad-pivot 10000
+   ```
+
+   Each time you double N, roughly what happens to the **middle-pivot** time? To the **first-element** time? Name the growth rate of each. Then, in one sentence: why is *already-sorted* input the worst possible case for a first-element pivot — and why is that so alarming?
 5. **One-paragraph reflection.** If you could only ship one of the three sorts in production, which would you ship? Defend your choice in terms of *worst case*, *average case*, and *what the data is likely to look like*.
 
 Your commit history this week should show at least three commits — Mon (merge), Wed (quick), Fri (`std::sort` + lab notes).

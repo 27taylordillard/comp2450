@@ -47,21 +47,40 @@ const Comparator kCmpWeight = [](const Item& a, const Item& b) {
 void badQuicksortImpl(Bag<Item>& v,
                       std::size_t lo, std::size_t hi,
                       const Comparator& cmp) {
-    if (lo >= hi) return;
-    std::swap(v[lo], v[hi]);
-    const Item pivot = v[hi];
-    std::size_t store = lo;
-    for (std::size_t i = lo; i < hi; ++i) {
-        if (cmp(v[i], pivot)) {
-            std::swap(v[store], v[i]);
-            ++store;
+    // Recurse into the SMALLER side and iterate on the larger one. Naively
+    // this recurses once per element on sorted input - N frames deep - which
+    // overflows the stack and CRASHES long before the timing gets
+    // interesting. This caps stack depth at O(log n) while leaving the
+    // COMPARISON count untouched: the pathology is fully preserved, only the
+    // crash is gone. A production quicksort uses the same trick.
+    while (lo < hi) {
+        // Always pick the FIRST element as pivot (the pathology). Swap it to
+        // the end so the standard Lomuto scan - which assumes the pivot is at
+        // v[hi] - still works.
+        std::swap(v[lo], v[hi]);
+        const Item pivot = v[hi];
+        std::size_t store = lo;
+        for (std::size_t i = lo; i < hi; ++i) {
+            if (cmp(v[i], pivot)) {
+                std::swap(v[store], v[i]);
+                ++store;
+            }
+        }
+        std::swap(v[store], v[hi]);
+
+        const std::size_t p = store;
+        // Left is [lo, p-1] (size p - lo); right is [p+1, hi] (size hi - p).
+        // `p - 1` with std::size_t underflows when p == lo, so both branches
+        // guard it - the same trap your own quicksort has to navigate.
+        if (p - lo < hi - p) {
+            if (p > lo) badQuicksortImpl(v, lo, p - 1, cmp);
+            lo = p + 1;
+        } else {
+            badQuicksortImpl(v, p + 1, hi, cmp);
+            if (p == lo) return;
+            hi = p - 1;
         }
     }
-    std::swap(v[store], v[hi]);
-
-    std::size_t p = store;
-    if (p > lo) badQuicksortImpl(v, lo, p - 1, cmp);
-    badQuicksortImpl(v, p + 1, hi, cmp);
 }
 
 void badQuicksort(Bag<Item>& v, const Comparator& cmp) {
@@ -142,8 +161,19 @@ void runSortBenchmarkSweep(SortBenchOptions opts) {
               << (opts.badPivot ? ", BAD PIVOT quicksort" : "")
               << ") --\n";
 
+    // With a bad pivot on sorted input the run is quadratic, so the top of
+    // the sweep is not worth waiting for: N=100000 takes minutes and tells
+    // you nothing N=10000 hasn't. Cap it, and say so, rather than appearing
+    // to hang.
+    const std::size_t badPivotCap = 10000;
+
     for (std::size_t n : {std::size_t{10}, std::size_t{100}, std::size_t{1000},
                           std::size_t{10000}, std::size_t{100000}}) {
+        if (opts.badPivot && n > badPivotCap) {
+            std::cout << "  N=" << std::setw(7) << std::right << n
+                      << "  (skipped: quadratic with --bad-pivot, would take minutes)\n";
+            continue;
+        }
         runSortBenchmark(n, opts);
     }
 
