@@ -26,22 +26,17 @@ namespace dungeon {
 
 const Monster* linearSearch(const std::vector<Monster>& bestiary,
                             const std::string&         name) {
-    // TODO Floor 1 (Mon): walk every entry; return its address when name matches.
-    //                     If you reach the end without a match, return nullptr.
-    //
-    // Think before you type:
-    //   - You return `const Monster*` (a pointer into the vector), NOT
-    //     `Monster` (a copy). Why a pointer? What would you even return
-    //     from a "copy" version when the name is not found?
-    //   - In the range-for loop, `for (auto m : bestiary)` makes a COPY
-    //     of each monster each iteration. `for (const auto& m : bestiary)`
-    //     does not. Which do you want — and why does the difference matter
-    //     more for a `Monster` than for an `int`?
-    //   - How do you take the address of the element you're looking at?
-    //     (Two common idioms. Pick whichever makes your loop read cleanly.)
-    (void)bestiary;
-    (void)name;
-    return nullptr;
+    for(const auto& m: bestiary) {
+       if (m.name == name) return &m;
+       // ==byte-for-byte equality
+       //here, & is address-of operator
+       //since m is a reference into a vector
+       //&m is a pointer to that slot in the
+       //vector; 
+    }
+
+    return nullptr;//c++ typed nummm pointer 
+    //Null macro --> and int 0 in disguise
 }
 
 const Monster* binarySearch(const std::vector<Monster>& bestiary,
