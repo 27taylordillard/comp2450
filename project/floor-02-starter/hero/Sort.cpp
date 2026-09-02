@@ -25,47 +25,96 @@
 #include "Sort.h"
 #include <algorithm>  // you will want std::sort in sortInventory
 
+
+
 namespace dungeon {
+
+    namespace{
+        void merge(std::vector<Item>& v, 
+        std::size_t low,
+        std:: size_t mid,
+        std::size_t high,
+        const Comparator& cmp){
+            //[low, mid)
+            //[mid, high)
+            std::vector<Item> scratch;
+            scratch.reserve(high-low);
+            //allocating capacity for high - low items
+            // up front
+
+            //two cursors for each side
+            std::size_t i = low; // walk the left half
+            std:: size_t j = mid; //walk right half
+
+            //merge loop
+            //while both halves still have items,
+            //pick the smaller front-of-queue and append
+            while(i < mid && j < high) {
+                if(!cmp(v[j], v[i])) {
+                    scratch.push_back(v[i++]);
+                }
+                else {
+                    scratch.push_back(v[j++]);
+                }
+            }
+            //one half is drained but the other still has
+            //items
+            while(i < mid) scratch.push_back(v[i++]);
+            while(j < high) scratch.push_back(v[j++]);
+
+            //copy the merge result back into v
+            // at the positions [low,high)
+            for(std::size_t k = 0; k < scratch.size(); ++k) {
+                v[low + k] = std::move(scratch[k]);
+            }
+        }
+
+        void mergeSortImpl(std::vector<Item>& v,
+        std::size_t low, std::size_t high,
+        const Comparator& cmp) {
+            //base case
+            if(high - low < 2) return;
+            //recursion!
+            std::size_t mid = low + (high - low) / 2;
+            mergeSortImpl(v, low, mid, cmp);
+            mergeSortImpl(v, mid, high, cmp);
+            merge(v, low, mid, high, cmp);
+        }
+
+        std::size_t partition(std::vector<Item>& v,
+        std::size_t low, std::size_t high,
+        const Comparator& cmp) {
+            // high is our last index(inclusive)
+            //1.) pick the pivot
+            std::size_t mid = low + (high - low) / 2;
+            std::swap(v[mid], v[high]);
+            const Item pivot = v[high];
+            //compue middle index
+            //std::swap exchanges two items
+            // w/o copying the whole struct
+            //In lomuto , assumes the pivot 
+            // lives at high, so be moving
+            // our pivot there, we can follow
+            // classic Lomuto 
+
+            //lomuto scan
+            std::size_t store = low;
+            for(std::size_t i = low; i < high; ++i) {
+                if(cmp(v[i], pivot)) {
+                    std::swap(v[store], v[i]);
+                    ++store;
+                }
+            }
+            std::swap(v[store], v[high]);
+            return store;
+        }
+
+    }
 
 // ---- 1. Merge sort ------------------------------------------------------
 
 void mergeSort(std::vector<Item>& inventory, const Comparator& cmp) {
-    // TODO Floor 2 (Mon): implement merge sort.
-    //
-    // Think before you type:
-    //   - Merge sort is STABLE. That means: when two items compare equal
-    //     (same weight, say), the one that started earlier stays earlier.
-    //     The starter inventory has Iron key and Loaf of bread both at
-    //     weight 0.1, Iron key first. After `sort inventory by weight`,
-    //     which must come first? *Which line in your merge code is the
-    //     one that enforces that?* (Hint: the tie-breaking comparison.)
-    //   - Merge sort needs O(n) scratch space to merge. Could you merge
-    //     two sorted halves in place without extra memory? Yes — and it's
-    //     wildly slower. Don't try. The scratch buffer IS the algorithm.
-    //   - Base case for a half-open range [lo, hi): when does the range
-    //     hold zero or one element? That range is already "sorted" —
-    //     return immediately.
-    //   - Computing mid: `lo + (hi - lo) / 2`, not `(lo + hi) / 2`. Same
-    //     overflow habit you built in Floor 1.
-    //
-    // If you need structural hints — write two helpers in an anonymous
-    // namespace above this function:
-    //
-    //   static void mergeSortImpl(std::vector<Item>& v,
-    //                             std::size_t lo, std::size_t hi,
-    //                             const Comparator& cmp);
-    //   static void merge         (std::vector<Item>& v,
-    //                             std::size_t lo, std::size_t mid,
-    //                             std::size_t hi,
-    //                             const Comparator& cmp);
-    //
-    // mergeSort() itself just calls mergeSortImpl(v, 0, v.size(), cmp).
-    //
-    // In merge(): copy both halves into a scratch buffer, then walk both
-    // halves taking the smaller front element. On a tie take from the
-    // LEFT half — that one line is what keeps the sort stable.
-    (void)inventory;
-    (void)cmp;
+    mergeSortImpl(inventory, 0, inventory.size(), cmp);
 }
 
 // ---- 2. Quicksort -------------------------------------------------------
@@ -119,43 +168,12 @@ void quicksort(std::vector<Item>& inventory, const Comparator& cmp) {
 // ---- 3. sortInventory (the seam) ----------------------------------------
 
 bool sortInventory(Hero& hero, const std::string& criterion) {
-    // TODO Floor 2 (Fri): parse criterion, build the right comparator,
-    // dispatch to a sort.
-    //
-    // Think before you type:
-    //   - Three decisions to make: WHICH key, ASC or DESC, WHICH sort.
-    //     Don't tangle them. Parse first, then build a comparator, then
-    //     hand it to exactly one sort call.
-    //   - Building a DESCENDING comparator from an ASCENDING one: you
-    //     don't need a whole second comparator. Wrap the ascending one
-    //     and swap its arguments. (Two-line lambda. Elegant.)
-    //   - Which sort? std::sort wins on speed. Your mergeSort wins on
-    //     stability (and it's YOUR code — the instructor hand-wrote
-    //     std::sort's ancestor forty years ago and still refers to
-    //     Sedgewick). Pick one. The *choice* is the assignment.
-    //   - The "desc" case for `sort by weight`: does Iron key still come
-    //     before Loaf of bread on ties? That answer tells you whether
-    //     your chosen sort is stable — and whether stability is the
-    //     right thing for this command. (Reasonable people disagree.)
-    //
-    // If you need structural hints — parse with std::istringstream:
-    //
-    //     std::istringstream in(criterion);
-    //     std::string key, dir;
-    //     in >> key >> dir;       // dir is "" if absent
-    //
-    // Build an ascending Comparator for each key ("name", "weight",
-    // "value"). If dir == "desc", wrap it in a Comparator that swaps
-    // the arguments of the ascending one.
-    //
-    // Return false on an unknown key (main.cpp will print an error).
-    //
-    // Dispatch: for this week std::sort is the right production choice.
-    // Your mergeSort and quicksort are correct too — pick one and
-    // defend it in your commit message.
-    (void)hero;
-    (void)criterion;
-    return false;
+   (void)criterion;
+   Comparator byWeight = [](const Item& a, const Item& b) {
+        return a.weight < b.weight;
+   };
+   mergeSort(hero.inventory, byWeight);
+   return true;
 }
 
 }  // namespace dungeon
