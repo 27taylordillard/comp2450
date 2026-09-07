@@ -181,5 +181,5 @@ bool sortInventory(Hero& hero, const std::string& criterion) {
     return true;
 
 }
-
+//test
 }  // namespace dungeon
