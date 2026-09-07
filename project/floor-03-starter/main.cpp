@@ -1,26 +1,4 @@
-// COMP 2450 — The Descent
-// Floor 3: The Forgemaster's Vault
-//
-// You descend from the Sorting Crucible into a vaulted stone chamber —
-// the Forgemaster's Vault — where empty molds stand on cold racks.
-// Every command you unlocked on Floors 1 and 2 still works: search, list,
-// inventory, sort, benchmark. This week you add THREE things:
-//
-//   (Mon) a FUNCTION template — findByName<T> — that replaces
-//         Floor 1's monster-specific linearSearch with one source body
-//         that works on Items too.
-//   (Wed) a CLASS template — Bag<T> — that replaces std::vector as the
-//         storage behind BOTH hero.inventory AND the keep's bestiary.
-//         One class, two instantiations.
-//   (Fri) USER-DEFINED EXCEPTIONS — BagException, a safer at() method
-//         on Bag, and a try/catch around this main loop so the game
-//         keeps running when a caller asks for an index that isn't
-//         there.
-//
-// Read this file. On MON and WED you do not need to edit it — your
-// work lives in Search.h and Bag.h. On FRIDAY you add one small piece
-// here: a try/catch around the command dispatch. There is a TODO marker
-// where it goes.
+
 
 #include <iostream>
 #include <sstream>
@@ -131,11 +109,17 @@ int main() {
                 std::cout << "Speak a name:  search <monster-or-item>\n";
                 continue;
             }
-            // TODO Floor 3 (Mon): wire this to findByName<T>. For now
-            // it still calls Floor 1's monster-only findMonster.
-            const Monster* m = findMonster(bestiary, rest);
-            if (m) { printMonster(*m); continue; }
-            std::cout << "No such creature stalks this Keep.\n";
+            const Monster* m = findByName(bestiary, rest);
+            if (m) {printMonster(*m); continue; }
+
+            const Item* it = findByName(hero.inventory, rest);
+            if (it) {
+                std::cout << " " << it->name
+                    << " (wt" << it->weight
+                    << ", val " << it->value << ")\n";
+                continue;
+            }
+            std::cout << "No such creature / item stalks this keep. \n";
         }
         else if (cmd == "inventory") {
             printInventory(hero);
