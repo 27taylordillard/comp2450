@@ -74,6 +74,4 @@ const T* findByName(const Bag<T>& items, const std::string& name) {
     }
     return nullptr;
    }
-}
-
-}  // namespace dungeon
+} // namespace dungeon
