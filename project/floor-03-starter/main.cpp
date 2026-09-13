@@ -215,7 +215,7 @@ int main() {
             std::cout << "The Vault does not understand '" << cmd << "'.\n";
         }
     }
-    catch(const std::exception& e) {
+    catch (const std::exception& e) {
         std::cout << "No such item. (" << e.what() << ")\n";
     }
 }
