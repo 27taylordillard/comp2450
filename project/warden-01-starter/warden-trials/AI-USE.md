@@ -12,6 +12,7 @@ Example entries:
 ## Trial I — The Foundations Brief
 
 (your declaration)
+used chatgpt to check for accurate answers. I read the feedback it gave me and made the appropriate changes. 
 
 ## Trial II — The Critique
 
