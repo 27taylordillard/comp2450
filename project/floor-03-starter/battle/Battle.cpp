@@ -144,14 +144,75 @@ BattleOutcome runWardenBattle(Hero& hero) {
             int choice;
             std:: cin >> choice;
 
+            if(std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+                throw BattleException("Invalid menu choice.");
+            }
+
             //check menu choice
             if(choice < 1 || choice > actions.size()) {
                 throw BattleException("Invalid menu choice. Please select a valid option.");
+            }
+            //handle attack
+            if(choice == 1) {
+                wardenHP -= kPlayerAttackDmg;
+                std::cout << "You attack the Warden!\n";
+                //warden retaliates if still alive
+                if(wardenHP > 0) {
+                    playerHP -= kWardenAttackDmg;
+                    std::cout << "The Warden attacks back!\n";
+                }
+            }
+            //handle use item
+            else if (choice == 2) {
+                //sort items by name when the menu is displayed
+                std::sort(hero.inventory.begin(), hero.inventory.end(),
+                        [](const Item& a, const Item& b) {
+                              return a.name < b.name; // sorting by name
+                        });
+                std::cout << "Choose an item:\n";
+                for (std::size_t i = 0; i < hero.inventory.size(); ++i) {
+                    std:: cout << hero.inventory[i].name << "\n";
+                }
+                //get item name from player
+                std::string itemName;
+                std::cin.ignore(1000, '\n');
+                std::getline(std::cin, itemName);
+
+                const Item* item = findByName<Item>(hero.inventory, itemName);
+
+                //checks that item was found
+                if(item == nullptr) {
+                    throw BattleException("Unknown Item.");
+                }
+                if(item->name == "Healing potion") {
+                    playerHP += 10; //heal 10 HP
+                    std::cout << "You used a Healing Potion!\n";
+                }
+            }
+            else if(choice == 3) {
+                std::cout << "The Warden has " << wardenHP << " HP remaining.\n";
+                std::cout << "The Warden looks strong and ready to fight!.\n";
+            }
+            else if(choice == 4) {
+                std::cout << "You flee from the Warden.\n";
+                std::cout << "The gate stays closed.\n";
+                return BattleOutcome::Fled;
             }
         }
         catch (const std::exception& e) {
             std::cout << "  " << e.what() << "  Try again.\n";
             continue;   // re-prompt; turn does NOT advance
+        }
+        //show the battle result
+        if(wardenHP <= 0) {
+            std::cout << "You defeated the Warden!\n";
+            return BattleOutcome::Victory;
+        }
+        if(playerHP <= 0) {
+            std::cout << "You have been defeated by the Warden.\n";
+            return BattleOutcome::Defeat;
         }
     }
 
