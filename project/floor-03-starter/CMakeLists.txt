@@ -32,6 +32,7 @@ add_executable(the_descent
     hero/Hero.cpp
     hero/Sort.cpp
     hero/Bench.cpp
+    battle/Battle.cpp
 )
 
 # Copy data/ next to the binary so `./the_descent` finds monsters.txt
