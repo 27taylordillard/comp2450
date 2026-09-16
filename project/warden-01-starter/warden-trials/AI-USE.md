@@ -19,6 +19,7 @@ used chatgpt to check for accurate answers. I read the feedback it gave me and m
 This trial **requires** AI use. The full prompt + reply + critique are in `trial-2-critique.md`. If you used a different LLM for any other reason on this trial (e.g., to look up syntax), declare it here:
 
 (your declaration)
+used chatgpt to check to make sure I answered all of the requirements of the question and to have it fix my grammar. 
 
 ## Trial III — The Encounter
 
