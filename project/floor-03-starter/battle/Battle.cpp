@@ -79,13 +79,138 @@ namespace {
 // Tunable battle parameters. Edit to taste; document any tuning in
 // encounter-notes.md so the grader knows what to expect.
 // =====================================================================
+//constexpr means these values are compile-time constants
+//k prefexi --> means const
 constexpr int kPlayerStartHP   = 30;
 constexpr int kWardenStartHP   = 50;
 constexpr int kPlayerAttackDmg = 6;   // damage per Attack action
 constexpr int kWardenAttackDmg = 4;   // warden's retaliation damage
 
-}  // anonymous namespace
+//enum create a set of named choices
+//enum class, keeps our names scoped
+enum class MenuAction {
+    Attack,
+    UseItem,
+    InspectWarden,
+    Flee
+};
+struct MenuOption {
+    int number; //number typed by the player
+    std::string label; // text displayed by the menu
+    MenuAction action; // action performed by our program
+};
+void printMenu(
+    Bage <MenuOption>& menu,
+    int playerHP,
+    int wardenHP){
+    std::cout << "\n -- Your turn -- your hp" << playerHP 
+        << "    Warden hp " << wardenHP << "\n";
 
+        for(std::size_t = i = 0; i < menu.size(); ++i) {
+            std::cout << "    "
+                << menu[i].number
+                << ". "
+                << menu[i].label
+                << "\n";
+        }
+        std::cout << " > ";
+    }
+    MenuAction readMenuChoice(const Bag<MenuOption>& menu) {
+        std::string line;
+        if(!std::getline(std::cin, line)) {
+            return MenuAction::Flee; 
+        }
+        int n = -1;
+
+        try {
+            n = std::stoi(line);
+        }
+        catch(...) {
+            throw BattleException( "'" + line + "' is not a menu number(enter 1 to " +
+                std::to_string(menu.size()) + ")"
+            );
+        }
+        for(std::size_t i = 0; i < menu.size(); ++i) {
+            if(menu[i].number == n) {
+                return menu[i].action;
+            }
+        }
+        throw BagException(
+            static_cast<std::size_t>(n),
+            menu.size()
+        );
+    }
+    //handle the player's "use item" action
+    //Hero& will give the function access to the 
+    //original hero object
+    void useItem(Hero& hero, int& playerHP) {
+        if(hero.inventory.empty()){
+            std::cout << "Your satchel is empty. \n";
+            return;
+        }
+        sortInventory(hero, "value desc");
+        std::cout << "Choose an item by name: \n";
+        printInventory(hero);
+        std::cout << " > ";
+
+        std::string name;
+        if(!std::getline(std::cin, name) || name.empty()) {
+            std::cout << "you hesitated. \n";
+            return;
+        }
+
+        //findByName<Item> <-- function-template specilization
+        const Item* it = findByName<Item>(hero.inventory, name);
+
+        if(!it) {
+            throw BattleException("'no item found '" + name + "' in your satchel");
+        }
+        if(it->name.find("otion") != std::string::npos) {
+            playerHP =std::min(
+                playerHP + 12,
+                kPlayerStartHP
+            );
+            std::cout << " You drink "
+            << it->name
+            << ". HP -> "
+            << playerHP
+            << ".\n";
+        }
+        else {
+            std::cout << " You ready "
+            << it ->name
+            << " - but it is not a consumable. \n";
+        }
+    }
+
+
+BattleOutcome runWardenBattle(Hero& hero) {
+    int playerHP = kPlayerStartHP;
+    int wardenHP = kWardenStartHP;
+
+    Bag<MenuOption > menu;
+    menu.push_back({1, "Attack", MenuAction::Attack });
+    menu.push_back({2, "Use item", MenuAction::UseItem});
+    menu.push_back({3, "Inspect warden", MenuAction::Inspect});
+    menu.push_back({4, "Flee", MenuAction::Flee});
+
+    while(playerHP > 0 && wardenHP > 0) {
+        try {
+            printMenu(menu, playerHP, wardenHP);
+            switch(readMenuChoice(menu)) {
+                wardenHP -= kPlayerAttackDmg;
+                std::cout << "you strike for "
+                << kPlayerAttackDmg
+                << ".Warden HP -> "
+                << std::max(wardenHP, 0)
+                << ".\n";
+            }
+        }
+    }
+
+}
+//}  // anonymous namespace 
+/* The code that I wrote before Friday's class:
 BattleOutcome runWardenBattle(Hero& hero) {
     // TODO — write the boss battle. Suggested outline (yours to refactor):
     //
@@ -235,6 +360,6 @@ BattleOutcome runWardenBattle(Hero& hero) {
     std::cout << "  (Battle scaffold — runWardenBattle is not yet written.)\n"
               << "  (Open battle/Battle.cpp and follow the TODOs.)\n";
     return BattleOutcome::Fled;
-}
+}*/
 
-}  // namespace dungeon
+//}  // namespace dungeon
