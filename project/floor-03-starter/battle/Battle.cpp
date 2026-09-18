@@ -190,10 +190,24 @@ BattleOutcome runWardenBattle(Hero& hero) {
                     playerHP += 10; //heal 10 HP
                     std::cout << "You used a Healing Potion!\n";
                 }
+                if(item->name == "Loaf of bread") {
+                    playerHP += 5;
+                    std::cout << "You ate the loaf of bread! You feel a bit better.\n";
+                }
+                if(item->name == "Rusty sword") {
+                    wardenHP -=3;
+                    std::cout << "You used the Rusty Sword! The Warden takes some damage.\n";
+                }
+                if(item-> name == "Iron key") {
+                    std::cout << "the Iron key cannot help during this battle.\n";
+                }
+                if(item->name == "Cloak of shadows") {
+                    std::cout << "You used the Cloak of shadows to hide from the Warden!\n";
+                }
             }
             else if(choice == 3) {
                 std::cout << "The Warden has " << wardenHP << " HP remaining.\n";
-                std::cout << "The Warden looks strong and ready to fight!.\n";
+                std::cout << "The Warden looks strong and ready to fight!\n";
             }
             else if(choice == 4) {
                 std::cout << "You flee from the Warden.\n";

@@ -9,6 +9,7 @@ This file is the grader's map of your battle code. Help us find each piece. Be s
 ## AI declaration for Trial III
 
 (One or two sentences. *Which* tool, *what* you asked it for, *what* you did with the result. "Did not use" is fine — but the line must be there.)
+used chatgpt to fix sytax errors, such as capitaliztion discrepancies in my items. 
 
 ---
 
