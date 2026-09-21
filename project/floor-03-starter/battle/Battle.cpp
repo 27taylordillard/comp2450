@@ -100,13 +100,13 @@ struct MenuOption {
     MenuAction action; // action performed by our program
 };
 void printMenu(
-    Bage <MenuOption>& menu,
+    Bag<MenuOption>& menu,
     int playerHP,
     int wardenHP){
     std::cout << "\n -- Your turn -- your hp" << playerHP 
         << "    Warden hp " << wardenHP << "\n";
 
-        for(std::size_t = i = 0; i < menu.size(); ++i) {
+        for(std::size_t i = 0; i < menu.size(); ++i) {
             std::cout << "    "
                 << menu[i].number
                 << ". "
@@ -191,7 +191,7 @@ BattleOutcome runWardenBattle(Hero& hero) {
     Bag<MenuOption > menu;
     menu.push_back({1, "Attack", MenuAction::Attack });
     menu.push_back({2, "Use item", MenuAction::UseItem});
-    menu.push_back({3, "Inspect warden", MenuAction::Inspect});
+    menu.push_back({3, "Inspect warden", MenuAction::InspectWarden});
     menu.push_back({4, "Flee", MenuAction::Flee});
 
     while(playerHP > 0 && wardenHP > 0) {
@@ -204,10 +204,57 @@ BattleOutcome runWardenBattle(Hero& hero) {
                 << ".Warden HP -> "
                 << std::max(wardenHP, 0)
                 << ".\n";
+                
+                //is the warden dead?
+                if(wardenHP > 0) {
+                    playerHP -= kWardenAttackDmg;
+
+                    std::cout << "The warden retaliates for "
+                        << kWardenAttackDmg
+                        << ". Your HP ->"
+                        << std::max(playerHP, 0)
+                        << ".\n";
+                }
+                //break to exit the switch case, not the while loop
+                break;
+            }
+            case MenuAction::UseItem: {
+                useItem(hero, playerHP);
+                //using an item does consume our term
+                if(wardenHP > 0 && playerHP > 0) {
+                    playerHP -= kWardenAttackDmg;
+
+                    std::cout << "The warden strikes while you fumble. Your HP ->"
+                        << std::max(playerHP, 0)
+                        << ".\n";
+                }
+                break;
+            }
+            case MenuAction::InspectWarden : {
+                std::cout << "Warden of the Foundations. HP ->"
+                    << wardenHP
+                    << " / "
+                    <<kWardenStartHP
+                    << ". No visible weakness (free action). \n";
+
+                break;
+            }
+            case MenuAction::Flee: {
+                //return to immediately exit function
+                return BattleOutcome::Fled;
+            }
             }
         }
+        catch(const std::exception& e) {
+            //battle exception and bag exception will inherut
+            std::cout << e.what()
+                << " - try again.\n";
+        }
     }
-
+    return wardenHP <= 0
+        ? BattleOutcome::Victory
+        : BattleOutcome::Defeat;
+}
 }
 //}  // anonymous namespace 
 /* The code that I wrote before Friday's class:
