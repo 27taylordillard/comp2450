@@ -64,6 +64,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "../hero/Bag.h"
 #include "../hero/BagException.h"
@@ -103,8 +104,8 @@ void printMenu(
     Bag<MenuOption>& menu,
     int playerHP,
     int wardenHP){
-    std::cout << "\n -- Your turn -- your hp" << playerHP 
-        << "    Warden hp " << wardenHP << "\n";
+        std::cout << "\n -- Your turn -- your hp" << playerHP 
+            << "    Warden hp " << wardenHP << "\n";
 
         for(std::size_t i = 0; i < menu.size(); ++i) {
             std::cout << "    "
@@ -154,6 +155,7 @@ void printMenu(
         std::cout << " > ";
 
         std::string name;
+
         if(!std::getline(std::cin, name) || name.empty()) {
             std::cout << "you hesitated. \n";
             return;
@@ -163,7 +165,9 @@ void printMenu(
         const Item* it = findByName<Item>(hero.inventory, name);
 
         if(!it) {
-            throw BattleException("'no item found '" + name + "' in your satchel");
+            throw BattleException(
+                "no item found '" + name + "' in your satchel"
+            );
         }
         if(it->name.find("otion") != std::string::npos) {
             playerHP =std::min(
@@ -171,17 +175,18 @@ void printMenu(
                 kPlayerStartHP
             );
             std::cout << " You drink "
-            << it->name
-            << ". HP -> "
-            << playerHP
-            << ".\n";
+                << it->name
+                << ". HP -> "
+                << playerHP
+                << ".\n";
         }
         else {
             std::cout << " You ready "
-            << it ->name
-            << " - but it is not a consumable. \n";
+                << it ->name
+                << " - but it is not a consumable. \n";
         }
     }
+}
 
 
 BattleOutcome runWardenBattle(Hero& hero) {
@@ -197,13 +202,15 @@ BattleOutcome runWardenBattle(Hero& hero) {
     while(playerHP > 0 && wardenHP > 0) {
         try {
             printMenu(menu, playerHP, wardenHP);
+
             switch(readMenuChoice(menu)) {
+            case MenuAction::Attack: {
                 wardenHP -= kPlayerAttackDmg;
                 std::cout << "you strike for "
-                << kPlayerAttackDmg
-                << ".Warden HP -> "
-                << std::max(wardenHP, 0)
-                << ".\n";
+                    << kPlayerAttackDmg
+                    << ".Warden HP -> "
+                    << std::max(wardenHP, 0)
+                    << ".\n";
                 
                 //is the warden dead?
                 if(wardenHP > 0) {
