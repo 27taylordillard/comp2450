@@ -106,6 +106,8 @@ int main() {
     }
 
     hero.eventLog.push_front("began session as \"" + hero.heroName + "\"");
+  
+
 
     printHelp();
     std::cout << "\n";

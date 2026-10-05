@@ -64,7 +64,7 @@ const Monster* findMonster(const std::vector<Monster>& bestiary,
 
 template <typename T>
 const T* findByName(const Bag<T>& items, const std::string& name) {
-    auto it = std:find_if(items.begin(), items.end(),
+    auto it = std::find_if(items.begin(), items.end(),
         [&name](const T& x) {return x.name == name;});
     return (it != items.end()) ? &*it : nullptr;
 }
