@@ -107,6 +107,7 @@ void recordUndo(Hero& hero, const std::string& description) {
 }  // anonymous namespace
 
 int main() {
+    
     std::cout << "\n=== THE HALL OF ECHOES ===\n\n";
 
     std::cout << "What is your name, adventurer? ";
