@@ -91,7 +91,8 @@ public:
     }
     const T& front() const {
         // same body as the non-const version above
-        return chain_.head()->data;
+            return chain_.head()->data;
+
     }
 
     // Number of items currently in the queue.
