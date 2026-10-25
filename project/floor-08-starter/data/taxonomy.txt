@@ -20,6 +20,7 @@ Creatures of the Hold/Beasts/Mammals/Ironclaw Bear
 Creatures of the Hold/Beasts/Mammals/Cinder Bat
 Creatures of the Hold/Beasts/Giants/Cave Troll
 Creatures of the Hold/Beasts/Giants/Frostmaw
+Creatures of the Hold/Beasts/Small Folk/Goblin
 Creatures of the Hold/Vermin/Bone Spider
 Creatures of the Hold/Vermin/Ratking
 Creatures of the Hold/Vermin/Marsh Lurker

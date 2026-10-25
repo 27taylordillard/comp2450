@@ -46,6 +46,7 @@
 #include <utility>
 #include <vector>
 
+
 #include "Bag.h"
 #include "Queue.h"   // levelOrder (BFS) reuses your Floor 7 Queue<T>.
 
@@ -185,7 +186,7 @@ public:
     // TODO Floor 8 (Friday): write findFrom(root_, value) below.
     std::vector<T> lineage(const T& value) const {
         std::vector<T> path;
-        const Node* n = findFrom(root_, value);
+        const Node* n = findFrom(root_, value); 
         if (n == nullptr) return path;          // not found → empty path
         for (const Node* p = n; p != nullptr; p = p->parent) path.push_back(p->data);
         std::reverse(path.begin(), path.end());  // collected leaf→root; flip it
@@ -281,12 +282,12 @@ private:
     //         if (const Node* hit = findFrom(n->children[i], value)) return hit;
     //     return nullptr;
     static const Node* findFrom(const Node* n, const T& value) {
-        if(n == nullptr) return nullptr;
-        if(n->data == value) return n;
+        if (n == nullptr) return nullptr;
+        if (n->data == value) return n;
         for (std::size_t i = 0; i < n->children.size(); ++i) {
             if (const Node* hit = findFrom(n->children[i], value)) return hit;
         }
-        return nullptr; 
+        return nullptr;
     }
 };
 
