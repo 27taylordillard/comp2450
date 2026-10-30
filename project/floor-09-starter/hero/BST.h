@@ -232,8 +232,22 @@ private:
     //     n->right = removeFrom(n->right, succ->data, discard);
     //     return n;
     static Node* removeFrom(Node* n, const T& value, bool& removed) {
-        (void)value; (void)removed;
-        return n;   // TODO Friday — stub leaves the tree unchanged
+        if (n == nullptr) return nullptr;
+        if(value < n->data) {n->left = removeFrom(n->left, value, removed); return n}
+        if (n->data < value) {n->right = removeFrom(n->right, value, removed); return n;}
+        removed = true;
+
+        if (n->left == nullptr) { Node* r = n->right; delete n; return r;}
+        if (n->right == nullptr) {Node* l = n->left; delete n; return l; }
+
+        Node* succ = n->right;
+        while (succ->left != nullptr) succ = succ->left;
+        n->data = succ->data;
+        bool discard = false;
+
+        n->right = removeFrom(n->right, succ->data, discard);
+
+        return n;
     }
 };
 
