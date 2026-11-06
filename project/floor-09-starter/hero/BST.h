@@ -131,7 +131,7 @@ private:
     //     else if (n->data < value) n->right = insertInto(n->right, value);
     //     return n;
     static Node* insertInto(Node* n, const T& value) {
-        if (n == nulllptr) return new Node(value);
+        if (n == nullptr) return new Node(value);
         if(value < n->data) n->left = insertInto(n->left, value);
         else if (n->data < value) n->right = insertInto(n->right, value);
         return n;
@@ -233,7 +233,7 @@ private:
     //     return n;
     static Node* removeFrom(Node* n, const T& value, bool& removed) {
         if (n == nullptr) return nullptr;
-        if(value < n->data) {n->left = removeFrom(n->left, value, removed); return n}
+        if(value < n->data) {n->left = removeFrom(n->left, value, removed); return n;}
         if (n->data < value) {n->right = removeFrom(n->right, value, removed); return n;}
         removed = true;
 
