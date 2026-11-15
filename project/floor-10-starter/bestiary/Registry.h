@@ -160,6 +160,7 @@ public:
     int countWeakness(const std::string& w) const {
         auto it = weaknessCounts_.find(w);
         return it == weaknessCounts_.end() ? 0 : it->second;
+        //return weaknessCounts_[w];
     }
 
     // ----- Friday: mutate, staying consistent ------------------------
